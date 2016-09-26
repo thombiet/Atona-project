@@ -1,0 +1,274 @@
+/* Définition des polices personnalisées */
+
+@font-face
+{
+    font-family: 'BallparkWeiner';
+    src: url('polices/ballpark.eot');
+    src: url('polices/ballpark.eot?#iefix') format('embedded-opentype'),
+    url('polices/ballpark.woff') format('woff'),
+    url('polices/ballpark.ttf') format('truetype'),
+    url('polices/ballpark.svg#BallparkWeiner') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face
+{
+    font-family: 'Dayrom';
+    src: url('polices/dayrom.eot');
+    src: url('polices/dayrom.eot?#iefix') format('embedded-opentype'),
+    url('polices/dayrom.woff') format('woff'),
+    url('polices/dayrom.ttf') format('truetype'),
+    url('polices/dayrom.svg#Dayrom') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Eléments principaux de la page */
+
+body
+{
+    background-color: #e3eeef;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    color: #181818;
+}
+
+#bloc_page
+{
+    width: 900px;
+    margin: auto;
+}
+
+body h2
+{
+    padding-top: 4px;
+    padding-left: 180px;
+}
+
+/* Header */
+
+header
+{
+    display:flex;
+    background-color: white;
+    justify-content: space-between;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 4px #1c1a19;
+    
+}
+
+header h1
+{
+    font-family: 'BallparkWeiner', serif;
+    font-size: 2 em;
+    font-weight: normal;
+    margin: 0 0 0 10px;
+}
+
+#Presentation
+{
+ float: left;
+ padding-top: 20px;
+}
+
+#logo
+{
+
+
+}
+
+
+#Identification
+{
+ padding-top: 10px;
+ float: right;
+ margin-right: 4px;
+}
+
+
+
+
+
+/* Navigation */
+
+
+
+
+/* Corps */
+
+section
+{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+article, aside
+{
+    text-align: justify;
+}
+
+article
+{
+    margin-right: 20px;
+    flex: 3;
+}
+
+
+
+article p
+{
+    font-size: 0.8em;
+}
+
+aside
+{
+    flex: 1.2;
+    position: relative;
+    background-color: #706b64;
+    box-shadow: 0px 2px 5px #1c1a19;
+    border-radius: 5px;
+    padding: 10px;
+    color: white;
+    font-size: 0.9em;
+}
+
+#convertisseur
+{
+    display: flex;
+    float: center;
+    background-color: white;
+    width: 600px;
+    height: 300px;
+    padding-top: 2px;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 4px #1c1a19;
+
+}
+
+#convertisseur_banniere
+{
+    position: absolute;
+    border-radius: 5px;
+    width: 600px;
+    height: 35px;
+    padding-top: none;
+    margin: auto;
+    background-color: rgba(24,24,20,0.5);
+    color: white;
+    font-size: 0.8em;
+}
+
+#convertisseur_banniere h2
+{
+    padding: auto;
+    margin: auto;
+}
+
+#contact
+{
+    display: block;
+}
+
+#aide
+{
+    float: left;
+}
+
+#social
+{
+    float: right;
+}
+
+/* Footer */
+
+footer
+{
+    display: flex;
+    text-align: center;
+    padding-top: 25px;
+}
+
+footer p, footer ul
+{
+    font-size: 0.8em;
+}
+
+
+footer h1
+{
+    color: navy;
+    text-shadow: 1px 1px grey;
+    font-size: 1.2em;
+}
+
+
+#infoBank
+{
+    background-color: white;
+    width: 300px;
+    padding: 25px;
+    margin: 25px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 4px #1c1a19;
+}
+
+#Offres
+{
+    background-color: white;
+    width: 300px;
+    padding: 25px;
+    margin: 25px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 4px #1c1a19;
+}
+
+#Pub
+{
+    background-color: white;
+    width: 300px;
+    padding: 25px;
+    margin: 25px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px 4px #1c1a19;
+}
+.myButton {
+    -moz-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #54a3f7;
+    box-shadow:inset 0px 1px 0px 0px #54a3f7;
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #afc8d6), color-stop(1, #0061a7));
+    background:-moz-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
+    background:-webkit-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
+    background:-o-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
+    background:-ms-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
+    background:linear-gradient(to bottom, #afc8d6 5%, #0061a7 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#afc8d6', endColorstr='#0061a7',GradientType=0);
+    background-color:#afc8d6;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    border:1px solid #124d77;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:13px;
+    font-weight:bold;
+    padding:6px 13px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #154682;
+}
+.myButton:hover {
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7), color-stop(1, #afc8d6));
+    background:-moz-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
+    background:-webkit-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
+    background:-o-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
+    background:-ms-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
+    background:linear-gradient(to bottom, #0061a7 5%, #afc8d6 100%);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7', endColorstr='#afc8d6',GradientType=0);
+    background-color:#0061a7;
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
