@@ -1,19 +1,24 @@
 package com.wha.springmvc.model;
+
 import java.util.List;
 
 import com.wha.springmvc.model.Utilisateur;
 
 public class Conseiller extends Utilisateur {
-	
+	// #region Attributs
 	private String matricule;
 	private List<DemandeOuverture> listeDemandesOuverture;
 	private List<Requete> listeDemandesClient;
 	private List<Client> listeClients;
-	
-	public Conseiller(){
-		
-	}
+	// #endregion
 
+	// #region Constructeurs
+	public Conseiller() {
+
+	}
+	// #endregion
+
+	// #region Accesseurs
 	public String getMatricule() {
 		return matricule;
 	}
@@ -45,7 +50,7 @@ public class Conseiller extends Utilisateur {
 	public void setListeClients(List<Client> listeClients) {
 		this.listeClients = listeClients;
 	}
-	
-	
+
+	// #endregion
 
 }

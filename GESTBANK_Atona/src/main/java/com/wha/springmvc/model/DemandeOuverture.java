@@ -3,17 +3,21 @@ package com.wha.springmvc.model;
 import java.util.Date;
 
 public class DemandeOuverture {
-
+	// #region Attributs
 	private ClientPotentiel cp;
 	private boolean valide;
 	private Conseiller conseiller;
 	private Date dateCreation;
 	private Date dateAffectation;
+	// #endregion
 
+	// #region Constructeurs
 	public DemandeOuverture() {
 		this.dateCreation = new Date();
 	}
+	// #endregion
 
+	// #region Accesseurs
 	public ClientPotentiel getCp() {
 		return cp;
 	}
@@ -53,5 +57,5 @@ public class DemandeOuverture {
 	public void setDateAffectation(Date dateAffectation) {
 		this.dateAffectation = dateAffectation;
 	}
-
+	// #endregion
 }

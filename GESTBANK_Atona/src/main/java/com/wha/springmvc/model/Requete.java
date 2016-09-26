@@ -1,16 +1,20 @@
 package com.wha.springmvc.model;
 
 public class Requete {
-	
+	// #region Attributs
 	private TypeRequete type;
 	private Compte compte;
 	private Client client;
 	private String message;
+	// #endregion
 
+	// #region Constructeurs
 	public Requete() {
 
 	}
+	// #endregion
 
+	// #region Accesseurs
 	public TypeRequete getType() {
 		return type;
 	}
@@ -42,5 +46,5 @@ public class Requete {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
+	// #endregion
 }

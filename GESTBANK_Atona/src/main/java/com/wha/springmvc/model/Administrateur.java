@@ -3,14 +3,19 @@ package com.wha.springmvc.model;
 import java.util.List;
 
 public class Administrateur extends Utilisateur {
-	
+
+	// #region
 	private List<Conseiller> listeConseillers;
 	private List<DemandeOuverture> listeDemandes;
-	
-	public Administrateur(){
-		
-	}
+	// #endregion
 
+	// #region Constructeurs
+	public Administrateur() {
+
+	}
+	// #endregion
+
+	// #region Accesseurs
 	public List<Conseiller> getListeConseillers() {
 		return listeConseillers;
 	}
@@ -26,5 +31,5 @@ public class Administrateur extends Utilisateur {
 	public void setListeDemandes(List<DemandeOuverture> listeDemandes) {
 		this.listeDemandes = listeDemandes;
 	}
-
+	// #endregion
 }

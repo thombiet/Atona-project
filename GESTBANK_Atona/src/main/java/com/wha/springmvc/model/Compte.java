@@ -3,7 +3,7 @@ package com.wha.springmvc.model;
 import java.util.List;
 
 public class Compte {
-
+	// #region Attributs
 	private Long noCompte;
 	private String RIB;
 	private Integer solde;
@@ -13,11 +13,15 @@ public class Compte {
 	private Integer seuilRemuneration;
 	private Integer montantRemuneration;
 	private List<Notification> listeNotification;
+	// #endregion
 
+	// #region Constructeurs
 	public Compte() {
 
 	}
+	// #endregion
 
+	// #region Accesseurs
 	public Long getNoCompte() {
 		return noCompte;
 	}
@@ -89,5 +93,5 @@ public class Compte {
 	public void setListeNotification(List<Notification> listeNotification) {
 		this.listeNotification = listeNotification;
 	}
-
+	// #endregion
 }

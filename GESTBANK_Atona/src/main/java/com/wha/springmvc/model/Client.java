@@ -4,16 +4,20 @@ import java.io.File;
 import java.util.List;
 
 public class Client extends Utilisateur {
-
+	// #region Attributs
 	private List<Compte> listeComptes;
 	private File piecesJustificatives;
 	private Integer revenuMensuel;
 	private Conseiller conseiller;
+	// #endregion
 
+	// #region Constructeurs
 	public Client() {
 		super();
 	}
+	// #endregion
 
+	// #region Accesseurs
 	public List<Compte> getListeComptes() {
 		return listeComptes;
 	}
@@ -45,5 +49,5 @@ public class Client extends Utilisateur {
 	public void setConseiller(Conseiller conseiller) {
 		this.conseiller = conseiller;
 	}
-
+	// #endregion
 }

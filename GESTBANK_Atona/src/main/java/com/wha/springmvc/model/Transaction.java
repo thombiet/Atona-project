@@ -3,15 +3,19 @@ package com.wha.springmvc.model;
 import java.util.Date;
 
 public class Transaction {
-
+	// #region Attributs
 	private Integer montant;
 	private String libelle;
 	private Date date;
+	// #endregion
 
+	// #region Constructeurs
 	public Transaction() {
 
 	}
+	// #endregion
 
+	// #region Accesseurs
 	public Integer getMontant() {
 		return montant;
 	}
@@ -35,5 +39,5 @@ public class Transaction {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
+	// #endregion
 }

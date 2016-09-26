@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.List;
 
 public class ClientPotentiel {
-
+	// #region Attributs
 	private String nom;
 	private String prenom;
 	private String identifiant;
@@ -15,11 +15,15 @@ public class ClientPotentiel {
 	private Integer telephone;
 	private Integer revenuMens;
 	private List<File> piecesJutificatives;
+	// #endregion
 
+	// #region Constructeurs
 	public ClientPotentiel() {
 
 	}
+	// #endregion
 
+	// #region Accesseurs
 	public String getNom() {
 		return nom;
 	}
@@ -99,6 +103,6 @@ public class ClientPotentiel {
 	public void setPiecesJutificatives(List<File> piecesJutificatives) {
 		this.piecesJutificatives = piecesJutificatives;
 	}
-	
-	
+	// #endregion
+
 }

@@ -1,6 +1,8 @@
 package com.wha.springmvc.model;
 
 public class Utilisateur {
+
+	// #region Attributs
 	private String nom;
 	private String prenom;
 	private String identifiant;
@@ -10,11 +12,15 @@ public class Utilisateur {
 	private Integer codePostal;
 	private String ville;
 	private Integer telephone;
+	// #endregion
 
+	// #region Constructeurs
 	public Utilisateur() {
 
 	}
+	// #endregion
 
+	// #region Accesseurs
 	public String getNom() {
 		return nom;
 	}
@@ -86,5 +92,7 @@ public class Utilisateur {
 	public void setMotdepasse(String motdepasse) {
 		this.motdepasse = motdepasse;
 	}
+
+	// #endregion
 
 }
