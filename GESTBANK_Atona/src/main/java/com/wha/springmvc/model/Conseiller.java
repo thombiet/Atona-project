@@ -16,7 +16,14 @@ public class Conseiller extends Utilisateur {
 	public Conseiller() {
 
 	}
+	
+	
 	// #endregion
+
+	public Conseiller(String nom, String prenom, String identifiant) {
+		super(nom, prenom, identifiant, null, null, null, null, null, null);
+	}
+
 
 	// #region Accesseurs
 	public String getMatricule() {
@@ -51,6 +58,17 @@ public class Conseiller extends Utilisateur {
 		this.listeClients = listeClients;
 	}
 
+
 	// #endregion
 
+	//	#region Utilitaire
+	
+	@Override
+	public String toString() {
+		return "Conseiller [getMatricule()=" + getMatricule() + ", getNom()=" + getNom() + ", getPrenom()="
+				+ getPrenom() + ", getIdentifiant()=" + getIdentifiant() + "]";
+	}
+	
+	//	#endregion
+	
 }
