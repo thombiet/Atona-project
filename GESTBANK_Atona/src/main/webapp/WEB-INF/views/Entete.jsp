@@ -7,19 +7,11 @@
 <meta charset="utf-8" />
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
  <link rel="stylesheet" href="static/css/style_PiedDePage.css" />
- <script src="<c:url value='/static/js/controller/piedDePageController.js'/>"> </script>
-
-<title>Pied de Page</title>
+<title>Entête</title>
 </head>
 <body>
-
-
-<hr />
-<div id="MyFooter" ng-controller="dateCtrl">
-<p>Site créé par Atona©</p> 
-<p><strong>{{CurrentDate | date:'dd MMM yyyy'}}</strong></p>
-<p>Private Policy | Terms ans Conditions</p></div>
-
-
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<h1 align="center">Bienvenue chez Gest Bank - Inscription Nouveau Membre</h1><hr>
 </body>
-
+</html>

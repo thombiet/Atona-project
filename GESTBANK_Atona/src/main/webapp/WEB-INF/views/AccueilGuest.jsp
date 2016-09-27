@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="style_Accueil_guest.css" />
+	<meta charset="utf-8" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+    <script src="<c:url value='/static/js/app.js' />"></script>
+ 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style_Accueil_guest.css">
+      
     <title>GestBank - Acceuil/Guest</title>
-    <script src="jquery-3.1.0.js"></script>
+   
 
 </head>
 
-<body>
+<body ng-app="myApp">
     <div id="bloc_page">
         <header>
          <div id="Presentation">
@@ -18,23 +23,25 @@
                 <br>Gest Bank</h1>
             </div>
             <div id"logo">
-                <img src="GestBank logo.png" alt="Logo GestBank" height="100px" /> </div>
+                <img src="<c:url value='/static/images/GestBank_logo.png' />" alt="Logo GestBank" height="100px" /> </div>
                 <div id="Identification" style="text-align: right">
                     <form>
                          <p><input type="text" id="Identifiant" placeholder="Identifiant" />
                         <input type="text" id="mdp" placeholder="Mot de Passe"/>
                        <a href="#" class="myButton">Connexion</a></p>
                     </form>
-                    <p>Pas encore de compte?  &nbsp   <a href="#" class="myButton">Insrivez-vous</a></p>
+                    <p>Pas encore de compte?  &nbsp   <a href="#" class="myButton">Inscrivez-vous</a></p>
                 </div>
                
             </header>
+            <br>
             <div id="contact">
               <div id="aide"><p><a href="#" class="myButton">Nous contacter</a>
              <a href="#" class="myButton">?</a> </p></div>
-             <div id="social"><p><a href="https://facebook.com" ><img src="facebook.png" alt="Facebook" /></a> 
-             <a href="https://plus.google.com" ><img src="google+.png" alt="Google+"/></a>
-             <a href="https://twitter.com" ><img src="twitter.png" alt="Twitter" /></a></p></div>
+             <div id="social">
+             <p><a href="https://facebook.com" ><img src="<c:url value='static/images/Facebook.png' />" alt="Facebook" /></a> 
+             <a href="https://plus.google.com" ><img src="<c:url value='static/images/Google+.png' />" alt="Google+"/></a>
+             <a href="https://twitter.com" ><img src="<c:url value='static/images/Twitter.png' />" alt="Twitter" /></a></p></div>
          </div>
          <br>
          <br>
@@ -51,10 +58,11 @@
             </div>
             <div id="Offres">
                 <h1>Offres Promotionnelles</h1>
-                <p><img src="images/photo1.jpg" alt="Photographie" /><img src="images/photo2.jpg" alt="Photographie" /><img src="images/photo3.jpg" alt="Photographie" /></p>
+                <p></p>
             </div>
             <div id="Pub">
                 <h1>Publicités</h1>
+                <iframe src="https://www.tripadvisor.fr/" width="250" height="300"></iframe>
             </div>
         </footer>
     </div>
@@ -62,6 +70,6 @@
 
 <jsp:include page="PiedDePage.jsp"></jsp:include>
 </body>
-<script src="explorationDOM.js"></script>
+
 
 </html>
