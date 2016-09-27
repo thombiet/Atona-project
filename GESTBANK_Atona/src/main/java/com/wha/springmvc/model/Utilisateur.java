@@ -18,6 +18,20 @@ public class Utilisateur {
 	public Utilisateur() {
 
 	}
+	
+	public Utilisateur(String nom, String prenom, String identifiant, String motdepasse, String email, String adresse,
+			Integer codePostal, String ville, Integer telephone) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.identifiant = identifiant;
+		this.motdepasse = motdepasse;
+		this.email = email;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.telephone = telephone;
+	}
+
 	// #endregion
 
 	// #region Accesseurs
