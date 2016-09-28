@@ -3,8 +3,8 @@
 <html>
   <head>  
   	<meta charset="utf-8" />
-  	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-      <script src="<c:url value='/static/js/app.js' />"></script>
+  	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+      <script src="<c:url value='/static/js/app.js'/>"></script>
       <script src="<c:url value='/static/js/service/user_service.js' />"></script>
       <script src="<c:url value='/static/js/controller/user_controller.js' />"></script>
     <title>AngularJS $http Exemple</title>  
