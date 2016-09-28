@@ -94,4 +94,13 @@ public class Compte {
 		this.listeNotification = listeNotification;
 	}
 	// #endregion
+	
+	//	#region Utilitaire
+	@Override
+	public String toString() {
+		return "Compte [getNoCompte()=" + getNoCompte() + ", getSolde()=" + getSolde() + ", getDecouvert()="
+				+ getDecouvert() + ", getSeuilRemuneration()=" + getSeuilRemuneration() + "]";
+	}
+	
+	//	#endregion
 }

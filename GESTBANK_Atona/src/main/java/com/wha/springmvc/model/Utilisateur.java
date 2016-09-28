@@ -5,7 +5,7 @@ public class Utilisateur {
 	// #region Attributs
 	private String nom;
 	private String prenom;
-	private String identifiant;
+	private String pseudo;
 	private String motdepasse;
 	private String email;
 	private String adresse;
@@ -19,11 +19,11 @@ public class Utilisateur {
 
 	}
 	
-	public Utilisateur(String nom, String prenom, String identifiant, String motdepasse, String email, String adresse,
+	public Utilisateur(String nom, String prenom, String pseudo, String motdepasse, String email, String adresse,
 			Integer codePostal, String ville, Integer telephone) {
 		this.nom = nom;
 		this.prenom = prenom;
-		this.identifiant = identifiant;
+		this.pseudo = pseudo;
 		this.motdepasse = motdepasse;
 		this.email = email;
 		this.adresse = adresse;
@@ -91,12 +91,12 @@ public class Utilisateur {
 		this.telephone = telephone;
 	}
 
-	public String getIdentifiant() {
-		return identifiant;
+	public String getPseudo() {
+		return pseudo;
 	}
 
-	public void setIdentifiant(String pseudo) {
-		this.identifiant = pseudo;
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
 	public String getMotdepasse() {

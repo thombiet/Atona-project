@@ -28,11 +28,10 @@ public class ClientServiceRestController {
     //-------------------Retrieve All Clients Of A Conseiller--------------------------------------------------------
      
     @RequestMapping(value = "/client", method = RequestMethod.GET)
-    public ResponseEntity<List<Client>> listAllClients(@RequestParam("conseiller") String identConseiller) {
-    	if("".equals(identConseiller)){
-    		 return new ResponseEntity<List<Client>>(HttpStatus.BAD_REQUEST);
-    	}
-        List<Client> clients = clientService.findAllClients(identConseiller);
+    public ResponseEntity<List<Client>> listAllClients(@RequestParam("conseiller") Long mle) {
+    	System.out.println(mle);
+        List<Client> clients = clientService.findAllClients(mle);
+        System.out.println(clients);
         if(clients.isEmpty()){
             return new ResponseEntity<List<Client>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }
@@ -44,7 +43,7 @@ public class ClientServiceRestController {
     //-------------------Retrieve Single Client--------------------------------------------------------
      
     @RequestMapping(value = "/client/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Client> getClient(@PathVariable("id") String id) {
+    public ResponseEntity<Client> getClient(@PathVariable("id") Long id) {
         System.out.println("Fetching Client with id " + id);
         Client client = clientService.findById(id);
         if (client == null) {
@@ -80,7 +79,7 @@ public class ClientServiceRestController {
     //------------------- Update a Client --------------------------------------------------------
      
     @RequestMapping(value = "/client/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Client> updateClient(@PathVariable("id") String id, @RequestBody Client client) {
+    public ResponseEntity<Client> updateClient(@PathVariable("id") Long id, @RequestBody Client client) {
         System.out.println("Updating Client " + id);
          
         Client currentClient = clientService.findById(id);
@@ -93,7 +92,7 @@ public class ClientServiceRestController {
         currentClient.setNom(client.getNom());
         currentClient.setPrenom(client.getPrenom());
          
-        clientService.updateClient(currentClient, client.getIdentifiant());
+        clientService.updateClient(currentClient);
         return new ResponseEntity<Client>(currentClient, HttpStatus.OK);
     }
  
