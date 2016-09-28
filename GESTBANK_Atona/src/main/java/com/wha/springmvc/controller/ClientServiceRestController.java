@@ -29,9 +29,7 @@ public class ClientServiceRestController {
      
     @RequestMapping(value = "/client", method = RequestMethod.GET)
     public ResponseEntity<List<Client>> listAllClients(@RequestParam("conseiller") Long mle) {
-    	System.out.println(mle);
         List<Client> clients = clientService.findAllClients(mle);
-        System.out.println(clients);
         if(clients.isEmpty()){
             return new ResponseEntity<List<Client>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
         }

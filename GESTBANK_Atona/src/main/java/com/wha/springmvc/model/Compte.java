@@ -1,5 +1,6 @@
 package com.wha.springmvc.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Compte {
@@ -17,8 +18,19 @@ public class Compte {
 
 	// #region Constructeurs
 	public Compte() {
-
+		listeTransactions = new ArrayList<Transaction>();
+		listeNotification = new ArrayList<Notification>();
 	}
+	
+	
+	public Compte(Long noCompte, Integer decouvert, Integer seuilRemuneration) {
+		this();
+		this.noCompte = noCompte;
+		this.decouvert = decouvert;
+		this.seuilRemuneration = seuilRemuneration;
+	}
+
+
 	// #endregion
 
 	// #region Accesseurs

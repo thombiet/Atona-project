@@ -28,10 +28,9 @@ public class Client extends Utilisateur {
 		this.conseiller = conseiller;
 	}
 
-	public Client(Long identifiant, String nom, String prenom, String pseudo, Conseiller conseiller) {
+	public Client(Long identifiant, String nom, String prenom, String pseudo) {
 		super(nom, prenom, pseudo, null, null, null, null, null, null);
 		this.identifiant = identifiant;
-		this.conseiller = conseiller;
 	}
 
 	// #endregion
@@ -97,6 +96,12 @@ public class Client extends Utilisateur {
 			}
 		}
 		return false;
+	}
+
+	public void ajoutCompte(Compte compte) {
+		if (compte != null) {
+			this.listeComptes.add(compte);
+		}
 	}
 
 }
