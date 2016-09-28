@@ -5,7 +5,7 @@
 
 <head>
 <meta charset="utf-8" />
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+
  <link rel="stylesheet" href="static/css/style_PiedDePage.css" />
  <script src="<c:url value='/static/js/controller/piedDePageController.js'/>"> </script>
 

@@ -12,17 +12,18 @@
 <script src="<c:url value='/static/js/app.js' />"></script>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
 <link rel="stylesheet"
 	href="static/css/style_Formulaire_Inscription.css">
 
 <title>Formulaire d'Inscription</title>
 
 <style>
-.username.ng-valid {
+.nom.ng-valid {
 	background-color: lightgreen;
 }
 
-.username.ng-dirty.ng-invalid-required {
+.nom.ng-dirty.ng-invalid-required {
 	background-color: red;
 }
 
@@ -61,29 +62,31 @@
 		</header>
 		<br />
 		<form ng-submit="ctrl.submit()" name="monForm">
-
+				<div class="form-style-10">
+				<h1>Formulaire d'Inscription</h1>
 			<fieldset>
 				<legend>
-					<h1>Formulaire d'Inscription</h1>
+					<h3>Tous les champs sont obligatoires</h3>
 				</legend>
 				<br> <br>
-				<div class="form-group col-md-12">
+				<div class="section"><span>1</span>First Name &amp; Address</div>
+    			<div class="inner-wrap">
 					<label id="text">Nom</label>
 					<div class="entry">
-						<input type="text" name="nom" class="input-sm">
-					</div>
+						 <input type="text" ng-model="ctrl.user.username" name="uname" class="username form-control input-sm" placeholder="Entez votre nom" required ng-minlength="3"/>
+                                  <div class="has-error" ng-show="myForm.$dirty">
+                                      <span ng-show="myForm.uname.$error.required">Champ Obligatoire</span>
+                                      <span ng-show="myForm.uname.$invalid">Ce champ est invalide </span>
+                                  </div>
+					
 				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+			
 					<label id="text">Prénom</label>
 					<div class="entry">
 						<input type="text" name="prenom" class="input-sm">
 					</div>
-				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+				
+				
 					<label id="email">Email</label>
 					<div class="entry">
 						<input type="email" ng-model="ctrl.user.email" name="email"
@@ -94,50 +97,32 @@
 						    <span ng-show="myForm.email.$invalid">Ce champ est invalide</span>
 						</div>
 					</div>
-				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+				
 					<label id="text">Adresse</label>
 					<div class="entry">
 						<input type="text" name="adresse" class="input-sm">
 					</div>
-				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+			
 					<label id="numeric">Code postal</label>
 					<div class="entry">
 						<input type="numeric" name="codePostal" class="input-sm">
 					</div>
-				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+				
 					<label id="text">Ville</label>
 					<div class="entry">
 						<input type="text" name="ville" class="input-sm">
 					</div>
-				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+				
 					<label id="date">Date de Naissance </label>
 					<div class="entry">
 						<input type="date" name="date" class="input-sm">
 					</div>
-				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+				
 					<label id="tel">Telephone</label>
 					<div class="entry">
 						<input type="tel" name="telephone" class="input-sm">
 					</div>
-				</div>
-				<br>
-
-				<div class="form-group col-md-12">
+				
 					<label id="genre">Genre</label>
 					<div class="entry">
 						<select name="genre" class="input-sm">
@@ -185,6 +170,7 @@
 					</div>
 				</div>
 			</fieldset>
+			</div>
 		</form>
 
 	</div>
