@@ -14,12 +14,16 @@ public class ClientServiceImpl implements ClientService {
 
 	private static List<Client> clients;
 
-	static {
-		//clients = DummyBDD.getClients();
+	private static void getClients() {
+		if (clients==null){
+			DummyBDD.CreateBDD();
+			clients = DummyBDD.getClients();
+		}
 	}
 
 	@Override
 	public Client findById(Long identifiant) {
+		getClients();
 		for (Client client : clients) {
 			if (client.getIdentifiant() == identifiant) {
 				return client;
@@ -30,6 +34,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public Client findByCompte(Long noCompte) {
+		getClients();
 		for (Client client : clients) {
 			for (Compte compte : client.getListeComptes()) {
 				if (compte.getNoCompte() == noCompte) {
@@ -42,12 +47,14 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public void saveClient(Client client) {
+		getClients();
 		DummyBDD.ajoutClient(client);
 		clients=DummyBDD.getClients();
 	}
 
 	@Override
 	public void updateClient(Client client) {
+		getClients();
 		int index = clients.indexOf(client);
 		clients.set(index, client);
 		DummyBDD.setClients(clients);
@@ -56,6 +63,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public List<Client> findAllClients(Long IdentConseiller) {
+		getClients();
 		List<Client> lClients = new ArrayList<Client>();
 		for (Client client : clients) {
 			if (client.getConseiller().getMatricule() == IdentConseiller) {
@@ -67,6 +75,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public boolean isClientExist(Client client) {
+		getClients();
 		for (Client c : clients) {
 			if (c.equals(client)) {
 				return true;
@@ -77,6 +86,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public boolean isIdentifiantExist(String identifiant) {
+		getClients();
 		for (Client client : clients) {
 			if (client.getIdentifiant().equals(identifiant)) {
 				return true;

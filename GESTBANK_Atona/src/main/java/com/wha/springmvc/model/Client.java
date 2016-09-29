@@ -18,18 +18,22 @@ public class Client extends Utilisateur {
 	// #region Constructeurs
 	public Client() {
 		super();
-		listeComptes = new ArrayList<Compte>();
-		piecesJustificatives = new ArrayList<File>();
+		this.listeComptes = new ArrayList<Compte>();
+		this.piecesJustificatives = new ArrayList<File>();
 	}
 
 	public Client(String nom, String prenom, String pseudo, String motdepasse, String email, String adresse,
 			Integer codePostal, String ville, Integer telephone, Conseiller conseiller) {
 		super(nom, prenom, pseudo, motdepasse, email, adresse, codePostal, ville, telephone);
+		this.listeComptes = new ArrayList<Compte>();
+		this.piecesJustificatives = new ArrayList<File>();
 		this.conseiller = conseiller;
 	}
 
 	public Client(Long identifiant, String nom, String prenom, String pseudo) {
 		super(nom, prenom, pseudo, null, null, null, null, null, null);
+		this.listeComptes = new ArrayList<Compte>();
+		this.piecesJustificatives = new ArrayList<File>();
 		this.identifiant = identifiant;
 	}
 

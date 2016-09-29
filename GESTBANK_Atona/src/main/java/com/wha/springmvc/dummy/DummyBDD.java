@@ -18,12 +18,15 @@ public class DummyBDD {
 	private static List<Client> clients;
 	private static List<Compte> comptes;
 
-	static {
-		conseillers = populateDummyConseillers();
+	public static void CreateBDD() {
+		if (clients==null || conseillers==null || comptes==null){
 		clients = populateDummyClients();
+		conseillers = populateDummyConseillers();
 		comptes = populateDummyComptes();
-		affectation();
-		ouverture();
+		}
+		affectationConseiller();
+		affectationCompte();
+		
 	}
 	
 	private static List<Conseiller> populateDummyConseillers() {
@@ -63,7 +66,7 @@ public class DummyBDD {
 		return liste;
 	}
 
-	private static void affectation(){
+	private static void affectationConseiller(){
 		int nbCons = conseillers.size();
 		
 		for(int i=0; i< nbCons; i++){
@@ -74,14 +77,15 @@ public class DummyBDD {
 		
 	}
 	
-
-	
-	private static void ouverture() {
+	private static void affectationCompte() {
 		int nbClient = clients.size();
 		
 		for(int i=0; i< nbClient; i++){
 			for(int j=i; j< comptes.size(); j=j+nbClient){
-				clients.get(i).ajoutCompte(comptes.get(j));
+				if (comptes.get(j)!=null){
+					System.out.println(comptes.get(j));
+					clients.get(i).ajoutCompte(comptes.get(j));
+				}
 			}
 		}
 		
