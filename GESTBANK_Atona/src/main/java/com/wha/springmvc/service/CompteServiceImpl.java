@@ -14,7 +14,8 @@ public class CompteServiceImpl implements CompteService {
 
 	private static List<Compte> comptes;
 
-	static {
+	private static void getComptes() {
+		DummyBDD.CreateBDD();
 		comptes = DummyBDD.getComptes();
 	}
 	
