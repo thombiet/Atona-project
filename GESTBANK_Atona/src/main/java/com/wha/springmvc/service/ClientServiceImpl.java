@@ -15,7 +15,7 @@ public class ClientServiceImpl implements ClientService {
 	private static List<Client> clients;
 
 	static {
-		clients = DummyBDD.getClients();
+		//clients = DummyBDD.getClients();
 	}
 
 	@Override

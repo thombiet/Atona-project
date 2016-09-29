@@ -11,7 +11,7 @@ public class IndexController {
 	  @RequestMapping(method = RequestMethod.GET)
 	    public String getIndexPage() {
 	        //return "UserManagement";
-		  return "Formulaire_Inscription";
+		  return "AccueilGuest";
 	    }
 
 }
