@@ -2,11 +2,10 @@ package com.wha.springmvc.model;
 
 import java.util.List;
 
-import com.wha.springmvc.model.Utilisateur;
 
 public class Conseiller extends Utilisateur {
 	// #region Attributs
-	private String matricule;
+	private Long matricule;
 	private List<DemandeOuverture> listeDemandesOuverture;
 	private List<Requete> listeDemandesClient;
 	private List<Client> listeClients;
@@ -16,21 +15,20 @@ public class Conseiller extends Utilisateur {
 	public Conseiller() {
 
 	}
-	
-	
-	// #endregion
 
-	public Conseiller(String nom, String prenom, String identifiant) {
+	public Conseiller(Long mle, String nom, String prenom, String identifiant) {
 		super(nom, prenom, identifiant, null, null, null, null, null, null);
+		this.matricule=mle;
 	}
 
+	// #endregion
 
 	// #region Accesseurs
-	public String getMatricule() {
+	public Long getMatricule() {
 		return matricule;
 	}
 
-	public void setMatricule(String matricule) {
+	public void setMatricule(Long matricule) {
 		this.matricule = matricule;
 	}
 
@@ -58,17 +56,15 @@ public class Conseiller extends Utilisateur {
 		this.listeClients = listeClients;
 	}
 
-
 	// #endregion
 
-	//	#region Utilitaire
-	
+	// #region Utilitaire
 	@Override
 	public String toString() {
 		return "Conseiller [getMatricule()=" + getMatricule() + ", getNom()=" + getNom() + ", getPrenom()="
-				+ getPrenom() + ", getIdentifiant()=" + getIdentifiant() + "]";
+				+ getPrenom() + ", getIdentifiant()=" + getPseudo() + "]";
 	}
-	
-	//	#endregion
-	
+
+	// #endregion
+
 }
