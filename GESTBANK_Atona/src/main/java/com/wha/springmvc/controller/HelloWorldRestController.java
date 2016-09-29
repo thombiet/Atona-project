@@ -11,19 +11,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.service.UserService;
+import com.wha.springmvc.service.UtilisateurService;
  
 @RestController
 public class HelloWorldRestController {
  
     @Autowired
     UserService userService;  //Service which will do all data retrieval/manipulation work
- 
+    UtilisateurService uService;
     
+ // #region Exemples
     //-------------------Retrieve All Users--------------------------------------------------------
      
     @RequestMapping(value = "/user/", method = RequestMethod.GET)
@@ -122,5 +127,117 @@ public class HelloWorldRestController {
         userService.deleteAllUsers();
         return new ResponseEntity<User>(HttpStatus.NO_CONTENT);
     }
+    
+    // #endregion
+    
+ // #region Utilisateurs   
+    
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
+    public ResponseEntity<List<Client>> findAllClientsByConseiller(@RequestParam Long mle) {
+        List<Client> clients = uService.findAllClients(mle);
+        if(clients.isEmpty()){
+            return new ResponseEntity<List<Client>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND
+        }
+        return new ResponseEntity<List<Client>>(clients, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value= "/client/{identifiant}", method = RequestMethod.GET)
+    public ResponseEntity<Client> findClientById(@PathVariable("identifiant") Long id){
+    	Client client = uService.findById(id);
+    	if(client==null){
+    		return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+    	}
+    	return new ResponseEntity<Client>(client, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value = "/client", method = RequestMethod.POST)
+    public ResponseEntity<Void> creationClient(@RequestBody Client client, UriComponentsBuilder ucBuilder) {
+        System.out.println("Creating Client " + client.getNom());
+ 
+        if (uService.isClientExist(client)) {
+            System.out.println("A Client with identifiant " + client.getIdentifiant() + " already exist");
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+ 
+        System.out.println(client);
+        uService.saveClient(client);
+ 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/client/{id}").buildAndExpand(client.getIdentifiant()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+    
+    @RequestMapping(value="/client/{identifiant}", method= RequestMethod.PUT)
+    public ResponseEntity<Client> modificationClient(@PathVariable("id") Long id, @RequestBody Client client) {
+        System.out.println("Updating Client " + id);
+         
+        Client currentClient = uService.findById(id);
+         
+        if (currentClient==null) {
+            System.out.println("Client with id " + id + " not found");
+            return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+        }
+ 
+        currentClient.setNom(client.getNom());
+        currentClient.setPrenom(client.getPrenom());
+         
+        uService.updateClient(currentClient);
+        return new ResponseEntity<Client>(currentClient, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="/conseiller/{matricule}", method=RequestMethod.GET)
+    public ResponseEntity<Conseiller> findConseillerByMle(@PathVariable("matricule") Long mle){
+    	Conseiller conseiller = uService.findByMle(mle);
+    	if(conseiller==null){
+    		return new ResponseEntity<Conseiller>(HttpStatus.NOT_FOUND);
+    	}
+    	return new ResponseEntity<Conseiller>(conseiller, HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="/conseiller/", method=RequestMethod.GET)
+    public ResponseEntity<List<Conseiller>> findAllconseillers(){
+    	List<Conseiller> conseillers = uService.findAllConseillers();
+    	if(conseillers.isEmpty()){
+    		return new ResponseEntity<List<Conseiller>>(HttpStatus.NO_CONTENT);
+    	}
+    	return new ResponseEntity<List<Conseiller>>(conseillers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/conseiller/", method=RequestMethod.POST)
+    public ResponseEntity<Void> creationConseiller(@RequestBody Conseiller conseiller, UriComponentsBuilder ucBuilder){
+    	System.out.println("Creating Conseiller " + conseiller.getNom());
+    	 
+        if (uService.isConseillerExist(conseiller)) {
+            System.out.println("A Conseiller with identifiant " + conseiller.getMatricule() + " already exist");
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+ 
+        System.out.println(conseiller);
+        uService.saveConseiller(conseiller);
+ 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setLocation(ucBuilder.path("/conseiller/{id}").buildAndExpand(conseiller.getMatricule()).toUri());
+        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+    }
+    
+    @RequestMapping(value="/conseiller/{matricule}", method=RequestMethod.PUT)
+    public ResponseEntity<Conseiller> modificationConseiller(@PathVariable("matricule") Long mle, @RequestBody Conseiller conseiller){
+    	System.out.println("Updating Conseiller " + mle);
+        
+        Conseiller currentConseiller = uService.findByMle(mle);
+         
+        if (currentConseiller==null) {
+            System.out.println("Conseiller with id " + mle + " not found");
+            return new ResponseEntity<Conseiller>(HttpStatus.NOT_FOUND);
+        }
+ 
+        currentConseiller.setNom(conseiller.getNom());
+        currentConseiller.setPrenom(conseiller.getPrenom());
+         
+        uService.updateConseiller(currentConseiller);
+        return new ResponseEntity<Conseiller>(currentConseiller, HttpStatus.OK);
+    	
+    }
+// #endregion
  
 }
