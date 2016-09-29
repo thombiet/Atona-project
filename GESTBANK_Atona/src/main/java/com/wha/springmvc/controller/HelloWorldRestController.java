@@ -26,6 +26,7 @@ public class HelloWorldRestController {
  
     @Autowired
     UserService userService;  //Service which will do all data retrieval/manipulation work
+    @Autowired
     UtilisateurService uService;
     
  // #region Exemples
@@ -132,8 +133,8 @@ public class HelloWorldRestController {
     
  // #region Utilisateurs   
     
-    @RequestMapping(value = "/client", method = RequestMethod.GET)
-    public ResponseEntity<List<Client>> findAllClientsByConseiller(@RequestParam Long mle) {
+    @RequestMapping(value = "/client/", method = RequestMethod.GET)
+    public ResponseEntity<List<Client>> findAllClientsByConseiller(@RequestParam("conseiller") Long mle) {
         List<Client> clients = uService.findAllClients(mle);
         if(clients.isEmpty()){
             return new ResponseEntity<List<Client>>(HttpStatus.NO_CONTENT);//You many decide to return HttpStatus.NOT_FOUND

@@ -86,7 +86,6 @@ public class DummyBDD {
 		for(int i=0; i< nbClient; i++){
 			for(int j=i; j< comptes.size(); j=j+nbClient){
 				if (comptes.get(j)!=null){
-					System.out.println(comptes.get(j));
 					clients.get(i).ajoutCompte(comptes.get(j));
 				}
 			}
