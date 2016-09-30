@@ -164,9 +164,7 @@
 							ng-class="{ 'btn-warning' : monForm.$invalid , 'btn-success' : monForm.$valid }">
 					</div>
 					<div class="form-group col-md-12">
-						<button type="submit" class="myButton" role="button"
-							aria-disabled="false">
-							Annuler</input>
+						<button type="submit" class="myButton" role="button" aria-disabled="false">Annuler</button>
 					</div>
 				</div>
 			</fieldset>

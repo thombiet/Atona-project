@@ -11,7 +11,7 @@
 	href="static/css/style_PageAccueil.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 <script src="<c:url value='/static/js/app.js' />"></script>
-<script src="<c:url value='/static/js/controller/administrateur_controller.js' />"></script>
+<script src="<c:url value='/static/js/controller/conseiller_controller.js' />"></script>
 
 <title>Administrateur</title>
 </head>
@@ -33,7 +33,7 @@
     </header>
 <br />
 
-  <div class="tab" ng-controller="AdminController as actrl">
+  <div class="tab" ng-controller="ConsController as consctrl">
 	<div align="center">
 		<input type="button" class="myButton" value="Accueil" OnClick="#"/> 
 		<input type="button" class="myButton" value="Déconnexion"/> 
@@ -64,7 +64,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="cons in actrl.clients">
+					<tr ng-repeat="cons in consctrl.conseiller">
 						<td><span ng-bind="cons.matricule"></span></td>
 						<td><span ng-bind="cons.name"></span></td>
 						<td><span ng-bind="cons.email"></span></td>
@@ -102,7 +102,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<tr ng-repeat="d in ctrl.demandes">
+				<tr ng-repeat="d in dctrl.demandes">
 					<td><span ng-bind="d.dateDemande"></span></td>
 					<td><span ng-bind="d.firstname"></span></td>
 					<td><span ng-bind="d.email"></span></td>							

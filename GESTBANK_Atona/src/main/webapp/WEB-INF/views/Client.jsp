@@ -18,7 +18,7 @@
 <title>"Conseiller"</title>
 </head>
 <body ng-app="myApp">
-<div id="bloc_page">
+<div id="bloc_page" ng-controller="CompteController as comptectrl">
 <header>
 
       <div id="Presentation">
@@ -33,9 +33,8 @@
           alt="Logo GestBank" height="120px" />
       </div>
     </header>
-<br />
-
-	<div ng-controller="MyController">
+<br>
+	<div>
 		<div align="center">
 			<input type="button" class="myButton" value="Accueil" ng-click="redirection('/Client')" /> 
 			<input type="button" class="myButton" value="Mes Informations" OnClick="#" /> 
@@ -59,7 +58,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="compte in clctrl.comptes">
+						<tr ng-repeat="compte in comptectrl.comptes">
 							<td><span ng-bind="compte.type"></span></td>
 							<td><span ng-bind="compte.numero"></span></td>
 							<td><span ng-bind="compte.solde"></span></td>							
