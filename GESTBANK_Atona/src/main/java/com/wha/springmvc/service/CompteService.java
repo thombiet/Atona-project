@@ -13,5 +13,7 @@ public interface CompteService {
 	void ajoutCompte(Compte compte, Long clientIdentifiant);
 	
 	void modificationCompte(Compte compte);
+	
+	boolean isCompteExist(Compte compte);
 
 }

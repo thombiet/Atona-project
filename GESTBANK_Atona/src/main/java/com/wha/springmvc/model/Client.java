@@ -31,7 +31,7 @@ public class Client extends Utilisateur {
 	}
 
 	public Client(Long identifiant, String nom, String prenom, String pseudo) {
-		super(nom, prenom, pseudo, null, null, null, null, null, null);
+		super(nom, prenom, pseudo, pseudo, null, null, null, null, null);
 		this.listeComptes = new ArrayList<Compte>();
 		this.piecesJustificatives = new ArrayList<File>();
 		this.identifiant = identifiant;

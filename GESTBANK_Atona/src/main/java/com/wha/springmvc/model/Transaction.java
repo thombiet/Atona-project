@@ -13,6 +13,15 @@ public class Transaction {
 	public Transaction() {
 
 	}
+	
+	
+	public Transaction(Integer montant, String libelle, Date date) {
+		this.montant = montant;
+		this.libelle = libelle;
+		this.date = date;
+	}
+
+
 	// #endregion
 
 	// #region Accesseurs
