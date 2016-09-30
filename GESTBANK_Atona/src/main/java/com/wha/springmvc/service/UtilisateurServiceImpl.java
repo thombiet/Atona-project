@@ -163,6 +163,17 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		}
 		return false;
 	}
+
+	@Override
+	public Utilisateur getUtilisateurByPseudo(String pseudo) {
+		getUtilisateurs();
+		for (Utilisateur utilisateur : utilisateurs) {
+			if (utilisateur.getPseudo().equals(pseudo)) {
+				return utilisateur;
+			}
+		}
+		return null;
+	}
 	// #endregion
 
 }

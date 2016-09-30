@@ -1,0 +1,42 @@
+<meta charset="utf-8" />
+
+
+		<div ng-controller="MyController">
+		<div align="center">
+
+			<a href="#/Client" class="myButton">Accueil</a>
+			 <a href="#/Mes Informations"
+				class="myButton">Mes Informations</a>
+				 <a href="#/ClientMessagerie"
+				class="myButton">Messagerie</a> 
+				<a href="#/" class="myButton" >Déconnexion</a>
+
+		</div>
+<br>
+		<fieldset>
+			<legend>
+				<h2> Mes Messages</h2> 
+			</legend>
+				
+		<div class="option1">
+			<div class="boutons"><a href="#/" class="myButton">Nouvelle requête</a></div>
+		
+			<br/>
+				<table align="center" border=1 cellspacing=1 cellpadding=10>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Messages</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="notif in cptctrl.listeNotification">
+							<td><span ng-bind="notif.date"></span></td>
+							<td><span ng-bind="notif.message"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		</fieldset>
+	</div>

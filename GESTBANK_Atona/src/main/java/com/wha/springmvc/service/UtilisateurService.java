@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.Utilisateur;
 
 public interface UtilisateurService {
 	
@@ -39,10 +40,11 @@ public interface UtilisateurService {
 	public boolean isConseillerExist(Conseiller conseiller);
 	
 	//#endregion 
-
 	
 	//#region Utilisateur
 	public boolean isPseudoExist(String peudo);
+	
+	public Utilisateur getUtilisateurByPseudo(String pseudo);
 	
 	//#endregion
 

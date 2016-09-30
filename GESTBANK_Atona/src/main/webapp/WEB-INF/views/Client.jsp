@@ -6,21 +6,22 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet"
-	href="static/css/style_PageAccueil.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-<script src="<c:url value='/static/js/app.js' />"></script>
-<script
-	src="<c:url value='/static/js/controller/TestRedirection_controller.js' />"></script>
-	<script type="text/javascript"
-	src="<c:url value='/static/bower_components/angular-route/angular-route.js' />"></script>
-<title>"Conseiller"</title>
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="static/css/style_PageAccueil.css">
+
+<title>"Client"</title>
 </head>
 <body ng-app="myApp">
+<<<<<<< HEAD
 <div id="bloc_page" ng-controller="CompteController as comptectrl">
 <header>
+=======
+<div id="bloc_page">
+	<header>
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 
+<<<<<<< HEAD
       <div id="Presentation">
         <h1>
           Bienvenue chez <br>Gest Bank
@@ -40,7 +41,16 @@
 			<input type="button" class="myButton" value="Mes Informations" OnClick="#" /> 
 			<input type="button" class="myButton" value="Mes Messages" href="#/Messagerie" />
 		 <input type="button" class="myButton" value="Déconnexion" />
+=======
+		<div id="Presentation">
+			<h1>
+				Bienvenue chez <br>Gest Bank
+			</h1>
+			&nbsp
+			<h2>- &nbsp Bienvenue "Client"</h2>
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 		</div>
+<<<<<<< HEAD
 		<div ng-view></div>
 		<br />
 		<fieldset>
@@ -73,9 +83,30 @@
 			</div>
 			<br> <br>
 		</fieldset>
+=======
+		<div id="logo">
+			<img src="<c:url value='/static/images/GestBank_logo.png' />"
+				alt="Logo GestBank" height="120px" />
+		</div>
+	</header>
+	<br />
+
+
+		<ng-view> </ngview>
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 	</div>
-	</div>
-<jsp:include page="PiedDePage.jsp"></jsp:include>
+
+</div>
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	<script src="<c:url value='/static/js/app.js' />"></script>
+	<script src="<c:url value='/static/js/config.js' />"></script>
+	<script
+		src="<c:url value='/static/js/controller/TestRedirection_controller.js' />"></script>
+	<script type="text/javascript"
+		src="<c:url value='/static/bower_components/angular-route/angular-route.js' />"></script>
+	<jsp:include page="PiedDePage.jsp"></jsp:include>
 </body>
-	
+
 </html>

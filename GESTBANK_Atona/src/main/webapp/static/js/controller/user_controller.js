@@ -9,6 +9,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
+    self.connexion = connexion;
 
 
     fetchAllUsers();
@@ -88,6 +89,16 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
     function reset(){
         self.user={id:null,username:'',address:'',email:''};
         $scope.myForm.$setPristine(); //reset Form
+    }
+    
+    function connexion() {
+        if(self.user.id!=null){
+            console.log('connexion réussie', self.user);
+            
+            
+        }
+          alerte('connexion échoué')
+        
     }
 
 }]);

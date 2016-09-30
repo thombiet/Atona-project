@@ -2,11 +2,13 @@ package com.wha.springmvc.dummy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.Utilisateur;
 
 public class DummyBDD {
@@ -19,16 +21,17 @@ public class DummyBDD {
 	private static List<Client> clients;
 	private static List<Compte> comptes;
 	private static List<Utilisateur> utilisateurs;
+	private static List<Transaction> transactions;
 
 	public static void CreateBDD() {
 		if (clients==null || conseillers==null || comptes==null){
 		clients = populateDummyClients();
 		conseillers = populateDummyConseillers();
 		comptes = populateDummyComptes();
-		}
 		populateUtilisateurs();
 		affectationConseiller();
 		affectationCompte();
+		}
 		
 	}
 
@@ -80,7 +83,7 @@ public class DummyBDD {
 		
 	}
 	
-	private static void affectationCompte() {
+	/*private static void affectationCompte() {
 		int nbClient = clients.size();
 		
 		for(int i=0; i< nbClient; i++){
@@ -91,6 +94,19 @@ public class DummyBDD {
 			}
 		}
 		
+	}*/
+	
+	private static void affectationCompte() {
+		int nbClient = clients.size();
+		List<Compte> copyComptes = new ArrayList<Compte>(comptes) ;
+		Random rand = new Random();
+		int n_a;
+		for(int i=0; i< nbClient; i++){
+			for(int j=i; j< comptes.size(); j=j+nbClient){
+				n_a = rand.nextInt(copyComptes.size());
+				clients.get(i).ajoutCompte(copyComptes.remove(n_a));
+			}
+		}
 	}
 	
 	private static void populateUtilisateurs() {
