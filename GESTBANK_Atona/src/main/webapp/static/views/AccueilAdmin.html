@@ -1,0 +1,95 @@
+<meta charset="utf-8" />
+
+<div ng-controller="MyController">
+	<div align="center">
+
+		<a href="#/Client" class="myButton">Accueil</a> <a href="#/"
+			class="myButton">Déconnexion</a>
+
+	</div>
+	<br>
+
+	<fieldset>
+
+		<legend>
+			<h2>Gestion des Conseillers</h2>
+		</legend>
+		<br />
+		<div class="option1">
+			<div align="center">
+				<input type="search" class="input-sm" name="recherche"
+					placeholder="Entrer numero ou nom "> <input type="button"
+					class="myButton" name="bouton1" value="Recherche"> <input
+					type="button" class="myButton" name="bouton2"
+					value="Ajouter un nouveau conseiller">
+			</div>
+			<br>
+			<br>
+			<div>
+				<table align="center" border=1 cellspacing=1 cellpadding=10>
+					<thead>
+						<tr>
+							<th>Matricule</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Téléphone</th>
+							<th>Détails</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="cons in actrl.clients">
+							<td><span ng-bind="cons.matricule"></span></td>
+							<td><span ng-bind="cons.name"></span></td>
+							<td><span ng-bind="cons.email"></span></td>
+							<td><span ng-bind="cons.telephone"></span></td>
+							<td><span ng-bind="cons.détails"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br>
+		<br>
+	</fieldset>
+	<br>
+	<fieldset>
+		<legend>
+			<h2>Gestion des Demandes d'Inscription</h2>
+		</legend>
+		<br />
+		<div class="option2">
+			<div align="center">
+				<input type="search" class="input-sm" name="recherche"
+					placeholder="Entrer numero ou nom "> <input type="button"
+					class="myButton" name="bouton1" value="Recherche">
+			</div>
+			<br>
+			<br>
+			<div>
+				<table align="center" border=1 cellspacing=1 cellpadding=10>
+					<thead>
+						<tr>
+							<th>Date Demande</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Date d'Affectation</th>
+							<th>Statut</th>
+							<th>Conseiller</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="d in ctrl.demandes">
+							<td><span ng-bind="d.dateDemande"></span></td>
+							<td><span ng-bind="d.firstname"></span></td>
+							<td><span ng-bind="d.email"></span></td>
+							<td><span ng-bind="d.dateAffectation"></span></td>
+							<td><span ng-bind="d.statut"></span></td>
+							<td><span ng-bind="d.conseiller"></span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br>
+		<br>
+	</fieldset>

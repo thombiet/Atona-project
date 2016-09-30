@@ -166,7 +166,7 @@
 					<div class="form-group col-md-12">
 						<button type="submit" class="myButton" role="button"
 							aria-disabled="false">
-							Annuler</input>
+							Annuler</button>
 					</div>
 				</div>
 			</fieldset>

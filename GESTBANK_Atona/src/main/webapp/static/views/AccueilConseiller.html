@@ -1,0 +1,97 @@
+<meta charset="utf-8" />
+
+<div ng-controller="MyController">
+		<div align="center">
+
+			<a href="#/Client" class="myButton">Accueil</a>
+			 <a href="#/Mes Informations"
+				class="myButton">Mes Informations</a>
+				 <a href="#/ClientMessagerie"
+				class="myButton">Messagerie</a> 
+				<a href="#/" class="myButton" >Déconnexion</a>
+
+		</div>
+	<br>
+
+	<fieldset>
+					<legend>
+						<h2>Gestion des Clients</h2>
+					</legend>
+					<br />
+					<div class="option1">
+						<div align="center">
+							<input type="search" class="input-sm" name="recherche"
+								placeholder="Entrer Id Client"> <input type="button"
+								class="myButton" name="bouton1" value="OK">
+						</div>
+						<div align="center">
+							<input type="search" class="input-sm" name="recherche"
+								placeholder="Entrer N° Compte"> <input type="button"
+								class="myButton" name="bouton1" value="OK">
+						</div>
+						<br> <br>
+						<div>
+							<table align="center" border=1 cellspacing=1 cellpadding=10>
+								<thead>
+									<tr>
+										<th>Id</th>
+										<th>Prenom</th>
+										<th>Nom</th>
+										<th>Email</th>
+										<th>Fiche Client</th>
+										<th>Liste des Comptes</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="c in ctrl.clients">
+										<td><span ng-bind="c.id"></span></td>
+										<td><span ng-bind="c.firstname"></span></td>
+										<td><span ng-bind="c.lastname"></span></td>
+										<td><span ng-bind="c.email"></span></td>
+										<td>
+											<button type="button" ng-click="ctrl.edit(u.id)"
+												class="btn btn-success custom-width">Modifier</button>
+											<button type="button" ng-click="ctrl.remove(u.id)"
+												class="btn btn-danger custom-width">Supprimer</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<br> <br>
+				</fieldset>
+				<br>
+				<fieldset>
+					<legend>
+						<h2>Gestion des Demandes d'Ouverture Compte</h2>
+					</legend>
+
+					<br />
+					<div class="option2">
+						>
+						<table align="center" border=1 cellspacing=1 cellpadding=10>
+							<thead>
+								<tr>
+									<th>Date demande</th>
+									<th>Proprietaire</th>
+									<th>Type Compte</th>
+									<th>Statut</th>
+									<th>Date Ouverture</th>
+									<th>Valider/Gerer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="daff in cctrl.demandes">
+									<td><span ng-bind="daff.dateDemande"></span></td>
+									<td><span ng-bind="daff.firstname"></span></td>
+									<td><span ng-bind="daff.typecompte"></span></td>
+									<td><span ng-bind="daff.statut"></span></td>
+									<td><span ng-bind="daff.dateOuverture"></span></td>
+									<td><span ng-bind="daff.aFaire"></span></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<br> <br>
+				</fieldset>
