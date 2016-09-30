@@ -37,7 +37,7 @@
 				<p>
 					<input type="text" id="Identifiant" placeholder="Identifiant" /> <input
 						type="text" id="mdp" placeholder="Mot de Passe" /> <a href="#"
-						class="myButton">Connexion</a>
+						class="myButton" ng-click="connexion()">Connexion</a>
 				</p>
 			</form>
 			<p>
