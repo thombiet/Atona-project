@@ -69,7 +69,7 @@
 					<h3>Tous les champs sont obligatoires</h3>
 				</legend>
 				<br> <br>
-				<div class="section"><span>1</span>First Name &amp; Address</div>
+				
     			<div class="inner-wrap">
 					<label id="text">Nom</label>
 					<div class="entry">
@@ -135,7 +135,7 @@
 				<br>
 
 				<div class="form-group col-md-12">
-					<label id="choix">Autorisation dÃ©couvert</label>
+					<label id="choix">Autorisation découvert</label>
 					<div class="entry">
 						<input type="checkbox" name="decouvert" class="input-sm">
 					</div>
@@ -153,7 +153,7 @@
 				<div class="form-group col-md-12">
 					<label id="files">Documents justificatifs</label>
 					<div class="entry">
-						<input type="file" id="mesFichiers" multiple="true">
+						<input type="file" id="mesFichiers" multiple="multiple">
 					</div>
 				</div>
 				<br>

@@ -7,26 +7,49 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<script src="<c:url value='/static/js/app.js' />"></script>
+<link rel="stylesheet"
+	href="static/css/style_PageAccueil.css">
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+<script src="<c:url value='/static/js/app.js' />"></script>
 <script src="<c:url value='/static/js/controller/administrateur_controller.js' />"></script>
 
-<title>"Administrateur"</title>
+<title>Administrateur</title>
 </head>
 <body ng-app="myApp">
-  <div ng-controller="AdminController as actrl">
+<div id="bloc_page">
+<header>
+
+      <div id="Presentation">
+        <h1>
+          Bienvenue chez <br>Gest Bank
+        </h1>
+        &nbsp
+        <h2>- &nbsp Bienvenue Administrateur</h2>
+      </div>
+      <div id="logo">
+        <img src="<c:url value='/static/images/GestBank_logo.png' />"
+          alt="Logo GestBank" height="120px" />
+      </div>
+    </header>
+<br />
+
+  <div class="tab" ng-controller="AdminController as actrl">
 	<div align="center">
-		<input type="button" value="Accueil" OnClick="#"/> 
-		<input type="button" value="Déconnexion"/> 
+		<input type="button" class="myButton" value="Accueil" OnClick="#"/> 
+		<input type="button" class="myButton" value="Déconnexion"/> 
 	</div>
+	<br />
 	<fieldset>
+	
 		<legend>
-			<h1>Gestion des Conseillers</h1>
+			<h2>Gestion des Conseillers</h2>
 		</legend>
+		<br />
+		<div class="option1">
 		<div align="center">
-			<input type="search" name="recherche" value="Entrer numero ou nom "> 
-			<input type="button" name="bouton1" value="Recherche"> 
-			<input type="button" name="bouton2" value="Ajouter un nouveau conseiller">
+			<input type="search" class="input-sm" name="recherche" placeholder="Entrer numero ou nom "> 
+			<input type="button" class="myButton" name="bouton1" value="Recherche"> 
+			<input type="button" class="myButton" name="bouton2" value="Ajouter un nouveau conseiller">
 		</div>
 		<br><br>
 		<div>
@@ -51,16 +74,19 @@
 				</tbody>
 			</table>
 		</div>
+		</div>
 		<br><br>
 	</fieldset>
 	<br>
 	<fieldset>
 		<legend>
-			<h1>Gestion des Demandes d'Inscription</h1>
+			<h2>Gestion des Demandes d'Inscription</h2>
 		</legend>
+		<br />
+		<div class="option2">
 		<div align="center">
-			<input type="search" name="recherche" value="Entrer numero ou nom "> 
-			<input type="button" name="bouton1" value="Recherche"> 
+			<input type="search" class="input-sm" name="recherche" placeholder="Entrer numero ou nom "> 
+			<input type="button" class="myButton" name="bouton1" value="Recherche"> 
 		</div>
 		<br><br>
 		<div>
@@ -87,9 +113,11 @@
 				</tbody>
 			</table>
 		</div>
+		</div>
 		<br><br>
 	</fieldset>
 	<br>
+	</div>
 	</div>
 	<jsp:include page="PiedDePage.jsp"></jsp:include>
 </body>

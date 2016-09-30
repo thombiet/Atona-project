@@ -7,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.Utilisateur;
 
 public class DummyBDD {
 
@@ -17,6 +18,7 @@ public class DummyBDD {
 	private static List<Conseiller> conseillers;
 	private static List<Client> clients;
 	private static List<Compte> comptes;
+	private static List<Utilisateur> utilisateurs;
 
 	public static void CreateBDD() {
 		if (clients==null || conseillers==null || comptes==null){
@@ -24,11 +26,12 @@ public class DummyBDD {
 		conseillers = populateDummyConseillers();
 		comptes = populateDummyComptes();
 		}
+		populateUtilisateurs();
 		affectationConseiller();
 		affectationCompte();
 		
 	}
-	
+
 	private static List<Conseiller> populateDummyConseillers() {
 		List<Conseiller> liste = new ArrayList<Conseiller>();
 		liste.add(new Conseiller(counterConseiller.incrementAndGet(), "Michel", "Jeanne", "JMichel"));
@@ -83,12 +86,21 @@ public class DummyBDD {
 		for(int i=0; i< nbClient; i++){
 			for(int j=i; j< comptes.size(); j=j+nbClient){
 				if (comptes.get(j)!=null){
-					System.out.println(comptes.get(j));
 					clients.get(i).ajoutCompte(comptes.get(j));
 				}
 			}
 		}
 		
+	}
+	
+	private static void populateUtilisateurs() {
+		utilisateurs = new ArrayList<Utilisateur>();
+		for (Client client : clients) {
+			utilisateurs.add(client);
+		}
+		for (Conseiller conseiller : conseillers) {
+			utilisateurs.add(conseiller);
+		}
 	}
 
 	public static List<Conseiller> getConseillers() {
@@ -102,6 +114,7 @@ public class DummyBDD {
 	public static void ajoutConseiller(Conseiller conseiller) {
 		conseiller.setMatricule(counterConseiller.incrementAndGet());
 		DummyBDD.conseillers.add(conseiller);
+		DummyBDD.utilisateurs.add(conseiller);
 	}
 
 	public static List<Client> getClients() {
@@ -115,6 +128,7 @@ public class DummyBDD {
 	public static void ajoutClient(Client client) {
 		client.setIdentifiant(counterClient.incrementAndGet());
 		DummyBDD.clients.add(client);
+		DummyBDD.utilisateurs.add(client);
 	}
 
 	public static List<Compte> getComptes() {
@@ -129,7 +143,13 @@ public class DummyBDD {
 		compte.setNoCompte(counterCompte.incrementAndGet());
 		DummyBDD.comptes.add(compte);
 	}
-	
-	
+
+	public static List<Utilisateur> getUtilisateurs() {
+		return utilisateurs;
+	}
+
+	public static void setUtilisateurs(List<Utilisateur> utilisateurs) {
+		DummyBDD.utilisateurs = utilisateurs;
+	}
 	
 }

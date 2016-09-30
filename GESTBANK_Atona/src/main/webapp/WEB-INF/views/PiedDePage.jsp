@@ -18,7 +18,7 @@
 <div id="MyFooter" ng-controller="dateCtrl">
 <p>Site créé par Atona©</p> 
 <p><strong>{{CurrentDate | date:'dd MMM yyyy'}}</strong></p>
-<p>Private Policy | Terms ans Conditions</p></div>
+<p>Private Policy | Terms and Conditions</p></div>
 
 
 </body>

@@ -119,6 +119,7 @@
                  </div>
                </form>
              </div>
-<jsp:include page="PiedDePage.jsp"></jsp:include>
+             <br />
+			<jsp:include page="PiedDePage.jsp"></jsp:include>
            </body>
            </html>
