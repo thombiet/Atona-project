@@ -3,20 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta charset="utf-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="static/css/style_PageAccueil.css">
-<title>GestBank - Accueil/Guest</title>
-
-
-</head>
 
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="static/css/style_PageAccueil.css">
 
 <title>"Accueil"</title>
@@ -44,14 +34,11 @@
 
 </div>
 
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 	<script src="<c:url value='/static/js/app.js' />"></script>
 	<script src="<c:url value='/static/js/config.js' />"></script>
-	<script
-		src="<c:url value='/static/js/controller/TestRedirection_controller.js' />"></script>
-	<script type="text/javascript"
-		src="<c:url value='/static/bower_components/angular-route/angular-route.js' />"></script>
+	<script src="<c:url value='/static/js/controller/TestRedirection_controller.js' />"></script>
+	<script type="text/javascript" src="<c:url value='/static/bower_components/angular-route/angular-route.js' />"></script>
 	<jsp:include page="PiedDePage.jsp"></jsp:include>
 </body>
 
