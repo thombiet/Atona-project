@@ -164,9 +164,13 @@
 							ng-class="{ 'btn-warning' : monForm.$invalid , 'btn-success' : monForm.$valid }">
 					</div>
 					<div class="form-group col-md-12">
+<<<<<<< HEAD
+						<button type="submit" class="myButton" role="button" aria-disabled="false">Annuler</button>
+=======
 						<button type="submit" class="myButton" role="button"
 							aria-disabled="false">
 							Annuler</button>
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 					</div>
 				</div>
 			</fieldset>

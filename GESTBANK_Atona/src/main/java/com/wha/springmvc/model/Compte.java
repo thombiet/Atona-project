@@ -21,15 +21,14 @@ public class Compte {
 		listeTransactions = new ArrayList<Transaction>();
 		listeNotification = new ArrayList<Notification>();
 	}
-	
-	
+
 	public Compte(Long noCompte, Integer decouvert, Integer seuilRemuneration) {
 		this();
+		this.solde = 0;
 		this.noCompte = noCompte;
 		this.decouvert = decouvert;
 		this.seuilRemuneration = seuilRemuneration;
 	}
-
 
 	// #endregion
 
@@ -64,6 +63,22 @@ public class Compte {
 
 	public void setListeTransactions(List<Transaction> listeTransactions) {
 		this.listeTransactions = listeTransactions;
+	}
+
+	public boolean ajoutTransaction(Transaction transaction) {
+		if (transaction instanceof Debit) {
+			if (this.isDebitAuthorize(transaction.getMontant())) {
+				this.setSolde(this.getSolde() - transaction.getMontant());
+			} else {
+				return false;
+			}
+		} else {
+			this.setSolde(this.getSolde() + transaction.getMontant());
+		}
+		List<Transaction> liste = this.getListeTransactions();
+		liste.add(transaction);
+		this.setListeTransactions(liste);
+		return true;
 	}
 
 	public Integer getDecouvert() {
@@ -106,13 +121,17 @@ public class Compte {
 		this.listeNotification = listeNotification;
 	}
 	// #endregion
-	
-	//	#region Utilitaire
+
+	// #region Utilitaire
 	@Override
 	public String toString() {
 		return "Compte [getNoCompte()=" + getNoCompte() + ", getSolde()=" + getSolde() + ", getDecouvert()="
 				+ getDecouvert() + ", getSeuilRemuneration()=" + getSeuilRemuneration() + "]";
 	}
-	
-	//	#endregion
+
+	private boolean isDebitAuthorize(int montant) {
+		return (this.getSolde() + this.getDecouvert() - montant > 0);
+	}
+
+	// #endregion
 }

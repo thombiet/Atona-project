@@ -18,9 +18,10 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
-import com.wha.springmvc.service.CompteService;
+import com.wha.springmvc.service.BanqueService;
 import com.wha.springmvc.service.UserService;
 import com.wha.springmvc.service.UtilisateurService;
 
@@ -34,7 +35,7 @@ public class HelloWorldRestController {
 	UtilisateurService utilService;
 
 	@Autowired
-	CompteService cService;
+	BanqueService banqueService;
 
 	// #region Exemples
 	// -------------------Retrieve All
@@ -139,7 +140,9 @@ public class HelloWorldRestController {
 
 	// #endregion
 
-	// #region Utilisateurs
+	// #region Utilisateur
+	
+	// #region Client
 
 	// ---Recuperation des clients d'un conseiller de matricule {mle}
 	@RequestMapping(value = "/client/", method = RequestMethod.GET)
@@ -207,6 +210,10 @@ public class HelloWorldRestController {
 		return new ResponseEntity<Conseiller>(conseiller, HttpStatus.OK);
 	}
 
+	// #endregion
+	
+	// #region Conseiller
+	
 	// ---Recuperation de tous les conseillers
 	@RequestMapping(value = "/conseiller/", method = RequestMethod.GET)
 	public ResponseEntity<List<Conseiller>> findAllconseillers() {
@@ -289,13 +296,17 @@ public class HelloWorldRestController {
 	}
 	
 	// #endregion
+	
+	// #endregion
 
+	// #region Banque
+	
 	// #region Compte
 
 	// ---Recuperation du compte n° noCompte
 	@RequestMapping(value = "/compte/{noCompte}", method = RequestMethod.GET)
 	public ResponseEntity<Compte> findCompteByNo(@PathVariable("noCompte") Long noCompte) {
-		Compte compte = cService.getCompteByNo(noCompte);
+		Compte compte = banqueService.getCompteByNo(noCompte);
 		if (compte == null)
 			return new ResponseEntity<Compte>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<Compte>(compte, HttpStatus.OK);
@@ -304,7 +315,7 @@ public class HelloWorldRestController {
 	// ---Recuperation des compte du client d'identifiant {identifiant}
 	@RequestMapping(value = "/compte/", method = RequestMethod.GET)
 	public ResponseEntity<List<Compte>> findCompteByClient(@RequestParam("client") Long identifiant) {
-		List<Compte> liste = cService.getComptesByClient(identifiant);
+		List<Compte> liste = banqueService.getComptesByClient(identifiant);
 		if (liste.isEmpty())
 			return new ResponseEntity<List<Compte>>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<Compte>>(liste, HttpStatus.OK);
@@ -316,12 +327,12 @@ public class HelloWorldRestController {
 			UriComponentsBuilder ucBuilder) {
 		System.out.println("Creating Compte " + compte.getNoCompte());
 
-		if (cService.isCompteExist(compte)) {
+		if (banqueService.isCompteExist(compte)) {
 			System.out.println("A Compte with identifiant " + compte.getNoCompte() + " already exist");
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 		}
 
-		cService.ajoutCompte(compte, identifiant);
+		banqueService.ajoutCompte(compte, identifiant);
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/compte/{noCompte}").buildAndExpand(compte.getNoCompte()).toUri());
@@ -333,15 +344,27 @@ public class HelloWorldRestController {
 	public ResponseEntity<Compte> modifCompte(@PathVariable("noCompte") Long noCompte, @RequestBody Compte compte) {
 		System.out.println("Updating Compte " + noCompte);
 
-		if (cService.getCompteByNo(noCompte) == null) {
+		if (banqueService.getCompteByNo(noCompte) == null) {
 			System.out.println("Compte with noCompte " + noCompte + " not found");
 			return new ResponseEntity<Compte>(HttpStatus.NOT_FOUND);
 		}
 
-		cService.modificationCompte(compte);
+		banqueService.modificationCompte(compte);
 
 		return new ResponseEntity<Compte>(compte, HttpStatus.OK);
 	}
+	// #endregion
+	
+	// #region Transaction
+	
+	//---Récuperation des transactions d'un mois donné d'un compte
+	@RequestMapping(value="/transaction/{mois}", method=RequestMethod.GET)
+	public void getThatMonthTransactions(@PathVariable("mois") int month){
+		
+	}
+	
+	// #endregion
+	
 	// #endregion
 
 }

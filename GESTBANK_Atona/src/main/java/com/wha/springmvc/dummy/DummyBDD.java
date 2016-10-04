@@ -8,6 +8,8 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.Credit;
+import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.Utilisateur;
 
@@ -28,9 +30,11 @@ public class DummyBDD {
 		clients = populateDummyClients();
 		conseillers = populateDummyConseillers();
 		comptes = populateDummyComptes();
+		setTransactions(populateDummyTransaction());
 		populateUtilisateurs();
 		affectationConseiller();
 		affectationCompte();
+		transactionsCompte();
 		}
 		
 	}
@@ -52,7 +56,6 @@ public class DummyBDD {
 		liste.add(new Client(counterClient.incrementAndGet(), "Wong", "Mickael", "MWong"));
 		liste.add(new Client(counterClient.incrementAndGet(), "Davis", "Chris", "CDavis"));
 		liste.add(new Client(counterClient.incrementAndGet(), "Gibbs", "Anthony", "AGibbs"));
-		liste.add(new Client(counterClient.incrementAndGet(), "Shepard", "John", "JSheperd"));
 		return liste;
 	}
 	
@@ -68,7 +71,28 @@ public class DummyBDD {
 		liste.add(new Compte(counterCompte.incrementAndGet(), 0, 0));
 		liste.add(new Compte(counterCompte.incrementAndGet(), 600, 7000));
 		liste.add(new Compte(counterCompte.incrementAndGet(), 0, 0));
-		liste.add(new Compte(counterCompte.incrementAndGet(), 0, 0));
+		return liste;
+	}
+	
+	private static List<Transaction> populateDummyTransaction(){
+		List<Transaction> liste = new ArrayList<Transaction>();
+		Random rand = new Random();
+		for (int i =0; i < 2000; i++){
+			if (rand.nextBoolean()){
+				int montant = rand.nextInt(1200);
+				String libelle = "Debit d'un montant de : "+montant;
+				java.util.Date date =  new java.util.Date();
+				date.setDate(date.getDate() - rand.nextInt(365));
+				liste.add(new Debit(montant, libelle, date));
+			}
+			else {
+				int montant = rand.nextInt(1200);
+				String libelle = "Credit d'un montant de : "+montant;
+				java.util.Date date =  new java.util.Date();
+				date.setDate(date.getDate() - rand.nextInt(365));
+				liste.add(new Credit(montant, libelle, date));
+			}
+		}
 		return liste;
 	}
 
@@ -109,6 +133,24 @@ public class DummyBDD {
 		}
 	}
 	
+	private static void transactionsCompte(){
+		int nbCompte = comptes.size();
+		List<Transaction> copyTransactions = new ArrayList<Transaction>(transactions);
+		Random rand = new Random();
+		int n_a;
+		Transaction t;
+		for(int i=0; i< nbCompte; i++){
+			for(int j=i; j< transactions.size(); j=j+nbCompte){
+				n_a = rand.nextInt(copyTransactions.size());
+				t=copyTransactions.get(n_a);
+				if (comptes.get(i).ajoutTransaction(t)){
+					copyTransactions.remove(n_a);
+				}
+			}
+		}
+	}
+	
+	
 	private static void populateUtilisateurs() {
 		utilisateurs = new ArrayList<Utilisateur>();
 		for (Client client : clients) {
@@ -127,10 +169,11 @@ public class DummyBDD {
 		DummyBDD.conseillers = conseillers;
 	}
 
-	public static void ajoutConseiller(Conseiller conseiller) {
+	public static Conseiller ajoutConseiller(Conseiller conseiller) {
 		conseiller.setMatricule(counterConseiller.incrementAndGet());
 		DummyBDD.conseillers.add(conseiller);
 		DummyBDD.utilisateurs.add(conseiller);
+		return conseiller;
 	}
 
 	public static List<Client> getClients() {
@@ -141,10 +184,11 @@ public class DummyBDD {
 		DummyBDD.clients = clients;
 	}
 
-	public static void ajoutClient(Client client) {
+	public static Client ajoutClient(Client client) {
 		client.setIdentifiant(counterClient.incrementAndGet());
 		DummyBDD.clients.add(client);
 		DummyBDD.utilisateurs.add(client);
+		return client;
 	}
 
 	public static List<Compte> getComptes() {
@@ -155,9 +199,23 @@ public class DummyBDD {
 		DummyBDD.comptes = comptes;
 	}
 
-	public static void ajoutCompte(Compte compte) {
+	public static Compte ajoutCompte(Compte compte) {
 		compte.setNoCompte(counterCompte.incrementAndGet());
 		DummyBDD.comptes.add(compte);
+		return compte;
+	}
+
+	public static List<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public static void setTransactions(List<Transaction> transactions) {
+		DummyBDD.transactions = transactions;
+	}
+	
+	public static Transaction ajoutTransaction(Transaction transaction){
+		DummyBDD.transactions.add(transaction);
+		return transaction;
 	}
 
 	public static List<Utilisateur> getUtilisateurs() {
