@@ -10,7 +10,7 @@ import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 
 @Service("compteService")
-public class CompteServiceImpl implements CompteService {
+public class BanqueServiceImpl implements BanqueService {
 
 	private static List<Compte> comptes;
 
