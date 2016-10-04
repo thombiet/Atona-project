@@ -13,7 +13,7 @@ import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Transaction;
 
-@Service("compteService")
+@Service("banqueService")
 public class BanqueServiceImpl implements BanqueService {
 
 	// #region Compte

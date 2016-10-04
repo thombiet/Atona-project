@@ -23,6 +23,8 @@ public interface BanqueService {
 	
 	// #endregion
 	
+	
+	
 	// #region Transaction
 
 	List<List<Transaction>> getAllTransactionsByCompte(Long noCompte);
