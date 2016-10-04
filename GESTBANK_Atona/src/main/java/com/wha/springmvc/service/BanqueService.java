@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.wha.springmvc.model.Compte;
 
-public interface CompteService {
+public interface BanqueService {
 	
 	Compte getCompteByNo(Long noCompte);
 	
