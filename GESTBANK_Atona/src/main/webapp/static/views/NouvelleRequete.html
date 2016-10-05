@@ -1,0 +1,20 @@
+<meta charset="utf-8" />
+		
+		
+		<div ng-controller="MyController">
+		<fieldset>
+			<legend>
+				<h2> Nouvelle Requete</h2>
+			</legend><br />
+			<div>
+			<label >Type de Requete</label>
+				<div>
+					<select name="TypeRequete" >
+						<option ng-repeat="r in TypeRequete">{{r}}</option>
+					</select>	</div><br />
+				<input type="text-selection" rows="10" cols="60" placeholder="Entrez votre message ici">	
+		
+			</div>
+		</fieldset>
+		
+		</div>

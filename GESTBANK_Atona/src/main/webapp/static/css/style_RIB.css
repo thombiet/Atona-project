@@ -1,0 +1,71 @@
+.maPage{
+
+	display: block;
+	width: 600px;
+	background-color: white;
+	margin: auto;
+
+}
+
+.Entête {
+
+	display: flex;
+	justify-content: space-between;
+}
+
+#logo {
+
+	display: block;
+	float: left;
+	margin-bottom:20px;
+	margin-left:5px;
+}
+
+#titre{
+	margin-top:25px;
+	margin-right:15px;
+	float: right;
+	font-weight: bold;
+	font-size:1.4em;
+}
+
+.RIB {
+
+	padding: 5px 5px 5px 5px;
+}
+
+.RIB p {
+	
+	font-weight: bold;
+	font-size:1.0em;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+
+tr:nth-child(even){background-color: blue;
+}
+
+th {
+    background-color: white;
+    color: black;
+}
+
+td {
+
+	font-size:0.8em; 
+}
+
+
+#print{
+	float: right;
+}

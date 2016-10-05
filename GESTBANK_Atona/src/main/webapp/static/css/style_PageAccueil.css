@@ -2,7 +2,7 @@
 
 /* Eléments principaux de la page */
 body {
-	background-color: #e3eeef;
+	background-color: #ccd5ff;
 	font-family: 'Trebuchet MS', Arial, sans-serif;
 	color: #181818;
 	display: block;
@@ -12,6 +12,10 @@ body {
 	margin: auto;
 }
 
+#Ma_vue {
+	
+	width:800px;
+}
 /* Header */
 header {
 	display: flex;
@@ -43,14 +47,6 @@ header h2 {
 	
 }
 
-#Identification {
- padding-top: 10px;
- float: right;
- margin-right: 4px;
- text-align: right;
-}
-
-
 /*forumlaire*/
 
 
@@ -67,13 +63,6 @@ fieldset {
     box-shadow: 0px 4px 4px 4px grey;
     text-align: center;
 	}
-	
-.fieldsets {
-	
-	width:60%;
-
-}
-
 
 
 legend {
@@ -111,12 +100,6 @@ legend h2{
 	height: 1.5;
 	padding: 5px 10px;
 }
-
-
-/* Navigation */
-
-/* Corps */
-
 
 
 #btn_validation {

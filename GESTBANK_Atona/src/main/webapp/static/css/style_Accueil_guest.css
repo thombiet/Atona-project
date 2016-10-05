@@ -1,113 +1,57 @@
-/* Définition des polices personnalisées */
 
 
 
-/* Eléments principaux de la page */
-
-body
-{
-    background-color: #e3eeef;
-    font-family: 'Trebuchet MS', Arial, sans-serif;
-    color: #181818;
-}
-
-#bloc_page
+#ma_page
 {
     margin: auto;
-
-}
-
-body h2
-{
-    padding-top: 4px;
-    padding-left: 180px;
-}
-
-/* Header */
-
-header
-{
-    display:flex;
-    background-color: rgba(255,255,255,0.9);
-    justify-content: space-between;
-    border-radius: 2px;
-    box-shadow: 0px 2px 2px 2px #1c1a19;
-    
-}
-
-header h1
-{
-    font-family: 'Trebuchet MS', Arial, sans-serif;
-    font-size: 2 em;
-    font-weight: normal;
-    margin: 0 0 0 10px;
-  
-}
-
-#Presentation
-{
- float: left;
- padding-top: 10px;
-}
-
-#logo
-{
-
+    width:900px;
 
 }
 
 
-
-
-
-
-
-
-/* Navigation */
-
-
-
-
-/* Corps */
-
-section
-{
-    display: flex;
-    margin-bottom: 20px;
-}
-
-article, aside
-{
-    text-align: justify;
-}
-
-article
-{
-    margin-right: 20px;
-    flex: 3;
+.Ent�te {
+	
+	display:flex;
+	justify-content:space-between;
 }
 
 
 
-article p
-{
-    font-size: 0.8em;
+#aide {
+	
+	display:flex;
+	float:left;
+	padding-top:10px;
+	padding-left:15px;
 }
 
-aside
-{
-    flex: 1.2;
-    position: relative;
-    background-color: #706b64;
-    box-shadow: 0px 2px 5px #1c1a19;
-    border-radius: 5px;
-    padding: 10px;
-    color: white;
-    font-size: 0.9em;
+#social {
+	
+	display:flex;
+	float:center;
+	padding-left:105px;
 }
+
+#social a {
+	
+	padding-right:2px;
+	padding-left:2px;
+}
+
+
+#Identification {
+
+
+ float: right;
+ padding-right: 15px;
+ text-align: right;
+ padding-top:10px;
+}
+
 
 #convertisseur
 {
+    position: relative;
     display: flex;
     float: center;
     background-color: white;
@@ -137,31 +81,21 @@ aside
 {
     padding: auto;
     margin: auto;
+    text-align:center;
 }
 
-#contact
-{
-    display: block;
-    padding-top: 8px;
-}
 
-#aide
-{
-    float: left;
-}
 
-#social
-{
-    float: right;
-}
 
 /* Footer */
 
 footer
 {
-    display: flex;
+    display: inline-flex;
     text-align: center;
-    padding-top: 25px;
+    justify-content: space-around;
+    padding-top: 35px;
+    padding-left:130px;
 }
 
 footer p, footer ul
@@ -178,32 +112,12 @@ footer h1
 }
 
 
-#infoBank
-{
+iframe {
     background-color: white;
-    width: 300px;
-    padding: 25px;
-    margin: 25px;
-    border-radius: 2px;
-    box-shadow: 0px 2px 2px 2px #1c1a19;
-}
-
-#Offres
-{
-    background-color: white;
-    width: 300px;
-    padding: 25px;
-    margin: 25px;
-    border-radius: 2px;
-    box-shadow: 0px 2px 2px 2px #1c1a19;
-}
-
-#Pub
-{
-    background-color: white;
-    width: 300px;
-    padding: 25px;
-    margin: 25px;
+    width: 450px;
+    height:300px;
+    padding: 10px;
+    margin: 20px;
     border-radius: 2px;
     box-shadow: 0px 2px 2px 2px #1c1a19;
 }
