@@ -356,7 +356,7 @@ public class HelloWorldRestController {
 
 	// ---Récuperation des transactions d'un mois donné d'un compte
 	@RequestMapping(value = "/transaction/{mois}", method = RequestMethod.GET)
-	public ResponseEntity<List<List<Transaction>>> getThatMonthTransactions(@PathVariable("mois") int month, @RequestParam("noCompte") Long noCompte) {
+	public ResponseEntity<List<List<Transaction>>> getThatMonthTransactions(@PathVariable("mois") int month, @RequestParam("compte") Long noCompte) {
 		if (banqueService.getCompteByNo(noCompte)==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -367,14 +367,24 @@ public class HelloWorldRestController {
 
 	// ---Ajout d'un débit dans un compte de n° noCompte
 	@RequestMapping(value = "/transaction/debit/", method = RequestMethod.POST)
-	public ResponseEntity<Void> ajoutDebit(@RequestBody Debit debit) {
-		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+	public ResponseEntity<Void> ajoutDebit(@RequestBody Debit debit, @RequestParam("compte") Long noCompte) {
+		if (banqueService.getCompteByNo(noCompte)==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		if (banqueService.ajoutDebit(debit, noCompte)){
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
+		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 	}
 
 	// ---Ajout d'un crédit dans un compte de n° noCompte
 	@RequestMapping(value = "/transaction/credit/", method = RequestMethod.POST)
-	public ResponseEntity<Void> ajoutCredit(@RequestBody Credit credit) {
-		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+	public ResponseEntity<Void> ajoutCredit(@RequestBody Credit credit, @RequestParam("compte") Long noCompte) {
+		if (banqueService.getCompteByNo(noCompte)==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		banqueService.ajoutCredit(credit, noCompte);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	// #endregion

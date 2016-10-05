@@ -1,5 +1,7 @@
 package com.wha.springmvc.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,13 +91,14 @@ public class BanqueServiceImpl implements BanqueService {
 	// #region Transaction
 
 	private static List<Transaction> transactions;
-	private static void getTransactions(){
+
+	private static void getTransactions() {
 		if (transactions == null) {
 			DummyBDD.CreateBDD();
 			transactions = DummyBDD.getTransactions();
 		}
 	}
-	
+
 	@Override
 	public List<List<Transaction>> getAllTransactionsByCompte(Long noCompte) {
 		getComptes();
@@ -126,27 +129,21 @@ public class BanqueServiceImpl implements BanqueService {
 	public List<List<Transaction>> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth) {
 		getComptes();
 		List<List<Transaction>> liste = new ArrayList<>();
-		Compte c = null;
-		for (Compte compte : comptes) {
-			if (compte.getNoCompte() == noCompte) {
-				c = compte;
-			}
-		}
-		if (c != null) {
-			List<Transaction> debits = new ArrayList<Transaction>();
-			List<Transaction> credits = new ArrayList<Transaction>();
-			for (Transaction t : c.getListeTransactions()) {
-				if (t.getDate().getMonth() == (thatMonth - 1)) {
-					if (t instanceof Credit) {
-						credits.add(t);
-					} else {
-						debits.add(t);
-					}
+		Compte c = getCompteByNo(noCompte);
+		List<Transaction> debits = new ArrayList<Transaction>();
+		List<Transaction> credits = new ArrayList<Transaction>();
+		for (Transaction t : c.getListeTransactions()) {
+			LocalDate ld = t.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if (ld.getMonthValue() == thatMonth) {
+				if (t instanceof Credit) {
+					credits.add(t);
+				} else {
+					debits.add(t);
 				}
 			}
-			liste.add(credits);
-			liste.add(debits);
 		}
+		liste.add(credits);
+		liste.add(debits);
 		return liste;
 	}
 
@@ -154,13 +151,10 @@ public class BanqueServiceImpl implements BanqueService {
 	public boolean ajoutDebit(Debit debit, Long noCompte) {
 		getComptes();
 		getTransactions();
-		for (Compte compte : comptes) {
-			if (compte.getNoCompte()==noCompte){
-				if (compte.ajoutTransaction(debit)){
-					transactions.add(debit);
-					return true;
-				}
-			}
+		Compte c = getCompteByNo(noCompte);
+		if (c.ajoutTransaction(debit)) {
+			transactions.add(debit);
+			return true;
 		}
 		return false;
 	}
@@ -169,12 +163,9 @@ public class BanqueServiceImpl implements BanqueService {
 	public void ajoutCredit(Credit credit, Long noCompte) {
 		getComptes();
 		getTransactions();
-		for (Compte compte : comptes) {
-			if (compte.getNoCompte()==noCompte){
-				compte.ajoutTransaction(credit);
-				transactions.add(credit);
-			}
-		}
+		Compte c = getCompteByNo(noCompte);
+		c.ajoutTransaction(credit);
+		transactions.add(credit);
 	}
 
 	// #endregion
