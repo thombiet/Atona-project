@@ -1,5 +1,6 @@
 package com.wha.springmvc.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.Credit;
+import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
@@ -141,7 +144,7 @@ public class HelloWorldRestController {
 	// #endregion
 
 	// #region Utilisateur
-	
+
 	// #region Client
 
 	// ---Recuperation des clients d'un conseiller de matricule {mle}
@@ -211,9 +214,9 @@ public class HelloWorldRestController {
 	}
 
 	// #endregion
-	
+
 	// #region Conseiller
-	
+
 	// ---Recuperation de tous les conseillers
 	@RequestMapping(value = "/conseiller/", method = RequestMethod.GET)
 	public ResponseEntity<List<Conseiller>> findAllconseillers() {
@@ -263,44 +266,38 @@ public class HelloWorldRestController {
 
 	}
 	// #endregion
-	
+
 	// #region Connexion
-	
-	@RequestMapping(value="/connexion/", method=RequestMethod.GET, produces=MediaType.TEXT_PLAIN_VALUE)
-	public ResponseEntity<String> connexion(@RequestParam("pseudo") String pseudo, @RequestParam("mdp") String motDePasse){
-		if (!pseudo.equals(motDePasse)){
+
+	@RequestMapping(value = "/connexion/", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+	public ResponseEntity<String> connexion(@RequestParam("pseudo") String pseudo,
+			@RequestParam("mdp") String motDePasse) {
+		if (!pseudo.equals(motDePasse)) {
 			return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
 		}
-		if (!utilService.isPseudoExist(pseudo) && !pseudo.equals("admin")){
+		if (!utilService.isPseudoExist(pseudo) && !pseudo.equals("admin")) {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
 		String jSon = "";
 		Utilisateur u = utilService.getUtilisateurByPseudo(pseudo);
 		if (u instanceof Client) {
 			Client c = (Client) u;
-			jSon += "Client"
-					+c.getIdentifiant()
-					+"";
-		}
-		else if (u instanceof Conseiller) {
+			jSon += "Client" + c.getIdentifiant() + "";
+		} else if (u instanceof Conseiller) {
 			Conseiller c = (Conseiller) u;
-			jSon += "Conseiller"
-					+c.getMatricule()
-					+"";
-		}
-		else 
-		{
-			jSon +="Administrateur";
+			jSon += "Conseiller" + c.getMatricule() + "";
+		} else {
+			jSon += "Administrateur";
 		}
 		return new ResponseEntity<String>(jSon, HttpStatus.OK);
 	}
-	
+
 	// #endregion
-	
+
 	// #endregion
 
 	// #region Banque
-	
+
 	// #region Compte
 
 	// ---Recuperation du compte n° noCompte
@@ -354,17 +351,34 @@ public class HelloWorldRestController {
 		return new ResponseEntity<Compte>(compte, HttpStatus.OK);
 	}
 	// #endregion
-	
+
 	// #region Transaction
-	
-	//---Récuperation des transactions d'un mois donné d'un compte
-	@RequestMapping(value="/transaction/{mois}", method=RequestMethod.GET)
-	public void getThatMonthTransactions(@PathVariable("mois") int month){
-		
+
+	// ---Récuperation des transactions d'un mois donné d'un compte
+	@RequestMapping(value = "/transaction/{mois}", method = RequestMethod.GET)
+	public ResponseEntity<List<List<Transaction>>> getThatMonthTransactions(@PathVariable("mois") int month, @RequestParam("noCompte") Long noCompte) {
+		if (banqueService.getCompteByNo(noCompte)==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<List<Transaction>> liste = new ArrayList<>();
+		liste = banqueService.getThatMonthTransactionsByCompte(noCompte, month);
+		return new ResponseEntity<List<List<Transaction>>>(liste, HttpStatus.OK);
 	}
-	
+
+	// ---Ajout d'un débit dans un compte de n° noCompte
+	@RequestMapping(value = "/transaction/debit/", method = RequestMethod.POST)
+	public ResponseEntity<Void> ajoutDebit(@RequestBody Debit debit) {
+		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+	}
+
+	// ---Ajout d'un crédit dans un compte de n° noCompte
+	@RequestMapping(value = "/transaction/credit/", method = RequestMethod.POST)
+	public ResponseEntity<Void> ajoutCredit(@RequestBody Credit credit) {
+		return new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED);
+	}
+
 	// #endregion
-	
+
 	// #endregion
 
 }
