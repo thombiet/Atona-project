@@ -8,15 +8,22 @@ import org.springframework.stereotype.Service;
 import com.wha.springmvc.dummy.DummyBDD;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
+import com.wha.springmvc.model.Credit;
+import com.wha.springmvc.model.Debit;
+import com.wha.springmvc.model.Transaction;
 
+<<<<<<< HEAD
 import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Transaction;
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 @Service("banqueService")
 public class BanqueServiceImpl implements BanqueService {
 
+	// #region Compte
 	private static List<Compte> comptes;
 
 	private static void getComptes() {
@@ -85,8 +92,11 @@ public class BanqueServiceImpl implements BanqueService {
 		return false;
 	}
 
+<<<<<<< HEAD
 	
 
+=======
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 	// #endregion
 
 	// #region Transaction

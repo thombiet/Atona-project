@@ -3,12 +3,18 @@ package com.wha.springmvc.service;
 import java.util.List;
 
 import com.wha.springmvc.model.Compte;
+import com.wha.springmvc.model.Credit;
+import com.wha.springmvc.model.Debit;
+import com.wha.springmvc.model.Transaction;
 
+<<<<<<< HEAD
 import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Transaction;
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 public interface BanqueService {
 	
 	// #region Compte
@@ -23,7 +29,10 @@ public interface BanqueService {
 	
 	boolean isCompteExist(Compte compte);
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 	// #endregion
 	
 	// #region Transaction
