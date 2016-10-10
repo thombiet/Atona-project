@@ -139,37 +139,38 @@
 		}
 
 		//-------------------------ServiceBanque------------------------
-		
+
 		$scope.month = new Date().getMonth();
-		$scope.AfficheDetailCompte = function(){
-			$http.get(COMPTE_URI+$scope.compte.noCompte+"/transaction/"+$scope.month)
-			.then(
-				function(reussite){
-					console.log(reussite);
-					$scope.credits= reussite.data[0];
-					$scope.debits= reussite.data[1];
-					//$scope.credits.forEach(transformDate);
-				},
-				function(error){
-					console.log("error : "+error);
-				}
-			)
+		$scope.AfficheDetailCompte = function() {
+			$http.get(
+					COMPTE_URI + $scope.compte.noCompte + "/transaction/"
+							+ $scope.month).then(function(reussite) {
+				console.log(reussite);
+				$scope.credits = reussite.data[0];
+				$scope.debits = reussite.data[1];
+				//$scope.credits.forEach(transformDate);
+			}, function(error) {
+				console.log("error : " + error);
+			})
 		}
-		
+
 		function transformDate(item) {
-		    item.date= new Date(item.date)
+			item.date = new Date(item.date)
 		}
 
 	};
-	
-	
+
 	//--------------------------Declaration du module et du controller------------------
 	angular.module("appTest", []).controller('ctrl', leConseiller);
-	
 </script>
 <title>TestServiceClient</title>
 </head>
 <body ng-app="appTest" ng-controller="ctrl" ng-init="init()">
+
+
+
+
+
 	<h1>Action sur les clients</h1>
 	<h2>Avec http://localhost:8080/SpringAngularStartProject/client/</h2>
 	Avec le conseiller n°{{cons.matricule}} : {{cons.prenom}} {{cons.nom}}
@@ -202,6 +203,13 @@
 			ng_model="client.pseudo"> <input type="submit">
 	</form>
 	<hr>
+
+
+
+
+
+
+
 	<h1>Conversion de devise</h1>
 	<h2>avec http://api.fixer.io/latest</h2>
 	<form ng_submit="conversion()">
@@ -215,27 +223,51 @@
 	le montant est de {{change}} {{symbols}}
 	<br> avec un taux de {{rate}} {{symbols}} pour 1 {{base}}
 	<hr>
+
+
+
+
+
+
+
 	<h1>Connexion</h1>
 	<h2>Avec http://localhost:8080/SpringAngularStartProject/connexion</h2>
 	<form ng-submit="connexion()">
 		Pseudo <input ng-model="pseudo"><br> Mot de passe <input
 			ng-model="mdp"><br> <input type="submit"
 			value="Connexion">
-
 	</form>
 	<hr>
+
+
+
+
+
+
+
 	<h1>Service Banque</h1>
 	<h2>avec http://localhost:8080/SpringAngularStartProject/compte et
 		http://localhost:8080/SpringAngularStartProject/transaction</h2>
 	<h3>Compte du client {{clients[0].nom}}</h3>
 	<form ng-submit="AfficheDetailCompte()">
-		<select ng-model="compte" ng-options="cpt.noCompte for cpt in clients[0].listeComptes"></select>
+		<select ng-model="compte"
+			ng-options="cpt.noCompte for cpt in clients[0].listeComptes"></select>
 		<input type="submit" value="Choisir">
 	</form>
 	Detail du compte pour le mois de {{month}}
-	<table  align="center" border=1 cellspacing=1 cellpadding=10>
-		<tr ng-repeat="d in debits"><td>{{d.date}}</td><td>{{::d.libelle}}</td><td></td><td>-{{d.montant}}</td></tr>
-		<tr ng-repeat="c in credits"><td>{{c.date}}</td><td>{{c.libelle}}</td><td>{{c.montant}}</td><td></td></tr>
+	<table align="center" border=1 cellspacing=1 cellpadding=10>
+		<tr ng-repeat="d in debits">
+			<td>{{d.date}}</td>
+			<td>{{d.libelle}}</td>
+			<td></td>
+			<td>-{{d.montant}}</td>
+		</tr>
+		<tr ng-repeat="c in credits">
+			<td>{{c.date}}</td>
+			<td>{{c.libelle}}</td>
+			<td>{{c.montant}}</td>
+			<td></td>
+		</tr>
 	</table>
 </body>
 </html>
