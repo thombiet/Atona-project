@@ -1,8 +1,8 @@
-
+<link rel="stylesheet" href="static/css/style_Client.css">
 <meta charset="utf-8" />
+<div class="ma_page" ng-controller="CompteController as comptectrl">
 
-<div ng-controller="MyController">
-		<div align="center">
+		<div class="menuBtn"  align="center">
 
 			<a href="#/Client" class="myButton">Accueil</a>
 			 <a href="#/Mes Informations"
@@ -19,10 +19,10 @@
 				<h2>Mes Comptes</h2>
 </legend>
 			<br />
-			<a href="#/GestionCompte" class="myButton" >Test gestion</a>
+			
 		<div class="option1">
-				<table align="center" border=1 cellspacing=1 cellpadding=10>
-					<thead>
+				<table align="center" cellspacing=1 cellpadding=10>
+					<thead border=1 >
 						<tr>
 							<th>Type</th>
 							<th>Numero</th>
@@ -30,7 +30,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="compte in clctrl.comptes">
+						<tr ng-repeat="compte in comptectrl.comptes">
 							<td><span ng-bind="compte.type"></span></td>
 							<td><span ng-bind="compte.numero"></span></td>
 							<td><span ng-bind="compte.solde"></span></td>							
@@ -44,4 +44,7 @@
 				</table>
 			</div>
 			<br> <br>
+				<a href="#/GestionCompte" class="myButton" >Test gestion</a>
 		</fieldset>
+	
+		</div>

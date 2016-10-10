@@ -1,0 +1,40 @@
+#ma_page {
+	
+	min-height:550px;
+	margin:auto;
+	
+}
+
+
+.menuBtn {
+	
+	padding-top:5px;
+	padding-bottom:20px;
+	
+}
+
+.input-sm {
+	
+	height:35px;
+}
+
+table {
+    border-collapse: collapse;
+    border: 1px solid #c0c0c0;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){
+	background-color: #e9f0fe
+}
+
+th {
+    background-color: #ed8200;
+    color: white;
+}
+

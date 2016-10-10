@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('myApp').controller('ConsController', ['$scope', 'ConseillerService', function($scope, ConseillerService) {
+App.controller('ConsController', ['$scope', 'ConseillerService', function($scope, ConseillerService) {
     var self = this;
     self.conseillers=[];
     self.demandes=[];

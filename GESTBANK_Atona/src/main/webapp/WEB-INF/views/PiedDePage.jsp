@@ -13,8 +13,6 @@
 </head>
 <body>
 
-
-<hr />
 <div id="MyFooter" ng-controller="dateCtrl">
 <p>Site créé par Atona©</p> 
 <p><strong>{{CurrentDate | date:'dd MMM yyyy'}}</strong></p>

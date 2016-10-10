@@ -2,7 +2,8 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="static/css/style_Accueil_guest.css">
 
-<div class=ma_page>
+<div class=ma_page ng-controller="convertCtrl">
+
 	<div class="Entête">
 
 		<div id="aide">
@@ -15,13 +16,12 @@
 		<div id="social" align="center">
 			<p>
 				<a href="https://facebook.com"><img
-					src="static/images/Facebook.png" alt="Facebook" /></a> <a
+					src="static/images/Facebook.png" alt="Facebook" height="60%" /></a> <a
 					href="https://plus.google.com"><img
-					src="static/images/Google+.png" alt="Google+" /></a> <a
+					src="static/images/Google+.png" alt="Google+" height="60%" /></a> <a
 					href="https://twitter.com"><img src="static/images/Twitter.png"
-					alt="Twitter" /></a>
-			</p>
-			<a href="#"><img src="static/images/rss.png" alt="RSS" /></a>
+					alt="Twitter" height="60%" /></a> <a href="#"><img
+					src="static/images/rss.png" alt="RSS" height="60%" /></a>
 			</p>
 		</div>
 
@@ -30,7 +30,7 @@
 				<p>
 					<input type="text" id="Identifiant" placeholder="Identifiant" /> <input
 						type="text" id="mdp" placeholder="Mot de Passe" /> <a
-						href="#/Client" class="myButton" ng-click="connexion()">Connexion</a>
+						href="#/Conseiller" class="myButton" ng-click="connexion()">Connexion</a>
 				</p>
 			</form>
 			<p>
@@ -40,23 +40,49 @@
 		</div>
 	</div>
 
-	<br>
-
+	<br> <br>
 
 	<fieldset>
 
 		<legend>
 			<h2>Convertisseur en Ligne</h2>
 		</legend>
-		<br /> ..........................
-		..................................................................
+		<br> <br>
+		<div class="convert">
+			<form ng_submit="conversion()" >
+				<div class="montant">
+					<label>Montant à convertir : </label><input type="number"
+						ng-model="montant" class="input-tx1"
+						placeholder="Entrez une valeur">
+				</div>
+				<div class="dev">
+					<p>de</p>
+					<select ng-model="base" class="input-tx2">
+						<option ng-repeat="d in devises" placeholder="devise">{{d}}</option>
+					</select>
+					<p>vers</p>
+					<select ng-model="symbols" class="input-tx2">
+						<option ng-repeat="d in devises" placeholder="devise">{{d}}</option>
+					</select> <input type="submit" class="myButton" value="Convertir">
+				</div>
+			</form><br /> 
+			<div class="result">
+				<p>le montant est de <p1>{{change}}</p1> {{symbols}}
+				<p>
+					avec un taux de <p2>{{rate}} </p2>{{symbols}}  pour 1 {{base}}
+				</p>
+			</div>
+		</div>
 	</fieldset>
+	<br />
+	<hr />
+	<h3>Partenaires GESTBank</h3>
 	<footer>
 		<div id="infoBank">
-		<iframe src="https://www.youtube.com/embed/hez5d1qj5ZY"></iframe>
-		 	</div>
+			<iframe src="https://www.youtube.com/embed/hez5d1qj5ZY"></iframe>
+		</div>
 		<div id="Pub">
-			<iframe src="http://www.ritzcarlton.com/en/hotels/caribbean/grand-cayman"></iframe>
+			<iframe src=""></iframe>
 		</div>
 	</footer>
 

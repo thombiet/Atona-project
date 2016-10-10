@@ -1,6 +1,6 @@
 'use strict';
 
-App.controller('ClientController', ['$scope', 'ClientService', function($scope, ClientService) {
+App.controller('ClientController', ['$scope', 'ClientService','$location', function($scope, ClientService, $location) {
     var self = this;
    //self.client={identifiant:'',nom:'',prenom:'',pseudo:'',conseiller:''};
    //self.fetchIdClient= 2;
@@ -10,7 +10,7 @@ App.controller('ClientController', ['$scope', 'ClientService', function($scope, 
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;*/
-    
+    self.fetchClientById = fetchClientById;
     self.conseiller = {matricule:'2', nom:'', prenom:'',pseudo:'FRober'};
     //self.client={identifiant:'2',nom:'',prenom:'',pseudo:'',conseiller:''};
 
@@ -51,6 +51,7 @@ App.controller('ClientController', ['$scope', 'ClientService', function($scope, 
     }
     
     function fetchCompteById(noCompte) {
+    	alert("YES");
     	ClientService.fetchCompteById(noCompte)
     		.then(
             function(d){

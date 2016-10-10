@@ -1,36 +1,54 @@
-/* Définition des polices personnalisées */
 
 /* Eléments principaux de la page */
 body {
-	background-color: #ccd5ff;
+	
 	font-family: 'Trebuchet MS', Arial, sans-serif;
-	color: #181818;
-	display: block;
+	color: #000080;
+	/*background-image:url("static/images/tropical_beach_ci.jpg");*/
+	background-color:#e2eaf3;
 }
 
 #bloc_page {
-	margin: auto;
+	
+	margin:auto;
+   	display:block;
+   	
 }
 
-#Ma_vue {
+.Ma_vue {
 	
-	width:800px;
+	float:center;
+	margin:auto;
+	height:100%;
+	width:75%;
+	background-color:#ffffff;
+	float:center;
+	box-shadow: 0px 0px 2px 2px #514b48;
+	padding-bottom:20px;
 }
+
+
 /* Header */
 header {
+	
 	display: flex;
 	text-align: center;
-	background-color: rgba(255, 255, 255, 0.9);
+	background-color: white;
 	justify-content: space-around; 
 	border-radius : 2px;
-	box-shadow: 0px 2px 2px 2px #1c1a19;
+	box-shadow: 0px 2px 2px 2px #808080;
 	border-radius: 2px;
+	height:15%;
+	margin-bottom:5px;
 }
 
 header h1 {
 	font-family: 'Trebuchet MS', Arial, sans-serif;
 	font-size: 2 em;
 	font-weight: normal;
+	text-shadow: 2px 1px 2px #ea720f;
+	color: #000080;
+	float:left;
 }
 
 header h2 {
@@ -38,14 +56,21 @@ header h2 {
 	font-size: 2 em;
 	font-weight: normal;
 	margin: auto;
-	padding:auto;
+	padding-left:150px;
 	float:center;
+	text-shadow: 1px 1px 2px #000080;
+	color: #ee710b;
 }
 
 #Presentation {
 	display: flex;
 	
 }
+#logo {
+	
+	padding-bottom:5px;
+}
+
 
 /*forumlaire*/
 
@@ -59,8 +84,8 @@ fieldset {
     width: 700px;
     padding: 25px;
     margin: auto;
-    border-radius: 2px;
-    box-shadow: 0px 4px 4px 4px grey;
+    border-radius: 1px;
+    box-shadow: 0px 4px 4px 2px black;
     text-align: center;
 	}
 
@@ -71,9 +96,9 @@ legend {
 	top:0;
 	right:0;
 	left:0;
-	background-color: rgba(24,24,20,0.5);
-	border-radius: 2px;
-	color: #0000a0;
+	background-color: rgba(0,0,51,0.7);
+	border-radius: 1px;
+	color: #ff8000;
 	font-weight: bold;
 	
 }
@@ -82,6 +107,7 @@ legend h2{
 	padding-top:10px;
 	margin:auto;
 	font-size: 1.2em;
+	text-shadow: 2px 2px 4px #000040;
 }
 .option1 {
 	
@@ -106,50 +132,35 @@ legend h2{
 	display: flex;
 	float: right;
 }
-
 .myButton {
-	-moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
-	box-shadow: inset 0px 1px 0px 0px #54a3f7;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #afc8d6
-		), color-stop(1, #0061a7));
-	background: -moz-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: -webkit-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: -o-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: -ms-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: linear-gradient(to bottom, #afc8d6 5%, #0061a7 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#afc8d6',
-		endColorstr='#0061a7', GradientType=0);
-	background-color: #afc8d6;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	border: 1px solid #124d77;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: bold;
-	padding: 6px 13px;
-	text-decoration: none;
-	text-shadow: 0px 1px 0px #154682;
+  background: #4fb3f5;
+  background-image: -webkit-linear-gradient(top, #4fb3f5, #10202b);
+  background-image: -moz-linear-gradient(top, #4fb3f5, #10202b);
+  background-image: -ms-linear-gradient(top, #4fb3f5, #10202b);
+  background-image: -o-linear-gradient(top, #4fb3f5, #10202b);
+  background-image: linear-gradient(to bottom, #4fb3f5, #10202b);
+  -webkit-border-radius: 2;
+  -moz-border-radius: 2;
+  border-radius: 2px;
+  -webkit-box-shadow: 0px 1px 1px #666666;
+  -moz-box-shadow: 0px 1px 1px #666666;
+  box-shadow: 0px 1px 1px #666666;
+  font-family: Arial;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 6px 13px;
 }
 
 .myButton:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7
-		), color-stop(1, #afc8d6));
-	background: -moz-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: -webkit-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: -o-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: -ms-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: linear-gradient(to bottom, #0061a7 5%, #afc8d6 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7',
-		endColorstr='#afc8d6', GradientType=0);
-	background-color: #0061a7;
+  background: #5cc1ff;
+  background-image: -webkit-linear-gradient(top, #5cc1ff, #3aa1e6);
+  background-image: -moz-linear-gradient(top, #5cc1ff, #3aa1e6);
+  background-image: -ms-linear-gradient(top, #5cc1ff, #3aa1e6);
+  background-image: -o-linear-gradient(top, #5cc1ff, #3aa1e6);
+  background-image: linear-gradient(to bottom, #5cc1ff, #3aa1e6);
+  text-decoration: none;
 }
 
-.myButton:active {
-	position: relative;
-	top: 1px;
-}
+

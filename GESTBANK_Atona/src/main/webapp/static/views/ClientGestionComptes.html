@@ -3,8 +3,8 @@
 
 <meta charset="utf-8" />
 <title>Gestion des Comptes</title>
-
-<div align="center">
+<div id="ma_page">
+<div class="menuBtn" align="center">
 
 	<a href="#/Client" class="myButton">Accueil</a>
 	<a href="#/Mes Informations"
@@ -15,22 +15,21 @@
 
 </div>
 <br>
-<div class="maPage" >
+<div class="maPage2" >
 	<div class="menu">
 		<legend><h2>Options</h2></legend><br/>
-		<div class="options"> <a href="#/Virement" class="myButton">Faire un Virement</a>
-			<a href="#/ClientRIB"
-			class="myButton">Impression de RIB</a>
-			<a href="#/ClientMessagerie"
-			class="myButton">Demander un chéquier</a> 
+		<div class="options"> <a href="#/Virement" class="btn">Faire un Virement</a><br/>
+			<a href="#/GestionCompte/RIB" class="btn">Impression de RIB</a><br/>
+			<a href="#/ClientMessagerie" class="btn">Demander un <br/>chéquier</a> <br/>
 		</div>
 	</div>
+	<div class="gestion">
 	<fieldset>
 	<legend><h2>Détails du comtpe n°{{noCompte}}</h2>
 		</legend>
 		<br />
 		<div class="option1">
-			<table align="center" border=1 cellspacing=1 cellpadding=10>
+			<table align="center" cellspacing=1 cellpadding=10>
 				<thead>
 					<tr>
 						<th>Date</th>
@@ -47,20 +46,34 @@
 						<td><span ng-bind="transaction.montant"></span></td>						
 					</tr>
 					<tr >
-						<td>28/09/2016</td>
+						<td>18/09/2016</td>
 						<td>qgethryjrhhh</td>
 						<td>-300,00</td>		
 						<td></td>					
 					</tr>
 					<tr >
-						<td>28/09/2016</td>
+						<td>22/09/2016</td>
 						<td>atrykukryjrhhh</td>
 						<td></td>		
 						<td>+150,00</td>					
+					</tr>
+					<tr >
+						<td>28/09/2016</td>
+						<td>kkedujkhf</td>
+						<td></td>		
+						<td>+2250,00</td>					
+					</tr>
+					<tr >
+						<td>02/10/2016</td>
+						<td>sgdhykukryjrhhh</td>
+						<td></td>		
+						<td>+190,00</td>					
 					</tr>
 				</tbody>
 			</table>
 		</div>
 		<br> <div class="solde"><p>Solde : <p2>{{compte.solde}}</p2></p></div><br>
 	</fieldset>
+	</div>
+</div>
 </div>

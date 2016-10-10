@@ -1,93 +1,103 @@
 'use strict';
 
-angular.module('myApp').controller('CompteController', ['$scope', 'CompteService', function($scope, CompteService) {
-    var self = this;
-    self.user={id:null,username:'',address:'',email:''};
-    self.users=[];
+App.controller('CompteController', ['$scope', '$location', 'CompteService', function($scope, $location, CompteService) {
+	var self = this;
+    self.compte={noCompte:'',solde:''};
 
     self.submit = submit;
     self.edit = edit;
     self.remove = remove;
     self.reset = reset;
-
-
-    fetchAllUsers();
-
-    function fetchAllUsers(){
-        UserService.fetchAllUsers()
+    
+    function fetchAllComptes(identifiant){
+    	CompteService.fetchAllComptes(identifiant)
             .then(
             function(d) {
-                self.users = d;
+                self.comptes = d;
+                console.log(d);
             },
             function(errResponse){
-                console.error('Error while fetching Users');
+                console.error('Error while fetching comptes');
+            }
+        );
+    }
+     
+    function fetchCompteByNumero(noCompte) {
+    	console.log(noCompte);
+    	CompteService.fetchcompteById(noCompte)
+    		.then(
+            function(d){
+            	self.compte= d;
+                console.log(d);
+            },
+            function(errResponse){
+                console.error('Error while fetching compte');
+            }
+        );
+    }
+  
+    function createCompte(compte){
+        CompteService.createCompte(compte)
+            .then(
+            fetchAllComptes,
+            function(errResponse){
+                console.error('Error while creating Compte');
             }
         );
     }
 
-    function createUser(user){
-        UserService.createUser(user)
+    function updateCompte(compte, noCompte){
+        CompteService.updatecompte(compte, noCompte)
             .then(
-            fetchAllUsers,
+            fetchAllComptes,
             function(errResponse){
-                console.error('Error while creating User');
+                console.error('Error while updating Compte');
             }
         );
     }
 
-    function updateUser(user, id){
-        UserService.updateUser(user, id)
+    function deleteCompte(noCompte){
+        CompteService.deleteCompte(noCompte)
             .then(
-            fetchAllUsers,
+            fetchAllComptes,
             function(errResponse){
-                console.error('Error while updating User');
-            }
-        );
-    }
-
-    function deleteUser(id){
-        UserService.deleteUser(id)
-            .then(
-            fetchAllUsers,
-            function(errResponse){
-                console.error('Error while deleting User');
+                console.error('Error while deleting Compte');
             }
         );
     }
 
     function submit() {
-        if(self.user.id===null){
-            console.log('Saving New User', self.user);
-            createUser(self.user);
+        if(self.compte.noCompte===null){
+            console.log('Saving New compte', self.compte);
+            createCompte(self.compte);
         }else{
-            updateUser(self.user, self.user.id);
-            console.log('User updated with id ', self.user.id);
+            updateCompte(self.compte, self.compte.noCompte);
+            console.log('Compte updated with noCompte ', self.compte.noCompte);
         }
         reset();
     }
 
-    function edit(id){
-        console.log('id to be edited', id);
-        for(var i = 0; i < self.users.length; i++){
-            if(self.users[i].id === id) {
-                self.user = angular.copy(self.users[i]);
+    function edit(noCompte){
+        console.log('noCompte to be edited', noCompte);
+        for(var i = 0; i < self.comptes.length; i++){
+            if(self.comptes[i].noCompte === noCompte) {
+                self.compte = angular.copy(self.comptes[i]);
                 break;
             }
         }
     }
 
-    function remove(id){
-        console.log('id to be deleted', id);
-        if(self.user.id === id) {//clean form if the user to be deleted is shown there.
+    function remove(noCompte){
+        console.log('noCompte to be deleted', noCompte);
+        if(self.compte.noCompte === noCompte) {
             reset();
         }
-        deleteUser(id);
+        deleteCompte(noCompte);
     }
 
 
     function reset(){
-        self.user={id:null,username:'',address:'',email:''};
+        self.compte={noCompte:null,solde:''};
         $scope.myForm.$setPristine(); //reset Form
     }
-
-}]);
+ }]);

@@ -1,9 +1,11 @@
 <meta charset="utf-8" />
+<link rel="stylesheet" href="static/css/style_Admin.css">
 
-<div ng-controller="MyController">
-	<div align="center">
+<div id="ma_page" ng-controller="AdminController">
+	
+	<div  class="menuBtn"  align="center">
 
-		<a href="#/Client" class="myButton">Accueil</a> <a href="#/"
+		<a href="#/Admin/AffectCons" class="myButton">Accueil</a> <a href="#/"
 			class="myButton">Déconnexion</a>
 
 	</div>
@@ -21,12 +23,12 @@
 					placeholder="Entrer numero ou nom "> <input type="button"
 					class="myButton" name="bouton1" value="Recherche"> <input
 					type="button" class="myButton" name="bouton2"
-					value="Ajouter un nouveau conseiller">
+					value="+ Ajouter conseiller">
 			</div>
 			<br>
 			<br>
 			<div>
-				<table align="center" border=1 cellspacing=1 cellpadding=10>
+				<table align="center" cellspacing=1 cellpadding=10>
 					<thead>
 						<tr>
 							<th>Matricule</th>
@@ -93,3 +95,4 @@
 		<br>
 		<br>
 	</fieldset>
+	</div>

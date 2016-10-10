@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myApp').factory('ClientService', ['$http', '$q', function($http, $q){
+App.factory('ClientService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/client/';
+    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/Conseiller';
 
     var factory = {
         fetchAllClients: fetchAllClients,
@@ -21,7 +21,7 @@ angular.module('myApp').factory('ClientService', ['$http', '$q', function($http,
     function fetchAllClients(matricule) {
         var deferred = $q.defer();
         console.log(matricule)
-        $http.get(REST_SERVICE_URI,{params:{conseiller:matricule}})
+        $http.get(REST_SERVICE_URI, {params:{conseiller:matricule}})
             .then(
             function (response) {
                 deferred.resolve(response.data);

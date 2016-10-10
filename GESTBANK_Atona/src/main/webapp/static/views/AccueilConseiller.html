@@ -1,12 +1,14 @@
 <meta charset="utf-8" />
+<link rel="stylesheet" href="static/css/style_Conseiller.css">
 
-<div ng-controller="MyController">
-		<div align="center">
 
-			<a href="#/Client" class="myButton">Accueil</a>
-			 <a href="#/Mes Informations"
+<div id="ma_page" ng-controller="ClientController as clientctrl">
+		<div  class="menuBtn"  align="center">
+
+			<a href="#/Conseiller" class="myButton">Accueil</a>
+			 <a href="#/Info_cons"
 				class="myButton">Mes Informations</a>
-				 <a href="#/ClientMessagerie"
+				 <a href="#/ConseillerMessagerie"
 				class="myButton">Messagerie</a> 
 				<a href="#/" class="myButton" >Déconnexion</a>
 
@@ -21,17 +23,17 @@
 					<div class="option1">
 						<div align="center">
 							<input type="search" class="input-sm" name="recherche"
-								placeholder="Entrer Id Client"> <input type="button"
-								class="myButton" name="bouton1" value="OK">
-						</div>
+								placeholder="Entrer Id Client" ng-model="identifiant"> <input type="button"
+								class="myButton" value="OK" name="findcli" ng-click="clientctrl.fetchClientById(identifiant)">
+								</div>
 						<div align="center">
 							<input type="search" class="input-sm" name="recherche"
-								placeholder="Entrer N° Compte"> <input type="button"
-								class="myButton" name="bouton1" value="OK">
+								placeholder="Entrer N° Compte" ng-model="noCompte"> <input type="button"
+								class="myButton" name="bouton1" value="OK" ng-click="fetchCompteById(noCompte)">
 						</div>
 						<br> <br>
 						<div>
-							<table align="center" border=1 cellspacing=1 cellpadding=10>
+							<table align="center" cellspacing=1 cellpadding=10>
 								<thead>
 									<tr>
 										<th>Id</th>
@@ -43,16 +45,19 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="c in ctrl.clients">
-										<td><span ng-bind="c.id"></span></td>
-										<td><span ng-bind="c.firstname"></span></td>
-										<td><span ng-bind="c.lastname"></span></td>
+									<tr ng-repeat="c in clientctrl.clients">
+										<td><span ng-bind="c.identifiant"></span></td>
+										<td><span ng-bind="c.prenom"></span></td>
+										<td><span ng-bind="c.nom"></span></td>
 										<td><span ng-bind="c.email"></span></td>
-										<td>
-											<button type="button" ng-click="ctrl.edit(u.id)"
-												class="btn btn-success custom-width">Modifier</button>
-											<button type="button" ng-click="ctrl.remove(u.id)"
-												class="btn btn-danger custom-width">Supprimer</button>
+										<td><a href="#" title="affichage"
+											ng-click="afficheClient(c)">Afficher</a> <!--button ng-click="clientctrl.afficheClient(c)">Afficher</button-->
+											<button type="button" name="bouton1"
+												ng-click="updateClient(c,c.identifiant)">Modifier</button>
+											<button type="button" name="bouton1"
+												ng-click="deleteClient(c.identifiant)">Supprimer</button></td>
+										<td align="center" ng-repeat="compte in c.listeComptes">
+											<a href="#" ng-bind="compte.noCompte"></a>
 										</td>
 									</tr>
 								</tbody>
@@ -70,7 +75,7 @@
 					<br />
 					<div class="option2">
 						
-						<table align="center" border=1 cellspacing=1 cellpadding=10>
+						<table align="center" cellspacing=1 cellpadding=10>
 							<thead>
 								<tr>
 									<th>Date demande</th>
@@ -82,7 +87,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="daff in cctrl.demandes">
+								<tr ng-repeat="daff in clientctrl.demandes">
 									<td><span ng-bind="daff.dateDemande"></span></td>
 									<td><span ng-bind="daff.firstname"></span></td>
 									<td><span ng-bind="daff.typecompte"></span></td>
@@ -95,3 +100,4 @@
 					</div>
 					<br> <br>
 				</fieldset>
+				</div>

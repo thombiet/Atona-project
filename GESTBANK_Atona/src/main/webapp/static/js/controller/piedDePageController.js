@@ -1,6 +1,6 @@
 
 
-       angular.module('myApp').controller('dateCtrl', ['$scope', function ($scope) {
+       App.controller('dateCtrl', ['$scope', function ($scope) {
             $scope.CurrentDate = new Date();
         }]);
 

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('myApp').factory('CompteService', ['$http', '$q', function($http, $q){
+App.factory('CompteService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/compte/';
+    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/Client';
 
     var factory = {
        fetchAllComptes: fetchAllComptes,

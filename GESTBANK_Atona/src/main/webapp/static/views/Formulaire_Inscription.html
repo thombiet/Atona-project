@@ -10,8 +10,21 @@
 .nom.ng-dirty.ng-invalid-required {
 	background-color: red;
 }
+.prenom.ng-valid {
+	background-color: lightgreen;
+}
 
-.username.ng-dirty.ng-invalid-minlength {
+.prenom.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+.pseudo.ng-valid {
+	background-color: lightgreen;
+}
+
+.pseudo.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+.pseudo.ng-dirty.ng-invalid-minlength {
 	background-color: yellow;
 }
 
@@ -26,161 +39,36 @@
 .email.ng-dirty.ng-invalid-email {
 	background-color: yellow;
 }
-
-/* Elé©ments principaux de la page */
-body {
-	background-color: #e3eeef;
-	font-family: 'Trebuchet MS', Arial, sans-serif;
-	color: #181818;
-	display: block;
+.adresse.ng-valid {
+	background-color: lightgreen;
 }
 
-body h1, h4  {
-
-text-align: center;
-background-color: white;
-justify-content:space-around;
-
+.adresse.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+.codePostal.ng-valid {
+	background-color: lightgreen;
 }
 
-#bloc_page {
-	margin: auto;
+.codePostal.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+.ville.ng-valid {
+	background-color: lightgreen;
+}
+
+.ville.ng-dirty.ng-invalid-required {
+	background-color: red;
 }
 
 
-
-#Presentation {
-	display: flex;
-}
-
-/*forumlaire*/
-fieldset {
-	padding: 0 20px 20px 20px;
-	margin-bottom: 10px;
-	border: 2px solid #0000a0;
-}
-
-legend {
-	color: #0000a0;
-}
-
-legend h2 {
-	color: #0000a0;
-	font-size: 3.6em;
-}
-
-.inner-wrap {
-	padding-top: 50px;
-	display: block;
-}
-
-.inner-wrap label {
-	
-}
-
-}
-.form-group {
-	margin-bottom: 15px;
-}
-
-.entry {
-	display: flex;
-	position: relative;
-	min-height: 1px;
-	padding-top: 15px;
-	padding-bottom: 15px;
-	justify-content: space-between;
-}
-
-.entry, .col-md-1 {
-	position: relative;
-	min-height: 1px;
-	padding-right: 15px;
-	padding-left: 15px;
-}
-
-.entry, .col-md-12 {
-	position: relative;
-	min-height: 1px;
-	padding-right: 15px;
-	padding-left: 15px;
-}
-
-.input-sm {
-	height: 35px;
-	width: 70%;
-	padding: 5px 10px;
-	font-size: 15px;
-	border-radius: 3px;
-	height: 1.5;
-	padding: 5px 10px;
-}
-
-/* Navigation */
-
-/* Corps */
-#btn_validation {
-	display: flex;
-	float: right;
-}
-#btn_retour {
-display: flex;
-	float: left;
-}
-
-.myButton {
-	-moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
-	box-shadow: inset 0px 1px 0px 0px #54a3f7;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #afc8d6
-		), color-stop(1, #0061a7));
-	background: -moz-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: -webkit-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: -o-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: -ms-linear-gradient(top, #afc8d6 5%, #0061a7 100%);
-	background: linear-gradient(to bottom, #afc8d6 5%, #0061a7 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#afc8d6',
-		endColorstr='#0061a7', GradientType=0);
-	background-color: #afc8d6;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	border: 1px solid #124d77;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: Arial;
-	font-size: 13px;
-	font-weight: bold;
-	padding: 6px 13px;
-	text-decoration: none;
-	text-shadow: 0px 1px 0px #154682;
-}
-
-.myButton:hover {
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0061a7
-		), color-stop(1, #afc8d6));
-	background: -moz-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: -webkit-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: -o-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: -ms-linear-gradient(top, #0061a7 5%, #afc8d6 100%);
-	background: linear-gradient(to bottom, #0061a7 5%, #afc8d6 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#0061a7',
-		endColorstr='#afc8d6', GradientType=0);
-	background-color: #0061a7;
-}
-
-.myButton:active {
-	position: relative;
-	top: 1px;
-}
 </style>
 
 <body ng-app="myApp">
 	<div id="bloc_page">
 		<h1>Formulaire d'Inscription</h1><h4>Tous les champs sont obligatoires</h4>
 		<br />
-		<form ng-submit="ctrl.submit()" name="monForm">
+		<form ng-submit="ctrl.submit()" name="myForm">
 	<div class="form-style-10">
 
 		<fieldset>
@@ -191,110 +79,98 @@ display: flex;
 
 			<div class="inner-wrap">
 				<div class="entry">
-					<label id="text">Nom</label> &nbsp <input type="text"
-						ng-model="ctrl.user.username" name="uname"
-						class="username form-control input-sm"
+					<label id="text">Nom</label> &nbsp; <input type="text"
+						ng-model="ctrl.user.username" name="nom"
+						class="input-sm"
 						placeholder="Entrez votre nom" required />
-					<div class="has-error" ng-show="myForm.$dirty">
-						<span ng-show="myForm.uname.$error.required">Champ
-							Obligatoire</span> <span ng-show="myForm.uname.$invalid">Ce champ
+					<!--  div class="has-error" ng-show="myForm.$dirty">
+						<span ng-show="myForm.nom.$error.required">Champ
+							Obligatoire</span> <span ng-show="myForm.nom.$invalid">Ce champ
 							est invalide </span>
-					</div>
-
+					</div-->
 				</div>
 				<div class="entry">
 					<label id="text">Prénom</label> <input type="text" name="prenom"
-						class="input-sm" placeholder="Entrez votre prénom">
+						class="input-sm" placeholder="Entrez votre prénom" required>
+					</div>
+				
+				<div class="entry">
+					<label id="text">Pseudo</label> <input type="text" name="pseudo"
+						class="input-sm" placeholder="Choisissez un pseudo" required minlength="4">
 				</div>
 
 				<div class="entry">
 					<label id="email">Email</label> <input type="email"
-						ng-model="ctrl.user.email" name="email"
-						class="email form-control input-sm"
-						placeholder="Entrez votre Email" required />
-					<div class="has-error" ng-show="myForm.$dirty">
-						<span ng-show="myForm.email.$error.required">Ce champ est
-							obligatoire</span> <span ng-show="myForm.email.$invalid">Ce champ
-							est invalide</span>
+						ng-model="ctrl.user.email" name="email" class="input-sm" placeholder="Entrez votre Email" required />
 					</div>
-				</div>
 				<div class="entry">
 					<label id="text">Adresse</label> <input type="text" name="adresse"
-						class="input-sm" placeholder="Entrez votre Adresse">
+						class="input-sm" placeholder="Entrez votre Adresse" required >
+					</div>
+				<div class="codeVille">
+				<div class="entry">
+					<label id="numeric">Code postal</label> <input type="number"
+						name="codePostal" id="codeP" class="input-sm2" placeholder="XXXXX" required >
+						
 				</div>
 				<div class="entry">
-					<label id="numeric">Code postal</label> <input type="numeric"
-						name="codePostal" class="input-sm" placeholder="XXXXX">
+					<label id="ville">Ville</label> <input type="text" name="ville"
+						class="input-sm3" placeholder="Votre Ville" required >
+						
 				</div>
+				</div>
+				<div class="genre">
 				<div class="entry">
-					<label id="text">Ville</label> <input type="text" name="ville"
-						class="input-sm" placeholder="Votre Ville">
-				</div>
-				<div class="entry">
-					<label id="date">Date de Naissance </label> <input type="date"
-						name="date" class="input-sm" placeholder="Date de Naissance">
-				</div>
-				<div class="entry">
-					<label id="tel">Téléphone</label> <input type="tel"
-						name="telephone" class="input-sm" placeholder="ex : 0299000000">
-				</div>
+					<label id="date">Date de Naissance </label> <input type="Date"
+						name="date" class="input-sm2" id="dateNaissance" placeholder="Date de Naissance" required >
+						</div>
 				<div class="entry">
 					<label id="genre">Genre</label> <select name="genre"
-						class="input-sm">
+						class="input-sm3" required >
 						<option>sexe</option>
 						<option>Feminin</option>
 						<option>Masculin</option>
 					</select>
 				</div>
+				</div>
+				<div class="entry">
+					<label id="tel">Téléphone</label> <input type="tel"
+						name="telephone" class="input-sm" placeholder="ex : 0299000000" required >
+				</div>
+				
 			</div>
-			
+				<br>	<br>
 		
 			<h4>Informations Supplémentaires</h4>
 
 			<div class="inner-wrap">
-				<div class="form-group col-md-12">
-
-					<div class="entry">
+					<div class="entry2">
 						<label id="choix">Autorisation découvert</label> <input
-							type="checkbox" name="decouvert" class="input-sm">
+							type="checkbox" name="decouvert" id="box">
 					</div>
-				</div>
 				<br>
-
-				<div class="form-group col-md-12">
-					<div class="entry">
+					<div class="entry2">
 						<label id="numeric">Revenus mensuels</label> <input type="numeric"
-							name="revenus" class="input-sm">
+							name="revenus" id="revenus" class="input-sm4">
 					</div>
-				</div>
 				<br>
-
-				<div class="form-group col-md-12">
-					<div class="entry">
+					<div class="entry2">
 						<label id="files">Documents justificatifs</label> <input
 							type="file" id="mesFichiers" multiple="multiple">
 					</div>
-				</div>
 			</div>
 			<br>
 			<div id="btn_retour">
-			<div class="form-group col-md-12">
 				<a href="#/"
 						class="myButton" >Retour</a>
 				</div>
-			</div>
-				<div id="btn_validation">
-				
-					<div class="form-group col-md-12">				
+				<div id="btn_validation">			
 						<input type="submit" class="myButton"
-							ng-disabled="monForm.$invalid"
-							ng-class="{ 'btn-warning' : monForm.$invalid , 'btn-success' : monForm.$valid }">
-					</div>
-					<div class="form-group col-md-12">
-						<button type="submit" class="myButton" role="button"
+							ng-disabled="myForm.$invalid"
+							ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }">
+						<button type="reset" class="myButton" role="button"
 							aria-disabled="false">
 							Annuler</button>
-					</div>
 				</div>
 			</fieldset>
 			
