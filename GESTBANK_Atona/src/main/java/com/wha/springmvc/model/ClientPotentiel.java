@@ -1,6 +1,7 @@
 package com.wha.springmvc.model;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientPotentiel {
@@ -19,9 +20,26 @@ public class ClientPotentiel {
 
 	// #region Constructeurs
 	public ClientPotentiel() {
-
+		this.piecesJutificatives = new ArrayList<File>();
 	}
+	
+	
 	// #endregion
+
+	public ClientPotentiel(String nom, String prenom, String identifiant, String email, String adresse,
+			Integer codePostal, String ville, Integer telephone, Integer revenuMens) {
+		this();
+		this.nom = nom;
+		this.prenom = prenom;
+		this.identifiant = identifiant;
+		this.email = email;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.ville = ville;
+		this.telephone = telephone;
+		this.revenuMens = revenuMens;
+	}
+
 
 	// #region Accesseurs
 	public String getNom() {

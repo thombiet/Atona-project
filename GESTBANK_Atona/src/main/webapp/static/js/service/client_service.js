@@ -2,7 +2,7 @@
 
 App.factory('ClientService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/Conseiller';
+    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/client/';
 
     var factory = {
         fetchAllClients: fetchAllClients,

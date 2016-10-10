@@ -1,13 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+<script type="text/javascript"
+	src="<c:url value='/static/bower_components/angular-route/angular-route.js' />"></script>
+
+<script src="<c:url value='/static/js/app.js'/>"></script>
+<script src="<c:url value='/static/js/config.js' />"></script>
+<script
+	src="<c:url value='/static/js/controller/convert_controller.js' />"></script>
+<script
+	src="<c:url value='/static/js/controller/compte_controller.js' />"></script>
+<script
+	src="<c:url value='/static/js/controller/client_controller.js' />"></script>
+<script src="<c:url value='/static/js/service/client_service.js' />"></script>
+<script src="<c:url value='/static/js/service/compte_service.js' />"></script>
 <script>
-	function leConseiller($scope, $http, $q) {
+	function leConseiller($scope, $http, $q, $location) {
 
 		//------------------------Declaration des variables
 
@@ -15,6 +29,10 @@
 		var CONS_URI = 'http://localhost:8080/SpringAngularStartProject/conseiller/';
 		var CONNEXION_URI = "http://localhost:8080/SpringAngularStartProject/connexion/";
 		var COMPTE_URI = "http://localhost:8080/SpringAngularStartProject/compte/";
+
+		$scope.toggle = function(id) {
+			$scope.bool[id] = !$scope.bool[id];
+		}
 
 		//------------------------ServiceClient-------------------------------------------
 
@@ -56,6 +74,12 @@
 		}
 
 		$scope.init = function() {
+			$scope.bool = {
+				client : false,
+				connex : true,
+				banque : false,
+				devise : false
+			}
 			$scope.getConseillerWithMle(1).then(function(reussite) {
 				$scope.cons = reussite;
 				$scope.fetchAllClients();
@@ -63,16 +87,6 @@
 				console.log("oops");
 			})
 		}
-
-		//$scope.cons = {
-		//	matricule : 1,
-		//	nom : "Michel",
-		//	prenom : "jeanne",
-		//	identifiant : "JMichel"
-		//};
-
-		//$scope.client;
-		//$scope.clients = [];
 
 		$scope.submit = function() {
 			$scope.client.conseiller = $scope.cons;
@@ -112,30 +126,42 @@
 
 		//-------------------------ServiceConnexion------------------------
 
+		$scope.redirection = function(path) {
+			$location.path(path);
+		}
+
 		$scope.connexion = function() {
 			$http.get(CONNEXION_URI, {
 				params : {
 					'pseudo' : $scope.pseudo,
 					'mdp' : $scope.mdp
 				}
-			}).then(function(response) {
-				var resp = response.data;
-				console.log(typeof resp)
-				if (resp.startsWith("Client")) {
-					var id = resp.slice("Client".length)
-					console.log(id)
-					var connecte = $scope.getClientWithId(id);
-					console.log(connecte)
-				} else if (resp.startsWith("Conseiller")) {
-					var id = resp.slice("Conseiller".length)
-					console.log(id)
-					var connecte = $scope.getConseillerWithMle(id);
-					console.log(connecte)
-				}
-			}, function(error) {
-				console.log("error")
-				console.log(error)
-			})
+			}).then(
+					function(response) {
+						var resp = response.data;
+						if (resp.startsWith("Client")) {
+							//c'est un client
+							var id = resp.slice("Client".length)
+							console.log(id);
+							sessionStorage.role = "Client";
+							sessionStorage.idConnecte = id;
+							$scope.redirection('/Client');
+						} else if (resp.startsWith("Conseiller")) {
+							//c'est un conseiller
+							var id = resp.slice("Conseiller".length)
+							console.log(id)
+							sessionStorage.role = "Conseiller";
+							sessionStorage.idConnecte = id;
+							$scope.redirection('/Conseiller');
+						} else {
+							//c'est l'admistrateur
+							sessionStorage.role = "Administrateur", $scope
+									.redirection('/Admin');
+						}
+					}, function(error) {
+						console.log("error")
+						console.log(error)
+					})
 		}
 
 		//-------------------------ServiceBanque------------------------
@@ -161,21 +187,25 @@
 	};
 
 	//--------------------------Declaration du module et du controller------------------
-	angular.module("appTest", []).controller('ctrl', leConseiller);
+
+	App.controller('ctrl', leConseiller);
 </script>
 <title>TestServiceClient</title>
 </head>
-<body ng-app="appTest" ng-controller="ctrl" ng-init="init()">
-
+<body ng-app="myApp" ng-controller="ctrl" ng-init="init()">
 
 
 
 
 	<h1>Action sur les clients</h1>
-	<h2>Avec http://localhost:8080/SpringAngularStartProject/client/</h2>
-	Avec le conseiller n°{{cons.matricule}} : {{cons.prenom}} {{cons.nom}}
-	<div class="tablecontainer">
-		<table class="table table-hover">
+	<button ng-click="toggle('client')">
+		<span ng-if="bool.client">Cacher</span><span ng-if="!bool.client">Voir</span>
+	</button>
+	<div ng-show="bool.client">
+		<h2>Avec http://localhost:8080/SpringAngularStartProject/client/</h2>
+		Avec le conseiller n°{{cons.matricule}} : {{cons.prenom}} {{cons.nom}}
+
+		<table>
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -196,12 +226,13 @@
 				</tr>
 			</tbody>
 		</table>
+
+		<form ng_submit="submit()">
+			<input type="text" ng_model="client.nom"> <input type="text"
+				ng_model="client.prenom"> <input type="text"
+				ng_model="client.pseudo"> <input type="submit">
+		</form>
 	</div>
-	<form ng_submit="submit()">
-		<input type="text" ng_model="client.nom"> <input type="text"
-			ng_model="client.prenom"> <input type="text"
-			ng_model="client.pseudo"> <input type="submit">
-	</form>
 	<hr>
 
 
@@ -211,17 +242,23 @@
 
 
 	<h1>Conversion de devise</h1>
-	<h2>avec http://api.fixer.io/latest</h2>
-	<form ng_submit="conversion()">
-		<label>Montant à convertir : </label><input type="number"
-			ng-model="montant"> de <select ng-model="base">
-			<option ng-repeat="d in devises">{{d}}</option>
-		</select> à <select ng-model="symbols">
-			<option ng-repeat="d in devises">{{d}}</option>
-		</select> <input type="submit">
-	</form>
-	le montant est de {{change}} {{symbols}}
-	<br> avec un taux de {{rate}} {{symbols}} pour 1 {{base}}
+	<button ng-click="toggle('devise')">
+		<span ng-if="bool.devise">Cacher</span><span ng-if="!bool.devise">Voir</span>
+	</button>
+	<div ng-show="bool.devise">
+		<h2>avec http://api.fixer.io/latest</h2>
+		v
+		<form ng_submit="conversion()">
+			<label>Montant à convertir : </label><input type="number"
+				ng-model="montant"> de <select ng-model="base">
+				<option ng-repeat="d in devises">{{d}}</option>
+			</select> à <select ng-model="symbols">
+				<option ng-repeat="d in devises">{{d}}</option>
+			</select> <input type="submit">
+		</form>
+		le montant est de {{change}} {{symbols}} <br> avec un taux de
+		{{rate}} {{symbols}} pour 1 {{base}}
+	</div>
 	<hr>
 
 
@@ -231,12 +268,18 @@
 
 
 	<h1>Connexion</h1>
-	<h2>Avec http://localhost:8080/SpringAngularStartProject/connexion</h2>
-	<form ng-submit="connexion()">
-		Pseudo <input ng-model="pseudo"><br> Mot de passe <input
-			ng-model="mdp"><br> <input type="submit"
-			value="Connexion">
-	</form>
+	<button ng-click="toggle('connex')">
+		<span ng-if="bool.connex">Cacher</span><span ng-if="!bool.connex">Voir</span>
+	</button>
+	<div ng-show="bool.connex">
+		<h2>Avec
+			http://localhost:8080/SpringAngularStartProject/connexion</h2>
+		<form ng-submit="connexion()">
+			Pseudo <input ng-model="pseudo"><br> Mot de passe <input
+				ng-model="mdp"><br> <input type="submit"
+				value="Connexion">
+		</form>
+	</div>
 	<hr>
 
 
@@ -246,28 +289,39 @@
 
 
 	<h1>Service Banque</h1>
-	<h2>avec http://localhost:8080/SpringAngularStartProject/compte et
-		http://localhost:8080/SpringAngularStartProject/transaction</h2>
-	<h3>Compte du client {{clients[0].nom}}</h3>
-	<form ng-submit="AfficheDetailCompte()">
-		<select ng-model="compte"
-			ng-options="cpt.noCompte for cpt in clients[0].listeComptes"></select>
-		<input type="submit" value="Choisir">
-	</form>
-	Detail du compte pour le mois de {{month}}
-	<table align="center" border=1 cellspacing=1 cellpadding=10>
-		<tr ng-repeat="d in debits">
-			<td>{{d.date}}</td>
-			<td>{{d.libelle}}</td>
-			<td></td>
-			<td>-{{d.montant}}</td>
-		</tr>
-		<tr ng-repeat="c in credits">
-			<td>{{c.date}}</td>
-			<td>{{c.libelle}}</td>
-			<td>{{c.montant}}</td>
-			<td></td>
-		</tr>
-	</table>
+	<button ng-click="toggle('banque')">
+		<span ng-if="bool.banque">Cacher</span><span ng-if="!bool.banque">Voir</span>
+	</button>
+	<div ng-show="bool.banque">
+		<h2>avec http://localhost:8080/SpringAngularStartProject/compte
+			et http://localhost:8080/SpringAngularStartProject/transaction</h2>
+		<h3>Compte du client {{clients[0].nom}}</h3>
+		<form ng-submit="AfficheDetailCompte()">
+			<select ng-model="compte"
+				ng-options="cpt.noCompte for cpt in clients[0].listeComptes"></select>
+			<input type="submit" value="Choisir">
+		</form>
+		Detail du compte pour le mois de {{month}}
+		<table align="center" border=1 cellspacing=1 cellpadding=10>
+			<tr ng-repeat="d in debits">
+				<td>{{d.date}}</td>
+				<td>{{d.libelle}}</td>
+				<td></td>
+				<td>-{{d.montant}}</td>
+			</tr>
+			<tr ng-repeat="c in credits">
+				<td>{{c.date}}</td>
+				<td>{{c.libelle}}</td>
+				<td>{{c.montant}}</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+
+
+
+
+	<hr>
+	<div ng-view></div>
 </body>
 </html>

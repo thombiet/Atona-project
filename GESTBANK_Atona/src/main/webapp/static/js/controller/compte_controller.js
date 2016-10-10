@@ -9,6 +9,8 @@ App.controller('CompteController', ['$scope', '$location', 'CompteService', func
     self.remove = remove;
     self.reset = reset;
     
+    fetchAllComptes(sessionStorage.idConnecte)
+    
     function fetchAllComptes(identifiant){
     	CompteService.fetchAllComptes(identifiant)
             .then(

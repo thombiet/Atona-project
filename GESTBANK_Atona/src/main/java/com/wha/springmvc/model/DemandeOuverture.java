@@ -15,6 +15,18 @@ public class DemandeOuverture {
 	public DemandeOuverture() {
 		this.dateCreation = new Date();
 	}
+	
+	public DemandeOuverture(ClientPotentiel cp, boolean valide, Conseiller conseiller, Date dateCreation,
+			Date dateAffectation) {
+		super();
+		this.cp = cp;
+		this.valide = valide;
+		this.conseiller = conseiller;
+		this.dateCreation = dateCreation;
+		this.dateAffectation = dateAffectation;
+	}
+
+
 	// #endregion
 
 	// #region Accesseurs

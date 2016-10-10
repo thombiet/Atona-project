@@ -10,6 +10,7 @@ import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
+import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.Utilisateur;
 
@@ -24,6 +25,7 @@ public class DummyBDD {
 	private static List<Compte> comptes;
 	private static List<Utilisateur> utilisateurs;
 	private static List<Transaction> transactions;
+	private static List<DemandeOuverture> demandes;
 
 	public static void CreateBDD() {
 		if (clients==null || conseillers==null || comptes==null){

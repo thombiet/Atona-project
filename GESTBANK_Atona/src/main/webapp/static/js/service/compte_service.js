@@ -2,7 +2,7 @@
 
 App.factory('CompteService', ['$http', '$q', function($http, $q){
 
-    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/Client';
+    var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/compte/';
 
     var factory = {
        fetchAllComptes: fetchAllComptes,
@@ -13,9 +13,9 @@ App.factory('CompteService', ['$http', '$q', function($http, $q){
 
     return factory;
     /*recherche de tous les Comptes */
-    function fetchAllComptes() {
+    function fetchAllComptes(idClient) {
         var deferred = $q.defer();
-        $http.get(REST_SERVICE_URI)
+        $http.get(REST_SERVICE_URI, {params:{client:idClient}})
             .then(
             function (response) {
                 deferred.resolve(response.data);
