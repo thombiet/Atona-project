@@ -21,6 +21,7 @@ import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
+import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
@@ -294,6 +295,55 @@ public class HelloWorldRestController {
 
 	// #endregion
 
+	//	#region Demande
+	
+	//-- recuperation de toutes les demandes
+	@RequestMapping(value="/demande/", method=RequestMethod.GET)
+	public ResponseEntity<List<DemandeOuverture>> listAllDemandes(){
+		List<DemandeOuverture> liste = utilService.findAllDemandes();
+		if (liste.isEmpty()){
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<DemandeOuverture>>(liste, HttpStatus.OK);
+	}
+	
+	//---- recuperation de toutes les demandes affectées à un conseiller
+	@RequestMapping(value="/demande/{matricule}", method=RequestMethod.GET)
+	public ResponseEntity<List<DemandeOuverture>> listDemandesByConseiller(@PathVariable Long matricule){
+		if (utilService.findByMle(matricule)==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		List<DemandeOuverture> liste = utilService.findDemandeByConseiller(matricule);
+		if (liste.isEmpty()){
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<DemandeOuverture>>(liste, HttpStatus.OK);
+	}
+	
+	//----- affectation d'un conseiller à une demande
+	@RequestMapping(value="/demande/", method=RequestMethod.PUT)
+	public ResponseEntity<Void> affectDemande(@PathVariable Long matricule, @RequestBody DemandeOuverture demande){
+		if (!utilService.isDemandeExist(demande)){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		Conseiller c = utilService.findByMle(matricule);
+		utilService.affectionOuverture(demande, c);
+		return new ResponseEntity<Void>( HttpStatus.OK);
+	}
+	
+	//----- création d'une demande
+	@RequestMapping(value="/demande/", method=RequestMethod.POST)
+	public ResponseEntity<Void> saveDemande(@RequestBody DemandeOuverture demande){
+		if (utilService.isDemandeExist(demande)){
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
+		utilService.saveDemande(demande);
+		return new ResponseEntity<Void>( HttpStatus.OK);
+	}
+	
+	
+	// #endregion
+	
 	// #endregion
 
 	// #region Banque

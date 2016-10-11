@@ -22,9 +22,6 @@ public class ClientPotentiel {
 	public ClientPotentiel() {
 		this.piecesJutificatives = new ArrayList<File>();
 	}
-	
-	
-	// #endregion
 
 	public ClientPotentiel(String nom, String prenom, String identifiant, String email, String adresse,
 			Integer codePostal, String ville, Integer telephone, Integer revenuMens) {
@@ -39,6 +36,8 @@ public class ClientPotentiel {
 		this.telephone = telephone;
 		this.revenuMens = revenuMens;
 	}
+	
+	// #endregion
 
 
 	// #region Accesseurs

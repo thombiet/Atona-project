@@ -7,9 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-<script type="text/javascript"
+<script
 	src="<c:url value='/static/bower_components/angular-route/angular-route.js' />"></script>
-
 <script src="<c:url value='/static/js/app.js'/>"></script>
 <script src="<c:url value='/static/js/config.js' />"></script>
 <script

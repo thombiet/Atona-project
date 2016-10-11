@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Utilisateur;
 
 public interface UtilisateurService {
@@ -48,4 +49,17 @@ public interface UtilisateurService {
 	
 	//#endregion
 
+	//#region demande
+	
+	public List<DemandeOuverture> findAllDemandes();
+	
+	public List<DemandeOuverture> findDemandeByConseiller(Long matricule);
+	
+	public void saveDemande(DemandeOuverture demandeOuverture);
+	
+	public void affectionOuverture (DemandeOuverture demandeOuverture, Conseiller conseiller);
+	
+	public boolean isDemandeExist(DemandeOuverture ouverture);
+	
+	//#endregion
 }

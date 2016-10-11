@@ -11,8 +11,8 @@ public class IndexController {
 	  @RequestMapping(method = RequestMethod.GET)
 	    public String getIndexPage() {
 	      //return "UserManagement";
-		  return "testService";
-		  //return "AccueilGuest2";
+		  //return "testService";
+		  return "AccueilGuest2";
 	  }
 
 }

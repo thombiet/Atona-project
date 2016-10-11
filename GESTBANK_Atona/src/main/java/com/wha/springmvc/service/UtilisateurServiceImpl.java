@@ -1,6 +1,7 @@
 package com.wha.springmvc.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import com.wha.springmvc.dummy.DummyBDD;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
+import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Utilisateur;
 
 @Service("clientService")
@@ -176,4 +178,59 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 	// #endregion
 
+	//#region Demandes
+	
+	private static List<DemandeOuverture> demandes;
+
+	private static void getDemandes() {
+		if (demandes == null) {
+			DummyBDD.CreateBDD();
+			demandes = DummyBDD.getDemandes();
+		}
+	}
+	
+	@Override
+	public List<DemandeOuverture> findAllDemandes() {
+		getDemandes();
+		return demandes;
+	}
+
+	@Override
+	public List<DemandeOuverture> findDemandeByConseiller(Long matricule) {
+		getDemandes();
+		List<DemandeOuverture> liste = new ArrayList<DemandeOuverture>();
+		for (DemandeOuverture demande : demandes){
+			if (demande.getConseiller()!=null && demande.getConseiller().getMatricule()==matricule){
+				liste.add(demande);
+			}
+		}
+		return liste;
+	}
+
+	@Override
+	public void saveDemande(DemandeOuverture demandeOuverture) {
+		getDemandes();
+		DummyBDD.ajoutDemande(demandeOuverture);
+		
+	}
+
+	@Override
+	public void affectionOuverture(DemandeOuverture demandeOuverture, Conseiller conseiller) {
+		getDemandes();
+		int index = demandes.indexOf(demandeOuverture);
+		demandes.get(index).setConseiller(conseiller);
+		demandes.get(index).setDateAffectation(new Date());
+	}
+
+	@Override
+	public boolean isDemandeExist(DemandeOuverture ouverture) {
+		getDemandes();
+		for (DemandeOuverture demande : demandes){
+			if (demande.equals(ouverture)) 
+				return true;
+		}
+		return false;
+	}
+	
+	//#endregion
 }

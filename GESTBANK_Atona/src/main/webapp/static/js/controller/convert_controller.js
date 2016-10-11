@@ -26,31 +26,44 @@ App.controller('convertCtrl', ['$scope', '$location', '$http', function($scope, 
 	   			}
 	   		}
 	   		
-	   		var CONNEXION_URI = "http://localhost:8080/SpringAngularStartProject/";
-	   		$scope.connexion = function() {
+	   		var CONNEXION_URI = "http://localhost:8080/SpringAngularStartProject/connexion/";
+	   		
+	   		$scope.redirection = function(path) {
+				$location.path(path);
+			}
+
+			$scope.connexion = function() {
 				$http.get(CONNEXION_URI, {
 					params : {
 						'pseudo' : $scope.pseudo,
 						'mdp' : $scope.mdp
 					}
-				}).then(function(response) {
-					var resp = response.data;
-					console.log(typeof resp)
-					if (resp.startsWith("Client")) {
-						var id = resp.slice("Client".length)
-						console.log(id)
-						var connecte = $scope.getClientWithId(id);
-						console.log(connecte)
-					} else if (resp.startsWith("Conseiller")) {
-						var id = resp.slice("Conseiller".length)
-						console.log(id)
-						var connecte = $scope.getConseillerWithMle(id);
-						console.log(connecte)
-					}
-				}, function(error) {
-					console.log("error")
-					console.log(error)
-				})
+				}).then(
+						function(response) {
+							var resp = response.data;
+							if (resp.startsWith("Client")) {
+								//c'est un client
+								var id = resp.slice("Client".length)
+								console.log(id);
+								sessionStorage.role = "Client";
+								sessionStorage.idConnecte = id;
+								$scope.redirection('/Client');
+							} else if (resp.startsWith("Conseiller")) {
+								//c'est un conseiller
+								var id = resp.slice("Conseiller".length)
+								console.log(id)
+								sessionStorage.role = "Conseiller";
+								sessionStorage.idConnecte = id;
+								$scope.redirection('/Conseiller');
+							} else {
+								//c'est l'admistrateur
+								sessionStorage.role = "Administrateur", $scope
+										.redirection('/Admin');
+							}
+						}, function(error) {
+							console.log("error")
+							console.log(error)
+						})
 			}
 
 }]);

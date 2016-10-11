@@ -1,7 +1,7 @@
 package com.wha.springmvc.model;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 public class Conseiller extends Utilisateur {
 	// #region Attributs
@@ -13,12 +13,26 @@ public class Conseiller extends Utilisateur {
 
 	// #region Constructeurs
 	public Conseiller() {
-
+		listeClients = new ArrayList<Client>();
+		listeDemandesClient = new ArrayList<Requete>();
+		listeDemandesOuverture = new ArrayList<DemandeOuverture>();
 	}
 
 	public Conseiller(Long mle, String nom, String prenom, String identifiant) {
 		super(nom, prenom, identifiant, identifiant, null, null, null, null, null);
-		this.matricule=mle;
+		this.matricule = mle;
+		listeClients = new ArrayList<Client>();
+		listeDemandesClient = new ArrayList<Requete>();
+		listeDemandesOuverture = new ArrayList<DemandeOuverture>();
+	}
+
+	public Conseiller(Long matricule, String nom, String prenom, String pseudo, String motdepasse, String email,
+			String adresse, Integer codePostal, String ville, Integer telephone) {
+		super(nom, prenom, pseudo, motdepasse, email, adresse, codePostal, ville, telephone);
+		this.matricule = matricule;
+		listeClients = new ArrayList<Client>();
+		listeDemandesClient = new ArrayList<Requete>();
+		listeDemandesOuverture = new ArrayList<DemandeOuverture>();
 	}
 
 	// #endregion
@@ -63,6 +77,12 @@ public class Conseiller extends Utilisateur {
 	public String toString() {
 		return "Conseiller [getMatricule()=" + getMatricule() + ", getNom()=" + getNom() + ", getPrenom()="
 				+ getPrenom() + ", getIdentifiant()=" + getPseudo() + "]";
+	}
+
+	public void ajoutClient(Client client) {
+		List<Client> l = this.getListeClients();
+		l.add(client);
+		this.setListeClients(l);
 	}
 
 	// #endregion

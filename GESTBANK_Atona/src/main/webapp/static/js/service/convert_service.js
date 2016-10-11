@@ -22,3 +22,4 @@ App.convert('ConvertService', ['$http', '$q', function($http, $q){
             );
             return deferred.promise;
         }
+}])
