@@ -127,7 +127,7 @@ public class DummyBDD {
 		date.setDate(date.getDate() - rand.nextInt(15));
 		liste.add(new DemandeOuverture(new ClientPotentiel("Hogden", "William", "WHogden", "will.hogden@m-mail.com",
 				null, null, null, null, null), false, null, date, null));
-		return null;
+		return liste;
 	}
 
 	private static void affectationConseiller() {
