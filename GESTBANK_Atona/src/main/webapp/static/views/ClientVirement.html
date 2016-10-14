@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="static/css/style_ClientVirement.css">
+<meta charset="utf-8" />
+<div class="ma_page" ng-init="accueil()">
+
+	<div class="menuBtn" align="center">
+
+		<a href="#/Client" class="myButton">Accueil</a> <a
+			href="#/Mes Informations" class="myButton">Mes Informations</a> <a
+			href="#/ClientMessagerie" class="myButton">Messagerie</a> <a
+			href="#/" class="myButton">Déconnexion</a>
+
+	</div>
+	<br>
+<form ng-submit="CompteController.submit()" name="myForm">
+	<fieldset>
+		<legend>
+			<h2>Effectuer un Virement</h2>
+		</legend>
+		<br />
+<br />
+		<div class="choixCompte" >
+						
+					<select name="compteDebit" ng-model="selectNoCompte" ng-options="cd for cd in CompteController.comptes"
+						class="input-sm2" placeholder="Compte à Déditer" required>
+					</select>
+			
+					<select name="compteCrebit" ng-model="selectNoCompte" ng-options="cc for cc in CompteController.comptes"
+						class="input-sm2"  placeholder="Compte à Créditer" required>
+					</select>
+				
+					</div>
+						<br />
+			<div class="choixMontant">
+						<div class="entry">
+							<label id="montant">Montant</label> <input type="number"
+						name="montant" class="input-sm" placeholder="Entrez votre montant" required>
+						</div>
+						<br>
+						<div class="entry">
+							<label id="Libellé">Libellé</label> <input type="text"
+						name="libellé" class="input-sm" placeholder="Libellé du Virement" required>
+						</div>
+						<br>
+						<div class="entry">
+							<label id="date">Date</label> <input type="Date"
+						name="date" class="input-sm" placeholder="Date du Virement" required>
+						</div>
+			</div>
+		<br> 
+			<div id="btn_validation">			
+						<input type="submit" class="myButton"
+							ng-disabled="myForm.$invalid"
+							ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }">
+						<button type="reset" class="myButton" role="button"
+							aria-disabled="false">
+							Annuler</button>
+				</div>
+	</fieldset>
+	</form>
+
+</div>

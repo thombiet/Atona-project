@@ -30,7 +30,7 @@ public class DummyBDD {
 	private static List<DemandeOuverture> demandes;
 
 	public static void CreateBDD() {
-		if (clients == null || conseillers == null || comptes == null) {
+		if (clients == null || conseillers == null || comptes == null || transactions == null || demandes == null) {
 			setClients(populateDummyClients());
 			setConseillers(populateDummyConseillers());
 			setComptes(populateDummyComptes());
@@ -127,7 +127,7 @@ public class DummyBDD {
 		date.setDate(date.getDate() - rand.nextInt(15));
 		liste.add(new DemandeOuverture(new ClientPotentiel("Hogden", "William", "WHogden", "will.hogden@m-mail.com",
 				null, null, null, null, null), false, null, date, null));
-		return null;
+		return liste;
 	}
 
 	private static void affectationConseiller() {

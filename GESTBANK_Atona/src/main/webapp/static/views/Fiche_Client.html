@@ -64,11 +64,9 @@
 
 </style>
 
-<body ng-app="myApp">
-	<div id="bloc_page">
-		<h1>Formulaire d'Inscription</h1><h4>Tous les champs sont obligatoires</h4>
-		<br />
-		<form ng-submit="ctrl.submit()" name="myForm">
+<div id="ma_page" ng-controller="ClientController as clientctrl" ng-init="affiche()">
+				
+		<form ng-submit="clientctrl.submit()" name="myForm">
 	<div class="form-style-10">
 
 		<fieldset>
@@ -79,63 +77,49 @@
 
 			<div class="inner-wrap">
 				<div class="entry">
-					<label id="text">Nom</label> &nbsp; <input type="text"
-						ng-model="ctrl.user.username" name="nom"
-						class="input-sm"
-						placeholder="Entrez votre nom" required />
-					<!--  div class="has-error" ng-show="myForm.$dirty">
-						<span ng-show="myForm.nom.$error.required">Champ
-							Obligatoire</span> <span ng-show="myForm.nom.$invalid">Ce champ
-							est invalide </span>
-					</div-->
+					<label id="text">Nom</label> &nbsp; 
+					<input type="text" ng-model="clientctrl.client.nom" name="nom" class="input-sm" required/>
 				</div>
 				<div class="entry">
-					<label id="text">Prénom</label> <input type="text" name="prenom"
-						class="input-sm" placeholder="Entrez votre prénom" required>
+					<label id="text">Prénom</label> 
+					<input type="text" ng-model="clientctrl.client.prenom" name="prenom" class="input-sm" required>
 					</div>
 				
 				<div class="entry">
-					<label id="text">Pseudo</label> <input type="text" name="pseudo"
-						class="input-sm" placeholder="Choisissez un pseudo" required minlength="4">
+					<label id="text">Pseudo</label> 
+					<input type="text" ng-model="clientctrl.client.pseudo" name="pseudo" class="input-sm" required minlength="4">
 				</div>
 
 				<div class="entry">
-					<label id="email">Email</label> <input type="email"
-						ng-model="ctrl.user.email" name="email" class="input-sm" placeholder="Entrez votre Email" required />
+					<label id="email">Email</label> 
+					<input type="email"	ng-model="clientctrl.client.email" name="email" class="input-sm" required />
 					</div>
 				<div class="entry">
-					<label id="text">Adresse</label> <input type="text" name="adresse"
-						class="input-sm" placeholder="Entrez votre Adresse" required >
+					<label id="text">Adresse</label> 
+					<input type="text" ng-model="clientctrl.client.adresse" name="adresse" class="input-sm" required >
 					</div>
 				<div class="codeVille">
 				<div class="entry">
-					<label id="numeric">Code postal</label> <input type="number"
-						name="codePostal" id="codeP" class="input-sm2" placeholder="XXXXX" required >
+					<label id="numeric">Code postal</label>
+					<input type="number" ng-model="clientctrl.client.codePostal" name="codePostal" id="codeP" class="input-sm2" required >
 						
 				</div>
 				<div class="entry">
-					<label id="ville">Ville</label> <input type="text" name="ville"
-						class="input-sm3" placeholder="Votre Ville" required >
+					<label id="ville">Ville</label> 
+					<input type="text" ng-model="clientctrl.client.ville" name="ville"	class="input-sm3" required >
 						
 				</div>
 				</div>
-				<div class="genre">
+				
 				<div class="entry">
 					<label id="date">Date de Naissance </label> <input type="Date"
-						name="date" class="input-sm2" id="dateNaissance" placeholder="Date de Naissance" required >
+						name="date" class="input-sm2" id="dateNaissance" required >
 						</div>
+				
+				
 				<div class="entry">
-					<label id="genre">Genre</label> <select name="genre"
-						class="input-sm3" required >
-						<option>sexe</option>
-						<option>Feminin</option>
-						<option>Masculin</option>
-					</select>
-				</div>
-				</div>
-				<div class="entry">
-					<label id="tel">Téléphone</label> <input type="tel"
-						name="telephone" class="input-sm" placeholder="ex : 0299000000" required >
+					<label id="tel">Téléphone</label> 
+					<input type="tel" ng-model="clientctrl.client.telephone" name="telephone" class="input-sm" required >
 				</div>
 				
 			</div>
@@ -145,8 +129,8 @@
 
 			<div class="inner-wrap">
 					<div class="entry2">
-						<label id="choix">Autorisation découvert</label> <input
-							type="checkbox" name="decouvert" id="box">
+						<label id="choix">Autorisation découvert</label>
+						<input type="checkbox" name="decouvert" id="box">
 					</div>
 				<br>
 					<div class="entry2">
@@ -161,12 +145,11 @@
 			</div>
 			<br>
 			<div id="btn_retour">
-				<a href="#/Client"
+				<a href="#/Conseiller"
 						class="myButton" >Retour</a>
 				</div>
 				<div id="btn_validation">			
-						<input type="submit" class="myButton"
-							ng-disabled="myForm.$invalid"
+						<input type="submit" class="myButton" ng-disabled="myForm.$invalid"
 							ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }">
 						<button type="reset" class="myButton" role="button"
 							aria-disabled="false">

@@ -41,6 +41,8 @@ public class Client extends Utilisateur {
 
 	// #endregion
 
+	// #region Accesseurs
+	
 	public Long getIdentifiant() {
 		return identifiant;
 	}
@@ -48,8 +50,7 @@ public class Client extends Utilisateur {
 	public void setIdentifiant(Long identifiant) {
 		this.identifiant = identifiant;
 	}
-
-	// #region Accesseurs
+	
 	public List<Compte> getListeComptes() {
 		return listeComptes;
 	}
@@ -93,6 +94,8 @@ public class Client extends Utilisateur {
 
 	// #endregion
 
+	// #region Metier
+	
 	public boolean hasCompte(Long noCompte) {
 		if (!this.getListeComptes().isEmpty()) {
 			for (Compte compte : listeComptes) {
@@ -109,5 +112,7 @@ public class Client extends Utilisateur {
 			this.listeComptes.add(compte);
 		}
 	}
+	
+	// #endregion
 
 }

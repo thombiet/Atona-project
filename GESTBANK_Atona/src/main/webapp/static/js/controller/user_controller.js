@@ -11,6 +11,7 @@ angular.module('myApp').controller('UserController', ['$scope', 'UserService', f
     self.reset = reset;
     self.connexion = connexion;
 
+    console.log(UserService);
 
     fetchAllUsers();
 

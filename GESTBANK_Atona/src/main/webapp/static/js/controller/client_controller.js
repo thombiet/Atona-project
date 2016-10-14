@@ -1,24 +1,18 @@
 'use strict';
 
-App.controller('ClientController', ['$scope', 'ClientService','$location', function($scope, ClientService, $location) {
+App.controller('ClientController', ['$scope', 'ClientService','$location','$routeParams', function($scope, ClientService, $location,$routeParams) {
     var self = this;
-   //self.client={identifiant:'',nom:'',prenom:'',pseudo:'',conseiller:''};
-   //self.fetchIdClient= 2;
-   /*self.clients=[];
-
-    self.submit = submit;
-    self.edit = edit;
-    self.remove = remove;
-    self.reset = reset;*/
-    self.fetchClientById = fetchClientById;
-    self.conseiller = {matricule:'2', nom:'', prenom:'',pseudo:'FRober'};
-    //self.client={identifiant:'2',nom:'',prenom:'',pseudo:'',conseiller:''};
-
-
+    self.client={identifiant:null,nom:'',prenom:'',pseudo:''};
+//    self.clients=[];
+    
+    self.conseiller = {matricule:'1', nom:'', prenom:'',pseudo:''};
     fetchAllClients(self.conseiller.matricule);
-    //fetchClientById(self.client.identifiant);
+    
+
+//    self.edit = edit;
     
     function fetchAllClients(matricule){
+    	//alert("YES");
     	ClientService.fetchAllClients(matricule)
             .then(
             function(d) {
@@ -31,18 +25,16 @@ App.controller('ClientController', ['$scope', 'ClientService','$location', funct
         );
     }
     
-	function afficheClient(client){
-		console.log(client);
-	}
+    function affiche(){
+    	console.log("testeur");
+    }
     
-    function fetchClientById(identifiant) {
-    	console.log(identifiant);
-    	alert("YES");
-    	ClientService.fetchClientById(identifiant)
+    if($routeParams.identifiant){
+    	ClientService.fetchClientById($routeParams.identifiant)
     		.then(
             function(d){
             	self.client= d;
-                console.log(d);
+            	console.log(d);
             },
             function(errResponse){
                 console.error('Error while fetching client');
@@ -50,13 +42,28 @@ App.controller('ClientController', ['$scope', 'ClientService','$location', funct
         );
     }
     
-    function fetchCompteById(noCompte) {
+    function fetchClientByNom(nom) {
+    	//console.log(nom);
+    	//alert("YES");
+    	ClientService.fetchClientByNom(nom)
+    		.then(
+            function(d){
+            	self.client= d;
+              
+            },
+            function(errResponse){
+                console.error('Error while fetching client');
+            }
+        );
+    }
+    
+    function fetchCompteByNum(noCompte) {
     	alert("YES");
     	ClientService.fetchCompteById(noCompte)
     		.then(
             function(d){
             	self.compte= d;
-                console.log(d);
+               
             },
             function(errResponse){
                 console.error('Error while fetching compte');
@@ -100,16 +107,19 @@ App.controller('ClientController', ['$scope', 'ClientService','$location', funct
             createClient(self.client);
         }else{
             updateClient(self.client, self.client.identifiant);
-            console.log('Client updated with identifiant ', self.client.identifiant);
+            
         }
         reset();
     }
 
     function edit(identifiant){
+    	//alert("OK");
         console.log('identifiant to be edited', identifiant);
         for(var i = 0; i < self.clients.length; i++){
             if(self.clients[i].identifiant === identifiant) {
                 self.client = angular.copy(self.clients[i]);
+                console.log(self.client.nom);
+            	$location.url('/client/:identifiant');
                 break;
             }
         }
@@ -123,13 +133,8 @@ App.controller('ClientController', ['$scope', 'ClientService','$location', funct
         deleteClient(identifiant);
     }
 
-
     function reset(){
         self.client={identifiant:null,clientname:'',address:'',email:''};
         $scope.myForm.$setPristine(); //reset Form
     }
-    
-    
-   
-
 }]);

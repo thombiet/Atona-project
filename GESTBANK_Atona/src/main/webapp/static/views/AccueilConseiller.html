@@ -6,12 +6,9 @@
 		<div  class="menuBtn"  align="center">
 
 			<a href="#/Conseiller" class="myButton">Accueil</a>
-			 <a href="#/Info_cons"
-				class="myButton">Mes Informations</a>
-				 <a href="#/ConseillerMessagerie"
-				class="myButton">Messagerie</a> 
-				<a href="#/" class="myButton" >Déconnexion</a>
-
+			<a href="#/Info_cons" class="myButton">Mes Informations</a>
+			<a href="#/ConseillerMessagerie" class="myButton">Messagerie</a> 
+			<a href="#/" class="myButton" >Déconnexion</a>
 		</div>
 	<br>
 
@@ -22,15 +19,20 @@
 					<br />
 					<div class="option1">
 						<div align="center">
+						
 							<input type="search" class="input-sm" name="recherche"
-								placeholder="Entrer Id Client" ng-model="identifiant"> <input type="button"
-								class="myButton" value="OK" name="findcli" ng-click="clientctrl.fetchClientById(identifiant)">
-								</div>
+								placeholder="Entrer Nom Client" ng-model="nom"> 					
+							<input type="button" class="myButton" value="OK" name="findcli" 
+								ng-click="clientctrl.fetchClientByNom(nom)">
+								
+						</div>
 						<div align="center">
 							<input type="search" class="input-sm" name="recherche"
-								placeholder="Entrer N° Compte" ng-model="noCompte"> <input type="button"
-								class="myButton" name="bouton1" value="OK" ng-click="fetchCompteById(noCompte)">
+								placeholder="Entrer N° Compte" ng-model="noCompte"> 
+							<input type="button" class="myButton" value="OK" name="findcompte" 
+								ng-click="clientctrl.fetchCompteByNum(noCompte)">
 						</div>
+						
 						<br> <br>
 						<div>
 							<table align="center" cellspacing=1 cellpadding=10>
@@ -45,19 +47,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr ng-repeat="c in clientctrl.clients">
+									<tr ng-repeat="c in clientctrl.clients|filter :nom">
 										<td><span ng-bind="c.identifiant"></span></td>
 										<td><span ng-bind="c.prenom"></span></td>
 										<td><span ng-bind="c.nom"></span></td>
 										<td><span ng-bind="c.email"></span></td>
-										<td><a href="#" title="affichage"
-											ng-click="afficheClient(c)">Afficher</a> <!--button ng-click="clientctrl.afficheClient(c)">Afficher</button-->
-											<button type="button" name="bouton1"
-												ng-click="updateClient(c,c.identifiant)">Modifier</button>
-											<button type="button" name="bouton1"
-												ng-click="deleteClient(c.identifiant)">Supprimer</button></td>
-										<td align="center" ng-repeat="compte in c.listeComptes">
-											<a href="#" ng-bind="compte.noCompte"></a>
+										<td>
+										<button class="myButton" ng-href="#/Client/{{c.identifiant}}">Modifier</button><br/>										
+										<button class="myButton" type="button" name="bouton1" 
+												ng-click="deleteClient(c.identifiant)">Supprimer</button>
+										</td>
+										<td align="center" >
+											<a href="#/Conseiller/GestionComptes" ng-repeat="compte in c.listeComptes"> {{compte.noCompte}} <br/></a>
 										</td>
 									</tr>
 								</tbody>

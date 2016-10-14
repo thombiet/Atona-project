@@ -1,6 +1,5 @@
 App.config(['$routeProvider', function($routeProvider){
 	$routeProvider
-	
 	.when('/', {
 		templateUrl: 'static/views/AccueilGuest.html',
 		controller: 'convertCtrl'
@@ -25,17 +24,17 @@ App.config(['$routeProvider', function($routeProvider){
 		templateUrl: 'static/views/RIB.html',
 		controller: 'ClientController'
 	})
-	.when('/Mes Informations', {
+	.when('/Client/:identifiant', {
 		templateUrl: 'static/views/Fiche_Client.html',
 		controller: 'ClientController'
 	})
 	.when('/Admin', {
 		templateUrl: 'static/views/AccueilAdmin.html',
-		controller: 'ConsController'
+		controller: 'AdminController as actrl'
 	})
 	.when('/Admin/AffectCons', {
 		templateUrl: 'static/views/AdminAffectCons.html',
-		controller: 'ConsController'
+		controller: 'AdminController'
 	})
 	.when('/Conseiller', {
 		templateUrl: 'static/views/AccueilConseiller.html',

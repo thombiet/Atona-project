@@ -1,12 +1,13 @@
 'use strict';
 
-App.factory('ClientService', ['$http', '$q', function($http, $q){
+App.factory('ClientService', ['$http', '$q', '$location','$routeParams', function($http, $q, $location,$routeParams){
 
     var REST_SERVICE_URI = 'http://localhost:8080/SpringAngularStartProject/client/';
 
     var factory = {
         fetchAllClients: fetchAllClients,
         fetchClientById: fetchClientById,
+        fetchClientByNom: fetchClientByNom,
         createClient: createClient,
         updateClient:updateClient,
         deleteClient:deleteClient,
@@ -20,7 +21,7 @@ App.factory('ClientService', ['$http', '$q', function($http, $q){
     /*recherche de tous les Clients */
     function fetchAllClients(matricule) {
         var deferred = $q.defer();
-        console.log(matricule)
+        //console.log(matricule)
         $http.get(REST_SERVICE_URI, {params:{conseiller:matricule}})
             .then(
             function (response) {
@@ -34,12 +35,29 @@ App.factory('ClientService', ['$http', '$q', function($http, $q){
         );
         return deferred.promise;
     }
-    
+
     /*recherche de client par Id */
     function fetchClientById(identifiant) {
         var deferred = $q.defer();
-        console.log(identifiant)
+        //console.log(identifiant)
         $http.get(REST_SERVICE_URI+identifiant)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+                console.log(response.status);
+            },
+            function(errResponse){
+                console.error('Error while fetching client');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    function fetchClientByNom(nom) {
+        var deferred = $q.defer();
+        //console.log(nom)
+        $http.get(REST_SERVICE_URI+nom)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -108,6 +126,22 @@ App.factory('ClientService', ['$http', '$q', function($http, $q){
             .then(
             function (response) {
                 deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching compte');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    function fetchCompteByNum(noCompte) {
+        var deferred = $q.defer();
+        $http.get(REST_SERVICE_URI+noCompte)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+                console.log(response.status);
             },
             function(errResponse){
                 console.error('Error while fetching compte');
