@@ -1,10 +1,9 @@
-
 <meta charset="utf-8" />
 <link rel="stylesheet" href="static/css/style_Accueil_guest.css">
 
 <div class=ma_page>
 
-	<div class="Entête">
+	<div class="Ent�te">
 
 		<div id="aide">
 			<p>
@@ -51,7 +50,7 @@
 		<div class="convert">
 			<form ng_submit="conversion()" >
 				<div class="montant">
-					<label>Montant à convertir : </label><input type="number"
+					<label>Montant � convertir : </label><input type="number"
 						ng-model="montant" class="input-tx1"
 						placeholder="Entrez une valeur">
 				</div>
@@ -66,7 +65,7 @@
 					</select> <input type="submit" class="myButton" value="Convertir">
 				</div>
 			</form><br /> 
-			<div class="result">
+			<div class="result" ng-show="change">
 				<p>le montant est de <p1>{{change}}</p1> {{symbols}}
 				<p>
 					avec un taux de <p2>{{rate}} </p2>{{symbols}}  pour 1 {{base}}

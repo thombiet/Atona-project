@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="static/css/style_Formulaire_Inscription.css">
+<link rel="stylesheet"
+	href="static/css/style_validation.css">
+
+<div id="ma_page">
+				
+		<form ng-submit="actrl.submit()" name="myForm">
+	<div class="form-style-10">
+
+		<fieldset>
+			<legend>
+				<h2>Informations Conseiller</h2>
+			</legend>
+			<br />
+			<div class="inner-wrap">
+				<div class="entry">
+					<label id="text">Matricule</label> &nbsp; 
+					<input type="numeric" ng-model="actrl.conseiller.matricule" name="matricule" class="input-sm" required/>
+				</div>
+				<div class="entry">
+					<label id="text">Nom</label> &nbsp; 
+					<input type="text" ng-model="actrl.conseiller.nom" name="nom"	class="input-sm" required/>
+				</div>
+				<div class="entry">
+					<label id="text">Prénom</label> 
+					<input type="text" ng-model="actrl.conseiller.prenom" name="prenom" class="input-sm" required>
+				</div>
+				<div class="entry">
+					<label id="email">Email</label> 
+					<input type="email"	ng-model="actrl.conseiller.email" name="email" class="input-sm" required />
+				</div>
+				<div class="entry">
+					<label id="text">Adresse</label> 
+					<input type="text" ng-model="actrl.conseiller.adresse" name="adresse"class="input-sm" required >
+				</div>
+				<div class="entry">
+					<label id="tel">Téléphone</label> 
+					<input type="tel" ng-model="actrl.conseiller.telephone" name="telephone" class="input-sm" required >
+				</div>				
+							
+			</div>
+			<div id="btn_validation">			
+				<button type="submit" class="myButton">Valider</button>
+				<button type="reset" class="myButton">Annuler</button>
+			</div>
+		</fieldset>
+			
+		</div>
+	</form>
+</div>

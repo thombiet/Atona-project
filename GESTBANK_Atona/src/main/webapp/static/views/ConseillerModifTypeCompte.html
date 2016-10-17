@@ -1,52 +1,47 @@
-
+<meta charset="utf-8" />
 <link rel="stylesheet" href="static/css/style_ClientGestionCompte.css">
 
-<meta charset="utf-8" />
+
 <title>Gestion des Comptes</title>
 <div id="ma_page">
-<div class="menuBtn" align="center">
+	<!-- 	<div class="menuBtn" align="center"> -->
+	<!-- 		<a href="#/Client" class="myButton">Accueil</a> -->
+	<!-- 		<a href="#/Mes Informations" class="myButton">Mes Informations</a> -->
+	<!-- 		<a href="#/ClientMessagerie" class="myButton">Messagerie</a>  -->
+	<!-- 		<a href="#/" class="myButton" >Déconnexion</a> -->
+	<!-- 	</div> -->
+	<!-- 	<br> -->
+	<div class="maPage2">
 
-	<a href="#/Client" class="myButton">Accueil</a>
-	<a href="#/Mes Informations"
-	class="myButton">Mes Informations</a>
-	<a href="#/ClientMessagerie"
-	class="myButton">Messagerie</a> 
-	<a href="#/" class="myButton" >Déconnexion</a>
+		<div class="gestion">
+			<fieldset>
+				<legend>
+					<h2>Modification de type du compte n°{{noCompte}}</h2>
+				</legend>
 
-</div>
-<br>
-<div class="maPage2" >
+				<div class="entry">
+					<label id="text">Type Compte</label> &nbsp; <select name="genre" class="input-sm3" required>
+						<option>Type Compte</option>
+						<option>Compte avec Facilite de Caisse</option>
+						<option>Compte sans Facilite de Caisse</option>
+						<option>Compte avec Remuneration</option>
+					</select>
+				</div>
 
-	<div class="gestion">
-	<fieldset>
-	<legend><h2>Modification de type du compte n°{{noCompte}}</h2></legend>
-	
-		<div class="entry">
-			<label id="text">Type Compte</label> &nbsp; 
-			<select name="genre" class="input-sm3" required >
-				<option>Type Compte</option>
-				<option>Compte avec Facilite de Caisse</option>
-				<option>Compte sans Facilite de Caisse</option>
-				<option>Compte avec Remuneration</option>			
-			</select>	
-		</div>
-		
-		<div class="entry">
-			<label id="text">Montant Découvert</label> &nbsp; 
-			<input type="numeric" name="decouvert"	class="input-sm" required />				
-		</div>
-		
-		<div class="entry">
-			<label id="text">Date</label>  &nbsp; 
-			<input type="Date" name="date" class="input-sm2" id="date" required />
-		</div>
-		
-		<div id="btn_validation">			
-			<button class="myButton">Valider</button>
-			<button class="myButton">Annuler</button>
-		</div>
+				<div class="entry">
+					<label id="text">Montant Découvert</label> &nbsp; <input type="numeric" name="decouvert" class="input-sm" required />
+				</div>
 
-	</fieldset>
+				<div class="entry">
+					<label id="text">Date</label> &nbsp; <input type="Date" name="date" class="input-sm2" id="date" required />
+				</div>
+
+				<div id="btn_validation">
+					<button class="myButton">Valider</button>
+					<button class="myButton">Annuler</button>
+				</div>
+
+			</fieldset>
+		</div>
 	</div>
-</div>
 </div>

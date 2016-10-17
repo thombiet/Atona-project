@@ -1,22 +1,20 @@
 <meta charset="utf-8" />
 <link rel="stylesheet" href="static/css/style_Admin.css">
 
-<div id="ma_page" ng-controller="AdminController">
-	
-	<div  class="menuBtn"  align="center">
+<div id="ma_page" ng-controller="AdminController as actrl">
 
-		<a href="#/Admin" class="myButton">Accueil</a> <a href="#/"
-			class="myButton">Déconnexion</a>
-
-	</div>
-	<br>
+<!-- 	<div class="menuBtn" align="center"> -->
+<!-- 		<a href="#/Admin" class="myButton">Accueil</a> -->
+<!-- 		<a href="#/" class="myButton">Déconnexion</a> -->
+<!-- 	</div> -->
+<!-- 	<br> -->
 
 	<fieldset>
 		<legend>
 			<h2>Choix du Conseiller à Affecter</h2>
 		</legend>
 
-		<br /> <br /> 
+		<br /> <br />
 		<div>
 			<table align="center" cellspacing=1 cellpadding=10>
 				<thead>
@@ -28,27 +26,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><a href="#">12</a></td>
-						<td>Aby</td>
-						<td>aby.faye@atona.com</td>
-						<td><input type="button" name="bouton1" value="Choisir"></td>
-					</tr>
-					<tr>
-						<td><a href="#">20</a></td>
-						<td>Nathalie</span></td>
-						<td>nathalie.maissiat@atona.com</td>
-						<td><input type="button" name="bouton2" value="Choisir"></td>
-					</tr>
-					<tr>
-						<td><a href="#">30</a></td>
-						<td>Thomas</span></td>
-						<td>thoms.biet@atona.com</td>
-						<td><input type="button" name="bouton3" value="Choisir"></td>
+					<tr ng-repeat="cons in actrl.conseillers|filter :nom">
+						<td><span ng-bind="cons.matricule"></span></td>
+						<td><span ng-bind="cons.nom"></span></td>
+						<td><span ng-bind="cons.email"></span></td>
+						<td><button class="myButton" ng-click="actrl.affectDemandeConseiller()">Choisir</button></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<br><br>
+		<br>
+		<br>
 	</fieldset>
-	</div>
+</div>

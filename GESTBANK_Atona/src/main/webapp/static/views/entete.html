@@ -1,0 +1,42 @@
+<meta charset="utf-8" />
+<header>
+	<div id="Presentation">
+		<h1>
+			Bienvenue chez <br>Gest Bank
+		</h1>
+		<h2>
+			<span ng-show="role!='Guest'">{{role}}</span>
+		</h2>
+	</div>
+	<div id="logo">
+		<img src="static/images/GestBank_logo.png" alt="Logo GestBank" height="110px" />
+	</div>
+</header>
+
+<div class="menuBtn" align="center" ng-show="role!='Guest'">
+
+	<button ng-if="role=='Client'" 
+		ng-click="mainCtrl.redirection('/Client')" 
+		class="myButton">Accueil</button>
+	<button ng-if="role=='Conseiller'" 
+		ng-click="mainCtrl.redirection('/Conseiller')" 
+		class="myButton">Accueil</button>
+	<button ng-if="role=='Administrateur'" 
+		ng-click="mainCtrl.redirection('/Admin')" 
+		class="myButton">Accueil</button>
+	<button ng-if="role=='Client'" 
+		ng-click="mainCtrl.redirection('/Client/Infos/{{id}}')" 
+		class="myButton">Mes Informations</button>
+	<button ng-if="role=='Conseiller'" 
+		ng-click="mainCtrl.redirection('/Conseiller/Infos/{{id}}')" 
+		class="myButton">Mes Informations</button>
+	<button ng-if="role=='Client'" 
+		ng-click="mainCtrl.redirection('/ClientMessagerie')" 
+		class="myButton">Messagerie</button>
+	<button ng-if="role=='Conseiller'" 
+		ng-click="mainCtrl.redirection('/ConseillerMessagerie')" 
+		class="myButton">Messagerie</button>
+	<button 
+		ng-click="mainCtrl.deconnexion()" class="myButton">Déconnexion</button>
+
+</div>

@@ -1,0 +1,35 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="static/css/style_Conseiller.css">
+<div id="ma_page">
+	<fieldset>
+		<legend>
+			<h2>Gestion des Demandes d'Ouverture Compte</h2>
+		</legend>
+
+		<br />
+		<div class="option2">
+
+			<table align="center" cellspacing=1 cellpadding=10>
+				<thead>
+					<tr>
+						<th>Date demande</th>
+						<th>Proprietaire</th>
+						<th>Statut</th>
+						<th>Valider la demande</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="daff in ConsCtrl.demandes">
+						<td><span>{{daff.dateCreation|date}}</span></td>
+						<td><span>{{daff.cp.nom}} {{daff.cp.prenom}}</span>
+							<button class="myButton">Voir</button></td>
+						<td><span ng-if="!daff.valide">En cours</span> <span
+							ng-if="daff.valide">Ouvert</span></td>
+						<td><button class="myButton">Valider</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<br> <br>
+	</fieldset>
+</div>

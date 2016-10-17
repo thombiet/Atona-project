@@ -1,0 +1,123 @@
+<meta charset="utf-8">
+<link rel="stylesheet"
+	href="static/css/style_Formulaire_Inscription.css">
+
+<style>
+.nom.ng-valid {
+	background-color: lightgreen;
+}
+
+.nom.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.prenom.ng-valid {
+	background-color: lightgreen;
+}
+
+.prenom.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.pseudo.ng-valid {
+	background-color: lightgreen;
+}
+
+.pseudo.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.pseudo.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+
+.email.ng-valid {
+	background-color: lightgreen;
+}
+
+.email.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.email.ng-dirty.ng-invalid-email {
+	background-color: yellow;
+}
+
+.adresse.ng-valid {
+	background-color: lightgreen;
+}
+
+.adresse.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.codePostal.ng-valid {
+	background-color: lightgreen;
+}
+
+.codePostal.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.ville.ng-valid {
+	background-color: lightgreen;
+}
+
+.ville.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+</style>
+
+
+
+<form ng-submit="actrl.submit()" name="myForm">
+	<div class="form-style-10">
+
+		<fieldset>
+			<legend>
+				<h2>Informations Conseiller</h2>
+			</legend>
+			<br />
+			<div class="inner-wrap">
+				<div class="entry">
+					<label id="text">Matricule</label> &nbsp; <input type="numeric"
+						name="matricule" class="input-sm" required />
+				</div>
+				<div class="entry">
+					<label id="text">Nom</label> &nbsp; <input type="text" name="nom"
+						class="input-sm" required />
+				</div>
+				<div class="entry">
+					<label id="text">Prénom</label> <input type="text" name="prenom"
+						class="input-sm" required>
+				</div>
+				<div class="entry">
+					<label id="date">Date de Naissance </label> <input type="Date"
+						name="date" class="input-sm2" required>
+				</div>
+				<div class="entry">
+					<label id="text">Lieu de Naissance</label> <input type="text"
+						name="lieuNaissance" class="input-sm" required>
+				</div>
+				<div class="entry">
+					<label id="email">Email</label> <input type="email" name="email"
+						class="input-sm" required />
+				</div>
+				<div class="entry">
+					<label id="text">Adresse</label> <input type="text" name="adresse"
+						class="input-sm" required>
+				</div>
+				<div class="entry">
+					<label id="tel">Téléphone</label> <input type="tel"
+						name="telephone" class="input-sm" required>
+				</div>
+
+			</div>
+			<div id="btn_validation">
+				<button type="submit" class="myButton">Valider</button>
+				<button type="reset" class="myButton">Annuler</button>
+			</div>
+		</fieldset>
+
+	</div>
+</form>

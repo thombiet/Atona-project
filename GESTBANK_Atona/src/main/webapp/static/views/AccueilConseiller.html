@@ -2,103 +2,18 @@
 <link rel="stylesheet" href="static/css/style_Conseiller.css">
 
 
-<div id="ma_page" ng-controller="ClientController as clientctrl">
-		<div  class="menuBtn"  align="center">
+<div id="ma_page">
 
-			<a href="#/Conseiller" class="myButton">Accueil</a>
-			<a href="#/Info_cons" class="myButton">Mes Informations</a>
-			<a href="#/ConseillerMessagerie" class="myButton">Messagerie</a> 
-			<a href="#/" class="myButton" >Déconnexion</a>
-		</div>
-	<br>
+<!-- 	<div class="menuBtn" align="center"> -->
+<!-- 		<a href="#/Conseiller" class="myButton">Accueil</a> -->
+<!-- 		<a href="#/Info_cons" class="myButton">Mes Informations</a> -->
+<!-- 		<a href="#/ConseillerMessagerie" class="myButton">Messagerie</a> -->
+<!-- 		<a href="#/" class="myButton">Déconnexion</a> -->
+<!-- 	</div> -->
+<!-- 	<br> -->
 
-	<fieldset>
-					<legend>
-						<h2>Gestion des Clients</h2>
-					</legend>
-					<br />
-					<div class="option1">
-						<div align="center">
-						
-							<input type="search" class="input-sm" name="recherche"
-								placeholder="Entrer Nom Client" ng-model="nom"> 					
-							<input type="button" class="myButton" value="OK" name="findcli" 
-								ng-click="clientctrl.fetchClientByNom(nom)">
-								
-						</div>
-						<div align="center">
-							<input type="search" class="input-sm" name="recherche"
-								placeholder="Entrer N° Compte" ng-model="noCompte"> 
-							<input type="button" class="myButton" value="OK" name="findcompte" 
-								ng-click="clientctrl.fetchCompteByNum(noCompte)">
-						</div>
-						
-						<br> <br>
-						<div>
-							<table align="center" cellspacing=1 cellpadding=10>
-								<thead>
-									<tr>
-										<th>Id</th>
-										<th>Prenom</th>
-										<th>Nom</th>
-										<th>Email</th>
-										<th>Fiche Client</th>
-										<th>Liste des Comptes</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr ng-repeat="c in clientctrl.clients|filter :nom">
-										<td><span ng-bind="c.identifiant"></span></td>
-										<td><span ng-bind="c.prenom"></span></td>
-										<td><span ng-bind="c.nom"></span></td>
-										<td><span ng-bind="c.email"></span></td>
-										<td>
-										<button class="myButton" ng-href="#/Client/{{c.identifiant}}">Modifier</button><br/>										
-										<button class="myButton" type="button" name="bouton1" 
-												ng-click="deleteClient(c.identifiant)">Supprimer</button>
-										</td>
-										<td align="center" >
-											<a href="#/Conseiller/GestionComptes" ng-repeat="compte in c.listeComptes"> {{compte.noCompte}} <br/></a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<br> <br>
-				</fieldset>
-				<br>
-				<fieldset>
-					<legend>
-						<h2>Gestion des Demandes d'Ouverture Compte</h2>
-					</legend>
-
-					<br />
-					<div class="option2">
-						
-						<table align="center" cellspacing=1 cellpadding=10>
-							<thead>
-								<tr>
-									<th>Date demande</th>
-									<th>Proprietaire</th>
-									<th>Type Compte</th>
-									<th>Statut</th>
-									<th>Date Ouverture</th>
-									<th>Valider/Gerer</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="daff in clientctrl.demandes">
-									<td><span ng-bind="daff.dateDemande"></span></td>
-									<td><span ng-bind="daff.firstname"></span></td>
-									<td><span ng-bind="daff.typecompte"></span></td>
-									<td><span ng-bind="daff.statut"></span></td>
-									<td><span ng-bind="daff.dateOuverture"></span></td>
-									<td><span ng-bind="daff.aFaire"></span></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<br> <br>
-				</fieldset>
-				</div>
+	<button ng-click="mainCtrl.redirection('/Conseiller/GestionClients')">Gestion des Clients</button>
+<br>
+<button ng-click="mainCtrl.redirection('/Conseiller/GestionDemandes')">Gestion des Demandes d'Inscription</button>
+	
+</div>

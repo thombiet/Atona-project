@@ -1,17 +1,14 @@
-<link rel="stylesheet" href="static/css/style_Client.css">
 <meta charset="utf-8" />
-<div class="ma_page" ng-controller="CompteController as comptectrl"
-	ng-init="accueil()">
+<link rel="stylesheet" href="static/css/style_Client.css">
+<div class="ma_page" >
 
-	<div class="menuBtn" align="center">
-
-		<a href="#/Client" class="myButton">Accueil</a> <a
-			href="#/Mes Informations" class="myButton">Mes Informations</a> <a
-			href="#/ClientMessagerie" class="myButton">Messagerie</a> <a
-			href="#/" class="myButton">Déconnexion</a>
-
-	</div>
-	<br>
+	<!-- 	<div class="menuBtn" align="center"> -->
+	<!-- 		<a href="#/Client" class="myButton">Accueil</a> -->
+	<!-- 		<a href="#/Mes Informations" class="myButton">Mes Informations</a> -->
+	<!-- 		<a href="#/ClientMessagerie" class="myButton">Messagerie</a> -->
+	<!-- 		<button ng-click="mainCtrl.deconnexion()" class="myButton">Déconnexion</button> -->
+	<!-- 	</div> -->
+	<!-- 	<br> -->
 
 	<fieldset>
 		<legend>
@@ -29,21 +26,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="compte in comptectrl.comptes">
-						<td><span ng-bind="compte.type"></span></td>
-						<td><span ng-bind="compte.numero"></span></td>
-						<td><span ng-bind="compte.solde"></span></td>
-					</tr>
-					<tr>
-						<td>exemple cheque</td>
-						<td>exemple 11111111111</td>
-						<td>exemple +300,00</td>
+					<tr ng-repeat="compte in ClientCtrl.comptes" ng-click="voirCompte(compte.noCompte)">
+						<td>Compte chèque <span ng-if="compte.decouvert!=0">avec
+								decouvert<span ng-if="compte.seuilRemuneration!=0"> et </span>
+						</span><span ng-if="compte.seuilRemuneration!=0">avec remuneration</span></td>
+						<td><span ng-bind="compte.noCompte"></span></td>
+						<td><span ng-bind="compte.solde"></span>€</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<br> <br> <a href="#/GestionCompte" class="myButton">Test
-			gestion</a>
 	</fieldset>
 
 </div>

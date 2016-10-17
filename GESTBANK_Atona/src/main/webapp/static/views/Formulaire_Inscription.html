@@ -1,171 +1,121 @@
 <meta charset="utf-8">
 <link rel="stylesheet"
 	href="static/css/style_Formulaire_Inscription.css">
+<link rel="stylesheet"
+	href="static/css/style_validation.css">
 
-<style>
-.nom.ng-valid {
-	background-color: lightgreen;
-}
+<div id="bloc_page">
+	<h1>Formulaire d'Inscription</h1>
+	<h4>Tous les champs sont obligatoires</h4>
+	<br />
+	<form ng-submit="ctrl.submit()" name="myForm">
+		<div class="form-style-10">
 
-.nom.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
-.prenom.ng-valid {
-	background-color: lightgreen;
-}
+			<fieldset>
+				<legend>
+					<h2>Informations Générales</h2>
+				</legend>
+				<br />
 
-.prenom.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
-.pseudo.ng-valid {
-	background-color: lightgreen;
-}
-
-.pseudo.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
-.pseudo.ng-dirty.ng-invalid-minlength {
-	background-color: yellow;
-}
-
-.email.ng-valid {
-	background-color: lightgreen;
-}
-
-.email.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
-
-.email.ng-dirty.ng-invalid-email {
-	background-color: yellow;
-}
-.adresse.ng-valid {
-	background-color: lightgreen;
-}
-
-.adresse.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
-.codePostal.ng-valid {
-	background-color: lightgreen;
-}
-
-.codePostal.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
-.ville.ng-valid {
-	background-color: lightgreen;
-}
-
-.ville.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
-
-
-</style>
-
-<body ng-app="myApp">
-	<div id="bloc_page">
-		<h1>Formulaire d'Inscription</h1><h4>Tous les champs sont obligatoires</h4>
-		<br />
-		<form ng-submit="ctrl.submit()" name="myForm">
-	<div class="form-style-10">
-
-		<fieldset>
-			<legend>
-				<h2>Informations Générales</h2>
-			</legend>
-			<br />
-
-			<div class="inner-wrap">
-				<div class="entry">
-					<label id="text">Nom</label> &nbsp; <input type="text"
-						ng-model="ctrl.user.username" name="nom"
-						class="input-sm"
-						placeholder="Entrez votre nom" required />
-					<!--  div class="has-error" ng-show="myForm.$dirty">
+				<div class="inner-wrap">
+					<div class="entry">
+						<label id="text">Nom</label> &nbsp; <input type="text"
+							ng-model="ctrl.user.username" name="nom" class="input-sm"
+							placeholder="Entrez votre nom" required />
+						<!--  div class="has-error" ng-show="myForm.$dirty">
 						<span ng-show="myForm.nom.$error.required">Champ
 							Obligatoire</span> <span ng-show="myForm.nom.$invalid">Ce champ
 							est invalide </span>
 					</div-->
-				</div>
-				<div class="entry">
-					<label id="text">Prénom</label> <input type="text" name="prenom"
-						class="input-sm" placeholder="Entrez votre prénom" required>
 					</div>
-				
-				<div class="entry">
-					<label id="text">Pseudo</label> <input type="text" name="pseudo"
-						class="input-sm" placeholder="Choisissez un pseudo" required minlength="4">
-				</div>
+					<div class="entry">
+						<label id="text">Prénom</label> <input type="text" name="prenom"
+							class="input-sm" placeholder="Entrez votre prénom" required>
+					</div>
 
-				<div class="entry">
-					<label id="email">Email</label> <input type="email"
-						ng-model="ctrl.user.email" name="email" class="input-sm" placeholder="Entrez votre Email" required />
+					<div class="entry">
+						<label id="text">Pseudo</label> <input type="text" name="pseudo"
+							class="input-sm" placeholder="Choisissez un pseudo" required
+							minlength="4">
 					</div>
-				<div class="entry">
-					<label id="text">Adresse</label> <input type="text" name="adresse"
-						class="input-sm" placeholder="Entrez votre Adresse" required >
+
+					<div class="entry">
+						<label id="email">Email</label> <input type="email"
+							ng-model="ctrl.user.email" name="email" class="input-sm"
+							placeholder="Entrez votre Email" required />
 					</div>
-				<div class="codeVille">
-				<div class="entry">
-					<label id="numeric">Code postal</label> <input type="number"
-						name="codePostal" id="codeP" class="input-sm2" placeholder="XXXXX" required >
-						
-				</div>
-				<div class="entry">
-					<label id="ville">Ville</label> <input type="text" name="ville"
-						class="input-sm3" placeholder="Votre Ville" required >
-						
-				</div>
-				</div>
-				<div class="entry">
-					<label id="date">Date de Naissance </label> <input type="Date"
-						name="date" class="input-sm2" id="dateNaissance" placeholder="Date de Naissance" required >
+					<div class="entry">
+						<label id="text">Adresse</label> <input type="text" name="adresse"
+							class="input-sm" placeholder="Entrez votre Adresse" required>
+					</div>
+					<div class="codeVille">
+						<div class="entry">
+							<label id="numeric">Code postal</label> <input type="number"
+								name="codePostal" id="codeP" class="input-sm2"
+								placeholder="XXXXX" required>
+
 						</div>
-				
-				<div class="entry">
-					<label id="tel">Téléphone</label> <input type="tel"
-						name="telephone" class="input-sm" placeholder="ex : 0299000000" required >
-				</div>
-				
-			</div>
-				<br>	<br>
-		
-			<h4>Informations Supplémentaires</h4>
+						<div class="entry">
+							<label id="ville">Ville</label> <input type="text" name="ville"
+								class="input-sm3" placeholder="Votre Ville" required>
 
-			<div class="inner-wrap">
+						</div>
+					</div>
+					<div class="genre">
+						<div class="entry">
+							<label id="date">Date de Naissance </label> <input type="Date"
+								name="date" class="input-sm2" id="dateNaissance"
+								placeholder="Date de Naissance" required>
+						</div>
+						<div class="entry">
+							<label id="genre">Genre</label> <select name="genre"
+								class="input-sm3" required>
+								<option>sexe</option>
+								<option>Feminin</option>
+								<option>Masculin</option>
+							</select>
+						</div>
+					</div>
+					<div class="entry">
+						<label id="tel">Téléphone</label> <input type="tel"
+							name="telephone" class="input-sm" placeholder="ex : 0299000000"
+							required>
+					</div>
+
+				</div>
+				<br> <br>
+
+				<h4>Informations Supplémentaires</h4>
+
+				<div class="inner-wrap">
 					<div class="entry2">
 						<label id="choix">Autorisation découvert</label> <input
 							type="checkbox" name="decouvert" id="box">
 					</div>
-				<br>
+					<br>
 					<div class="entry2">
 						<label id="numeric">Revenus mensuels</label> <input type="numeric"
 							name="revenus" id="revenus" class="input-sm4">
 					</div>
-				<br>
+					<br>
 					<div class="entry2">
 						<label id="files">Documents justificatifs</label> <input
 							type="file" id="mesFichiers" multiple="multiple">
 					</div>
-			</div>
-			<br>
-			<div id="btn_retour">
-				<a href="#/"
-						class="myButton" >Retour</a>
 				</div>
-				<div id="btn_validation">			
-						<input type="submit" class="myButton"
-							ng-disabled="myForm.$invalid"
-							ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }">
-						<button type="reset" class="myButton" role="button"
-							aria-disabled="false">
-							Annuler</button>
+				<br>
+				<div id="btn_retour">
+					<a href="#/" class="myButton">Retour</a>
+				</div>
+				<div id="btn_validation">
+					<input type="submit" class="myButton" ng-disabled="myForm.$invalid"
+						ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }">
+					<button type="reset" class="myButton" role="button"
+						aria-disabled="false">Annuler</button>
 				</div>
 			</fieldset>
-			
-			</div>
-		</form>
 
-	</div>
+		</div>
+	</form>
+
+</div>

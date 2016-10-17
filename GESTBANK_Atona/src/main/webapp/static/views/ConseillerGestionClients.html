@@ -1,0 +1,59 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="static/css/style_Conseiller.css">
+<div id="ma_page">
+	<fieldset>
+		<legend>
+			<h2>Gestion des Clients</h2>
+		</legend>
+		<br />
+		<div class="option1">
+			<div align="center">
+
+				<input type="search" class="input-sm" name="recherche"
+					placeholder="Entrer Nom Client" ng-model="nom">
+
+			</div>
+			<div align="center">
+				<input type="search" class="input-sm" name="recherche"
+					placeholder="Entrer N° Compte" ng-model="noCompte"> <input
+					type="button" class="myButton" value="OK" name="findcompte"
+					ng-click="ConsCtrl.fetchCompteByNum(noCompte)">
+			</div>
+
+			<br> <br>
+			<div>
+				<table align="center" cellspacing=1 cellpadding=10>
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Prenom</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Fiche Client</th>
+							<th>Liste des Comptes</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="c in ConsCtrl.clients|filter :nom">
+							<td><span ng-bind="c.identifiant"></span></td>
+							<td><span ng-bind="c.prenom"></span></td>
+							<td><span ng-bind="c.nom"></span></td>
+							<td><span ng-bind="c.email"></span></td>
+							<td>
+								<button class="myButton" ng-click="ConsCtrl.voirClient(c.identifiant)">Edit</button>
+								
+								<button class="myButton" type="button" name="bouton1"
+									ng-click="deleteClient(c.identifiant)">X</button>
+							</td>
+							<td align="center"><a
+								href="#/Conseiller/GestionCompte/{{compte.noCompte}}"
+								ng-repeat="compte in c.listeComptes"> {{compte.noCompte}} <br /></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<br> <br>
+	</fieldset>
+</div>

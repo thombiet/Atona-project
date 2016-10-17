@@ -1,0 +1,44 @@
+<meta charset="utf-8" />
+<link rel="stylesheet" href="static/css/style_Admin.css">
+<div id="ma_page">
+
+<fieldset >
+
+	<legend>
+		<h2>Gestion des Conseillers</h2>
+	</legend>
+	<br />
+	<div class="option1">
+		<div align="center">
+			<input type="search" class="input-sm" ng-model="nom" placeholder="Entrer un nom "> 
+			<input type="button" class="myButton" name="bouton1" value="Recherche"> 
+			<a ng-href="#/Admin/AjoutConseiller" class="myButton">+ Ajouter conseiller</a>
+		</div>
+		<br> <br>
+		<div>
+			<table align="center" cellspacing=1 cellpadding=10>
+				<thead>
+					<tr>
+						<th>Matricule</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th>Téléphone</th>
+						<th>Détails</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="cons in AdminCtrl.conseillers|filter :nom">
+						<td><span ng-bind="cons.matricule"></span></td>
+						<td><span ng-bind="cons.nom"></span></td>
+						<td><span ng-bind="cons.email"></span></td>
+						<td><span ng-bind="cons.telephone"></span></td>
+						<td><a class="myButton" ng-href="#/Conseiller/{{cons.matricule}}">Voir</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<br> <br>
+</fieldset>
+
+</div>

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="static/css/style_ClientGestionCompte.css">
 
 <title>Gestion des Comptes</title>
-<!-- <div id="ma_page" > -->
+<div id="ma_page" >
 <!-- <div class="menuBtn" align="center"> -->
 
 <!-- 	<a href="#/Client" class="myButton">Accueil</a> -->
@@ -38,16 +38,40 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="transac in ClientCtrl.transactions | orderBy: 'date'">
-						<td>{{transac.date|date: 'dd MMM yyyy'}}</td>
+					<tr ng-repeat="transac in transactions">
+						<td>{{transac.date|date}}}</td>
 						<td><span ng-bind="transac.libelle"></span></td>
-						<td><span ng-if="transac.montant<0">{{transac.montant}}</span></td>	
-						<td><span ng-if="transac.montant>0">+{{transac.montant}}</span></td>						
+						<td><span ng-bind="transac.montant"></span></td>	
+						<td><span ng-bind="transac.montant"></span></td>						
+					</tr>
+					<tr >
+						<td>18/09/2016</td>
+						<td>qgethryjrhhh</td>
+						<td>-300,00</td>		
+						<td></td>					
+					</tr>
+					<tr >
+						<td>22/09/2016</td>
+						<td>atrykukryjrhhh</td>
+						<td></td>		
+						<td>+150,00</td>					
+					</tr>
+					<tr >
+						<td>28/09/2016</td>
+						<td>kkedujkhf</td>
+						<td></td>		
+						<td>+2250,00</td>					
+					</tr>
+					<tr >
+						<td>02/10/2016</td>
+						<td>sgdhykukryjrhhh</td>
+						<td></td>		
+						<td>+190,00</td>					
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<br> <div class="solde"><p>Solde : <p2>{{ClientCtrl.compte.solde}}</p2></p></div><br>
+		<br> <div class="solde"><p>Solde : <p2>{{compte.solde}}</p2></p></div><br>
 	</fieldset>
 	</div>
 </div>
