@@ -187,7 +187,7 @@ public class HelloWorldRestController {
 
 	// ---Modification du client d'identifiant {identifiant}
 	@RequestMapping(value = "/client/{identifiant}", method = RequestMethod.PUT)
-	public ResponseEntity<Client> modificationClient(@PathVariable("id") Long id, @RequestBody Client client) {
+	public ResponseEntity<Client> modificationClient(@PathVariable("identifiant") Long id, @RequestBody Client client) {
 		System.out.println("Updating Client " + id);
 
 		Client currentClient = utilService.findById(id);
@@ -204,16 +204,6 @@ public class HelloWorldRestController {
 		return new ResponseEntity<Client>(currentClient, HttpStatus.OK);
 	}
 
-	// ---Recuperation du conseiller de matricule {matricule}
-	@RequestMapping(value = "/conseiller/{matricule}", method = RequestMethod.GET)
-	public ResponseEntity<Conseiller> findConseillerByMle(@PathVariable("matricule") Long mle) {
-		Conseiller conseiller = utilService.findByMle(mle);
-		if (conseiller == null) {
-			return new ResponseEntity<Conseiller>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Conseiller>(conseiller, HttpStatus.OK);
-	}
-
 	// #endregion
 
 	// #region Conseiller
@@ -226,6 +216,16 @@ public class HelloWorldRestController {
 			return new ResponseEntity<List<Conseiller>>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<Conseiller>>(conseillers, HttpStatus.OK);
+	}
+
+	// ---Recuperation du conseiller de matricule {matricule}
+	@RequestMapping(value = "/conseiller/{matricule}", method = RequestMethod.GET)
+	public ResponseEntity<Conseiller> findConseillerByMle(@PathVariable("matricule") Long mle) {
+		Conseiller conseiller = utilService.findByMle(mle);
+		if (conseiller == null) {
+			return new ResponseEntity<Conseiller>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Conseiller>(conseiller, HttpStatus.OK);
 	}
 
 	// ---Creation d'un conseiller

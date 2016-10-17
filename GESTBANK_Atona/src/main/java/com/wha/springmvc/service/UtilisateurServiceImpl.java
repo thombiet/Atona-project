@@ -4,39 +4,46 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wha.springmvc.dao.UtilisateurDAO;
 import com.wha.springmvc.dummy.DummyBDD;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
+import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
 
 @Service("clientService")
 public class UtilisateurServiceImpl implements UtilisateurService {
 
 	// #region Client
-	private static List<Client> clients;
-
+	/*private static List<Client> clients;
 	private static void getClients() {
 		if (clients == null) {
 			DummyBDD.CreateBDD();
 			clients = DummyBDD.getClients();
 		}
 	}
+*/
+	
+	@Autowired
+	private UtilisateurDAO dao;
 
 	@Override
 	public Client findById(Long identifiant) {
-		getClients();
+		/*getClients();
 		for (Client client : clients) {
 			if (client.getIdentifiant() == identifiant) {
 				return client;
 			}
 		}
-		return null;
+		return null;*/
+		return dao.findById(identifiant);
 	}
-
+/*
 	@Override
 	public Client findByCompte(Long noCompte) {
 		getClients();
@@ -49,51 +56,68 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		}
 		return null;
 	}
-
+*/
 	@Override
 	public void saveClient(Client client) {
-		getClients();
+		/*getClients();
 		DummyBDD.ajoutClient(client);
-		clients = DummyBDD.getClients();
+		clients = DummyBDD.getClients();*/
+		dao.saveClient(client);
 	}
 
 	@Override
 	public void updateClient(Client client) {
-		getClients();
+		/*getClients();
 		int index = clients.indexOf(client);
 		clients.set(index, client);
 		DummyBDD.setClients(clients);
-
+*/
+		Client entity=dao.findById((Long)client.getIdentifiant());
+		if(entity!=null){
+			entity.setNom(client.getNom());
+			entity.setPrenom(client.getPrenom());
+			entity.setPseudo(client.getPseudo());
+			entity.setMotdepasse(client.getMotdepasse());
+			entity.setEmail(client.getEmail());
+			entity.setAdresse(client.getAdresse());
+			entity.setCodePostal(client.getCodePostal());
+			entity.setVille(client.getVille());
+			entity.setTelephone(client.getTelephone());
+			entity.setDateNaissance(client.getDateNaissance());
+		}
+		dao.saveClient(entity);
 	}
 
 	@Override
 	public List<Client> findAllClients(Long IdentConseiller) {
-		getClients();
+		/*getClients();
 		List<Client> lClients = new ArrayList<Client>();
 		for (Client client : clients) {
 			if (client.getConseiller().getMatricule() == IdentConseiller) {
 				lClients.add(client);
 			}
 		}
-		return lClients;
+		return lClients;*/
+		return dao.findAllClients(IdentConseiller);
 	}
 
 	@Override
 	public boolean isClientExist(Client client) {
-		getClients();
+		/*getClients();
 		for (Client c : clients) {
 			if (c.equals(client)) {
 				return true;
 			}
 		}
-		return false;
+		return false;*/
+		return dao.isClientExist(client);
 	}
 
 	// #endregion
 
 	// #region Conseiller
 
-	private static List<Conseiller> conseillers;
+	/*private static List<Conseiller> conseillers;
 
 	private static void getConseillers() {
 		if (conseillers == null) {
@@ -101,51 +125,69 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			conseillers = DummyBDD.getConseillers();
 		}
 	}
-
+*/
 	@Override
 	public Conseiller findByMle(Long matricule) {
-		getConseillers();
+		/*getConseillers();
 		for (Conseiller c : conseillers) {
 			if(c.getMatricule()==matricule)
 				return c;
 		}
-		return null;
+		return null;*/
+		return dao.findByMle(matricule);
 	}
 
 	@Override
 	public void saveConseiller(Conseiller conseiller) {
-		getConseillers();
+		/*getConseillers();
 		DummyBDD.ajoutConseiller(conseiller);
-		conseillers= DummyBDD.getConseillers();
+		conseillers= DummyBDD.getConseillers();*/
+		dao.saveConseiller(conseiller);
 	}
 
 	@Override
 	public void updateConseiller(Conseiller conseiller) {
-		getConseillers();
+		/*getConseillers();
 		int index = conseillers.indexOf(conseiller);
 		conseillers.set(index, conseiller);
-		DummyBDD.setConseillers(conseillers);
+		DummyBDD.setConseillers(conseillers);*/
+		Conseiller entity=dao.findByMle((Long)conseiller.getMatricule());
+		if(entity!=null){
+			entity.setNom(conseiller.getNom());
+			entity.setPrenom(conseiller.getPrenom());
+			entity.setPseudo(conseiller.getPseudo());
+			entity.setMotdepasse(conseiller.getMotdepasse());
+			entity.setEmail(conseiller.getEmail());
+			entity.setAdresse(conseiller.getAdresse());
+			entity.setCodePostal(conseiller.getCodePostal());
+			entity.setVille(conseiller.getVille());
+			entity.setTelephone(conseiller.getTelephone());
+			entity.setDateNaissance(conseiller.getDateNaissance());
+		}
+		dao.saveConseiller(entity);
 	}
 
 	@Override
 	public List<Conseiller> findAllConseillers() {
-		getConseillers();
-		return conseillers;
+		/*getConseillers();
+		return conseillers;*/
+		return dao.findAllConseillers();
 	}
 
 	@Override
 	public boolean isConseillerExist(Conseiller conseiller) {
-		getConseillers();
+		/*getConseillers();
 		for (Conseiller c : conseillers) {
 			if (c==conseiller) return true;
 		}
-		return false;
+		return false;*/
+		return dao.isConseillerExist(conseiller);
 	}
 
 	// #endregion
 
 	// #region Utilisateur
-
+/*
 	private static List<Utilisateur> utilisateurs;
 
 	private static void getUtilisateurs() {
@@ -153,83 +195,89 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			DummyBDD.CreateBDD();
 			utilisateurs = DummyBDD.getUtilisateurs();
 		}
-	}
+	}*/
 
 	@Override
 	public boolean isPseudoExist(String pseudo) {
-		getUtilisateurs();
+		/*getUtilisateurs();
 		for (Utilisateur utilisateur : utilisateurs) {
 			if (utilisateur.getPseudo().equals(pseudo)) {
 				return true;
 			}
 		}
-		return false;
+		return false;*/
+		return dao.isPseudoExist(pseudo);
 	}
 
 	@Override
 	public Utilisateur getUtilisateurByPseudo(String pseudo) {
-		getUtilisateurs();
+		/*getUtilisateurs();
 		for (Utilisateur utilisateur : utilisateurs) {
 			if (utilisateur.getPseudo().equals(pseudo)) {
 				return utilisateur;
 			}
 		}
-		return null;
+		return null;*/
+		return dao.getUtilisateurByPseudo(pseudo);
 	}
 	// #endregion
 
 	//#region Demandes
 	
-	private static List<DemandeOuverture> demandes;
+	/*private static List<DemandeOuverture> demandes;
 
 	private static void getDemandes() {
 		if (demandes == null) {
 			DummyBDD.CreateBDD();
 			demandes = DummyBDD.getDemandes();
 		}
-	}
+	}*/
 	
 	@Override
 	public List<DemandeOuverture> findAllDemandes() {
-		getDemandes();
-		return demandes;
+		/*getDemandes();
+		return demandes;*/
+		return dao.findAllDemandes();
 	}
 
 	@Override
 	public List<DemandeOuverture> findDemandeByConseiller(Long matricule) {
-		getDemandes();
+		/*getDemandes();
 		List<DemandeOuverture> liste = new ArrayList<DemandeOuverture>();
 		for (DemandeOuverture demande : demandes){
 			if (demande.getConseiller()!=null && demande.getConseiller().getMatricule()==matricule){
 				liste.add(demande);
 			}
 		}
-		return liste;
+		return liste;*/
+		return dao.findDemandeByConseiller(matricule);
 	}
 
 	@Override
 	public void saveDemande(DemandeOuverture demandeOuverture) {
-		getDemandes();
-		DummyBDD.ajoutDemande(demandeOuverture);
-		
+		/*getDemandes();
+		DummyBDD.ajoutDemande(demandeOuverture);*/
+		dao.saveDemande(demandeOuverture);
 	}
 
 	@Override
 	public void affectionOuverture(DemandeOuverture demandeOuverture, Conseiller conseiller) {
-		getDemandes();
+		/*getDemandes();
 		int index = demandes.indexOf(demandeOuverture);
 		demandes.get(index).setConseiller(conseiller);
-		demandes.get(index).setDateAffectation(new Date());
+		demandes.get(index).setDateAffectation(new Date());*/
+		dao.affectationOuverture(demandeOuverture, conseiller);
 	}
 
 	@Override
 	public boolean isDemandeExist(DemandeOuverture ouverture) {
-		getDemandes();
+		/*getDemandes();
 		for (DemandeOuverture demande : demandes){
 			if (demande.equals(ouverture)) 
 				return true;
 		}
-		return false;
+		return false;*/
+		return dao.isDemandeExist(ouverture);
 	}
 	
 	//#endregion

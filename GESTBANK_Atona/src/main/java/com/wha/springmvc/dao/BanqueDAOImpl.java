@@ -1,0 +1,100 @@
+package com.wha.springmvc.dao;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.wha.springmvc.dao.AbstractDAO;
+import com.wha.springmvc.dao.BanqueDAO;
+import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.Compte;
+import com.wha.springmvc.model.Credit;
+import com.wha.springmvc.model.Debit;
+import com.wha.springmvc.model.Transaction;
+
+public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDAO {
+
+	@Override
+	public Compte getCompteByNo(Long noCompte) {
+		Compte compte=getByKey(noCompte);
+		return compte;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Compte> getComptesByClient(Long idClient) {
+		//List<Compte> comptes=getByKey(idClient);
+		List<Compte> comptes=getEntityManager().createQuery("SELECT c FROM Compte c WHERE c.noCompte in('SELECT cli from client cli where id=idClient')").getResultList();
+		return comptes;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void ajoutCompte(Compte compte, Long idClient) {
+		persist(compte);
+		//List<Compte> comptes=(List<Compte>) getByKey(idClient);
+		getComptesByClient(idClient).add(compte);
+	}
+
+	@Override
+	public void modificationCompte(Compte compte) {
+		Compte compteup=getByKey(compte.getNoCompte());
+		update(compteup);	
+	}
+
+	@Override
+	public List<Transaction> getAllTransactionsByCompte(Long noCompte) {
+		//Compte compte=getByKey(noCompte);
+		//List<Transaction> lt=getCompteByNo(noCompte).getListeTransactions();
+		List<Transaction> lt=getEntityManager().createQuery("SELECT ct FROM compte_transaction ct where ct.compte_noComtpe='noCompte'").getResultList();
+		return lt;
+	}
+
+	@Override
+	public List<Transaction> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth) {
+		//Compte compte=getByKey(noCompte);
+		List<Transaction> ltm=new ArrayList<>();
+		for (Transaction t : getCompteByNo(noCompte).getListeTransactions()) {
+			LocalDate ld = t.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if (ld.getMonthValue() == thatMonth) {
+				ltm.add(t);
+			}
+		}
+		return ltm;
+	}
+
+	@Override
+	public boolean ajoutDebit(Debit debit, Long noCompte) {
+		Compte compte=getByKey(noCompte);
+		List<Transaction> lt=compte.getListeTransactions();
+		if (compte.ajoutTransaction(debit)) {
+			lt.add(debit);
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public void ajoutCredit(Credit credit, Long noCompte) {
+		Compte compte=getByKey(noCompte);
+		List<Transaction> lt=compte.getListeTransactions();
+		compte.ajoutTransaction(credit);
+		lt.add(credit);
+	}
+
+	@Override
+	public boolean isCompteExist(Compte compte) {
+		for (Compte c : getAllComptes()) {
+			if (c.equals(compte))
+				return true;
+		}
+		return false;
+	}
+
+	@Override
+	public List<Compte> getAllComptes() {
+		List<Compte> comptes=getEntityManager().createQuery("SELECT com FROM Compte com ORDER BY com.noCompte ASC").getResultList();
+		return comptes;
+	}
+}

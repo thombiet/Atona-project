@@ -1,4 +1,4 @@
-package com.wha.springmvc.service;
+package com.wha.springmvc.dao;
 
 import java.util.List;
 
@@ -7,19 +7,16 @@ import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Utilisateur;
 
-public interface UtilisateurService {
-	
-	//#region client
-
+public interface UtilisateurDAO {
 	Client findById(Long identifiant);
 
 	//Client findByCompte(Long noCompte);
 
+	List<Client> findAllClients(Long mle);
+
 	void saveClient(Client client);
 
 	void updateClient(Client client);
-
-	List<Client> findAllClients(Long mle);
 
 	public boolean isClientExist(Client client);
 
@@ -57,9 +54,11 @@ public interface UtilisateurService {
 	
 	public void saveDemande(DemandeOuverture demandeOuverture);
 	
-	public void affectionOuverture (DemandeOuverture demandeOuverture, Conseiller conseiller);
+	public void affectationOuverture (DemandeOuverture demandeOuverture, Conseiller conseiller);
 	
 	public boolean isDemandeExist(DemandeOuverture ouverture);
-	
+
+	List<Utilisateur> findAllUtilisateurs();
+
 	//#endregion
 }

@@ -47,30 +47,30 @@ public class DummyBDD {
 	private static List<Conseiller> populateDummyConseillers() {
 		List<Conseiller> liste = new ArrayList<Conseiller>();
 		liste.add(new Conseiller(counterConseiller.incrementAndGet(), "Michel", "Jeanne", "JMichel", "JMichel",
-				"jmichel@gest-bank.ky", null, null, null, null));
+				"jmichel@gest-bank.ky", null, null, null, null, null));
 		liste.add(new Conseiller(counterConseiller.incrementAndGet(), "Rober", "Frank", "FRober", "FRober",
-				"frober@gest-bank.ky", null, null, null, null));
+				"frober@gest-bank.ky", null, null, null, null, null));
 		liste.add(new Conseiller(counterConseiller.incrementAndGet(), "Durant", "Jacques", "JDurant", "JDurant",
-				"jdurant@gest-bank.ky", null, null, null, null));
+				"jdurant@gest-bank.ky", null, null, null, null, null));
 		return liste;
 	}
 
 	private static List<Client> populateDummyClients() {
 		List<Client> liste = new ArrayList<Client>();
 		liste.add(new Client(counterClient.incrementAndGet(), "Davis", "Mark", "MDavis", "MDavis",
-				"mark.davis@b-mail.ky", null, null, null, null));
+				"mark.davis@b-mail.ky", null, null, null, null, null));
 		liste.add(new Client(counterClient.incrementAndGet(), "Davis", "Helen", "HDavis", "HDavis",
-				"helen.davis@b-mail.ky", null, null, null, null));
+				"helen.davis@b-mail.ky", null, null, null, null, null));
 		liste.add(new Client(counterClient.incrementAndGet(), "Damon", "Barn", "BDamon", "BDamon",
-				"barn.damon@b-mail.ky", null, null, null, null));
+				"barn.damon@b-mail.ky", null, null, null, null, null));
 		liste.add(new Client(counterClient.incrementAndGet(), "Thomas", "William", "WThomas", "WThomas",
-				"will.thoms@a-mail.ky", null, null, null, null));
+				"will.thoms@a-mail.ky", null, null, null, null, null));
 		liste.add(new Client(counterClient.incrementAndGet(), "Wong", "Mickael", "MWong", "MWong",
-				"mickael.wong2@c-mail.ky", null, null, null, null));
+				"mickael.wong2@c-mail.ky", null, null, null, null, null));
 		liste.add(new Client(counterClient.incrementAndGet(), "Davis", "Chris", "CDavis", "CDavis",
-				"chris.davis@y-mail.ky", null, null, null, null));
+				"chris.davis@y-mail.ky", null, null, null, null, null));
 		liste.add(new Client(counterClient.incrementAndGet(), "Gibbs", "Anthony", "AGibbs", "AGibbs",
-				"antonio.gibbs@n-mail.ky", null, null, null, null));
+				"antonio.gibbs@n-mail.ky", null, null, null, null, null));
 		return liste;
 	}
 
@@ -114,19 +114,19 @@ public class DummyBDD {
 		Date date = new Date();
 		date.setDate(date.getDate() - rand.nextInt(15));
 		liste.add(new DemandeOuverture(new ClientPotentiel("Sheppard", "John", "JSheppard", "john.sheppard@a-mail.com",
-				null, null, null, null, null), false, null, date, null));
+				null, null, null, null, null, null), false, null, date, null));
 		date = new Date();
 		date.setDate(date.getDate() - rand.nextInt(15));
 		liste.add(new DemandeOuverture(new ClientPotentiel("Halliwell", "Andy", "AHalliwell",
-				"andy.halliwell@w-mail.com", null, null, null, null, null), false, null, date, null));
+				"andy.halliwell@w-mail.com", null, null, null, null, null, null), false, null, date, null));
 		date = new Date();
 		date.setDate(date.getDate() - rand.nextInt(15));
 		liste.add(new DemandeOuverture(new ClientPotentiel("Beckett", "Martha", "MBeckett", "martha.beckett@c-mail.com",
-				null, null, null, null, null), false, null, date, null));
+				null, null, null, null, null, null), false, null, date, null));
 		date = new Date();
 		date.setDate(date.getDate() - rand.nextInt(15));
 		liste.add(new DemandeOuverture(new ClientPotentiel("Hogden", "William", "WHogden", "will.hogden@m-mail.com",
-				null, null, null, null, null), false, null, date, null));
+				null, null, null, null, null, null), false, null, date, null));
 		return liste;
 	}
 
