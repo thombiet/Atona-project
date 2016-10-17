@@ -1,13 +1,35 @@
 package com.wha.springmvc.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
+@Entity
+@Table (name="conseiller")
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("Conseiller")
 public class Conseiller extends Utilisateur {
 	// #region Attributs
+	
+	@Column (name="mle")
 	private Long matricule;
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="conseiller")
 	private List<DemandeOuverture> listeDemandesOuverture;
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Requete> listeDemandesClient;
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="conseiller")
 	private List<Client> listeClients;
 	// #endregion
 
@@ -18,17 +40,9 @@ public class Conseiller extends Utilisateur {
 		listeDemandesOuverture = new ArrayList<DemandeOuverture>();
 	}
 
-	public Conseiller(Long mle, String nom, String prenom, String identifiant) {
-		super(nom, prenom, identifiant, identifiant, null, null, null, null, null);
-		this.matricule = mle;
-		listeClients = new ArrayList<Client>();
-		listeDemandesClient = new ArrayList<Requete>();
-		listeDemandesOuverture = new ArrayList<DemandeOuverture>();
-	}
-
 	public Conseiller(Long matricule, String nom, String prenom, String pseudo, String motdepasse, String email,
-			String adresse, Integer codePostal, String ville, Integer telephone) {
-		super(nom, prenom, pseudo, motdepasse, email, adresse, codePostal, ville, telephone);
+			String adresse, Integer codePostal, String ville, Integer telephone, Date dateNaissance) {
+		super(nom, prenom, pseudo, motdepasse, email, adresse, codePostal, ville, telephone, dateNaissance);
 		this.matricule = matricule;
 		listeClients = new ArrayList<Client>();
 		listeDemandesClient = new ArrayList<Requete>();

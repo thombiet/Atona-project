@@ -2,12 +2,40 @@ package com.wha.springmvc.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+@Entity
+@Table (name="demandeOuverture")
 public class DemandeOuverture {
 	// #region Attributs
+	@Id
+	@Column(name="numDemande")
+	private int numDemande;
+	@OneToOne
 	private ClientPotentiel cp;
+	@Transient
 	private boolean valide;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="conseiller_mle",referencedColumnName="mle")
 	private Conseiller conseiller;
+	
+	@Column (name="dateCreation")
+	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
+	@Column (name="dateAffectation")
+	@Temporal(TemporalType.DATE)
 	private Date dateAffectation;
 	// #endregion
 
@@ -70,4 +98,12 @@ public class DemandeOuverture {
 		this.dateAffectation = dateAffectation;
 	}
 	// #endregion
+
+	public int getNumDemande() {
+		return numDemande;
+	}
+
+	public void setNumDemande(int numDemande) {
+		this.numDemande = numDemande;
+	}
 }

@@ -6,4 +6,5 @@ public enum TypeRequete {
 	DECOUVERT,
 	REMUNERATION,
 	CREATIONCOMPTE,
+	AUTRE,
 }

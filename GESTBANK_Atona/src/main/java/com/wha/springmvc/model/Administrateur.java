@@ -2,10 +2,25 @@ package com.wha.springmvc.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table (name="adminstrateur")
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("Adminstrateur")
 public class Administrateur extends Utilisateur {
 
 	// #region
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Conseiller> listeConseillers;
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<DemandeOuverture> listeDemandes;
 	// #endregion
 

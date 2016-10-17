@@ -1,17 +1,51 @@
 package com.wha.springmvc.model;
 
-public class Utilisateur {
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+@Table (name="utilisateur")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "UTILISATEUR_TYPE", discriminatorType = DiscriminatorType.STRING)
+public abstract class Utilisateur {
 
 	// #region Attributs
+	
+	@Column(name="nom")
 	private String nom;
+	@Column(name="prenom")
 	private String prenom;
+	@Id
+	@Column(name="pseudo")
 	private String pseudo;
+	@Column(name="mdp")
 	private String motdepasse;
+	@Column(name="email")
 	private String email;
+	@Column(name="adresse")
 	private String adresse;
+	@Column(name="codePostal")
 	private Integer codePostal;
+	@Column(name="ville")
 	private String ville;
+	@Column(name="telephone")
 	private Integer telephone;
+	@Column (name="dateNaissance")
+	@Temporal(TemporalType.DATE)
+	private Date dateNaissance;
 	// #endregion
 
 	// #region Constructeurs
@@ -20,7 +54,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(String nom, String prenom, String pseudo, String motdepasse, String email, String adresse,
-			Integer codePostal, String ville, Integer telephone) {
+			Integer codePostal, String ville, Integer telephone, Date dateNaissance) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.pseudo = pseudo;
@@ -30,6 +64,7 @@ public class Utilisateur {
 		this.codePostal = codePostal;
 		this.ville = ville;
 		this.telephone = telephone;
+		this.dateNaissance = dateNaissance;
 	}
 
 	// #endregion
@@ -105,6 +140,14 @@ public class Utilisateur {
 
 	public void setMotdepasse(String motdepasse) {
 		this.motdepasse = motdepasse;
+	}
+
+	public Date getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
 	}
 
 	// #endregion

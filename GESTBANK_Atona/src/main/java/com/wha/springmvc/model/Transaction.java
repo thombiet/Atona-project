@@ -2,10 +2,29 @@ package com.wha.springmvc.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+@Entity
+@Table (name="transaction")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TRANSACTION_TYPE", discriminatorType = DiscriminatorType.STRING)
 public class Transaction {
 	// #region Attributs
+	@Id
+	@Column(name="montant")
 	private Integer montant;
+	@Column(name="libelle")
 	private String libelle;
+	@Column (name="dateAffectation")
+	@Temporal(TemporalType.DATE)
 	private Date date;
 	// #endregion
 

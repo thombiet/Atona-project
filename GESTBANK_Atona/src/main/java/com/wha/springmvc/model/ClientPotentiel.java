@@ -2,19 +2,43 @@ package com.wha.springmvc.model;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+@Entity
+@Table (name="clientPotentiel")
 public class ClientPotentiel {
 	// #region Attributs
-	private String nom;
-	private String prenom;
+	@Id
+	@Column (name="identifiant")
 	private String identifiant;
+	@Column (name="nom")
+	private String nom;
+	@Column (name="prenom")
+	private String prenom;
+	@Column (name="email")
 	private String email;
+	@Column (name="adresse")
 	private String adresse;
+	@Column (name="codePostal")
 	private Integer codePostal;
+	@Column (name="ville")
 	private String ville;
+	@Column (name="telephone")
 	private Integer telephone;
+	@Column (name="revenuMens")
 	private Integer revenuMens;
+	@Column (name="dateNaissance")
+	@Temporal(TemporalType.DATE)
+	private Date dateNaissance;
+	@Transient
 	private List<File> piecesJutificatives;
 	// #endregion
 
@@ -24,7 +48,7 @@ public class ClientPotentiel {
 	}
 
 	public ClientPotentiel(String nom, String prenom, String identifiant, String email, String adresse,
-			Integer codePostal, String ville, Integer telephone, Integer revenuMens) {
+			Integer codePostal, String ville, Integer telephone, Integer revenuMens, Date dateNaissance) {
 		this();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -35,6 +59,7 @@ public class ClientPotentiel {
 		this.ville = ville;
 		this.telephone = telephone;
 		this.revenuMens = revenuMens;
+		this.dateNaissance = dateNaissance;
 	}
 	
 	// #endregion
@@ -44,6 +69,7 @@ public class ClientPotentiel {
 	public String getNom() {
 		return nom;
 	}
+
 
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -113,6 +139,14 @@ public class ClientPotentiel {
 		this.revenuMens = revenuMens;
 	}
 
+	public Date getDateNaissance() {
+		return dateNaissance;
+	}
+
+	public void setDateNaissance(Date dateNaissance) {
+		this.dateNaissance = dateNaissance;
+	}
+	
 	public List<File> getPiecesJutificatives() {
 		return piecesJutificatives;
 	}
