@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+.nom.ng-valid {
+	background-color: lightgreen;
+}
+
+.nom.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.prenom.ng-valid {
+	background-color: lightgreen;
+}
+
+.prenom.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.pseudo.ng-valid {
+	background-color: lightgreen;
+}
+
+.pseudo.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.pseudo.ng-dirty.ng-invalid-minlength {
+	background-color: yellow;
+}
+
+.email.ng-valid {
+	background-color: lightgreen;
+}
+
+.email.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.email.ng-dirty.ng-invalid-email {
+	background-color: yellow;
+}
+
+.adresse.ng-valid {
+	background-color: lightgreen;
+}
+
+.adresse.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.codePostal.ng-valid {
+	background-color: lightgreen;
+}
+
+.codePostal.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
+
+.ville.ng-valid {
+	background-color: lightgreen;
+}
+
+.ville.ng-dirty.ng-invalid-required {
+	background-color: red;
+}
