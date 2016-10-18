@@ -18,7 +18,7 @@ public class ClientPotentiel {
 	// #region Attributs
 	@Id
 	@Column (name="identifiant")
-	private String identifiant;
+	private String pseudo;
 	@Column (name="nom")
 	private String nom;
 	@Column (name="prenom")
@@ -52,7 +52,7 @@ public class ClientPotentiel {
 		this();
 		this.nom = nom;
 		this.prenom = prenom;
-		this.identifiant = identifiant;
+		this.pseudo = identifiant;
 		this.email = email;
 		this.adresse = adresse;
 		this.codePostal = codePostal;
@@ -123,12 +123,12 @@ public class ClientPotentiel {
 		this.telephone = telephone;
 	}
 
-	public String getIdentifiant() {
-		return identifiant;
+	public String getPseudo() {
+		return pseudo;
 	}
 
-	public void setIdentifiant(String pseudo) {
-		this.identifiant = pseudo;
+	public void setPseudo(String pseudo) {
+		this.pseudo = pseudo;
 	}
 
 	public Integer getRevenuMens() {

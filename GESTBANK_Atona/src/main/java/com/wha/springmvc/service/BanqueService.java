@@ -5,6 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
+import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
 
 public interface BanqueService {
@@ -25,9 +26,13 @@ public interface BanqueService {
 	
 	// #region Transaction
 
-	List<List<Transaction>> getAllTransactionsByCompte(Long noCompte);
+	List<Transaction> getAllTransactionsByCompte(Long noCompte);
 	
-	List<List<Transaction>> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth);
+	List<Transaction> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth);
+	
+	List<Notification> getAllNotificationsByCompte(Long noCompte);
+	
+	List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth);
 	
 	boolean ajoutDebit(Debit debit, Long noCompte);
 	

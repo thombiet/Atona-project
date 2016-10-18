@@ -22,6 +22,7 @@ import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.DemandeOuverture;
+import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
@@ -404,17 +405,50 @@ public class HelloWorldRestController {
 
 	// #region Transaction
 
+	// ---Récuperation de tous les transactions d'un compte
+		@RequestMapping(value = "/compte/{noCompte}/transaction", method = RequestMethod.GET)
+		public ResponseEntity<List<Transaction>> getAllTransactions(@PathVariable("noCompte") Long noCompte) {
+			if (banqueService.getCompteByNo(noCompte)==null){
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			List<Transaction> liste = new ArrayList<>();
+			liste = banqueService.getAllTransactionsByCompte(noCompte);
+			return new ResponseEntity<List<Transaction>>(liste, HttpStatus.OK);
+		}
+	
 	// ---Récuperation des transactions d'un mois donné d'un compte
 	@RequestMapping(value = "/compte/{noCompte}/transaction/{mois}", method = RequestMethod.GET)
-	public ResponseEntity<List<List<Transaction>>> getThatMonthTransactions(@PathVariable("mois") int month, @PathVariable("noCompte") Long noCompte) {
+	public ResponseEntity<List<Transaction>> getThatMonthTransactions(@PathVariable("mois") int month, @PathVariable("noCompte") Long noCompte) {
 		if (banqueService.getCompteByNo(noCompte)==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		List<List<Transaction>> liste = new ArrayList<>();
+		List<Transaction> liste = new ArrayList<>();
 		liste = banqueService.getThatMonthTransactionsByCompte(noCompte, month);
-		return new ResponseEntity<List<List<Transaction>>>(liste, HttpStatus.OK);
+		return new ResponseEntity<List<Transaction>>(liste, HttpStatus.OK);
 	}
 
+	// ---Récuperation de tous les notifications d'un compte
+			@RequestMapping(value = "/compte/{noCompte}/notification", method = RequestMethod.GET)
+			public ResponseEntity<List<Notification>> getAllNotifications(@PathVariable("noCompte") Long noCompte) {
+				if (banqueService.getCompteByNo(noCompte)==null){
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+				List<Notification> liste = new ArrayList<>();
+				liste = banqueService.getAllNotificationsByCompte(noCompte);
+				return new ResponseEntity<List<Notification>>(liste, HttpStatus.OK);
+			}
+			
+	// ---Récuperation des notifications d'un mois donné d'un compte
+		@RequestMapping(value = "/compte/{noCompte}/notification/{mois}", method = RequestMethod.GET)
+		public ResponseEntity<List<Notification>> getThatMonthNotifications(@PathVariable("mois") int month, @PathVariable("noCompte") Long noCompte) {
+			if (banqueService.getCompteByNo(noCompte)==null){
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			List<Notification> liste = new ArrayList<>();
+			liste = banqueService.getThatMonthNotificationsByCompte(noCompte, month);
+			return new ResponseEntity<List<Notification>>(liste, HttpStatus.OK);
+		}
+	
 	// ---Ajout d'un débit dans un compte de n° noCompte
 	@RequestMapping(value = "/compte/{noCompte}/transaction/debit/", method = RequestMethod.POST)
 	public ResponseEntity<Void> ajoutDebit(@RequestBody Debit debit, @PathVariable("noCompte") Long noCompte) {

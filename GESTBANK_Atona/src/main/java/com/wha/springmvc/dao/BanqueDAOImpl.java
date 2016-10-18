@@ -7,10 +7,10 @@ import java.util.List;
 
 import com.wha.springmvc.dao.AbstractDAO;
 import com.wha.springmvc.dao.BanqueDAO;
-import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.Debit;
+import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
 
 public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDAO {
@@ -25,11 +25,10 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	@Override
 	public List<Compte> getComptesByClient(Long idClient) {
 		//List<Compte> comptes=getByKey(idClient);
-		List<Compte> comptes=getEntityManager().createQuery("SELECT c FROM Compte c WHERE c.noCompte in('SELECT cli from client cli where id=idClient')").getResultList();
+		List<Compte> comptes=getEntityManager().createQuery("SELECT c.listeComptes FROM Client c WHERE identifiant= :idClient").getResultList();
 		return comptes;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void ajoutCompte(Compte compte, Long idClient) {
 		persist(compte);
@@ -47,7 +46,7 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	public List<Transaction> getAllTransactionsByCompte(Long noCompte) {
 		//Compte compte=getByKey(noCompte);
 		//List<Transaction> lt=getCompteByNo(noCompte).getListeTransactions();
-		List<Transaction> lt=getEntityManager().createQuery("SELECT ct FROM compte_transaction ct where ct.compte_noComtpe='noCompte'").getResultList();
+		List<Transaction> lt=getEntityManager().createQuery("SELECT c.listeTransactions FROM Compte c where c.noComtpe= :noCompte").getResultList();
 		return lt;
 	}
 
@@ -94,7 +93,25 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 
 	@Override
 	public List<Compte> getAllComptes() {
-		List<Compte> comptes=getEntityManager().createQuery("SELECT com FROM Compte com ORDER BY com.noCompte ASC").getResultList();
+		List<Compte> comptes=getEntityManager().createQuery("SELECT com FROM Compte com").getResultList();
 		return comptes;
+	}
+
+	@Override
+	public List<Notification> getAllNotificationsByCompte(Long noCompte) {
+		List<Notification> lt=getEntityManager().createQuery("SELECT c.listeNotifications FROM Compte c where c.noComtpe= :noCompte").getResultList();
+		return lt;
+	}
+
+	@Override
+	public List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth) {
+		List<Notification> lnm=new ArrayList<>();
+		for (Notification n : getCompteByNo(noCompte).getListeNotification()) {
+			LocalDate ld = n.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			if (ld.getMonthValue() == thatMonth) {
+				lnm.add(n);
+			}
+		}
+		return lnm;
 	}
 }

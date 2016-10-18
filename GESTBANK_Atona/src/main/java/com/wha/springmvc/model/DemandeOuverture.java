@@ -2,6 +2,7 @@ package com.wha.springmvc.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class DemandeOuverture {
 	@Id
 	@Column(name="numDemande")
 	private int numDemande;
-	@OneToOne
+	@OneToOne(cascade=CascadeType.PERSIST)
 	private ClientPotentiel cp;
 	@Transient
 	private boolean valide;

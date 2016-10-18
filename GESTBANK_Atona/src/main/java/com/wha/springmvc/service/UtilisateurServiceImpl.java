@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
 
 @Service("clientService")
+@Transactional
 public class UtilisateurServiceImpl implements UtilisateurService {
 
 	// #region Client
