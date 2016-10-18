@@ -12,9 +12,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="adminstrateur")
+@Table (name="administrateur")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("Adminstrateur")
+@DiscriminatorValue("Administrateur")
 public class Administrateur extends Utilisateur {
 
 	// #region

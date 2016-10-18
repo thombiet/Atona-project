@@ -35,9 +35,9 @@ public class Client extends Utilisateur {
 	private List<File> piecesJustificatives;
 	@Column (name="revenuMens")
 	private Integer revenuMensuel;
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="conseiller_mle",referencedColumnName="mle")
-	private Conseiller conseiller;
+	private Conseiller conseiller;*/
 
 	// #endregion
 
@@ -94,20 +94,20 @@ public class Client extends Utilisateur {
 		this.revenuMensuel = revenuMensuel;
 	}
 
-	public Conseiller getConseiller() {
+	/*public Conseiller getConseiller() {
 		return conseiller;
 	}
 
 	public void setConseiller(Conseiller conseiller) {
 		this.conseiller = conseiller;
 	}
-
+*/
 	// #endregion
 
 	// #region Utilitaire
 	@Override
 	public String toString() {
-		return "Client [getConseiller()=" + getConseiller() + ", getNom()=" + getNom() + ", getPrenom()=" + getPrenom()
+		return "Client [ getNom()=" + getNom() + ", getPrenom()=" + getPrenom()
 				+ ", getIdentifiant()=" + getPseudo() + "]";
 	}
 

@@ -23,13 +23,13 @@ import com.wha.springmvc.model.Utilisateur;
 		}
 
 		public List<Client> findAllClients() {
-			List<Client> clients=getEntityManager().createQuery("SELECT u FROM utilisateur u WHERE utilisateur_type='client'").getResultList();
+			List<Client> clients=getEntityManager().createQuery("SELECT u FROM Utilisateur u WHERE utilisateur_type LIKE :client").getResultList();
 			return clients;
 		}
 
 		@Override
 		public List<Client> findAllClients(Long mle) {
-			List<Client> clients=getEntityManager().createQuery("SELECT u.listeClients FROM utilisateur u WHERE utilisateur_type='client' and matricule='mle'").getResultList();
+			List<Client> clients=getEntityManager().createQuery("SELECT u.listeClients FROM Utilisateur u WHERE utilisateur_type LIKE :client and matricule LIKE :mle").getResultList();
 			return clients;
 		}
 		
@@ -72,7 +72,8 @@ import com.wha.springmvc.model.Utilisateur;
 
 		@Override
 		public List<Conseiller> findAllConseillers() {
-			List<Conseiller> Conseillers=getEntityManager().createQuery("SELECT u FROM utilisateur u where utilisateur_type='conseiller' ORDER BY c.name ASC").getResultList();
+			List<Conseiller> Conseillers=getEntityManager().createQuery("SELECT c FROM Conseiller c", Conseiller.class).getResultList();
+			
 			return Conseillers;
 		}
 		
@@ -89,7 +90,7 @@ import com.wha.springmvc.model.Utilisateur;
 
 		@Override
 		public List<Utilisateur> findAllUtilisateurs() {
-			List<Utilisateur> Utilisateurs=getEntityManager().createQuery("SELECT u FROM utilisateur u ORDER BY u.utilisateur_type ASC").getResultList();
+			List<Utilisateur> Utilisateurs=getEntityManager().createQuery("SELECT u FROM Utilisateur u").getResultList();
 			return Utilisateurs;
 		}
 
@@ -114,7 +115,7 @@ import com.wha.springmvc.model.Utilisateur;
 		public Utilisateur getUtilisateurByPseudo(String pseudo) {
 			System.out.println("pseudo: "+pseudo);
 			try{
-				Utilisateur utilisateur=(Utilisateur) getEntityManager().createQuery("SELECT u FROM Utilisateur u WHERE u.pseudo='peudo'").
+				Utilisateur utilisateur=(Utilisateur) getEntityManager().createQuery("SELECT u FROM Utilisateur u WHERE u.pseudo LIKE :pseudo").
 						setParameter("pseudo",pseudo).getSingleResult();
 				return utilisateur;
 			}
@@ -127,13 +128,13 @@ import com.wha.springmvc.model.Utilisateur;
 		
 		@Override
 		public List<DemandeOuverture> findAllDemandes() {
-			List<DemandeOuverture> demandeOuverture=getEntityManager().createQuery("SELECT do FROM demandeouverture do ORDER BY do.dateCreation ASC").getResultList();
+			List<DemandeOuverture> demandeOuverture=getEntityManager().createQuery("SELECT do FROM DemandeOuverture do").getResultList();
 			return demandeOuverture;
 		}
 
 		@Override
 		public List<DemandeOuverture> findDemandeByConseiller(Long matricule) {
-			List<DemandeOuverture> DemandeOuvertures=getEntityManager().createQuery("SELECT do FROM demandeouverture do WHERE utilisateur_type='conseiller' and matricule='mle'").getResultList();
+			List<DemandeOuverture> DemandeOuvertures=getEntityManager().createQuery("SELECT do FROM DemandeOuverture do WHERE utilisateur_type LIKE :conseiller and matricule LIKE :mle").getResultList();
 			return DemandeOuvertures;
 		}
 

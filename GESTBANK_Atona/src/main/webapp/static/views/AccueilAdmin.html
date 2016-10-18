@@ -9,8 +9,12 @@
 
 <!-- </div> -->
 <br>
-
-<button ng-click="mainCtrl.redirection('/Admin/GestionConseillers')">Gestion des Conseillers</button>
+<div class="boutons_accueil">
+<button ng-click="mainCtrl.redirection('/Admin/GestionConseillers')" class="btnAccueil1"><img src="static/images/conseiller_clients.png" width="256" height="256" alt="Save icon"/><br/>
+Gestion des Conseillers</button>
 <br>
-<button ng-click="mainCtrl.redirection('/Admin/GestionDemandes')">Gestion des Demandes d'Inscription</button>
+<button ng-click="mainCtrl.redirection('/Admin/GestionDemandes')" class="btnAccueil2"><img src="static/images/conseiller_demandes.png" width="256" height="256" alt="Save icon"/>
+<br/>
+Demandes d'Ouverture de Compte</button>
+</div>
 </div>

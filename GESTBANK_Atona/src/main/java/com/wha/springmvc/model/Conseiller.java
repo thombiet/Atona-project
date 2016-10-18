@@ -11,6 +11,8 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,14 +24,14 @@ import javax.persistence.Table;
 @DiscriminatorValue("Conseiller")
 public class Conseiller extends Utilisateur {
 	// #region Attributs
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="mle")
 	private Long matricule;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="conseiller")
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<DemandeOuverture> listeDemandesOuverture;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Requete> listeDemandesClient;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="conseiller")
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Client> listeClients;
 	// #endregion
 

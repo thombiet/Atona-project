@@ -37,7 +37,7 @@ public class DummyBDD {
 			setTransactions(populateDummyTransaction());
 			setDemandes(populateDummyOuverture());
 			populateUtilisateurs();
-			affectationConseiller();
+		//affectationConseiller();
 			affectationCompte();
 			transactionsCompte();
 		}
@@ -130,7 +130,7 @@ public class DummyBDD {
 		return liste;
 	}
 
-	private static void affectationConseiller() {
+	/*private static void affectationConseiller() {
 		int nbCons = conseillers.size();
 
 		for (int i = 0; i < nbCons; i++) {
@@ -140,7 +140,7 @@ public class DummyBDD {
 			}
 		}
 
-	}
+	}*/
 
 	/*
 	 * private static void affectationCompte() { int nbClient = clients.size();

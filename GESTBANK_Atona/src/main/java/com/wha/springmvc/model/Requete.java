@@ -18,9 +18,9 @@ public class Requete {
 	@ManyToOne
 	@JoinColumn(name="no_compte",referencedColumnName="noComtpe")
 	private Compte compte;
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="id_client",referencedColumnName="identifiant")
-	private Client client;
+	private Client client;*/
 
 	
 	@Column (name="message")
@@ -50,13 +50,13 @@ public class Requete {
 		this.compte = compte;
 	}
 
-	public Client getClient() {
+	/*public Client getClient() {
 		return client;
 	}
 
 	public void setClient(Client client) {
 		this.client = client;
-	}
+	}*/
 
 	public String getMessage() {
 		return message;

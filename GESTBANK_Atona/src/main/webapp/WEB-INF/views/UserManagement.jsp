@@ -115,9 +115,6 @@
               </div>
           </div>
       </div>
-      
-		
-  
-      <jsp:include page="PiedDePage.jsp"></jsp:include>
+
   </body>
 </html>
