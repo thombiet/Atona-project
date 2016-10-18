@@ -1,14 +1,10 @@
 /**
  * Le controleur qui gère toutes les pages de l'espace Public
  */
-function PublicController($http, $scope) {
+function PublicController($http, $scope, uService) {
 
-	$scope.init = function(){
-		if(sessionStorage.idConnecte!==null){
-			sessionStorage.idConnecte=null;
-			sessionStorage.role="Guest";
-		}
-	}
+	var self = this;
+	self.client = new ClientPotentiel();
 	
 	$scope.devises = [ "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK",
 			"EUR", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "JPY",
@@ -25,7 +21,8 @@ function PublicController($http, $scope) {
 					base : $scope.base,
 					symbols : $scope.symbols
 				}
-			}).then(function(response) {
+			}).then(
+			function(response) {
 				$scope.rate = response.data.rates[$scope.symbols];
 				$scope.change = $scope.montant * $scope.rate;
 			}, function(error) {
@@ -66,6 +63,36 @@ function PublicController($http, $scope) {
 		}, function(reason) {
 			console.log("error : "+reason)
 		})
+	}
+	
+	self.creationClient = function (){
+		console.log(self.client);
+		var demande={
+			numDemande: null,
+			cp:self.client,
+			valide: null,
+			dateCreation:null,
+			dateAffectation : null,
+		}
+		uService.createDemande(demande).then(
+			function(value) {
+			
+		}, function(reason) {
+			
+		})
+	}
+	
+	function ClientPotentiel(identifiant, adresse, codePostal, dateNaissance, email, nom, prenom, revenuMens, telephone, ville){
+		this.identifiant = identifiant;
+		this.adresse = adresse;
+		this.codePostal = codePostal;
+		this.dateNaissance = dateNaissance;
+		this.email = email;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.revenuMens = revenuMens;
+		this.telephone = telephone;
+		this.ville = ville;
 	}
 
 }

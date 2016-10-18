@@ -1,14 +1,18 @@
 <meta charset="utf-8">
-<link rel="stylesheet"
+<link
+	rel="stylesheet"
 	href="static/css/style_Formulaire_Inscription.css">
-<link rel="stylesheet"
+<link
+	rel="stylesheet"
 	href="static/css/style_validation.css">
 
 <div id="bloc_page">
 	<h1>Formulaire d'Inscription</h1>
 	<h4>Tous les champs sont obligatoires</h4>
 	<br />
-	<form ng-submit="ctrl.submit()" name="myForm">
+	<form
+		ng-submit="PublicCtrl.creationClient()"
+		name="myForm">
 		<div class="form-style-10">
 
 			<fieldset>
@@ -19,9 +23,13 @@
 
 				<div class="inner-wrap">
 					<div class="entry">
-						<label id="text">Nom</label> &nbsp; <input type="text"
-							ng-model="ctrl.user.username" name="nom" class="input-sm"
-							placeholder="Entrez votre nom" required />
+						<label id="text">Nom</label> &nbsp; <input
+							type="text"
+							ng-model="PublicCtrl.client.nom"
+							name="nom"
+							class="input-sm"
+							placeholder="Entrez votre nom"
+							required />
 						<!--  div class="has-error" ng-show="myForm.$dirty">
 						<span ng-show="myForm.nom.$error.required">Champ
 							Obligatoire</span> <span ng-show="myForm.nom.$invalid">Ce champ
@@ -29,56 +37,84 @@
 					</div-->
 					</div>
 					<div class="entry">
-						<label id="text">Prénom</label> <input type="text" name="prenom"
-							class="input-sm" placeholder="Entrez votre prénom" required>
+						<label id="text">Prénom</label> <input
+							type="text"
+							ng-model="PublicCtrl.client.prenom"
+							name="prenom"
+							class="input-sm"
+							placeholder="Entrez votre prénom"
+							required>
 					</div>
 
 					<div class="entry">
-						<label id="text">Pseudo</label> <input type="text" name="pseudo"
-							class="input-sm" placeholder="Choisissez un pseudo" required
+						<label id="text">Pseudo</label> <input
+							type="text"
+							ng-model="PublicCtrl.client.pseudo"
+							name="pseudo"
+							class="input-sm"
+							placeholder="Choisissez un pseudo"
+							required
 							minlength="4">
 					</div>
 
 					<div class="entry">
-						<label id="email">Email</label> <input type="email"
-							ng-model="ctrl.user.email" name="email" class="input-sm"
-							placeholder="Entrez votre Email" required />
+						<label id="email">Email</label> <input
+							type="email"
+							ng-model="PublicCtrl.client.email"
+							name="email"
+							class="input-sm"
+							placeholder="Entrez votre Email"
+							required />
 					</div>
 					<div class="entry">
-						<label id="text">Adresse</label> <input type="text" name="adresse"
-							class="input-sm" placeholder="Entrez votre Adresse" required>
+						<label id="text">Adresse</label> <input
+							type="text"
+							ng-model="PublicCtrl.client.adresse"
+							name="adresse"
+							class="input-sm"
+							placeholder="Entrez votre Adresse"
+							required>
 					</div>
 					<div class="codeVille">
 						<div class="entry">
-							<label id="numeric">Code postal</label> <input type="number"
-								name="codePostal" id="codeP" class="input-sm2"
-								placeholder="XXXXX" required>
+							<label id="numeric">Code postal</label> <input
+								type="number"
+								name="codePostal"
+								ng-model="PublicCtrl.client.codePostal"
+								id="codeP"
+								class="input-sm2"
+								placeholder="XXXXX"
+								required>
 
 						</div>
 						<div class="entry">
-							<label id="ville">Ville</label> <input type="text" name="ville"
-								class="input-sm3" placeholder="Votre Ville" required>
+							<label id="ville">Ville</label> <input
+								type="text"
+								name="ville"
+								ng-model="PublicCtrl.client.ville"
+								class="input-sm3"
+								placeholder="Votre Ville"
+								required>
 
-						</div>
-					</div>
-					<div class="genre">
-						<div class="entry">
-							<label id="date">Date de Naissance </label> <input type="Date"
-								name="date" class="input-sm2" id="dateNaissance"
-								placeholder="Date de Naissance" required>
-						</div>
-						<div class="entry">
-							<label id="genre">Genre</label> <select name="genre"
-								class="input-sm3" required>
-								<option>sexe</option>
-								<option>Feminin</option>
-								<option>Masculin</option>
-							</select>
 						</div>
 					</div>
 					<div class="entry">
-						<label id="tel">Téléphone</label> <input type="tel"
-							name="telephone" class="input-sm" placeholder="ex : 0299000000"
+						<label id="date">Date de Naissance </label> <input
+							type="Date"
+							name="date"
+							ng-model="PublicCtrl.client.dateNaissance"
+							class="input-sm2"
+							id="dateNaissance"
+							placeholder="Date de Naissance"
+							required>
+					</div>
+					<div class="entry">
+						<label id="tel">Téléphone</label> <input
+							type="tel"
+							name="telephone"
+							ng-model="PublicCtrl.client.telephone"
+							class="input-sm"
+							placeholder="ex : 0299000000"
 							required>
 					</div>
 
@@ -89,28 +125,33 @@
 
 				<div class="inner-wrap">
 					<div class="entry2">
-						<label id="choix">Autorisation découvert</label> <input
-							type="checkbox" name="decouvert" id="box">
-					</div>
-					<br>
-					<div class="entry2">
-						<label id="numeric">Revenus mensuels</label> <input type="numeric"
-							name="revenus" id="revenus" class="input-sm4">
+						<label id="revenus">Revenus mensuels</label> <input
+							type="number"
+							ng-model="PublicCtrl.client.revenuMensuel"
+							name="revenus"
+							id="revenus"
+							class="input-sm4">
 					</div>
 					<br>
 					<div class="entry2">
 						<label id="files">Documents justificatifs</label> <input
-							type="file" id="mesFichiers" multiple="multiple">
+							type="file"
+							id="mesFichiers"
+							multiple="multiple">
 					</div>
 				</div>
 				<br>
-				<div id="btn_retour">
-					<a href="#/" class="myButton">Retour</a>
-				</div>
 				<div id="btn_validation">
-					<input type="submit" class="myButton" ng-disabled="myForm.$invalid"
-						ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }">
-					<button type="reset" class="myButton" role="button"
+					<input
+						type="submit"
+						class="myButton"
+						ng-disabled="myForm.$invalid"
+						ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }"
+						value="Créer Demande">
+					<button
+						type="reset"
+						class="myButton"
+						role="button"
 						aria-disabled="false">Annuler</button>
 				</div>
 			</fieldset>

@@ -1,7 +1,7 @@
 /**
  * Le controleur qui gère toutes les pages de l'espace Administrateur
  */
-function AdministrateurController($scope, uService) {
+function AdministrateurController($scope, $routeParams, uService) {
 
 	var self = this;
 	
@@ -14,6 +14,9 @@ function AdministrateurController($scope, uService) {
 	else {
 		getAllConseillers();
 		getAllDemandes();
+		if ($routeParams.matricule){
+			getConseillerByMle($routeParams.matricule);
+		}
 	}
 	
 	
@@ -35,7 +38,7 @@ function AdministrateurController($scope, uService) {
 
 	function getConseillerByMle(Mle) {
 		uService.getConseillerByMle(Mle).then(function(d) {
-			self.conseiller = d;
+			$scope.conseiller = d;
 		}, function(errResponse) {
 			console.error('Error while fetching Conseiller');
 		});

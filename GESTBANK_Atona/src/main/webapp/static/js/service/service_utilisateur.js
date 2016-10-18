@@ -237,9 +237,9 @@ function utilisateurService($http, $q) {
     }
     
     /* Ajout d'une nouvelle demande */
-    function createDemande(conseiller) {
+    function createDemande(demande) {
         var deferred = $q.defer();
-        $http.post(DEMANDE_URI)
+        $http.post(DEMANDE_URI, demande)
             .then(
             function (response) {
                 deferred.resolve(response.data);

@@ -27,7 +27,7 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 	
 	function getConseillerByMle(matricule) {
 		uService.getConseillerByMle(matricule).then(function(value) {
-			self.utilisateur = value;
+			$scope.conseiller = value;
 		}, function(reason) {
 			console.error('Error while fetching Conseiller: ' + reason);
 		});

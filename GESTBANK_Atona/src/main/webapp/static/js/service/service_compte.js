@@ -12,7 +12,8 @@ function compteService($http, $q){
     	updateCompte:updateCompte,
     	deleteCompte:deleteCompte,
     //---------------------Transaction-----------------
-    	getTransactionsByCompteAndMonth:getTransactionsByCompteAndMonth
+    	getTransactionsByCompteAndMonth:getTransactionsByCompteAndMonth,
+    	getTransactionsByCompte:getTransactionsByCompte
     };
 
     return factory;
@@ -99,9 +100,9 @@ function compteService($http, $q){
     
     //--------------------------------------Transaction--------------
     /* recupere les transaction d'un compte pour un mois donné */
-    function getTransactionsByCompteAndMonth(NoCompte, Month){
+    function getTransactionsByCompteAndMonth(NoCompte){
     	var deferred = $q.defer();
-        $http.get(COMPTE_URI+NoCompte+"/transaction/"+Month)
+        $http.get(COMPTE_URI+NoCompte+"/transaction/")
             .then(
             function (response) {
                 deferred.resolve(response.data);
