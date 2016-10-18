@@ -5,6 +5,8 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.wha.springmvc.dao.AbstractDAO;
 import com.wha.springmvc.dao.BanqueDAO;
 import com.wha.springmvc.model.Compte;
@@ -13,6 +15,7 @@ import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
 
+@Repository("BanqueDAO")
 public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDAO {
 
 	@Override
