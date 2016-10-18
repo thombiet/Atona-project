@@ -100,7 +100,23 @@ function compteService($http, $q){
     
     //--------------------------------------Transaction--------------
     /* recupere les transaction d'un compte pour un mois donné */
-    function getTransactionsByCompteAndMonth(NoCompte){
+    function getTransactionsByCompteAndMonth(NoCompte, Month){
+    	var deferred = $q.defer();
+        $http.get(COMPTE_URI+NoCompte+"/transaction/"+Month)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching transaction');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    /* recupere toutes les transaction d'un compte*/
+    function getTransactionsByCompte(NoCompte){
     	var deferred = $q.defer();
         $http.get(COMPTE_URI+NoCompte+"/transaction/")
             .then(

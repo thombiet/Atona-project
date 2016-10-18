@@ -29,7 +29,7 @@ public class Client extends Utilisateur {
 	
 	@Column (name="identifiant")
 	private Long identifiant;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Compte> listeComptes;
 	@Transient
 	private List<File> piecesJustificatives;

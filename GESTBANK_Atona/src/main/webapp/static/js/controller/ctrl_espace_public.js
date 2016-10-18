@@ -71,12 +71,13 @@ function PublicController($http, $scope, uService) {
 			numDemande: null,
 			cp:self.client,
 			valide: null,
-			dateCreation:null,
+			dateCreation: new Date(),
 			dateAffectation : null,
 		}
 		uService.createDemande(demande).then(
 			function(value) {
-			
+				alert("Votre demande a été enregistrée !")
+				$scope.redirection('/');
 		}, function(reason) {
 			
 		})
