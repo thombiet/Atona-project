@@ -1,5 +1,7 @@
 <meta charset="utf-8" />
-<link rel="stylesheet" href="static/css/style_Accueil_guest.css">
+<link
+	rel="stylesheet"
+	href="static/css/style_Accueil_guest.css">
 
 <div class=ma_page>
 
@@ -7,33 +9,54 @@
 
 		<div id="aide">
 			<p>
-				<a href="mailto:contact@gest-bank.cy" class="myButton">Nous contacter</a> <a href="#"
+				<a
+					href="mailto:contact@gest-bank.cy"
+					class="myButton">Nous contacter</a> <a
+					href="#"
 					class="myButton">?</a>
 			</p>
 		</div>
 
-		<div id="social" align="center">
+		<div
+			id="social"
+			align="center">
 			<p>
 				<a href="https://facebook.com"><img
-					src="static/images/Facebook.png" alt="Facebook" height="60%" /></a> <a
-					href="https://plus.google.com"><img
-					src="static/images/Google+.png" alt="Google+" height="60%" /></a> <a
-					href="https://twitter.com"><img src="static/images/Twitter.png"
-					alt="Twitter" height="60%" /></a> <a href="#"><img
-					src="static/images/rss.png" alt="RSS" height="60%"/></a>
+					src="static/images/Facebook.png"
+					alt="Facebook"
+					height="60%" /></a> <a href="https://plus.google.com"><img
+					src="static/images/Google+.png"
+					alt="Google+"
+					height="60%" /></a> <a href="https://twitter.com"><img
+					src="static/images/Twitter.png"
+					alt="Twitter"
+					height="60%" /></a> <a href="#"><img
+					src="static/images/rss.png"
+					alt="RSS"
+					height="60%" /></a>
 			</p>
 		</div>
 
 		<div id="Identification">
-			<form>
+			<form ng-submit="connexion()">
 				<p>
-					<input type="text" id="pseudo" placeholder="Identifiant" ng-model="pseudo"/> <input
-						type="password" id="mdp" placeholder="Mot de Passe" ng-model="mdp"/> <a
-						class="myButton" ng-click="connexion()">Connexion</a>
+					<input
+						type="text"
+						id="pseudo"
+						placeholder="Identifiant"
+						ng-model="pseudo" /> <input
+						type="password"
+						id="mdp"
+						placeholder="Mot de Passe"
+						ng-model="mdp" /> <input
+						type="submit"
+						class="myButton"
+						value="Connexion" />
 				</p>
 			</form>
 			<p>
-				Pas encore de compte? &nbsp; <a href="#/Inscription"
+				Pas encore de compte? &nbsp; <a
+					href="#/Inscription"
 					class="myButton">Inscrivez-vous</a>
 			</p>
 		</div>
@@ -48,27 +71,48 @@
 		</legend>
 		<br> <br>
 		<div class="convert">
-			<form ng_submit="conversion()" >
+			<form ng_submit="conversion()">
 				<div class="montant">
-					<label>Montant à convertir : </label><input type="number"
-						ng-model="montant" class="input-tx1"
+					<label>Montant à convertir : </label><input
+						type="number"
+						ng-model="montant"
+						class="input-tx1"
 						placeholder="Entrez une valeur">
 				</div>
 				<div class="dev">
 					<p>de</p>
-					<select ng-model="base" class="input-tx2">
-						<option ng-repeat="d in devises" placeholder="devise">{{d}}</option>
+					<select
+						ng-model="base"
+						class="input-tx2">
+						<option
+							ng-repeat="d in devises"
+							placeholder="devise">{{d}}</option>
 					</select>
 					<p>vers</p>
-					<select ng-model="symbols" class="input-tx2">
-						<option ng-repeat="d in devises" placeholder="devise">{{d}}</option>
-					</select> <input type="submit" class="myButton" value="Convertir">
+					<select
+						ng-model="symbols"
+						class="input-tx2">
+						<option
+							ng-repeat="d in devises"
+							placeholder="devise">{{d}}</option>
+					</select> <input
+						type="submit"
+						class="myButton"
+						value="Convertir">
 				</div>
-			</form><br /> 
-			<div class="result" ng-show="change">
-				<p>le montant est de <p1>{{change}}</p1> {{symbols}}
+			</form>
+			<br />
+			<div
+				class="result"
+				ng-show="change">
 				<p>
-					avec un taux de <p2>{{rate}} </p2>{{symbols}}  pour 1 {{base}}
+					le montant est de
+					<p1>{{change}}</p1>
+					{{symbols}}
+				<p>
+					avec un taux de
+					<p2>{{rate}} </p2>
+					{{symbols}} pour 1 {{base}}
 				</p>
 			</div>
 		</div>
