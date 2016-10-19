@@ -28,9 +28,9 @@ public class DemandeOuverture {
 	private ClientPotentiel cp;
 	@Column (name="Status")
 	private boolean valide;
-	/*@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="conseiller_mle",referencedColumnName="mle")
-	private Conseiller conseiller;*/
+	
+	@ManyToOne
+	private Conseiller conseiller;
 	
 	@Column (name="dateCreation")
 	@Temporal(TemporalType.DATE)

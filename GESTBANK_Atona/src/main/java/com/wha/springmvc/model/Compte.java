@@ -22,7 +22,7 @@ public class Compte {
 	private String RIB;
 	@Column (name="solde")
 	private Integer solde;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Transaction> listeTransactions;
 	@Column (name="decouvert")
 	private Integer decouvert;

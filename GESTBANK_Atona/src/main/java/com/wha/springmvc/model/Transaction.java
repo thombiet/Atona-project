@@ -70,4 +70,14 @@ public class Transaction {
 		this.date = date;
 	}
 	// #endregion
+
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "Transaction [noTransaction=" + noTransaction + ", montant=" + montant + ", libelle=" + libelle
+				+ ", date=" + date + "]";
+	}
+
+	// #endregion
 }
