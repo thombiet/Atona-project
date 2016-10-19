@@ -150,16 +150,28 @@ import com.wha.springmvc.model.Utilisateur;
 
 		@Override
 		public void affectationOuverture(DemandeOuverture demandeOuverture, Conseiller conseiller) {
-			saveDemande(demandeOuverture);
-			findDemandeByConseiller(conseiller.getMatricule()).add(demandeOuverture);
+//			saveDemande(demandeOuverture);
+//			findDemandeByConseiller(conseiller.getMatricule()).add(demandeOuverture);
+			List<DemandeOuverture> ls = conseiller.getListeDemandesOuverture();
+			ls.add(demandeOuverture);
+			conseiller.setListeDemandesOuverture(ls);
+			update(conseiller);
 		}
 
 		@Override
 		public boolean isDemandeExist(DemandeOuverture ouverture) {
-			for (DemandeOuverture u : findAllDemandes()) {
-				if (u.equals(ouverture))
-					return true;
+//			for (DemandeOuverture u : findAllDemandes()) {
+//				if (u.equals(ouverture))
+//					return true;
+//			}
+//			return false;
+			DemandeOuverture dem = getEntityManager()
+					.createQuery("SELECT d FROM DemandeOuverture d WHERE d.numDemande LIKE :numDemande", DemandeOuverture.class)
+					.setParameter("numDemande", ouverture.getNumDemande())
+					.getSingleResult();
+			if (dem==null){
+				return false;
 			}
-			return false;
+			return true;
 		}
 }
