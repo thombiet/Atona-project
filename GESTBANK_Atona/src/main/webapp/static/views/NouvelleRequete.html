@@ -1,22 +1,28 @@
 <meta charset="utf-8" />
-
-
+<link rel="stylesheet" href="static/css/style_NvRequete.css">
+<div class="ma_page">
 <fieldset>
 	<legend>
 		<h2>Nouvelle Requete</h2>
 	</legend>
 	<br />
-	<div>
+	<div id="message">
+	<div id="entete>"
+		
 		<label>Type de Requete</label>
-		<div>
-			<select name="TypeRequete">
-				<option ng-repeat="r in TypeRequete">{{r}}</option>
+			<select name="TypeRequete" >
+				<option ng-repeat="r in TypeRequete" class="input_sm2">{{r}}</option>
 			</select>
+			<input
+						type="submit"
+						class="myButton"
+						ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }"
+						value="Envoyer">
 		</div>
 		<br /> <textarea type="text" rows="10" cols="60"
-			placeholder="Entrez votre message ici"></textarea>
+			class ="input_sm" placeholder="Entrez votre message ici"></textarea>
 
 	</div>
 </fieldset>
-
+</div>
 

@@ -25,7 +25,7 @@ public class Transaction {
 	private Integer montant;
 	@Column(name="libelle")
 	private String libelle;
-	@Column (name="dateAffectation")
+	@Column (name="dateTransaction")
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	// #endregion

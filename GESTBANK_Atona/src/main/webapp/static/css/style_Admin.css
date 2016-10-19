@@ -6,26 +6,26 @@
 
 #ma_page {
 	
-	min-height:550px;
+	min-height:650px;
 	margin-top:2%;
 }
 
 
 .menuBtn {
 	
-	padding-top:5px;
-	padding-bottom:20px;
+	padding-top:1%;
+	padding-bottom:2%;
 	
 }
 
 .boutons_accueil {
 	
-	display:inline-flex;
 	
-	font-size:1.2em;
-	margin-left:17%;
-	margin-right: 10%;
-	padding-top:7%;
+	display: flex;
+	width: 50%;
+    margin: auto;
+    padding: 0;
+    text-align: center;
 	
 }
 
@@ -64,7 +64,7 @@
 	background-color:  rgba(246, 63, 132, 0.2);
 	border: 2px solid  rgba(255, 37, 67, 0.2);
 	border-radius: 4px;
-	margin-left:10px;
+	margin-left:2%;
 }
 
 .btnAccueil2:hover {

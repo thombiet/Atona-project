@@ -26,7 +26,7 @@ public class DemandeOuverture {
 	private int numDemande;
 	@OneToOne(cascade=CascadeType.PERSIST)
 	private ClientPotentiel cp;
-	@Transient
+	@Column (name="Status")
 	private boolean valide;
 	/*@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="conseiller_mle",referencedColumnName="mle")

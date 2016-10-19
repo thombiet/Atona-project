@@ -22,7 +22,7 @@ public class Compte {
 	private String RIB;
 	@Column (name="solde")
 	private Integer solde;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Transaction> listeTransactions;
 	@Column (name="decouvert")
 	private Integer decouvert;
@@ -32,7 +32,7 @@ public class Compte {
 	private Integer seuilRemuneration;
 	@Column (name="montanRemuneration")
 	private Integer montantRemuneration;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Notification> listeNotification;
 	// #endregion
 
