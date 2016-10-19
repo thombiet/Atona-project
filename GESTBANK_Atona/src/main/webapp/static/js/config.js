@@ -61,7 +61,7 @@ App.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'static/views/Fiche_Conseiller.html',
 		controller : 'AdministrateurController',
 		controllerAs : 'AdminCtrl'
-	}).when('/Admin/AffectCons', {
+	}).when('/Admin/AffectCons/:numDemande', {
 		templateUrl : 'static/views/AdminAffectCons.html',
 		controller : 'AdministrateurController',
 		controllerAs : 'AdminCtrl'

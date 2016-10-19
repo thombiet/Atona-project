@@ -198,10 +198,7 @@ public class HelloWorldRestController {
 			return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
 		}
 
-		currentClient.setNom(client.getNom());
-		currentClient.setPrenom(client.getPrenom());
-
-		utilService.updateClient(currentClient);
+		utilService.updateClient(client);
 		return new ResponseEntity<Client>(currentClient, HttpStatus.OK);
 	}
 
@@ -259,11 +256,7 @@ public class HelloWorldRestController {
 			System.out.println("Conseiller with id " + mle + " not found");
 			return new ResponseEntity<Conseiller>(HttpStatus.NOT_FOUND);
 		}
-
-		currentConseiller.setNom(conseiller.getNom());
-		currentConseiller.setPrenom(conseiller.getPrenom());
-
-		utilService.updateConseiller(currentConseiller);
+		utilService.updateConseiller(conseiller);
 		return new ResponseEntity<Conseiller>(currentConseiller, HttpStatus.OK);
 
 	}
@@ -323,8 +316,9 @@ public class HelloWorldRestController {
 	
 	//----- affectation d'un conseiller à une demande
 	@RequestMapping(value="/demande/", method=RequestMethod.PUT)
-	public ResponseEntity<Void> affectDemande(@PathVariable Long matricule, @RequestBody DemandeOuverture demande){
+	public ResponseEntity<Void> affectDemande(@RequestParam("conseiller") Long matricule, @RequestBody DemandeOuverture demande){
 		if (!utilService.isDemandeExist(demande)){
+			System.out.println(demande.getNumDemande());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		Conseiller c = utilService.findByMle(matricule);

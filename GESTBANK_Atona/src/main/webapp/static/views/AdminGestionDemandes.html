@@ -33,10 +33,10 @@
 						<td><span ng-bind="d.cp.email"></span></td>
 						<td><span ng-bind="d.dateAffectation"></span></td>
 						<td>
-							<span ng-if="d.conseiller===null">
+							<span >
 <!-- 								<a href="#/Admin/AffectCons" class="myButton">Affecter</a> -->
 								
-								<a href="#/Admin/AffectCons" class="myButton">Affecter</a>
+								<a href="#/Admin/AffectCons/{{d.numDemande}}" class="myButton">Affecter</a>
 							</span>
 							<span ng-if="d.conseiller!==null">{{d.conseiller.matricule}}</span>
 						</td>

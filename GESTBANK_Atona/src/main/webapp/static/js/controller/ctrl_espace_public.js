@@ -65,7 +65,7 @@ function PublicController($http, $scope, uService) {
 		})
 	}
 	
-	self.creationClient = function (){
+	self.creationDemande = function (){
 		console.log(self.client);
 		var demande={
 			numDemande: null,

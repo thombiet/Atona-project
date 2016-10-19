@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 public class ClientPotentiel {
 	// #region Attributs
 	@Id
-	@Column (name="identifiant")
+	@Column (name="pseudo")
 	private String pseudo;
 	@Column (name="nom")
 	private String nom;

@@ -6,7 +6,7 @@
 
 <div id="ma_page">
 				
-		<form ng-submit="actrl.submit()" name="myForm">
+		<form ng-submit="modifConseiller()" name="myForm">
 	<div class="form-style-10">
 
 		<fieldset>
@@ -15,31 +15,87 @@
 			</legend>
 			<br />
 			<div class="inner-wrap">
-				<div class="entry">
-					<label id="text">Matricule</label> &nbsp; 
-					<input type="numeric" ng-model="conseiller.matricule" name="matricule" class="input-sm" required/>
+				<div class="entry" ng-if="role=='Administrateur'">
+					<label id="text">Matricule</label> <input
+						type="number"
+						ng-model="conseiller.matricule"
+						name="matricule"
+						class="input-sm"
+						required />
 				</div>
 				<div class="entry">
-					<label id="text">Nom</label> &nbsp; 
-					<input type="text" ng-model="conseiller.nom" name="nom"	class="input-sm" required/>
+					<label id="text">Nom</label> <input
+						type="text"
+						ng-model="conseiller.nom"
+						name="nom"
+						class="input-sm"
+						required />
 				</div>
 				<div class="entry">
-					<label id="text">Prénom</label> 
-					<input type="text" ng-model="conseiller.prenom" name="prenom" class="input-sm" required>
+					<label id="text">Prénom</label> <input
+						type="text"
+						ng-model="conseiller.prenom"
+						name="prenom"
+						class="input-sm"
+						required>
 				</div>
 				<div class="entry">
-					<label id="email">Email</label> 
-					<input type="email"	ng-model="conseiller.email" name="email" class="input-sm" required />
+					<label id="text">Pseudo</label> <input
+						type="text"
+						ng-model="conseiller.pseudo"
+						name="pseudo"
+						class="input-sm"
+						required />
 				</div>
 				<div class="entry">
-					<label id="text">Adresse</label> 
-					<input type="text" ng-model="conseiller.adresse" name="adresse"class="input-sm" required >
+					<label id="email">Email</label> <input
+						type="email"
+						ng-model="conseiller.email"
+						name="email"
+						class="input-sm"
+						required />
 				</div>
 				<div class="entry">
-					<label id="tel">Téléphone</label> 
-					<input type="tel" ng-model="conseiller.telephone" name="telephone" class="input-sm" required >
-				</div>				
-							
+					<label id="text">Adresse</label> <input
+						type="text"
+						ng-model="conseiller.adresse"
+						name="adresse"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="number">code Postal</label> <input
+						type="text"
+						ng-model="conseiller.codePostal"
+						name="codePostal"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="text">ville</label> <input
+						type="text"
+						ng-model="conseiller.ville"
+						name="ville"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="tel">Téléphone</label> <input
+						type="tel"
+						ng-model="conseiller.telephone"
+						name="telephone"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="tel">Date de Naissance</label> <input
+						type="date"
+						ng-model="conseiller.dateNaissance"
+						name="dateNaiss"
+						class="input-sm"
+						required>
+				</div>
+
 			</div>
 			<div id="btn_validation">			
 				<button type="submit" class="myButton">Valider</button>

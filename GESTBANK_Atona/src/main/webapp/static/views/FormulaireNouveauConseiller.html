@@ -1,13 +1,17 @@
 <meta charset="utf-8">
-<link rel="stylesheet"
+<link
+	rel="stylesheet"
 	href="static/css/style_Formulaire_Inscription.css">
-<link rel="stylesheet"
+<link
+	rel="stylesheet"
 	href="static/css/style_validation.css">
 
 
 
 
-<form ng-submit="actrl.submit()" name="myForm">
+<form
+	ng-submit="AdminCtrl.createConseiller()"
+	name="myForm">
 	<div class="form-style-10">
 
 		<fieldset>
@@ -17,32 +21,96 @@
 			<br />
 			<div class="inner-wrap">
 				<div class="entry">
-					<label id="text">Nom</label> 
-					<input type="text" ng-model="conseiller.nom" name="nom"	class="input-sm" required/>
+					<label id="text">Matricule</label> <input
+						type="number"
+						ng-model="conseiller.matricule"
+						name="matricule"
+						class="input-sm"
+						required />
 				</div>
 				<div class="entry">
-					<label id="text">Prénom</label> 
-					<input type="text" ng-model="conseiller.prenom" name="prenom" class="input-sm" required>
+					<label id="text">Nom</label> <input
+						type="text"
+						ng-model="conseiller.nom"
+						name="nom"
+						class="input-sm"
+						required />
 				</div>
 				<div class="entry">
-					<label id="email">Email</label> 
-					<input type="email"	ng-model="conseiller.email" name="email" class="input-sm" required />
+					<label id="text">Prénom</label> <input
+						type="text"
+						ng-model="conseiller.prenom"
+						name="prenom"
+						class="input-sm"
+						required>
 				</div>
 				<div class="entry">
-					<label id="text">Adresse</label> 
-					<input type="text" ng-model="conseiller.adresse" name="adresse"class="input-sm" required >
+					<label id="text">Pseudo</label> <input
+						type="text"
+						ng-model="conseiller.pseudo"
+						name="pseudo"
+						class="input-sm"
+						required />
 				</div>
 				<div class="entry">
-					<label id="tel">Téléphone</label> 
-					<input type="tel" ng-model="conseiller.telephone" name="telephone" class="input-sm" required >
-				</div>				
-							
+					<label id="email">Email</label> <input
+						type="email"
+						ng-model="conseiller.email"
+						name="email"
+						class="input-sm"
+						required />
+				</div>
+				<div class="entry">
+					<label id="text">Adresse</label> <input
+						type="text"
+						ng-model="conseiller.adresse"
+						name="adresse"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="number">code Postal</label> <input
+						type="text"
+						ng-model="conseiller.codePostal"
+						name="codePostal"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="text">ville</label> <input
+						type="text"
+						ng-model="conseiller.ville"
+						name="ville"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="tel">Téléphone</label> <input
+						type="tel"
+						ng-model="conseiller.telephone"
+						name="telephone"
+						class="input-sm"
+						required>
+				</div>
+				<div class="entry">
+					<label id="tel">Date de Naissance</label> <input
+						type="date"
+						ng-model="conseiller.dateNaissance"
+						name="dateNaiss"
+						class="input-sm"
+						required>
+				</div>
+
 			</div>
-			<div id="btn_validation">			
-				<button type="submit" class="myButton">Valider</button>
-				<button type="reset" class="myButton">Annuler</button>
+			<div id="btn_validation">
+				<button
+					type="submit"
+					class="myButton">Ajouter</button>
+				<button
+					type="reset"
+					class="myButton">Annuler</button>
 			</div>
 		</fieldset>
-			
-		</div>
-	</form>
+
+	</div>
+</form>

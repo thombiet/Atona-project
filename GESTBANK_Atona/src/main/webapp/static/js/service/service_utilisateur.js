@@ -85,7 +85,7 @@ function utilisateurService($http, $q) {
     }
 
     /* update un conseiller */
-    function updateConseiller(conseiller, mle) {
+    function updateConseiller(conseiller, matricule) {
         var deferred = $q.defer();
         $http.put(CONSEILLER_URI+matricule, conseiller)
             .then(
@@ -253,9 +253,9 @@ function utilisateurService($http, $q) {
     }
 
     /* update une demande */
-    function updateDemande(cp, mle) {
+    function updateDemande(demande, matricule) {
         var deferred = $q.defer();
-        $http.put(DEMANDE_URI+matricule, cp)
+        $http.put(DEMANDE_URI+"?conseiller="+matricule, demande)
             .then(
             function (response) {
                 deferred.resolve(response.data);
