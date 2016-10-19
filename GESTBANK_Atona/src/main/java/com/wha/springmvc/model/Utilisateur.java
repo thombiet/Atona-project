@@ -25,6 +25,10 @@ public abstract class Utilisateur implements Serializable{
 
 	// #region Attributs
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Column(name="nom")
 	private String nom;
 	@Column(name="prenom")

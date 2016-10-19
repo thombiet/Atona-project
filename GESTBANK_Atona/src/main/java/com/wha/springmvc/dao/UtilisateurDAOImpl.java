@@ -18,18 +18,20 @@ import com.wha.springmvc.model.Utilisateur;
 //---------------ClientDAO------------------------------------
 		@Override
 		public Client findById(Long identifiant) {
-			Client client=(Client) getByKey(identifiant);
+			Client client=getEntityManager().createQuery("SELECT c FROM Client c WHERE c.identifiant LIKE :identifiant", Client.class)
+					.setParameter("identifiant", identifiant)
+					.getSingleResult();
 			return client;
 		}
 
 		public List<Client> findAllClients() {
-			List<Client> clients=getEntityManager().createQuery("SELECT u FROM Utilisateur u WHERE utilisateur_type LIKE :client").getResultList();
+			List<Client> clients=getEntityManager().createQuery("SELECT c FROM Client c", Client.class).getResultList();
 			return clients;
 		}
 
 		@Override
 		public List<Client> findAllClients(Long mle) {
-			List<Client> clients=getEntityManager().createQuery("SELECT u.listeClients FROM Utilisateur u WHERE utilisateur_type LIKE :client and matricule LIKE :mle").getResultList();
+			List<Client> clients=getEntityManager().createQuery("SELECT c.listeClients FROM Conseiller c", Client.class).getResultList();
 			return clients;
 		}
 		
@@ -56,7 +58,10 @@ import com.wha.springmvc.model.Utilisateur;
 
 		@Override
 		public Conseiller findByMle(Long matricule) {
-			Conseiller conseiller=(Conseiller) getByKey(matricule);
+			Conseiller conseiller= getEntityManager().createQuery("SELECT c FROM Conseiller c WHERE c.matricule LIKE :matricule", Conseiller.class)
+					.setParameter("matricule", matricule)
+					.getSingleResult();
+			
 			return conseiller;
 		}
 

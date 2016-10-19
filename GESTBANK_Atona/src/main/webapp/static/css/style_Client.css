@@ -15,7 +15,6 @@
 
 table {
     border-collapse: collapse;
-    border: 1px solid #c0c0c0;
     width: 100%;
 }
 
@@ -24,12 +23,9 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(even){
-	background-color: #e9f0fe
-}
+tr:nth-child(even){background-color: #e9f0fe}
 
 th {
     background-color: #ed8200;
     color: white;
 }
-

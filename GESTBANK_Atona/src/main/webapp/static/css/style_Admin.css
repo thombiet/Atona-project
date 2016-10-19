@@ -1,8 +1,13 @@
+.Ma_vue {
+	
+	padding-top:5%;
+	
+}
+
 #ma_page {
 	
 	min-height:550px;
-	margin:auto;
-	
+	margin-top:2%;
 }
 
 
@@ -16,9 +21,10 @@
 .boutons_accueil {
 	
 	display:inline-flex;
-	cursor:pointer;
+	
 	font-size:1.2em;
-	margin-left:25%;
+	margin-left:17%;
+	margin-right: 10%;
 	padding-top:7%;
 	
 }
@@ -28,7 +34,7 @@
 	background-color: rgba(164, 255, 239, 0.4);
 	border: 2px solid  rgba(52, 255, 239, 0.2);
 	border-radius: 4px;
-	margin-right:10px;
+	margin-left:2%;
 }
 
 .btnAccueil1:hover {
@@ -39,7 +45,9 @@
   background-image: -o-linear-gradient(top, #5cc1ff, #3aa1e6);
   background-image: linear-gradient(to bottom, #5cc1ff, #3aa1e6);
   color: red;
+  font-weight: bold;
   transform: translateY(4px);
+  cursor:pointer;
 }
 
 .btnAccueil1:after {
@@ -67,14 +75,14 @@
   background-image: -o-linear-gradient(top, #5cc1ff, #3aa1e6);
   background-image: linear-gradient(to bottom, #5cc1ff, #3aa1e6);
   color: red;
+  font-weight: bold;
   transform: translateY(4px);
+  cursor:pointer;
 }
-
 
 
 table {
     border-collapse: collapse;
-    border: 1px solid #c0c0c0;
     width: 100%;
 }
 
@@ -83,12 +91,9 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(even){
-	background-color: #e9f0fe
-}
+tr:nth-child(even){background-color: #e9f0fe}
 
 th {
     background-color: #ed8200;
     color: white;
 }
-
