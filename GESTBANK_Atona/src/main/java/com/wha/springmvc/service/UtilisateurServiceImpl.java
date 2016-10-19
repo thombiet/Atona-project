@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.wha.springmvc.dao.UtilisateurDAO;
 import com.wha.springmvc.dummy.DummyBDD;
 import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.ClientPotentiel;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
@@ -264,12 +265,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	}
 
 	@Override
-	public void affectionOuverture(DemandeOuverture demandeOuverture, Conseiller conseiller) {
+	public void affectionOuverture(DemandeOuverture demandeOuverture, Long matricule) {
 		/*getDemandes();
 		int index = demandes.indexOf(demandeOuverture);
 		demandes.get(index).setConseiller(conseiller);
 		demandes.get(index).setDateAffectation(new Date());*/
-		dao.affectationOuverture(demandeOuverture, conseiller);
+		dao.affectationOuverture(demandeOuverture, matricule);
 	}
 
 	@Override
@@ -283,5 +284,40 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return dao.isDemandeExist(ouverture);
 	}
 	
+	public DemandeOuverture getDemandeByNum(int numDemande){
+		return dao.getDemandeByNum(numDemande);
+	}
 	//#endregion
+	@Override
+	public void validationDemande(DemandeOuverture demande) {
+		//creation client
+		ClientPotentiel cp = demande.getCp();
+		Client client = new Client();
+		client.setNom(cp.getNom());
+		client.setPrenom(cp.getPrenom());
+		client.setPseudo(cp.getPseudo());
+		client.setMotdepasse(cp.getPseudo());
+		client.setEmail(cp.getEmail());
+		client.setAdresse(cp.getAdresse());
+		client.setCodePostal(cp.getCodePostal());
+		client.setVille(cp.getVille());
+		client.setTelephone(cp.getTelephone());
+		client.setDateNaissance(cp.getDateNaissance());
+		Long max = dao.getMaxIdentifiant()+1L;
+		client.setIdentifiant(max);
+		//creation compte
+		Compte cpt = new Compte();
+		max = dao.getMaxNoCompte()+1L;
+		cpt.setNoCompte(max);
+		//ajout compte dans le client
+		client.ajoutCompte(cpt);
+		//ajout du client dans le conseiller
+		Conseiller conseiller = dao.findByMle(demande.getConseiller().getMatricule());
+		conseiller.getListeClients().add(client);
+		dao.updateConseiller(conseiller);
+		//modification de la demande pour la mettre à valider
+		demande.setValide(true);
+		dao.updateDemande(demande);
+		
+	}
 }

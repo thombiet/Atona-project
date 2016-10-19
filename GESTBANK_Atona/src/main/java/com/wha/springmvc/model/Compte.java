@@ -22,7 +22,7 @@ public class Compte {
 	private String RIB;
 	@Column (name="solde")
 	private Integer solde;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Transaction> listeTransactions;
 	@Column (name="decouvert")
 	private Integer decouvert;
@@ -32,7 +32,7 @@ public class Compte {
 	private Integer seuilRemuneration;
 	@Column (name="montanRemuneration")
 	private Integer montantRemuneration;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Notification> listeNotification;
 	// #endregion
 
@@ -145,8 +145,10 @@ public class Compte {
 	// #region Utilitaire
 	@Override
 	public String toString() {
-		return "Compte [getNoCompte()=" + getNoCompte() + ", getSolde()=" + getSolde() + ", getDecouvert()="
-				+ getDecouvert() + ", getSeuilRemuneration()=" + getSeuilRemuneration() + "]";
+		return "Compte [noCompte=" + noCompte + ", RIB=" + RIB + ", solde=" + solde + ", listeTransactions="
+				+ listeTransactions + ", decouvert=" + decouvert + ", montantAgios=" + montantAgios
+				+ ", seuilRemuneration=" + seuilRemuneration + ", montantRemuneration=" + montantRemuneration
+				+ ", listeNotification=" + listeNotification + "]";
 	}
 
 	private boolean isDebitAuthorize(int montant) {

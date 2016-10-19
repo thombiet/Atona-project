@@ -18,9 +18,9 @@ import javax.persistence.Table;
 public class Administrateur extends Utilisateur {
 
 	// #region
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Conseiller> listeConseillers;
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<DemandeOuverture> listeDemandes;
 	// #endregion
 
@@ -46,5 +46,14 @@ public class Administrateur extends Utilisateur {
 	public void setListeDemandes(List<DemandeOuverture> listeDemandes) {
 		this.listeDemandes = listeDemandes;
 	}
+	// #endregion
+	
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "Administrateur []";
+	}
+	
 	// #endregion
 }

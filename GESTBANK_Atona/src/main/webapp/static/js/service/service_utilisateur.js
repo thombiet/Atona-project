@@ -28,7 +28,8 @@ function utilisateurService($http, $q) {
 		getAllDemandes : getAllDemandes,
 		getDemandesByMle : getDemandesByMle,
 		createDemande : createDemande,
-		updateDemande : updateDemande,
+		affectationDemande : affectationDemande,
+		validationDemande : validationDemande,
 
 	};
 	return factory;
@@ -45,7 +46,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while fetching conseillers');
+                console.error('erreur utilisateurService.getAllConseillers()');
                 deferred.reject(errResponse);
             }
         );
@@ -61,7 +62,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while fetching conseiller');
+                console.error('erreur utilisateurService.getConseillerByMle()');
                 deferred.reject(errResponse);
             }
         );
@@ -77,7 +78,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while creating conseiller');
+                console.error('erreur utilisateurService.createConseiller()');
                 deferred.reject(errResponse);
             }
         );
@@ -93,7 +94,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while updating conseiller');
+                console.error('erreur utilisateurService.updateConseiller()');
                 deferred.reject(errResponse);
             }
         );
@@ -109,7 +110,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while deleting conseiller');
+                console.error('erreur utilisateurService.deleteConseiller()');
                 deferred.reject(errResponse);
             }
         );
@@ -130,7 +131,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while fetching clients');
+                console.error('erreur utilisateurService.getAllClientsByConseiller()');
                 deferred.reject(errResponse);
             }
         );
@@ -146,7 +147,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while fetching client');
+                console.error('erreur utilisateurService.getClientById()');
                 deferred.reject(errResponse);
             }
         );
@@ -162,7 +163,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while creating clients');
+                console.error('erreur utilisateurService.createClient()');
                 deferred.reject(errResponse);
             }
         );
@@ -179,7 +180,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while updating client');
+                console.error('erreur utilisateurService.updateClient()');
                 deferred.reject(errResponse);
             }
         );
@@ -195,7 +196,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while deleting client');
+                console.error('erreur utilisateurService.deleteClient()');
                 deferred.reject(errResponse);
             }
         );
@@ -213,7 +214,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while fetching demandes');
+                console.error('erreur utilisateurService.getAllDemandes()');
                 deferred.reject(errResponse);
             }
         );
@@ -229,7 +230,7 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while fetching demande');
+                console.error('erreur utilisateurService.getDemandesByMle()');
                 deferred.reject(errResponse);
             }
         );
@@ -245,15 +246,15 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while creating conseiller');
+                console.error('erreur utilisateurService.createDemande()');
                 deferred.reject(errResponse);
             }
         );
         return deferred.promise;
     }
 
-    /* update une demande */
-    function updateDemande(demande, matricule) {
+    /* affectation d'une demande à un conseiller*/
+    function affectationDemande(demande, matricule) {
         var deferred = $q.defer();
         $http.put(DEMANDE_URI+"?conseiller="+matricule, demande)
             .then(
@@ -261,7 +262,23 @@ function utilisateurService($http, $q) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('Error while updating conseiller');
+                console.error('erreur utilisateurService.affectationDemande()');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+
+    /* validation d'une demande*/
+    function validationDemande(demande) {
+        var deferred = $q.defer();
+        $http.put(DEMANDE_URI+demande.numDemande, demande)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('erreur utilisateurService.validationDemande()');
                 deferred.reject(errResponse);
             }
         );

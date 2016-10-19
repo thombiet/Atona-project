@@ -25,7 +25,7 @@
 							<button class="myButton">Voir</button></td>
 						<td><span ng-if="!daff.valide">En cours</span> <span
 							ng-if="daff.valide">Ouvert</span></td>
-						<td><button class="myButton">Valider</button></td>
+						<td><button ng-click="ConsCtrl.validationDemande(daff)" class="myButton">Valider</button></td>
 					</tr>
 				</tbody>
 			</table>

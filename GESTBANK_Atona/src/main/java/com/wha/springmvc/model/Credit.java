@@ -7,19 +7,29 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 @Entity
-@Table (name="credit")
+@Table(name = "credit")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Credit")
 public class Credit extends Transaction {
-	
-	public Credit(){
-		
+
+	public Credit() {
+
 	}
 
 	public Credit(Integer montant, String libelle, Date date) {
 		super(montant, libelle, date);
 		// TODO Auto-generated constructor stub
 	}
+
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "Credit []";
+	}
+
+	// #endregion
 
 }

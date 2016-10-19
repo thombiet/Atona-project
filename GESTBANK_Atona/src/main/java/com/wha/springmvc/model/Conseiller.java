@@ -17,21 +17,29 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 
 @Entity
-@Table (name="conseiller")
+@Table(name = "conseiller")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Conseiller")
 public class Conseiller extends Utilisateur {
 	// #region Attributs
+	
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name="mle")
+	@Column(name = "mle")
 	private Long matricule;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "conseiller")
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private List<DemandeOuverture> listeDemandesOuverture;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Requete> listeDemandesClient;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Client> listeClients;
 	// #endregion
 
@@ -89,10 +97,13 @@ public class Conseiller extends Utilisateur {
 	// #endregion
 
 	// #region Utilitaire
+
 	@Override
 	public String toString() {
-		return "Conseiller [getMatricule()=" + getMatricule() + ", getNom()=" + getNom() + ", getPrenom()="
-				+ getPrenom() + ", getIdentifiant()=" + getPseudo() + "]";
+		return "Conseiller [matricule=" + matricule + ", getNom()=" + getNom() + ", getPrenom()=" + getPrenom()
+				+ ", getEmail()=" + getEmail() + ", getAdresse()=" + getAdresse() + ", getCodePostal()="
+				+ getCodePostal() + ", getVille()=" + getVille() + ", getTelephone()=" + getTelephone()
+				+ ", getPseudo()=" + getPseudo() + ", getDateNaissance()=" + getDateNaissance() + "]";
 	}
 
 	public void ajoutClient(Client client) {

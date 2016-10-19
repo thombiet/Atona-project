@@ -8,19 +8,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 @Entity
-@Table (name="notification")
+@Table(name = "notification")
 public class Notification {
 	// #region Attributs
 	@Id
-	@Column (name="numNotif")
+	@Column(name = "numNotif")
 	private int numNotif;
-	@Column (name="dateAffectation")
+	@Column(name = "dateAffectation")
 	@Temporal(TemporalType.DATE)
 	private Date date;
-	@Column (name="message")
+	@Column(name = "message")
 	private String message;
-	@Column (name="message_lu")
+	@Column(name = "message_lu")
 	private boolean lu;
 	// #endregion
 
@@ -54,7 +55,6 @@ public class Notification {
 	public void setLu(boolean lu) {
 		this.lu = lu;
 	}
-	// #endregion
 
 	public int getNumNotif() {
 		return numNotif;
@@ -63,4 +63,15 @@ public class Notification {
 	public void setNumNotif(int numNotif) {
 		this.numNotif = numNotif;
 	}
+	
+	// #endregion
+
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "Notification [numNotif=" + numNotif + ", date=" + date + ", message=" + message + ", lu=" + lu + "]";
+	}
+
+	// #endregion
 }

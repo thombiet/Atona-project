@@ -54,11 +54,19 @@ public interface UtilisateurDAO {
 	
 	public void saveDemande(DemandeOuverture demandeOuverture);
 	
-	public void affectationOuverture (DemandeOuverture demandeOuverture, Conseiller conseiller);
+	public void updateDemande(DemandeOuverture demandeOuverture);
+	
+	public void affectationOuverture (DemandeOuverture demandeOuverture, Long matricule);
 	
 	public boolean isDemandeExist(DemandeOuverture ouverture);
 
 	List<Utilisateur> findAllUtilisateurs();
+
+	DemandeOuverture getDemandeByNum(int numDemande);
+
+	Long getMaxIdentifiant();
+	
+	Long getMaxNoCompte();
 
 	//#endregion
 }

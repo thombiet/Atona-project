@@ -20,24 +20,27 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table (name="client")
+@Table(name = "client")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Client")
 public class Client extends Utilisateur {
 
 	// #region Attributs
-	
-	@Column (name="identifiant")
+
+	@Column(name = "identifiant")
 	private Long identifiant;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Compte> listeComptes;
 	@Transient
 	private List<File> piecesJustificatives;
-	@Column (name="revenuMens")
+	@Column(name = "revenuMens")
 	private Integer revenuMensuel;
-	/*@ManyToOne
-	@JoinColumn(name="conseiller_mle",referencedColumnName="mle")
-	private Conseiller conseiller;*/
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="conseiller_mle",referencedColumnName="mle") private
+	 * Conseiller conseiller;
+	 */
 
 	// #endregion
 
@@ -48,10 +51,8 @@ public class Client extends Utilisateur {
 		this.piecesJustificatives = new ArrayList<File>();
 	}
 
-	
-
-	public Client(Long identifiant, String nom, String prenom, String pseudo, String motdepasse, String email, String adresse,
-			Integer codePostal, String ville, Integer telephone, Date dateNaissance) {
+	public Client(Long identifiant, String nom, String prenom, String pseudo, String motdepasse, String email,
+			String adresse, Integer codePostal, String ville, Integer telephone, Date dateNaissance) {
 		super(nom, prenom, pseudo, motdepasse, email, adresse, codePostal, ville, telephone, dateNaissance);
 		this.identifiant = identifiant;
 		this.listeComptes = new ArrayList<Compte>();
@@ -61,7 +62,7 @@ public class Client extends Utilisateur {
 	// #endregion
 
 	// #region Accesseurs
-	
+
 	public Long getIdentifiant() {
 		return identifiant;
 	}
@@ -69,7 +70,7 @@ public class Client extends Utilisateur {
 	public void setIdentifiant(Long identifiant) {
 		this.identifiant = identifiant;
 	}
-	
+
 	public List<Compte> getListeComptes() {
 		return listeComptes;
 	}
@@ -94,27 +95,26 @@ public class Client extends Utilisateur {
 		this.revenuMensuel = revenuMensuel;
 	}
 
-	/*public Conseiller getConseiller() {
-		return conseiller;
-	}
-
-	public void setConseiller(Conseiller conseiller) {
-		this.conseiller = conseiller;
-	}
-*/
+	/*
+	 * public Conseiller getConseiller() { return conseiller; }
+	 * 
+	 * public void setConseiller(Conseiller conseiller) { this.conseiller =
+	 * conseiller; }
+	 */
 	// #endregion
 
 	// #region Utilitaire
+
 	@Override
 	public String toString() {
-		return "Client [ getNom()=" + getNom() + ", getPrenom()=" + getPrenom()
-				+ ", getIdentifiant()=" + getPseudo() + "]";
+		return "Client [identifiant=" + identifiant + ", listeComptes=" + listeComptes + ", piecesJustificatives="
+				+ piecesJustificatives + ", revenuMensuel=" + revenuMensuel + "]";
 	}
 
 	// #endregion
 
 	// #region Metier
-	
+
 	public boolean hasCompte(Long noCompte) {
 		if (!this.getListeComptes().isEmpty()) {
 			for (Compte compte : listeComptes) {
@@ -131,7 +131,7 @@ public class Client extends Utilisateur {
 			this.listeComptes.add(compte);
 		}
 	}
-	
+
 	// #endregion
 
 }

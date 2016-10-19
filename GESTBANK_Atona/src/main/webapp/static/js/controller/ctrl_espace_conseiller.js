@@ -4,9 +4,7 @@
 function ConseillerController(uService, cService, $scope, $routeParams) {
 
 	var self = this;
-
-	//self.clients = [];
-	//self.demandes = [];
+	self.validationDemande = validationDemande;
 
 	if (sessionStorage.role != "Conseiller") {
 		$scope.mainCtrl.deconnexion();
@@ -14,17 +12,17 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 		getConseillerByMle(sessionStorage.idConnecte);
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
-		if ($routeParams.identifiant){
+		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
 		}
 	}
 
-	self.voirClient= function(id){
-		$scope.mainCtrl.redirection('/Conseiller/Fiche_Client/'+id);
+	self.voirClient = function(id) {
+		$scope.mainCtrl.redirection('/Conseiller/Fiche_Client/' + id);
 	}
-	
+
 	$scope.modifClient = modifClient;
-	
+
 	function getConseillerByMle(matricule) {
 		uService.getConseillerByMle(matricule).then(function(value) {
 			$scope.conseiller = value;
@@ -49,15 +47,17 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 		})
 	}
 
-	function getClientById(Id){
+	function getClientById(Id) {
 		uService.getClientById(Id).then(
-			function(value) {
-			$scope.client = value;
-		}, function(reason) {
-			console.log("Error: ConseillerController.getClientById - "+reason.status)
-		})
+				function(value) {
+					$scope.client = value;
+				},
+				function(reason) {
+					console.log("Error: ConseillerController.getClientById - "
+							+ reason.status)
+				})
 	}
-	
+
 	function getCompteByClient(identifiant) {
 		cService.getCompteByClient(identifiant).then(function(value) {
 			self.comptes = value;
@@ -96,15 +96,26 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 			console.error('Error while deleting Compte');
 		});
 	}
-	
-	function modifClient(){
+
+	function modifClient() {
 		console.log($scope.client);
-		uService.updateClient($scope.client).then(
-			function(value) {
+		uService.updateClient($scope.client).then(function(value) {
 			console.log("success : ConseillerController.modifClient")
 		}, function(reason) {
 			console.log("fail : ConseillerController.modifClient")
-			
+
+		})
+	}
+	
+	function validationDemande(demande){
+		console.log(demande);
+		uService.validationDemande(demande).then(
+			function(value) {
+			alert("la demande a été validée");
+			$scope.mainCtrl.redirection('/Conseiller/GestionDemandes');
+		}, function(reason) {
+			console.log("erreur ConsCtrl.validationDemande() :");
+			console.log(reason);
 		})
 	}
 

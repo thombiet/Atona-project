@@ -67,5 +67,12 @@ public class Requete {
 	}
 	// #endregion
 
+	// #region Utilitaire
 	
+		@Override
+		public String toString() {
+			return "Requete [type=" + type + ", compte=" + compte + ", message=" + message + "]";
+		}
+		
+		// #endregion
 }

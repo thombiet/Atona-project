@@ -156,4 +156,14 @@ public class ClientPotentiel {
 	}
 	// #endregion
 
+	// #region Utilitaire
+	
+	@Override
+	public String toString() {
+		return "ClientPotentiel [pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email
+				+ ", adresse=" + adresse + ", codePostal=" + codePostal + ", ville=" + ville + ", telephone="
+				+ telephone + ", revenuMens=" + revenuMens + ", dateNaissance=" + dateNaissance + "]";
+	}
+	
+	// #endregion
 }

@@ -12,20 +12,21 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 @Entity
-@Table (name="transaction")
+@Table(name = "transaction")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TRANSACTION_TYPE", discriminatorType = DiscriminatorType.STRING)
 public class Transaction {
 	// #region Attributs
 	@Id
-	@Column(name="noTransaction")
+	@Column(name = "noTransaction")
 	private Integer noTransaction;
-	@Column(name="montant")
+	@Column(name = "montant")
 	private Integer montant;
-	@Column(name="libelle")
+	@Column(name = "libelle")
 	private String libelle;
-	@Column (name="dateAffectation")
+	@Column(name = "dateAffectation")
 	@Temporal(TemporalType.DATE)
 	private Date date;
 	// #endregion
@@ -34,14 +35,12 @@ public class Transaction {
 	public Transaction() {
 
 	}
-	
-	
+
 	public Transaction(Integer montant, String libelle, Date date) {
 		this.montant = montant;
 		this.libelle = libelle;
 		this.date = date;
 	}
-
 
 	// #endregion
 
@@ -69,5 +68,15 @@ public class Transaction {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	// #endregion
+
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "Transaction [noTransaction=" + noTransaction + ", montant=" + montant + ", libelle=" + libelle
+				+ ", date=" + date + "]";
+	}
+
 	// #endregion
 }

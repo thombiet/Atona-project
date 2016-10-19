@@ -57,9 +57,13 @@ public interface UtilisateurService {
 	
 	public void saveDemande(DemandeOuverture demandeOuverture);
 	
-	public void affectionOuverture (DemandeOuverture demandeOuverture, Conseiller conseiller);
+	public void affectionOuverture (DemandeOuverture demandeOuverture, Long matricule);
 	
 	public boolean isDemandeExist(DemandeOuverture ouverture);
+	
+	public DemandeOuverture getDemandeByNum(int numDemande);
+
+	public void validationDemande(DemandeOuverture demande);
 	
 	//#endregion
 }

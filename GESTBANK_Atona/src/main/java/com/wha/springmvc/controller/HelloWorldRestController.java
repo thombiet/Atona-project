@@ -321,10 +321,20 @@ public class HelloWorldRestController {
 			System.out.println(demande.getNumDemande());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		Conseiller c = utilService.findByMle(matricule);
-		utilService.affectionOuverture(demande, c);
+		utilService.affectionOuverture(demande, matricule);
 		return new ResponseEntity<Void>( HttpStatus.OK);
 	}
+	
+	//----- validation d'une demande
+		@RequestMapping(value="/demande/{numDemande}", method=RequestMethod.PUT)
+		public ResponseEntity<Void> affectDemande(@PathVariable("numDemande") int numDemande, @RequestBody DemandeOuverture demande){
+			DemandeOuverture demandeOuverture = utilService.getDemandeByNum(numDemande);
+			if (demandeOuverture==null){
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+			utilService.validationDemande(demande);
+			return null;
+		}
 	
 	//----- création d'une demande
 	@RequestMapping(value="/demande/", method=RequestMethod.POST)

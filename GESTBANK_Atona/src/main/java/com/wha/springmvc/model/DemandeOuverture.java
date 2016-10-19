@@ -28,9 +28,9 @@ public class DemandeOuverture {
 	private ClientPotentiel cp;
 	@Transient
 	private boolean valide;
-	/*@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="conseiller_mle",referencedColumnName="mle")
-	private Conseiller conseiller;*/
+	
+	@ManyToOne
+	private Conseiller conseiller;
 	
 	@Column (name="dateCreation")
 	@Temporal(TemporalType.DATE)
@@ -75,13 +75,13 @@ public class DemandeOuverture {
 		this.valide = valide;
 	}
 
-	/*public Conseiller getConseiller() {
+	public Conseiller getConseiller() {
 		return conseiller;
 	}
 
 	public void setConseiller(Conseiller conseiller) {
 		this.conseiller = conseiller;
-	}*/
+	}
 
 	public Date getDateCreation() {
 		return dateCreation;
@@ -98,7 +98,6 @@ public class DemandeOuverture {
 	public void setDateAffectation(Date dateAffectation) {
 		this.dateAffectation = dateAffectation;
 	}
-	// #endregion
 
 	public int getNumDemande() {
 		return numDemande;
@@ -107,4 +106,17 @@ public class DemandeOuverture {
 	public void setNumDemande(int numDemande) {
 		this.numDemande = numDemande;
 	}
+	// #endregion
+	
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "DemandeOuverture [numDemande=" + numDemande + ", cp=" + cp + ", valide=" + valide + ", dateCreation="
+				+ dateCreation + ", dateAffectation=" + dateAffectation + "]";
+	}
+	
+	
+	
+	// #endregion
 }

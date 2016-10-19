@@ -94,7 +94,7 @@ function AdministrateurController($scope, $routeParams, uService) {
 	}
 
 	function affectDemandeConseiller(matricule) {
-		uService.updateDemande($scope.demande, matricule).then(
+		uService.affectationDemande($scope.demande, matricule).then(
 			function(value) {
 			alert("la demande a été affectée");
 			$scope.mainCtrl.redirection('/Admin/GestionDemandes');

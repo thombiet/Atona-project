@@ -9,13 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="debit")
+@Table(name = "debit")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Debit")
 public class Debit extends Transaction {
-	
-	public Debit(){
-		
+
+	public Debit() {
+
 	}
 
 	public Debit(Integer montant, String libelle, Date date) {
@@ -23,6 +23,13 @@ public class Debit extends Transaction {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "Debit []";
+	}
+
+	// #endregion
 
 }

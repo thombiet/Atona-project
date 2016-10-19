@@ -18,37 +18,37 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table (name="utilisateur")
+@Table(name = "utilisateur")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "UTILISATEUR_TYPE", discriminatorType = DiscriminatorType.STRING)
-public abstract class Utilisateur implements Serializable{
+public abstract class Utilisateur implements Serializable {
 
 	// #region Attributs
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Column(name="nom")
+	@Column(name = "nom")
 	private String nom;
-	@Column(name="prenom")
+	@Column(name = "prenom")
 	private String prenom;
 	@Id
-	@Column(name="pseudo")
+	@Column(name = "pseudo")
 	private String pseudo;
-	@Column(name="mdp")
+	@Column(name = "mdp")
 	private String motdepasse;
-	@Column(name="email")
+	@Column(name = "email")
 	private String email;
-	@Column(name="adresse")
+	@Column(name = "adresse")
 	private String adresse;
-	@Column(name="codePostal")
+	@Column(name = "codePostal")
 	private Integer codePostal;
-	@Column(name="ville")
+	@Column(name = "ville")
 	private String ville;
-	@Column(name="telephone")
+	@Column(name = "telephone")
 	private Integer telephone;
-	@Column (name="dateNaissance")
+	@Column(name = "dateNaissance")
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	// #endregion
@@ -57,7 +57,7 @@ public abstract class Utilisateur implements Serializable{
 	public Utilisateur() {
 
 	}
-	
+
 	public Utilisateur(String nom, String prenom, String pseudo, String motdepasse, String email, String adresse,
 			Integer codePostal, String ville, Integer telephone, Date dateNaissance) {
 		this.nom = nom;
@@ -157,4 +157,14 @@ public abstract class Utilisateur implements Serializable{
 
 	// #endregion
 
+	// #region Utilitaire
+
+	@Override
+	public String toString() {
+		return "Utilisateur [nom=" + nom + ", prenom=" + prenom + ", pseudo=" + pseudo + ", motdepasse=" + motdepasse
+				+ ", email=" + email + ", adresse=" + adresse + ", codePostal=" + codePostal + ", ville=" + ville
+				+ ", telephone=" + telephone + ", dateNaissance=" + dateNaissance + "]";
+	}
+
+	// #endregion
 }
