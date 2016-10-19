@@ -19,6 +19,8 @@ import javax.persistence.TemporalType;
 public class Transaction {
 	// #region Attributs
 	@Id
+	@Column(name="noTransaction")
+	private Integer noTransaction;
 	@Column(name="montant")
 	private Integer montant;
 	@Column(name="libelle")

@@ -47,12 +47,12 @@ public class ClientPotentiel {
 		this.piecesJutificatives = new ArrayList<File>();
 	}
 
-	public ClientPotentiel(String nom, String prenom, String identifiant, String email, String adresse,
+	public ClientPotentiel(String nom, String prenom, String pseudo, String email, String adresse,
 			Integer codePostal, String ville, Integer telephone, Integer revenuMens, Date dateNaissance) {
 		this();
 		this.nom = nom;
 		this.prenom = prenom;
-		this.pseudo = identifiant;
+		this.pseudo = pseudo;
 		this.email = email;
 		this.adresse = adresse;
 		this.codePostal = codePostal;

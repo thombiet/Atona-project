@@ -4,6 +4,7 @@
 
 <title>RIB</title>
 <div class="maPage">
+<div id="printSectionId">
 	<div class="Entête">
 		<div id="logo">
 			<img src="static/images/GestBank_logo.png"
@@ -20,7 +21,7 @@
 						<tr>
 							<th>14879</th>
 							<th>30300</th>
-							<th>064892336</th>
+							<th>{{compte.noCompte}}</th>
 							<th>68</th>
 							<th>GBank George Town</th>
 						</tr>
@@ -70,6 +71,6 @@
 				</table>
 <div class="infos"></div>
 			</div> <br />
-
-			<div id="print"><a href="#/" class="myButton" >Imprimer</a></div>
+</div>
+			<div id="print"><button ng-click="printToCart(printSectionId)" class="myButton" >Imprimer</button></div>
 		</div>
