@@ -35,13 +35,10 @@ public class Client extends Utilisateur {
 	private List<File> piecesJustificatives;
 	@Column(name = "revenuMens")
 	private Integer revenuMensuel;
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="conseiller_mle",referencedColumnName="mle") private
-	 * Conseiller conseiller;
-	 */
-
+	
+	@ManyToOne
+	private Conseiller conseiller;
+	
 	// #endregion
 
 	// #region Constructeurs

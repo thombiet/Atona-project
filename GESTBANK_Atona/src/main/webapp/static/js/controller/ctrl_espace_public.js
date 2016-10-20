@@ -70,7 +70,7 @@ function PublicController($http, $scope, uService) {
 		var demande={
 			numDemande: null,
 			cp:self.client,
-			valide: null,
+			valide: false,
 			dateCreation: new Date(),
 			dateAffectation : null,
 		}

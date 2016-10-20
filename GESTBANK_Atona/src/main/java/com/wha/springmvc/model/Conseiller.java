@@ -39,7 +39,8 @@ public class Conseiller extends Utilisateur {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Requete> listeDemandesClient;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="conseiller")
+	@JsonProperty(access=Access.WRITE_ONLY)
 	private List<Client> listeClients;
 	// #endregion
 

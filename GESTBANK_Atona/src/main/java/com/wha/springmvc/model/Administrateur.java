@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @DiscriminatorValue("Administrateur")
 public class Administrateur extends Utilisateur {
 
-	// #region
+	// #region Attribut
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Conseiller> listeConseillers;
 	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
