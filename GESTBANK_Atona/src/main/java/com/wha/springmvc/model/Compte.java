@@ -38,8 +38,9 @@ public class Compte {
 
 	// #region Constructeurs
 	public Compte() {
-		listeTransactions = new ArrayList<Transaction>();
-		listeNotification = new ArrayList<Notification>();
+		this.solde = 0;
+		this.listeTransactions = new ArrayList<Transaction>();
+		this.listeNotification = new ArrayList<Notification>();
 	}
 
 	public Compte(Long noCompte, Integer decouvert, Integer seuilRemuneration) {

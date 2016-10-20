@@ -1,78 +1,60 @@
 <meta charset="utf-8" />
-<link rel="stylesheet" href="static/css/style_ClientGestionCompte.css">
+<link
+	rel="stylesheet"
+	href="static/css/style_ClientGestionCompte.css">
 
 <title>Gestion des Comptes</title>
-<div id="ma_page" >
-<!-- <div class="menuBtn" align="center"> -->
-
-<!-- 	<a href="#/Client" class="myButton">Accueil</a> -->
-<!-- 	<a href="#/Mes Informations" -->
-<!-- 	class="myButton">Mes Informations</a> -->
-<!-- 	<a href="#/ClientMessagerie" -->
-<!-- 	class="myButton">Messagerie</a>  -->
-<!-- 	<a href="#/" class="myButton" >Déconnexion</a> -->
-
-<!-- </div> -->
-<br>
-<div class="maPage2" >
-	<div class="menu">
-		<legend><h2>Options</h2></legend><br/>
-		<div class="options"> <a href="#/Virement" class="btn">Faire un Virement</a><br/>
-			<a href="#/GestionCompte/RIB" class="btn">Impression de RIB</a><br/>
-			<a href="#/ClientMessagerie" class="btn">Demander un <br/>chéquier</a> <br/>
+<div class="ma_page">
+	<div class="maPage2">
+		<div class="menu">
+			<!-- 		<legend><h2>Options</h2></legend><br/> -->
+			<div class="options">
+				<a
+					href="#/"
+					class="btn">reglage decouvert</a><br /> <a
+					href="#/"
+					class="btn">Impression de RIB</a><br /> <br />
+			</div>
+		</div>
+		<div class="gestion">
+			<fieldset>
+				<legend>
+					<h2>Détails du compte n°{{ConsCtrl.compte.noCompte}}</h2>
+				</legend>
+				<br />
+				<div class="option1">
+					<table
+						align="center"
+						cellspacing=1
+						cellpadding=10>
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Libéllé</th>
+								<th>Débit</th>
+								<th>Crédit</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr
+								ng-repeat="transac in ConsCtrl.transactions | orderBy: 'date'">
+								<td>{{transac.date|date: 'dd MMM yyyy'}}</td>
+								<td><span ng-bind="transac.libelle"></span></td>
+								<td><span ng-if="transac.montant<0">{{transac.montant}}</span></td>
+								<td><span ng-if="transac.montant>0">+{{transac.montant}}</span></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<br>
+				<div class="solde">
+					<p>
+						Solde :
+						<p2>{{ConsCtrl.compte.solde}}</p2>
+					</p>
+				</div>
+				<br>
+			</fieldset>
 		</div>
 	</div>
-	<div class="gestion">
-	<fieldset>
-	<legend><h2>Détails du compte n°{{ClientCtrl.compte.noCompte}}</h2>
-		</legend>
-		<br />
-		<div class="option1">
-			<table align="center" cellspacing=1 cellpadding=10>
-				<thead>
-					<tr>
-						<th>Date</th>
-						<th>Libéllé</th>
-						<th>Débit</th>
-						<th>Crédit</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="transac in transactions">
-						<td>{{transac.date|date}}}</td>
-						<td><span ng-bind="transac.libelle"></span></td>
-						<td><span ng-bind="transac.montant"></span></td>	
-						<td><span ng-bind="transac.montant"></span></td>						
-					</tr>
-					<tr >
-						<td>18/09/2016</td>
-						<td>qgethryjrhhh</td>
-						<td>-300,00</td>		
-						<td></td>					
-					</tr>
-					<tr >
-						<td>22/09/2016</td>
-						<td>atrykukryjrhhh</td>
-						<td></td>		
-						<td>+150,00</td>					
-					</tr>
-					<tr >
-						<td>28/09/2016</td>
-						<td>kkedujkhf</td>
-						<td></td>		
-						<td>+2250,00</td>					
-					</tr>
-					<tr >
-						<td>02/10/2016</td>
-						<td>sgdhykukryjrhhh</td>
-						<td></td>		
-						<td>+190,00</td>					
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<br> <div class="solde"><p>Solde : <p2>{{compte.solde}}</p2></p></div><br>
-	</fieldset>
-	</div>
-</div>
 </div>

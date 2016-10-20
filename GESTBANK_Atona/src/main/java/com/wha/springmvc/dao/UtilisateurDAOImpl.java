@@ -25,8 +25,7 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 	}
 
 	public List<Client> findAllClients() {
-		List<Client> clients = getEntityManager().createQuery("SELECT c FROM Client c", Client.class)
-				.getResultList();
+		List<Client> clients = getEntityManager().createQuery("SELECT c FROM Client c", Client.class).getResultList();
 		return clients;
 	}
 
@@ -34,8 +33,7 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 	public List<Client> findAllClients(Long mle) {
 		List<Client> clients = getEntityManager()
 				.createQuery("SELECT c.listeClients FROM Conseiller c WHERE c.matricule LIKE :mle")
-				.setParameter("mle", mle)
-				.getResultList();
+				.setParameter("mle", mle).getResultList();
 		return clients;
 	}
 
@@ -195,10 +193,14 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 		return dem;
 	}
 
+	// Autre --------------------------------------------------------------
+
 	@Override
 	public Long getMaxIdentifiant() {
 
 		Long max = (Long) getEntityManager().createQuery("SELECT max(c.identifiant) FROM Client c").getSingleResult();
+		if (max == null)
+			max = 0L;
 		return max;
 	}
 
@@ -206,12 +208,21 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 	public Long getMaxNoCompte() {
 
 		Long max;
-		try {
-			max = (Long) getEntityManager().createQuery("SELECT max(c.noCompte) FROM Compte c").getSingleResult();
-		} catch (Exception e) {
-			max = 0L;
-		}
+		max = (Long) getEntityManager().createQuery("SELECT max(c.noCompte) FROM Compte c").getSingleResult();
 
+		if (max == null)
+			max = 0L;
+		return max;
+	}
+
+	@Override
+	public Integer getMaxNoTransact() {
+
+		Integer max;
+		max = (Integer) getEntityManager().createQuery("SELECT max(t.noTransaction) FROM Transaction t")
+				.getSingleResult();
+		if (max == null)
+			max = 0;
 		return max;
 	}
 }
