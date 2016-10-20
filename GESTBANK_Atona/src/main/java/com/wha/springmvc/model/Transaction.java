@@ -70,7 +70,7 @@ public class Transaction {
 		this.date = date;
 	}
 	// #endregion
-}
+
 
 
 	// #region Utilitaire
