@@ -68,5 +68,7 @@ public interface UtilisateurDAO {
 	
 	Long getMaxNoCompte();
 
+	Integer getMaxNoTransact();
+
 	//#endregion
 }

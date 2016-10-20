@@ -69,9 +69,17 @@ public class Transaction {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
+	public Integer getNoTransaction() {
+		return noTransaction;
+	}
+
+
+	public void setNoTransaction(Integer noTransaction) {
+		this.noTransaction = noTransaction;
+	}
+	
 	// #endregion
-
-
 
 	// #region Utilitaire
 

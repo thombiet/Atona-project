@@ -15,6 +15,9 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
 		}
+		if ($routeParams.noCompte) {
+			getCompteByNo($routeParams.noCompte);
+		}
 	}
 
 	self.voirClient = function(id) {

@@ -35,10 +35,10 @@ public class Client extends Utilisateur {
 	private List<File> piecesJustificatives;
 	@Column(name = "revenuMens")
 	private Integer revenuMensuel;
-	
+
 	@ManyToOne
 	private Conseiller conseiller;
-	
+
 	// #endregion
 
 	// #region Constructeurs
@@ -92,12 +92,14 @@ public class Client extends Utilisateur {
 		this.revenuMensuel = revenuMensuel;
 	}
 
-	/*
-	 * public Conseiller getConseiller() { return conseiller; }
-	 * 
-	 * public void setConseiller(Conseiller conseiller) { this.conseiller =
-	 * conseiller; }
-	 */
+	public Conseiller getConseiller() {
+		return conseiller;
+	}
+
+	public void setConseiller(Conseiller conseiller) {
+		this.conseiller = conseiller;
+	}
+
 	// #endregion
 
 	// #region Utilitaire
