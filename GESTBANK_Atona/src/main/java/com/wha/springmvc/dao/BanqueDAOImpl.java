@@ -28,7 +28,9 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	@Override
 	public List<Compte> getComptesByClient(Long idClient) {
 		//List<Compte> comptes=getByKey(idClient);
-		List<Compte> comptes=getEntityManager().createQuery("SELECT c.listeComptes FROM Client c WHERE identifiant= :idClient").getResultList();
+		List<Compte> comptes=getEntityManager().createQuery("SELECT c.listeComptes FROM Client c WHERE identifiant= :idClient")
+				.setParameter("idClient", idClient)
+				.getResultList();
 		return comptes;
 	}
 

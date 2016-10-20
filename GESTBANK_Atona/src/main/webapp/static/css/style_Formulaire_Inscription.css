@@ -1,26 +1,40 @@
 
-/* Elé©ments principaux de la page */
-body {
-	background-color: #e3eeef;
-	font-family: 'Trebuchet MS', Arial, sans-serif;
-	color: #181818;
-	display: block;
-}
-
-body h1, h4  {
+#bloc_page h1, h4  {
 
 text-align: center;
 background-color: white;
-
+padding-top:1%;
 }
 
 
 #bloc_page {
-	margin: auto;
+	position: relative;
+	min-height:950px;
+	font-family: 'Trebuchet MS', Arial, sans-serif;
+	color: #181818;
+	display: block;
+	padding-top:1%;
+	
 }
 
+.Ma_vue {
+	
+	padding-top:1%;
+	
+}
 
+.ma_page {
+	
+	min-height:650px;
+	margin-top:2%;
+}
 
+.menuBtn {
+	
+	padding-top:1%;
+	padding-bottom:2%;
+	
+}
 #Presentation {
 	display: flex;
 }

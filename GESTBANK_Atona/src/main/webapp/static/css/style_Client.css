@@ -1,15 +1,20 @@
-.ma_page {
+.Ma_vue {
 	
-	min-height:550px;
-	margin:auto;
+	padding-top:5%;
 	
 }
 
+.ma_page {
+	
+	min-height:650px;
+	margin-top:2%;
+	
+}
 
 .menuBtn {
 	
-	padding-top:5px;
-	padding-bottom:20px;
+	padding-top:1%;
+	padding-bottom:2%;
 	
 }
 

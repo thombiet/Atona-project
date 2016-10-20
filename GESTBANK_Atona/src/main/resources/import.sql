@@ -22,3 +22,9 @@ INSERT INTO demandeouverture (numDemande, dateAffectation, dateCreation, cp_pseu
 INSERT INTO demandeouverture (numDemande, dateAffectation, dateCreation, cp_pseudo) VALUES ('2', NULL, '2015-08-21', 'RTripoux');
 INSERT INTO demandeouverture (numDemande, dateAffectation, dateCreation, cp_pseudo) VALUES ('3', NULL, '2016-09-14', 'MPatullacci');
 INSERT INTO demandeouverture (numDemande, dateAffectation, dateCreation, cp_pseudo) VALUES ('4', NULL, '2016-08-02', 'RSucco');
+
+INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('5648978', NULL, NULL, NULL, NULL, NULL, '1500');
+INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('5467893', NULL, NULL, NULL, NULL, NULL, '32000');
+INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2457896', NULL, NULL, NULL, NULL, NULL, '300');
+INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2354789', NULL, NULL, NULL, NULL, NULL, '18000');
+

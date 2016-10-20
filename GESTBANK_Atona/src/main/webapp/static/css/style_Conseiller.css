@@ -1,17 +1,23 @@
+.Ma_vue {
+	
+	padding-top:5%;
+	
+}
+
 #ma_page {
 	
-	min-height:550px;
+	min-height:650px;
 	margin-top:2%;
-	
 }
 
 
 .menuBtn {
 	
-	padding-top:5px;
-	padding-bottom:20px;
+	padding-top:1%;
+	padding-bottom:2%;
 	
 }
+
 
 .boutons_accueil {
 	
