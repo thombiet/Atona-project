@@ -339,10 +339,10 @@ public class HelloWorldRestController {
 	//----- creation d'une demande
 	@RequestMapping(value="/demande/", method=RequestMethod.POST)
 	public ResponseEntity<Void> saveDemande(@RequestBody DemandeOuverture demande){
-		if (utilService.isDemandeExist(demande)){
+		/*if (utilService.isDemandeExist(demande)){
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
-		utilService.saveDemande(demande);
+*/		utilService.saveDemande(demande);
 		return new ResponseEntity<Void>( HttpStatus.OK);
 	}
 	

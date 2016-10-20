@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,6 +24,7 @@ import javax.persistence.Transient;
 public class DemandeOuverture {
 	// #region Attributs
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="numDemande")
 	private int numDemande;
 	@OneToOne(cascade=CascadeType.PERSIST)

@@ -23,7 +23,7 @@ App.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'static/views/NouvelleRequete.html',
 		controller : 'ClientController',
 		controllerAs : 'ClientCtrl'
-	}).when('/GestionCompte', {
+	}).when('/Client/GestionCompte/:noCompte', {
 		templateUrl : 'static/views/ClientGestionComptes.html',
 		controller : 'ClientController',
 		controllerAs : 'ClientCtrl'

@@ -28,3 +28,13 @@ INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, 
 INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2457896', NULL, NULL, NULL, NULL, NULL, '300');
 INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2354789', NULL, NULL, NULL, NULL, NULL, '18000');
 
+INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noComtpe) VALUES ('HDavis', '2457896');
+INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noComtpe) VALUES ('HDavis', '2354789');
+
+INSERT INTO transaction (TRANSACTION_TYPE, noTransaction, dateTransaction, libelle, montant) VALUES ('Debit', '2', '2016-09-10', NULL, '20');
+INSERT INTO transaction (TRANSACTION_TYPE, noTransaction, dateTransaction, libelle, montant) VALUES ('Credit', '3', '2016-08-10', NULL, '220');
+INSERT INTO transaction (TRANSACTION_TYPE, noTransaction, dateTransaction, libelle, montant) VALUES ('Debit', '4', '2016-10-10', NULL, '20');
+INSERT INTO transaction (TRANSACTION_TYPE, noTransaction, dateTransaction, libelle, montant) VALUES ('Debit', '5', '2016-09-10', NULL, '40');
+INSERT INTO transaction (TRANSACTION_TYPE, noTransaction, dateTransaction, libelle, montant) VALUES ('Credit', '6', '2016-08-10', NULL, '1220');
+INSERT INTO transaction (TRANSACTION_TYPE, noTransaction, dateTransaction, libelle, montant) VALUES ('Debit', '7', '2016-10-10', NULL, '550');
+

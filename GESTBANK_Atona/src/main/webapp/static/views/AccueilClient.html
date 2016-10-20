@@ -27,7 +27,7 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="compte in ClientCtrl.comptes" ng-click="voirCompte(compte.noCompte)">
-						<td>Compte chèque <span ng-if="compte.decouvert!=0">avec
+						<td>Compte chèque <span ng-if="compte.decouvert">avec
 								decouvert<span ng-if="compte.seuilRemuneration"> et </span>
 						</span><span ng-if="compte.seuilRemuneration">avec remuneration</span></td>
 						<td><span ng-bind="compte.noCompte"></span></td>

@@ -29,7 +29,7 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 	
 	function voirCompte(noCompte){
 		sessionStorage.noCompte = noCompte;
-		$scope.mainCtrl.redirection('/GestionCompte')
+		$scope.mainCtrl.redirection('/Client/GestionCompte/'+noCompte)
 	}
 	
 	function getCompteByClient(identifiant){
