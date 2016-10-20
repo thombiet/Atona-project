@@ -301,7 +301,7 @@ public class HelloWorldRestController {
 		return new ResponseEntity<List<DemandeOuverture>>(liste, HttpStatus.OK);
 	}
 	
-	//---- recuperation de toutes les demandes affectées à un conseiller
+	//---- recuperation de toutes les demandes affectees à un conseiller
 	@RequestMapping(value="/demande/{matricule}", method=RequestMethod.GET)
 	public ResponseEntity<List<DemandeOuverture>> listDemandesByConseiller(@PathVariable Long matricule){
 		if (utilService.findByMle(matricule)==null){
@@ -327,7 +327,7 @@ public class HelloWorldRestController {
 	
 	//----- validation d'une demande
 		@RequestMapping(value="/demande/{numDemande}", method=RequestMethod.PUT)
-		public ResponseEntity<Void> affectDemande(@PathVariable("numDemande") int numDemande, @RequestBody DemandeOuverture demande){
+		public ResponseEntity<Void> valideDemande(@PathVariable("numDemande") int numDemande, @RequestBody DemandeOuverture demande){
 			DemandeOuverture demandeOuverture = utilService.getDemandeByNum(numDemande);
 			if (demandeOuverture==null){
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -336,7 +336,7 @@ public class HelloWorldRestController {
 			return null;
 		}
 	
-	//----- création d'une demande
+	//----- creation d'une demande
 	@RequestMapping(value="/demande/", method=RequestMethod.POST)
 	public ResponseEntity<Void> saveDemande(@RequestBody DemandeOuverture demande){
 		if (utilService.isDemandeExist(demande)){
