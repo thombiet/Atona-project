@@ -57,16 +57,15 @@ function ClientController(uService, cService,  $scope, $routeParams) {
     }
 	
 	function getTransactions(noCompte){
-		var month = new Date().getMonth() +1;
+		var month = new Date().getMonth();
 		cService.getTransactionsByCompteAndMonth(noCompte, month).then(
 			function(value) {
-				var tmp = value[1];
-				tmp.forEach(function(value, key) {
-					value.montant=-value.montant;
+				value.forEach(function(item, key) {
+					if (item.typeTransaction=="debit")
+						item.montant=-item.montant;
 				})
-				self.transactions= tmp.concat(value[0]);
-				console.log(value)
-				console.log(self.transactions);
+				self.transactions= value;
+				
 		}, function(reason) {
 				console.log("ClientController : getTransactions, erreur "+reason.status)
 		})
