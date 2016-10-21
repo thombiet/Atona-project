@@ -94,7 +94,7 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 
 	@Override
 	public List<Notification> getAllNotificationsByCompte(Long noCompte) {
-		List<Notification> lt=getEntityManager().createQuery("SELECT c.listeNotifications FROM Compte c where c.noComtpe= :noCompte").getResultList();
+		List<Notification> lt=getEntityManager().createQuery("SELECT c.listeNotification FROM Compte c").getResultList();
 		return lt;
 	}
 

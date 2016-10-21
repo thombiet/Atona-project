@@ -14,6 +14,9 @@ function compteService($http, $q){
     //---------------------Transaction-----------------
     	getTransactionsByCompteAndMonth:getTransactionsByCompteAndMonth,
     	getTransactionsByCompte:getTransactionsByCompte,
+    	 //---------------------Notification----------------
+    	getNotificationsByCompteAndMonth:getNotificationsByCompteAndMonth,
+    	getNotificationsByCompte:getNotificationsByCompte,
     };
 
     return factory;
@@ -130,7 +133,38 @@ function compteService($http, $q){
         );
         return deferred.promise;
     }
+
+    /* recupere toutes les notifications d'un compte et un mois*/
+    function getNotificationsByCompteAndMonth(noCompte, month){
+    	var deferred = $q.defer();
+        $http.get(COMPTE_URI+noCompte+"/notification/"+month)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching notification');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
     
+    /* recupere toutes les notifications d'un compte*/
+    function getNotificationsByCompte(NoCompte){
+    	var deferred = $q.defer();
+        $http.get(COMPTE_URI+NoCompte+"/notification/")
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while fetching notification');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    } 
 
 }
 

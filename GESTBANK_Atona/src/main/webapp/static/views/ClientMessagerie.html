@@ -28,26 +28,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="notif in cptctrl.listeNotification">
-						<td><span ng-bind="notif.date"></span></td>
+					<tr ng-repeat="notif in ClientCtrl.notifications| orderBy: 'date'">
+						<td>{{notif.date|date: 'dd MMM yyyy'}}</td>
 						<td><span ng-bind="notif.message"></span></td>
 					</tr>
-					<tr>
-						<td>25/09/2016</td>
-						<td>blablalalfef</span></td>
-					</tr>
-					<tr>
-						<td>26/09/2016</td>
-						<td>rgerhertjhblablalalfef</span></td>
-					</tr>
-					<tr>
-						<td>26/09/2016</td>
-						<td>rgerhertjhblablalalfef</span></td>
-					</tr>
-					<tr>
-						<td>26/09/2016</td>
-						<td>rgerhertjhblablalalfef</span></td>
-					</tr>
+				
 				</tbody>
 			</table>
 		</div>
