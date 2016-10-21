@@ -1,5 +1,7 @@
 <meta charset="utf-8" />
-<link rel="stylesheet" href="static/css/style_Conseiller.css">
+<link
+	rel="stylesheet"
+	href="static/css/style_Conseiller.css">
 <div id="ma_page">
 	<fieldset>
 		<legend>
@@ -9,7 +11,10 @@
 		<br />
 		<div class="option2">
 
-			<table align="center" cellspacing=1 cellpadding=10>
+			<table
+				align="center"
+				cellspacing=1
+				cellpadding=10>
 				<thead>
 					<tr>
 						<th>Date demande</th>
@@ -19,13 +24,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="daff in ConsCtrl.demandes">
+					<tr ng-repeat="daff in ConsCtrl.demandes | orderBy: 'dateCreation'">
 						<td><span>{{daff.dateCreation|date}}</span></td>
 						<td><span>{{daff.cp.nom}} {{daff.cp.prenom}}</span>
 							<button class="myButton">Voir</button></td>
 						<td><span ng-if="!daff.valide">En cours</span> <span
 							ng-if="daff.valide">Ouvert</span></td>
-						<td><button ng-click="ConsCtrl.validationDemande(daff)" class="myButton">Valider</button></td>
+						<td><button
+								ng-if="!daff.valide"
+								ng-click="ConsCtrl.validationDemande(daff)"
+								class="myButton">Valider</button>
+								<span ng-if="daff.valide">Compte crée</span>
+								</td>
 					</tr>
 				</tbody>
 			</table>
