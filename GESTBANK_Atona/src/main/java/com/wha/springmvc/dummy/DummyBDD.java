@@ -10,8 +10,6 @@ import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.ClientPotentiel;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
-import com.wha.springmvc.model.Credit;
-import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.Utilisateur;
@@ -92,7 +90,7 @@ public class DummyBDD {
 	private static List<Transaction> populateDummyTransaction() {
 		List<Transaction> liste = new ArrayList<Transaction>();
 		Random rand = new Random();
-		for (int i = 0; i < 2000; i++) {
+		/*for (int i = 0; i < 2000; i++) {
 			Date date = new Date();
 			date.setDate(date.getDate() - rand.nextInt(365));
 			if (rand.nextBoolean()) {
@@ -104,7 +102,7 @@ public class DummyBDD {
 				String libelle = "Credit d'un montant de : " + montant;
 				liste.add(new Credit(montant, libelle, date));
 			}
-		}
+		}*/
 		return liste;
 	}
 

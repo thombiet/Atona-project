@@ -3,8 +3,7 @@ package com.wha.springmvc.service;
 import java.util.List;
 
 import com.wha.springmvc.model.Compte;
-import com.wha.springmvc.model.Credit;
-import com.wha.springmvc.model.Debit;
+
 import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
 
@@ -34,10 +33,9 @@ public interface BanqueService {
 	
 	List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth);
 	
-	boolean ajoutDebit(Debit debit, Long noCompte);
+	boolean ajoutTransaction(Transaction transaction, Long noCompte);
 	
-	void ajoutCredit(Credit credit, Long noCompte);
-	
+		
 	// #endregion
 
 }

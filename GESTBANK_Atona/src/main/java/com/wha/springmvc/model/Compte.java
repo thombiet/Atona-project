@@ -87,7 +87,7 @@ public class Compte {
 	}
 
 	public boolean ajoutTransaction(Transaction transaction) {
-		if (transaction instanceof Debit) {
+		if (transaction.getTypeTransaction().equals("debit")) {
 			if (this.isDebitAuthorize(transaction.getMontant())) {
 				this.setSolde(this.getSolde() - transaction.getMontant());
 			} else {

@@ -6,10 +6,10 @@
 
 .ma_page {
 	
-	min-height:550px;
+	min-height:650px;
 	margin-top:2%;
-	
 }
+
 
 
 .menuBtn {
@@ -19,9 +19,33 @@
 	
 }
 
+#message {
+	
+	margin-top:5%;
+	display:block;
+}
+
+.input-sm {
+	width: 80%;
+	min-height:300px;
+	font-size: 10px;
+	border-radius: 3px;
+	padding: 5px 10px;
+}
+
+.input-sm2 {
+	
+	height: 5%;
+	width: 45%;
+	padding: 5px 20px;
+	font-size: 15px;
+	border-radius: 3px;
+
+}
+
+
 table {
     border-collapse: collapse;
-    border: 1px solid #c0c0c0;
     width: 100%;
 }
 

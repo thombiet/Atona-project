@@ -19,8 +19,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
-import com.wha.springmvc.model.Credit;
-import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
@@ -454,26 +452,17 @@ public class HelloWorldRestController {
 		}
 	
 	// ---Ajout d'un débit dans un compte de n° noCompte
-	@RequestMapping(value = "/compte/{noCompte}/transaction/debit/", method = RequestMethod.POST)
-	public ResponseEntity<Void> ajoutDebit(@RequestBody Debit debit, @PathVariable("noCompte") Long noCompte) {
+	@RequestMapping(value = "/compte/{noCompte}/transaction/", method = RequestMethod.POST)
+	public ResponseEntity<Void> ajoutTransaction(@RequestBody Transaction transaction, @PathVariable("noCompte") Long noCompte) {
 		if (banqueService.getCompteByNo(noCompte)==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		if (banqueService.ajoutDebit(debit, noCompte)){
+		if (banqueService.ajoutTransaction(transaction, noCompte)){
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 	}
 
-	// ---Ajout d'un crédit dans un compte de n° noCompte
-	@RequestMapping(value = "/compte/{noCompte}/transaction/credit/", method = RequestMethod.POST)
-	public ResponseEntity<Void> ajoutCredit(@RequestBody Credit credit, @PathVariable("noCompte") Long noCompte) {
-		if (banqueService.getCompteByNo(noCompte)==null){
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		banqueService.ajoutCredit(credit, noCompte);
-		return new ResponseEntity<Void>(HttpStatus.OK);
-	}
 
 	// #endregion
 
