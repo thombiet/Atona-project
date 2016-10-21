@@ -1,5 +1,6 @@
 package com.wha.springmvc.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.wha.springmvc.dao.BanqueDAO;
+import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
@@ -167,13 +169,13 @@ public class BanqueServiceImpl implements BanqueService {
 	}
 
 	@Override
-	public List<Notification> getAllNotificationsByCompte(Long noCompte) {
-		return dao.getAllNotificationsByCompte(noCompte);
-	}
-
-	@Override
-	public List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth) {
-		return dao.getThatMonthNotificationsByCompte(noCompte, thatMonth);
+	public List<Notification> getAllNotificationsByClient(Long Identifiant) {
+		List<Compte> lc = dao.getComptesByClient(Identifiant);
+		List<Notification> ln = new ArrayList<>();
+		for (Compte compte : lc) {
+			ln.addAll(dao.getAllNotificationsByCompte(compte.getNoCompte()));
+		}
+		return ln;
 	}
 
 	@Override

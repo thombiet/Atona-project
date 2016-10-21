@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,10 +15,10 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "notification")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Notification {
 	// #region Attributs
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "numNotif")
 	private int numNotif;
 	@Column(name = "dateAffectation")

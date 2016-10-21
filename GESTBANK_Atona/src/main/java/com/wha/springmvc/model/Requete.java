@@ -16,7 +16,7 @@ public class Requete {
 	@Column (name="type")
 	private TypeRequete type;
 	@ManyToOne
-	@JoinColumn(name="no_compte",referencedColumnName="noComtpe")
+	@JoinColumn(name="no_compte",referencedColumnName="noCompte")
 	private Compte compte;
 	/*@ManyToOne
 	@JoinColumn(name="id_client",referencedColumnName="identifiant")

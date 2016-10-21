@@ -1,13 +1,15 @@
 /**
  * 
  */
-function MainController($location, $scope) {
+function MainController($location, $scope, $route) {
 
 	var self = this;
 	self.redirection= redirection;
 	self.deconnexion=deconnexion;
 	
 	self.CurrentDate = new Date();
+	
+	self.user;
 	
 
 	 if (!$scope.role && !sessionStorage.role ){
@@ -35,6 +37,7 @@ function MainController($location, $scope) {
 		sessionStorage.idConnecte = null;
 		sessionStorage.role = "Guest";
 		sessionStorage.noCompte = null;
+		self.user = null;
 		this.redirection('/');
 	}
 	

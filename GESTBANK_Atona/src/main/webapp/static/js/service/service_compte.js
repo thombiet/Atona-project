@@ -3,6 +3,7 @@
 function compteService($http, $q){
 
     var COMPTE_URI = 'http://localhost:8080/SpringAngularStartProject/compte/';
+    var NOTIF_URI = 'http://localhost:8080/SpringAngularStartProject/notification/';
 
     var factory = {
     //---------------------Compte----------------------
@@ -15,8 +16,7 @@ function compteService($http, $q){
     	getTransactionsByCompteAndMonth:getTransactionsByCompteAndMonth,
     	getTransactionsByCompte:getTransactionsByCompte,
     	 //---------------------Notification----------------
-    	getNotificationsByCompteAndMonth:getNotificationsByCompteAndMonth,
-    	getNotificationsByCompte:getNotificationsByCompte,
+    	getAllNotifications:getAllNotifications,
     };
 
     return factory;
@@ -133,27 +133,14 @@ function compteService($http, $q){
         );
         return deferred.promise;
     }
-
-    /* recupere toutes les notifications d'un compte et un mois*/
-    function getNotificationsByCompteAndMonth(noCompte, month){
-    	var deferred = $q.defer();
-        $http.get(COMPTE_URI+noCompte+"/notification/"+month)
-            .then(
-            function (response) {
-                deferred.resolve(response.data);
-            },
-            function(errResponse){
-                console.error('Error while fetching notification');
-                deferred.reject(errResponse);
-            }
-        );
-        return deferred.promise;
-    }
     
-    /* recupere toutes les notifications d'un compte*/
-    function getNotificationsByCompte(NoCompte){
+    //---------------------NOTIFICATION----------------
+    
+    /* recupere toutes les notifications d'un client*/
+    function getAllNotifications(identifiant){
     	var deferred = $q.defer();
-        $http.get(COMPTE_URI+NoCompte+"/notification/")
+    	console.log(identifiant);
+        $http.get(NOTIF_URI, {params:{id:identifiant}})
             .then(
             function (response) {
                 deferred.resolve(response.data);

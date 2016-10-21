@@ -23,13 +23,13 @@ INSERT INTO demandeouverture (numDemande, dateAffectation, dateCreation, cp_pseu
 INSERT INTO demandeouverture (numDemande, dateAffectation, dateCreation, cp_pseudo, status) VALUES ('3', NULL, '2016-09-14', 'MPatullacci', false);
 INSERT INTO demandeouverture (numDemande, dateAffectation, dateCreation, cp_pseudo, status) VALUES ('4', NULL, '2016-08-02', 'RSucco', false);
 
-INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('5648978', NULL, NULL, NULL, NULL, NULL, '1500');
-INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('5467893', NULL, NULL, NULL, NULL, NULL, '32000');
-INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2457896', NULL, NULL, NULL, NULL, NULL, '300');
-INSERT INTO compte (noComtpe, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2354789', NULL, NULL, NULL, NULL, NULL, '18000');
+INSERT INTO compte (noCompte, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('5648978', NULL, NULL, NULL, NULL, NULL, '1500');
+INSERT INTO compte (noCompte, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('5467893', NULL, NULL, NULL, NULL, NULL, '32000');
+INSERT INTO compte (noCompte, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2457896', NULL, NULL, NULL, NULL, NULL, '300');
+INSERT INTO compte (noCompte, RIB, decouvert, montantAgios, montanRemuneration, seuilRemuneration, solde) VALUES ('2354789', NULL, NULL, NULL, NULL, NULL, '18000');
 
-INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noComtpe) VALUES ('HDavis', '2457896');
-INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noComtpe) VALUES ('HDavis', '2354789');
+INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noCompte) VALUES ('HDavis', '2457896');
+INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noCompte) VALUES ('HDavis', '2354789');
 
 INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeTransaction) VALUES ('2', '2016-09-10', NULL, '20','debit');
 INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeTransaction) VALUES ('3', '2016-08-10', NULL, '220','credit');

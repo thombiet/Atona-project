@@ -94,20 +94,13 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 
 	@Override
 	public List<Notification> getAllNotificationsByCompte(Long noCompte) {
-		List<Notification> lt=getEntityManager().createQuery("SELECT c.listeNotification FROM Compte c").getResultList();
+		List<Notification> lt=getEntityManager()
+				.createQuery("SELECT c.listeNotification FROM Compte c WHERE c.noCompte LIKE :noCompte")
+				.setParameter("noCompte", noCompte)
+				.getResultList();
 		return lt;
 	}
 
-	@Override
-	public List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth) {
-		List<Notification> lnm=new ArrayList<>();
-		for (Notification n : getCompteByNo(noCompte).getListeNotification()) {
-			LocalDate ld = n.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			if (ld.getMonthValue() == thatMonth) {
-				lnm.add(n);
-			}
-		}
-		return lnm;
-	}
+	
 
 	}

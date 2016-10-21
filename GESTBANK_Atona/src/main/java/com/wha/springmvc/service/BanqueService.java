@@ -29,11 +29,9 @@ public interface BanqueService {
 	
 	List<Transaction> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth);
 	
-	List<Notification> getAllNotificationsByCompte(Long noCompte);
-	
-	List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth);
-	
 	boolean ajoutTransaction(Transaction transaction, Long noCompte);
+
+	List<Notification> getAllNotificationsByClient(Long identifiant);
 	
 		
 	// #endregion
