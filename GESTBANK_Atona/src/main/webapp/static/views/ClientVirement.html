@@ -1,5 +1,5 @@
 <meta charset="utf-8" />
-<link rel="stylesheet" href="static/css/style_ClientVirement.css">
+<link rel="stylesheet" href="static/css/style_Client.css">
 
 <div class="ma_page">
 
@@ -19,11 +19,11 @@
 <br />
 		<div class="choixCompte" >
 						
-					<select name="compteDebit" ng-model="selectNoCompte" ng-options="cd for cd in CompteController.comptes"
-						class="input-sm2" placeholder="Compte à Déditer" required>
+					<select name="compteDebit" ng-model="selectNoCompteDebit" ng-options="cd.noCompte for cd in ClientCtrl.comptes"
+						class="input-sm2" placeholder="Compte à Débiter" required>
 					</select>
 			
-					<select name="compteCrebit" ng-model="selectNoCompte" ng-options="cc for cc in CompteController.comptes"
+					<select name="compteCredit" ng-model="selectNoCompteCredit" ng-options="cc.noCompte for cc in ClientCtrl.comptes"
 						class="input-sm2"  placeholder="Compte à Créditer" required>
 					</select>
 				
@@ -32,17 +32,17 @@
 			<div class="choixMontant">
 						<div class="entry">
 							<label id="montant">Montant</label> <input type="number"
-						name="montant" class="input-sm" placeholder="Entrez votre montant" required>
+						name="montant" class="input-sm" placeholder="Entrez votre montant" ng-model="transaction.montant" required>
 						</div>
 						<br>
 						<div class="entry">
 							<label id="Libellé">Libellé</label> <input type="text"
-						name="libellé" class="input-sm" placeholder="Libellé du Virement" required>
+						name="libellé" class="input-sm" placeholder="Libellé du Virement" ng-model="transaction.libelle" required>
 						</div>
 						<br>
 						<div class="entry">
 							<label id="date">Date</label> <input type="Date"
-						name="date" class="input-sm" placeholder="Date du Virement" required>
+						name="date" class="input-sm" placeholder="Date du Virement" ng-model="transaction.dateTransaction" required>
 						</div>
 			</div>
 		<br> 

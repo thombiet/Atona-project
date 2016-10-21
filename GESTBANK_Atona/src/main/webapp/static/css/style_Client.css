@@ -18,6 +18,16 @@
 	
 }
 
+.input-sm2 {
+	
+	height: 5%;
+	width: 25%;
+	padding: 5px 20px;
+	font-size: 15px;
+	border-radius: 3px;
+
+}
+
 table {
     border-collapse: collapse;
     width: 100%;

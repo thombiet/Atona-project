@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 public class Compte {
 	// #region Attributs
 	@Id
-	@Column (name="noComtpe")
+	@Column (name="noCompte")
 	private Long noCompte;
 	@Column (name="RIB")
 	private String RIB;

@@ -74,7 +74,6 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 	}
 	
 	function getNotifications(noCompte){
-		var month = new Date().getMonth()+1;
 		//console.log(month);
 		cService.getNotificationsByCompte(noCompte).then(
 			function(value) {
