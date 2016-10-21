@@ -17,6 +17,9 @@ function compteService($http, $q){
     	 //---------------------Notification----------------
     	getNotificationsByCompteAndMonth:getNotificationsByCompteAndMonth,
     	getNotificationsByCompte:getNotificationsByCompte,
+    	
+    //---------------------Requete----------------------
+    	envoiRequete:envoiRequete,
     };
 
     return factory;
@@ -166,6 +169,20 @@ function compteService($http, $q){
         return deferred.promise;
     } 
 
+    function envoiRequete(noCompte, requete, matricule){
+    	var deferred = $q.defer();
+        $http.post(COMPTE_URI+"requete/"+noCompte+"&"+requete+"&"+matricule)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('Error while sending requete');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
 }
 
 App.factory("cService", compteService)

@@ -5,6 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.Compte;
 
 import com.wha.springmvc.model.Notification;
+import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Transaction;
 
 public interface BanqueService {
@@ -34,6 +35,8 @@ public interface BanqueService {
 	List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth);
 	
 	boolean ajoutTransaction(Transaction transaction, Long noCompte);
+
+	void envoiRequete(Requete requete, Long matricule);
 	
 		
 	// #endregion

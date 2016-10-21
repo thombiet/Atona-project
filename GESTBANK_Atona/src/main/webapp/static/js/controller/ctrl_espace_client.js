@@ -3,6 +3,7 @@
  */
 function ClientController(uService, cService,  $scope, $routeParams) {
 
+	
 	if (sessionStorage.role!="Client"){
 		$scope.mainCtrl.deconnexion();
 	}
@@ -10,6 +11,7 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 		var self = this;
 		getCompteByClient(sessionStorage.idConnecte);
 		getClientById(sessionStorage.idConnecte);
+		console.log(sessionStorage.idConnecte);
 		if (sessionStorage.noCompte){
 			getCompteByNo(sessionStorage.noCompte);
 			getTransactions(sessionStorage.noCompte);
@@ -17,18 +19,19 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 
 		}
 	}
-	
+	self.envoiRequete=envoiRequete;
 	$scope.voirCompte = voirCompte;
 	
 	function getClientById(Id){
 		uService.getClientById(Id).then(
 			function(value) {
 			$scope.client = value;
+			console.log($scope.client)
 		}, function(reason) {
 			console.log("Error: ConseillerController.getClientById - "+reason.status)
 		})
 	}
-	
+
 	function voirCompte(noCompte){
 		sessionStorage.noCompte = noCompte;
 		$scope.mainCtrl.redirection('/Client/GestionCompte/'+noCompte)
@@ -85,7 +88,18 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 		})
 	}
 	
-
+	function envoiRequete(requete){
+		console.log("coucou")
+		cService.envoiRequete(sessionStorage.noCompte,requete,$scope.client.conseiller.matricule).then(	
+				function(value){
+					self.requete=value;
+					console.log(value)
+				},
+		function(reason) {
+			console.log("ClientController : envoiRequete, erreur "+reason.status)
+		})
+	}
+	
 	 $scope.printToCart = function(printSectionId) {
 	        var innerContents = document.getElementById(printSectionId).innerHTML;
 	        var popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
@@ -97,3 +111,4 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 }
 
 App.controller("ClientController", ClientController);
+
