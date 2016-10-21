@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -14,11 +16,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
 @Table (name="transaction")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TRANSACTION_TYPE", discriminatorType = DiscriminatorType.STRING)
 public class Transaction {
 	// #region Attributs
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="noTransaction")
 	private Integer noTransaction;
 	@Column(name="montant")
@@ -28,6 +29,8 @@ public class Transaction {
 	@Column (name="dateTransaction")
 	@Temporal(TemporalType.DATE)
 	private Date date;
+	@Column (name="typeTransaction")
+	private String typeTransaction;
 	// #endregion
 
 	// #region Constructeurs
@@ -36,10 +39,11 @@ public class Transaction {
 	}
 	
 	
-	public Transaction(Integer montant, String libelle, Date date) {
+	public Transaction(Integer montant, String libelle, Date date, String typeTransaction) {
 		this.montant = montant;
 		this.libelle = libelle;
 		this.date = date;
+		this.typeTransaction = typeTransaction;
 	}
 
 
@@ -82,6 +86,16 @@ public class Transaction {
 	// #endregion
 
 	// #region Utilitaire
+
+	public String getTypeTransaction() {
+		return typeTransaction;
+	}
+
+
+	public void setTypeTransaction(String typeTransaction) {
+		this.typeTransaction = typeTransaction;
+	}
+
 
 	@Override
 	public String toString() {

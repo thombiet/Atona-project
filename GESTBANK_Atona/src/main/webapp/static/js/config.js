@@ -75,8 +75,8 @@ App.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'static/views/ConseillerMessagerie.html',
 		controller : 'ConseillerController',
 		controllerAs : 'ConsCtrl'
-	}).when('/Conseiller/NvRequete', {
-		templateUrl : 'static/views/NouvelleRequete.html',
+	}).when('/Conseiller/NvMessage', {
+		templateUrl : 'static/views/ConseillerNvMessage.html',
 		controller : 'ConseillerController',
 		controllerAs : 'ConsCtrl'
 	}).when('/Conseiller/Infos/:matricule', {

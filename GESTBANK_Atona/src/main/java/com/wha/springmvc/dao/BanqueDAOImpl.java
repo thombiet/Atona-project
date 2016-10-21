@@ -10,8 +10,6 @@ import org.springframework.stereotype.Repository;
 import com.wha.springmvc.dao.AbstractDAO;
 import com.wha.springmvc.dao.BanqueDAO;
 import com.wha.springmvc.model.Compte;
-import com.wha.springmvc.model.Credit;
-import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
 
@@ -70,22 +68,14 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	}
 
 	@Override
-	public boolean ajoutDebit(Debit debit, Long noCompte) {
+	public boolean ajoutTransaction(Transaction transaction, Long noCompte) {
 		Compte compte=getByKey(noCompte);
 		List<Transaction> lt=compte.getListeTransactions();
-		if (compte.ajoutTransaction(debit)) {
-			lt.add(debit);
+		if (compte.ajoutTransaction(transaction)) {
+			lt.add(transaction);
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public void ajoutCredit(Credit credit, Long noCompte) {
-		Compte compte=getByKey(noCompte);
-		List<Transaction> lt=compte.getListeTransactions();
-		compte.ajoutTransaction(credit);
-		lt.add(credit);
 	}
 
 	@Override
@@ -120,4 +110,5 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 		}
 		return lnm;
 	}
-}
+
+	}

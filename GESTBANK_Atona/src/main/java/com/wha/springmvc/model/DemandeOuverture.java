@@ -27,7 +27,7 @@ public class DemandeOuverture {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="numDemande")
 	private int numDemande;
-	@OneToOne(cascade=CascadeType.PERSIST)
+	@OneToOne(cascade=CascadeType.ALL)
 	private ClientPotentiel cp;
 	@Column (name="Status")
 	private boolean valide;

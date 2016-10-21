@@ -8,8 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.wha.springmvc.dao.BanqueDAO;
 import com.wha.springmvc.model.Compte;
-import com.wha.springmvc.model.Credit;
-import com.wha.springmvc.model.Debit;
 import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Transaction;
 
@@ -169,29 +167,6 @@ public class BanqueServiceImpl implements BanqueService {
 	}
 
 	@Override
-	public boolean ajoutDebit(Debit debit, Long noCompte) {
-		/*getComptes();
-		getTransactions();
-		Compte c = getCompteByNo(noCompte);
-		if (c.ajoutTransaction(debit)) {
-			transactions.add(debit);
-			return true;
-		}
-		return false;*/
-		return dao.ajoutDebit(debit, noCompte);
-	}
-
-	@Override
-	public void ajoutCredit(Credit credit, Long noCompte) {
-		/*getComptes();
-		getTransactions();
-		Compte c = getCompteByNo(noCompte);
-		c.ajoutTransaction(credit);
-		transactions.add(credit);*/
-		dao.ajoutCredit(credit, noCompte);
-	}
-
-	@Override
 	public List<Notification> getAllNotificationsByCompte(Long noCompte) {
 		return dao.getAllNotificationsByCompte(noCompte);
 	}
@@ -199,6 +174,12 @@ public class BanqueServiceImpl implements BanqueService {
 	@Override
 	public List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth) {
 		return dao.getThatMonthNotificationsByCompte(noCompte, thatMonth);
+	}
+
+	@Override
+	public boolean ajoutTransaction(Transaction transaction, Long noCompte) {
+		// TODO Auto-generated method stub
+		return dao.ajoutTransaction(transaction, noCompte);
 	}
 
 	// #endregion

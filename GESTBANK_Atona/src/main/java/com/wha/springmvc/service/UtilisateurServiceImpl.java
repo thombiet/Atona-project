@@ -15,8 +15,8 @@ import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.ClientPotentiel;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
-import com.wha.springmvc.model.Credit;
 import com.wha.springmvc.model.DemandeOuverture;
+import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
 
@@ -311,12 +311,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		max = dao.getMaxNoCompte()+1L;
 		cpt.setNoCompte(max);
 		//creation d'une transaction cadeau de bienvenu !
-		Credit credit = new Credit(50, "Cadeau de bienvenue", new Date());
-		Integer max2 = dao.getMaxNoTransact();
-		max2++;
-		credit.setNoTransaction(max2);
+		Transaction transaction = new Transaction(50, "Cadeau de bienvenue", new Date(), "credit");
 		//ajout de la transaction dans le compte
-		cpt.ajoutTransaction(credit);
+		cpt.ajoutTransaction(transaction);
 		//ajout compte dans le client
 		client.ajoutCompte(cpt);
 		//ajout du client dans le conseiller (bidirectionnel)
