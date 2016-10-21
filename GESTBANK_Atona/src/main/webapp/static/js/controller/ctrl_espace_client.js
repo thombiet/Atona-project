@@ -78,6 +78,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 					console.log("ClientController : getNotifications, erreur "
 							+ reason.status)
 				})
+	}
 
 
 	 $scope.printToCart = function(printSectionId) {
