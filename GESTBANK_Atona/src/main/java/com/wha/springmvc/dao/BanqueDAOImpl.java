@@ -59,8 +59,7 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 		//Compte compte=getByKey(noCompte);
 		List<Transaction> ltm=new ArrayList<>();
 		for (Transaction t : getCompteByNo(noCompte).getListeTransactions()) {
-			LocalDate ld = t.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			if (ld.getMonthValue() == thatMonth) {
+			if (t.getDate().getMonth() == thatMonth) {
 				ltm.add(t);
 			}
 		}
