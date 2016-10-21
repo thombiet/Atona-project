@@ -79,7 +79,7 @@ function PublicController($http, $scope, uService) {
 				alert("Votre demande a été enregistrée !")
 				$scope.redirection('/');
 		}, function(reason) {
-			
+			console.log(reason);
 		})
 	}
 	

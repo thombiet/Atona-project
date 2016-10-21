@@ -1,55 +1,62 @@
 <meta charset="utf-8" />
-<link rel="stylesheet" href="static/css/style_Admin.css">
+<link
+	rel="stylesheet"
+	href="static/css/style_Admin.css">
 <div id="ma_page">
 
-<fieldset>
-	<legend>
-		<h2>Gestion des Demandes d'Inscription</h2>
-	</legend>
-	<br />
-	<div class="option2">
-		<div align="center">
-			<input type="search" class="input-sm" ng-model="nom"
-				placeholder="Entrer un nom "> <input type="button"
-				class="myButton" name="bouton1" value="Recherche">
+	<fieldset>
+		<legend>
+			<h2>Gestion des Demandes d'Inscription</h2>
+		</legend>
+		<br />
+		<div class="option2">
+			<div align="center">
+				<input
+					type="search"
+					class="input-sm"
+					ng-model="nom"
+					placeholder="Entrer un nom "> <input
+					type="button"
+					class="myButton"
+					name="bouton1"
+					value="Recherche">
+			</div>
+			<br> <br>
+			<div>
+				<table
+					align="center"
+					border=1
+					cellspacing=1
+					cellpadding=10>
+					<thead>
+						<tr>
+							<th>Date Demande</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Date d'Affectation</th>
+							<th>Conseiller</th>
+							<th>Statut</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="d in AdminCtrl.demandes | orderBy: 'dateCreation'">
+							<td><span>{{d.dateCreation | date}}</span></td>
+							<td><span>{{d.cp.nom}} {{d.cp.prenom}}</span></td>
+							<td><span ng-bind="d.cp.email"></span></td>
+							<td><span>{{d.dateAffectation|date}}</span></td>
+							<td><span ng-if="!d.conseiller"> <a
+									href="#/Admin/AffectCons/{{d.numDemande}}"
+									class="myButton">Affecter</a>
+							</span> <span ng-if="d.conseiller">{{d.conseiller.nom}}</span>
+							</td>
+							<td><span ng-if="d.valide">Acceptée</span> <span
+								ng-if="!d.valide">En cours</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<br> <br>
-		<div>
-			<table align="center" border=1 cellspacing=1 cellpadding=10>
-				<thead>
-					<tr>
-						<th>Date Demande</th>
-						<th>Nom</th>
-						<th>Email</th>
-						<th>Date d'Affectation</th>
-						<th>Conseiller</th>
-						<th>Statut</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr ng-repeat="d in AdminCtrl.demandes|filter :nom">
-						<td><span>{{d.dateCreation | date}}</span></td>
-						<td><span>{{d.cp.nom}} {{d.cp.prenom}}</span></td>
-						<td><span ng-bind="d.cp.email"></span></td>
-						<td><span ng-bind="d.dateAffectation"></span></td>
-						<td>
-							<span >
-<!-- 								<a href="#/Admin/AffectCons" class="myButton">Affecter</a> -->
-								
-								<a href="#/Admin/AffectCons/{{d.numDemande}}" class="myButton">Affecter</a>
-							</span>
-							<span ng-if="d.conseiller!==null">{{d.conseiller.matricule}}</span>
-						</td>
-						<td>
-							<span ng-if="d.valide">Acceptée</span>
-							<span ng-if="!d.valide">En cours</span>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<br> <br>
-</fieldset>
+	</fieldset>
 
 </div>

@@ -94,6 +94,7 @@ function AdministrateurController($scope, $routeParams, uService) {
 	}
 
 	function affectDemandeConseiller(matricule) {
+		$scope.demande.dateAffectation = new Date();
 		uService.affectationDemande($scope.demande, matricule).then(
 			function(value) {
 			alert("la demande a été affectée");
