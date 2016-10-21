@@ -51,7 +51,7 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	public List<Transaction> getAllTransactionsByCompte(Long noCompte) {
 		//Compte compte=getByKey(noCompte);
 		//List<Transaction> lt=getCompteByNo(noCompte).getListeTransactions();
-		List<Transaction> lt=getEntityManager().createQuery("SELECT c.listeTransactions FROM Compte c where c.noComtpe= :noCompte")
+		List<Transaction> lt=getEntityManager().createQuery("SELECT c.listeTransactions FROM Compte c where c.noCompte= :noCompte")
 				.setParameter("noCompte", noCompte).getResultList();
 		return lt;
 	}

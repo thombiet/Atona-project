@@ -17,6 +17,7 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 		}
 		if ($routeParams.noCompte) {
 			getCompteByNo($routeParams.noCompte);
+			getTransactionsByCompte($routeParams.noCompte);
 		}
 	}
 
@@ -45,6 +46,7 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 	function getAllClientsByConseiller(Mle) {
 		uService.getAllClientsByConseiller(Mle).then(function(value) {
 			self.clients = value;
+			//console.log(value)
 		}, function(reason) {
 			console.error('Error while fetching Clients: ' + reason);
 		})
@@ -119,6 +121,16 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 		}, function(reason) {
 			console.log("erreur ConsCtrl.validationDemande() :");
 			console.log(reason);
+		})
+	}
+	
+	function getTransactionsByCompte(noCompte){
+		cService.getTransactionsByCompte(noCompte).then(
+			function(value) {
+			self.transactions = value;
+			console.log(value);
+		}, function(reason) {
+			
 		})
 	}
 
