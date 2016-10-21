@@ -30,6 +30,8 @@ INSERT INTO compte (noCompte, RIB, decouvert, montantAgios, montanRemuneration, 
 
 INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noCompte) VALUES ('HDavis', '2457896');
 INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noCompte) VALUES ('HDavis', '2354789');
+INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noCompte) VALUES ('MDavis', '5648978');
+INSERT INTO utilisateur_compte (utilisateur_pseudo, listeComptes_noCompte) VALUES ('MDavis', '5467893');
 
 INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeTransaction) VALUES ('2', '2016-09-10', NULL, '20','debit');
 INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeTransaction) VALUES ('3', '2016-08-10', NULL, '220','credit');
@@ -37,4 +39,8 @@ INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeT
 INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeTransaction) VALUES ('5', '2016-09-10', NULL, '40','debit');
 INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeTransaction) VALUES ('6', '2016-08-10', NULL, '1220','credit');
 INSERT INTO transaction (noTransaction, dateTransaction, libelle, montant, typeTransaction) VALUES ('7', '2016-10-10', NULL, '550','debit');
+
+INSERT INTO compte_transaction (compte_noCompte, listeTransactions_noTransaction) VALUES ('5648978', '2');
+INSERT INTO compte_transaction (compte_noCompte, listeTransactions_noTransaction) VALUES ('5648978', '3');
+INSERT INTO compte_transaction (compte_noCompte, listeTransactions_noTransaction) VALUES ('5648978', '4');
 

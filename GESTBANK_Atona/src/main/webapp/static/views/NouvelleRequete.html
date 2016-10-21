@@ -1,5 +1,5 @@
 <meta charset="utf-8" />
-<link rel="stylesheet" href="static/css/style_NvRequete.css">
+<link rel="stylesheet" href="static/css/style_Messagerie.css">
 <div class="ma_page">
 <fieldset>
 	<legend>
@@ -10,9 +10,11 @@
 	<div id="entete>"
 		
 		<label>Type de Requete</label>
-			<select name="TypeRequete" >
-				<option ng-repeat="r in TypeRequete" class="input_sm2">{{r}}</option>
-			</select>
+			
+			<select name="typeRequete" ng-model="selectTypeRequete" ng-options="t for t in ClientController.TypeRequete"
+						class="input-sm2" placeholder="Type de Requête" required>
+					</select>
+				
 			<input
 						type="submit"
 						class="myButton"

@@ -68,6 +68,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 				})
 	}
 
+
 	function getAllNotifications(identifiant) {
 		cService.getAllNotifications(identifiant).then(
 				function(value) {
@@ -77,7 +78,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 					console.log("ClientController : getNotifications, erreur "
 							+ reason.status)
 				})
-	}
+
 
 	 $scope.printToCart = function(printSectionId) {
 	        var innerContents = document.getElementById(printSectionId).innerHTML;
