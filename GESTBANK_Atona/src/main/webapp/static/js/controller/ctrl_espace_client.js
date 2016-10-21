@@ -12,11 +12,11 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 		getCompteByClient(sessionStorage.idConnecte);
 		getClientById(sessionStorage.idConnecte);
 		console.log(sessionStorage.idConnecte);
+		getAllNotifications(sessionStorage.idConnecte);
 		if (sessionStorage.noCompte){
 			getCompteByNo(sessionStorage.noCompte);
 			getTransactions(sessionStorage.noCompte);
-			getNotifications(sessionStorage.noCompte);
-
+			
 		}
 	}
 	self.envoiRequete=envoiRequete;
@@ -26,7 +26,7 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 		uService.getClientById(Id).then(
 			function(value) {
 			$scope.client = value;
-			console.log($scope.client)
+			$scope.mainCtrl.user = value;
 		}, function(reason) {
 			console.log("Error: ConseillerController.getClientById - "+reason.status)
 		})
@@ -76,16 +76,15 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 		})
 	}
 	
-	function getNotifications(noCompte){
-		var month = new Date().getMonth()+1;
-		//console.log(month);
-		cService.getNotificationsByCompte(noCompte).then(
-			function(value) {
-				self.notifications=value;
-				console.log(value);
-		}, function(reason) {
-				console.log("ClientController : getNotifications, erreur "+reason.status)
-		})
+	function getAllNotifications(identifiant) {
+		cService.getAllNotifications(identifiant).then(
+				function(value) {
+					self.notifications = value;
+				},
+				function(reason) {
+					console.log("ClientController : getNotifications, erreur "
+							+ reason.status)
+				})
 	}
 	
 	function envoiRequete(requete){

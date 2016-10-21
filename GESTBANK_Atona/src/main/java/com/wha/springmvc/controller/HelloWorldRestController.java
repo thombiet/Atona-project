@@ -289,66 +289,67 @@ public class HelloWorldRestController {
 
 	// #endregion
 
-	//	#region Demande
-	
-	//-- recuperation de toutes les demandes
-	@RequestMapping(value="/demande/", method=RequestMethod.GET)
-	public ResponseEntity<List<DemandeOuverture>> listAllDemandes(){
+	// #region Demande
+
+	// -- recuperation de toutes les demandes
+	@RequestMapping(value = "/demande/", method = RequestMethod.GET)
+	public ResponseEntity<List<DemandeOuverture>> listAllDemandes() {
 		List<DemandeOuverture> liste = utilService.findAllDemandes();
-		if (liste.isEmpty()){
+		if (liste.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<DemandeOuverture>>(liste, HttpStatus.OK);
 	}
-	
-	//---- recuperation de toutes les demandes affectees à un conseiller
-	@RequestMapping(value="/demande/{matricule}", method=RequestMethod.GET)
-	public ResponseEntity<List<DemandeOuverture>> listDemandesByConseiller(@PathVariable Long matricule){
-		if (utilService.findByMle(matricule)==null){
+
+	// ---- recuperation de toutes les demandes affectees à un conseiller
+	@RequestMapping(value = "/demande/{matricule}", method = RequestMethod.GET)
+	public ResponseEntity<List<DemandeOuverture>> listDemandesByConseiller(@PathVariable Long matricule) {
+		if (utilService.findByMle(matricule) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		List<DemandeOuverture> liste = utilService.findDemandeByConseiller(matricule);
-		if (liste.isEmpty()){
+		if (liste.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<List<DemandeOuverture>>(liste, HttpStatus.OK);
 	}
-	
-	//----- affectation d'un conseiller à une demande
-	@RequestMapping(value="/demande/", method=RequestMethod.PUT)
-	public ResponseEntity<Void> affectDemande(@RequestParam("conseiller") Long matricule, @RequestBody DemandeOuverture demande){
-		if (!utilService.isDemandeExist(demande)){
+
+	// ----- affectation d'un conseiller à une demande
+	@RequestMapping(value = "/demande/", method = RequestMethod.PUT)
+	public ResponseEntity<Void> affectDemande(@RequestParam("conseiller") Long matricule,
+			@RequestBody DemandeOuverture demande) {
+		if (!utilService.isDemandeExist(demande)) {
 			System.out.println(demande.getNumDemande());
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		utilService.affectionOuverture(demande, matricule);
-		return new ResponseEntity<Void>( HttpStatus.OK);
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-	
-	//----- validation d'une demande
-		@RequestMapping(value="/demande/{numDemande}", method=RequestMethod.PUT)
-		public ResponseEntity<Void> valideDemande(@PathVariable("numDemande") int numDemande, @RequestBody DemandeOuverture demande){
-			DemandeOuverture demandeOuverture = utilService.getDemandeByNum(numDemande);
-			if (demandeOuverture==null){
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
-			utilService.validationDemande(demande);
-			return null;
+
+	// ----- validation d'une demande
+	@RequestMapping(value = "/demande/{numDemande}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> valideDemande(@PathVariable("numDemande") int numDemande,
+			@RequestBody DemandeOuverture demande) {
+		DemandeOuverture demandeOuverture = utilService.getDemandeByNum(numDemande);
+		if (demandeOuverture == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-	
-	//----- creation d'une demande
-	@RequestMapping(value="/demande/", method=RequestMethod.POST)
-	public ResponseEntity<Void> saveDemande(@RequestBody DemandeOuverture demande){
-		/*if (utilService.isDemandeExist(demande)){
-			return new ResponseEntity<>(HttpStatus.CONFLICT);
-		}
-*/		utilService.saveDemande(demande);
-		return new ResponseEntity<Void>( HttpStatus.OK);
+		utilService.validationDemande(demande);
+		return null;
 	}
-	
-	
+
+	// ----- creation d'une demande
+	@RequestMapping(value = "/demande/", method = RequestMethod.POST)
+	public ResponseEntity<Void> saveDemande(@RequestBody DemandeOuverture demande) {
+		/*
+		 * if (utilService.isDemandeExist(demande)){ return new
+		 * ResponseEntity<>(HttpStatus.CONFLICT); }
+		 */ utilService.saveDemande(demande);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
 	// #endregion
-	
+
 	// #endregion
 
 	// #region Banque
@@ -410,20 +411,21 @@ public class HelloWorldRestController {
 	// #region Transaction
 
 	// ---Récuperation de tous les transactions d'un compte
-		@RequestMapping(value = "/compte/{noCompte}/transaction", method = RequestMethod.GET)
-		public ResponseEntity<List<Transaction>> getAllTransactions(@PathVariable("noCompte") Long noCompte) {
-			if (banqueService.getCompteByNo(noCompte)==null){
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
-			List<Transaction> liste = new ArrayList<>();
-			liste = banqueService.getAllTransactionsByCompte(noCompte);
-			return new ResponseEntity<List<Transaction>>(liste, HttpStatus.OK);
+	@RequestMapping(value = "/compte/{noCompte}/transaction", method = RequestMethod.GET)
+	public ResponseEntity<List<Transaction>> getAllTransactions(@PathVariable("noCompte") Long noCompte) {
+		if (banqueService.getCompteByNo(noCompte) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-	
+		List<Transaction> liste = new ArrayList<>();
+		liste = banqueService.getAllTransactionsByCompte(noCompte);
+		return new ResponseEntity<List<Transaction>>(liste, HttpStatus.OK);
+	}
+
 	// ---Récuperation des transactions d'un mois donné d'un compte
 	@RequestMapping(value = "/compte/{noCompte}/transaction/{mois}", method = RequestMethod.GET)
-	public ResponseEntity<List<Transaction>> getThatMonthTransactions(@PathVariable("mois") int month, @PathVariable("noCompte") Long noCompte) {
-		if (banqueService.getCompteByNo(noCompte)==null){
+	public ResponseEntity<List<Transaction>> getThatMonthTransactions(@PathVariable("mois") int month,
+			@PathVariable("noCompte") Long noCompte) {
+		if (banqueService.getCompteByNo(noCompte) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		List<Transaction> liste = new ArrayList<>();
@@ -432,39 +434,28 @@ public class HelloWorldRestController {
 	}
 
 	// ---Récuperation de tous les notifications d'un compte
-			@RequestMapping(value = "/compte/{noCompte}/notification", method = RequestMethod.GET)
-			public ResponseEntity<List<Notification>> getAllNotifications(@PathVariable("noCompte") Long noCompte) {
-				if (banqueService.getCompteByNo(noCompte)==null){
-					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				}
-				List<Notification> liste = new ArrayList<>();
-				liste = banqueService.getAllNotificationsByCompte(noCompte);
-				return new ResponseEntity<List<Notification>>(liste, HttpStatus.OK);
-			}
-			
-	// ---Récuperation des notifications d'un mois donné d'un compte
-		@RequestMapping(value = "/compte/{noCompte}/notification/{mois}", method = RequestMethod.GET)
-		public ResponseEntity<List<Notification>> getThatMonthNotifications(@PathVariable("mois") int month, @PathVariable("noCompte") Long noCompte) {
-			if (banqueService.getCompteByNo(noCompte)==null){
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
-			List<Notification> liste = new ArrayList<>();
-			liste = banqueService.getThatMonthNotificationsByCompte(noCompte, month);
-			return new ResponseEntity<List<Notification>>(liste, HttpStatus.OK);
-		}
-	
-	// ---Ajout d'un débit dans un compte de n° noCompte
-	@RequestMapping(value = "/compte/{noCompte}/transaction/", method = RequestMethod.POST)
-	public ResponseEntity<Void> ajoutTransaction(@RequestBody Transaction transaction, @PathVariable("noCompte") Long noCompte) {
-		if (banqueService.getCompteByNo(noCompte)==null){
+	@RequestMapping(value = "/notification", method = RequestMethod.GET)
+	public ResponseEntity<List<Notification>> getAllNotifications(@RequestParam("id") Long identifiant) {
+		if (utilService.findById(identifiant) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		if (banqueService.ajoutTransaction(transaction, noCompte)){
+		List<Notification> liste = new ArrayList<>();
+		liste = banqueService.getAllNotificationsByClient(identifiant);
+		return new ResponseEntity<List<Notification>>(liste, HttpStatus.OK);
+	}
+
+	// ---Ajout d'un débit dans un compte de n° noCompte
+	@RequestMapping(value = "/compte/{noCompte}/transaction/", method = RequestMethod.POST)
+	public ResponseEntity<Void> ajoutTransaction(@RequestBody Transaction transaction,
+			@PathVariable("noCompte") Long noCompte) {
+		if (banqueService.getCompteByNo(noCompte) == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		if (banqueService.ajoutTransaction(transaction, noCompte)) {
 			return new ResponseEntity<Void>(HttpStatus.OK);
 		}
 		return new ResponseEntity<>(HttpStatus.FORBIDDEN);
 	}
-
 
 	// #endregion
 

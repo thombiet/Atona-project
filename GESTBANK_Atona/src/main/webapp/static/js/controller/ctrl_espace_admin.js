@@ -7,6 +7,8 @@ function AdministrateurController($scope, $routeParams, uService) {
 
 	self.conseillers;
 	self.demandes;
+	
+	$scope.mainCtrl.user=null;
 
 	$scope.conseiller = new ConseillerProto();
 

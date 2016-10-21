@@ -19,7 +19,6 @@ public interface BanqueDAO {
 	List<Compte> getAllComptes();
 
 	public List<Notification> getAllNotificationsByCompte(Long noCompte);
-	public List<Notification> getThatMonthNotificationsByCompte(Long noCompte, int thatMonth);
 	void envoiRequete(Requete requete, Long matricule);
 
 

@@ -1,7 +1,7 @@
 /**
  * Le controleur qui gère toutes les pages de l'espace Conseiller
  */
-function ConseillerController(uService, cService, $scope, $routeParams) {
+function ConseillerController(uService, cService, $scope, $routeParams, $route) {
 
 	var self = this;
 	self.validationDemande = validationDemande;
@@ -30,6 +30,7 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 	function getConseillerByMle(matricule) {
 		uService.getConseillerByMle(matricule).then(function(value) {
 			$scope.conseiller = value;
+			$scope.mainCtrl.user = value;
 		}, function(reason) {
 			console.error('Error while fetching Conseiller: ' + reason);
 		});
@@ -117,7 +118,7 @@ function ConseillerController(uService, cService, $scope, $routeParams) {
 		uService.validationDemande(demande).then(
 			function(value) {
 			alert("la demande a été validée");
-			$scope.mainCtrl.redirection('/Conseiller/GestionDemandes');
+			$route.reload();
 		}, function(reason) {
 			console.log("erreur ConsCtrl.validationDemande() :");
 			console.log(reason);

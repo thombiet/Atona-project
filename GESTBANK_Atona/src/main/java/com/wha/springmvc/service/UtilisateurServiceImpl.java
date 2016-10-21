@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.dao.UtilisateurDAO;
 import com.wha.springmvc.dummy.DummyBDD;
 import com.wha.springmvc.model.Client;
@@ -316,6 +317,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		cpt.ajoutTransaction(transaction);
 		//ajout compte dans le client
 		client.ajoutCompte(cpt);
+		//notification de la transaction
+		Notification notification = new Notification();
+		notification.setDate(new Date());
+		notification.setMessage("Vous avez reçu cadeau de bienvenue !");
+		notification.setLu(false);
+		cpt.ajoutNotification(notification);
 		//ajout du client dans le conseiller (bidirectionnel)
 		Conseiller conseiller = dao.findByMle(demande.getConseiller().getMatricule());
 		List<Client> ls = conseiller.getListeClients();

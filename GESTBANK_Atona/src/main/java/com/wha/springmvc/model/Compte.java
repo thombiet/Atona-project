@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 public class Compte {
 	// #region Attributs
 	@Id
-	@Column (name="noComtpe")
+	@Column (name="noCompte")
 	private Long noCompte;
 	@Column (name="RIB")
 	private String RIB;
@@ -141,6 +141,13 @@ public class Compte {
 	public void setListeNotification(List<Notification> listeNotification) {
 		this.listeNotification = listeNotification;
 	}
+
+	public void ajoutNotification(Notification notification) {
+		List<Notification> ls = this.getListeNotification();
+		ls.add(notification);
+		this.setListeNotification(ls);
+	}
+
 	// #endregion
 
 	// #region Utilitaire
@@ -155,6 +162,5 @@ public class Compte {
 	private boolean isDebitAuthorize(int montant) {
 		return (this.getSolde() + this.getDecouvert() - montant > 0);
 	}
-
 	// #endregion
 }
