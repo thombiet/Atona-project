@@ -15,11 +15,7 @@
 					type="search"
 					class="input-sm"
 					ng-model="nom"
-					placeholder="Entrer un nom "> <input
-					type="button"
-					class="myButton"
-					name="bouton1"
-					value="Recherche">
+					placeholder="Entrer un nom ">
 			</div>
 			<br> <br>
 			<div>
@@ -30,16 +26,16 @@
 					cellpadding=10>
 					<thead>
 						<tr>
-							<th>Date Demande</th>
-							<th>Nom</th>
+							<th ng-click="sortType = 'dateCreation'; sortReverse = !sortReverse">Date Demande</th>
+							<th ng-click="sortType = 'cp.nom'; sortReverse = !sortReverse">Nom</th>
 							<th>Email</th>
-							<th>Date d'Affectation</th>
-							<th>Conseiller</th>
-							<th>Statut </th>
+							<th ng-click="sortType = 'dateAffectation'; sortReverse = !sortReverse">Date d'Affectation</th>
+							<th ng-click="sortType = 'conseiller.nom'; sortReverse = !sortReverse">Conseiller</th>
+							<th ng-click="sortType = 'valide'; sortReverse = !sortReverse">Statut </th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="d in AdminCtrl.demandes|filter :nom | orderBy: 'dateCreation'">
+						<tr ng-repeat="d in AdminCtrl.demandes|filter : nom | orderBy : sortType : sortReverse">
 							<td><span>{{d.dateCreation | date}}</span></td>
 							<td><span>{{d.cp.nom}} {{d.cp.prenom}}</span></td>
 							<td><span ng-bind="d.cp.email"></span></td>
