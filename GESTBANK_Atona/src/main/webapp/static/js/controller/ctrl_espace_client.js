@@ -145,13 +145,19 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 
 		
 
-	function envoiRequete(requete){
-		console.log("coucou")
-		var noCompte = sessionStorage.noCompte;
-		cService.envoiRequete(noCompte, requete,$scope.client.conseiller.matricule).then(	
+	function envoiRequete(){
+		var noCompte=sessionStorage.noCompte;
+		var requete={};
+				requete.type=$scope.type;
+				requete.message=$scope.message;
+				requete.noCompte= noCompte;
+				
+		console.log(noCompte);
+		console.log("Le matricule du conseiller "+$scope.client.conseiller.matricule);
+		console.log(requete);
+		cService.envoiRequete(sessionStorage.noCompte,$scope.client.conseiller.matricule,requete).then(	
 				function(value){
-					self.requete=value;
-					console.log(value)
+					alert("Requete envoyee");
 				},
 		function(reason) {
 			console.log("ClientController : envoiRequete, erreur "+reason.status)

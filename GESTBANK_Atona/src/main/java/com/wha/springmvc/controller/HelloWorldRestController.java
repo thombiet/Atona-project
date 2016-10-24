@@ -472,17 +472,29 @@ public class HelloWorldRestController {
 	// #endregion
 
 	//----- envoie d'une requete a un un conseiller 
-		@RequestMapping(value="/compte/requete/{noCompte}&{requete}&{matricule}", method=RequestMethod.POST)
-		public ResponseEntity<Void> envoiRequete(@PathVariable("noCompte") Long noCompte, @RequestParam("matricule") long matricule, @RequestParam("requete") TypeRequete requete){
-			Requete req = new Requete();
-
-			
-			
-			req.setType(requete);
-			req.setCompte(banqueService.getCompteByNo(noCompte));
-			
-			
-			banqueService.envoiRequete(req, matricule);
-			return new ResponseEntity<Void>(HttpStatus.OK);
+	@RequestMapping(value="/compte/{noCompte}/{matricule}", method=RequestMethod.POST)
+	public ResponseEntity<Void> envoiRequete(@PathVariable("noCompte") Long noCompte, 
+			@PathVariable("matricule") Long matricule, @RequestBody Requete requete){
+		
+		banqueService.envoiRequete(requete, matricule);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/requete/{matricule}", method = RequestMethod.GET)
+	public ResponseEntity<List<Requete>> listRequetesByConseiller(@PathVariable Long matricule) {
+		List<Requete> liste = utilService.findRequeteByConseiller(matricule);		
+		return new ResponseEntity<List<Requete>>(liste, HttpStatus.OK);
+	}
+	
+	// ----- validation d'une requete
+	@RequestMapping(value = "/requete/{numRequete}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> valideRequete(@PathVariable("numRequete") int numRequete,
+			@RequestBody Requete requete) {
+		Requete req = utilService.getRequeteByNum(numRequete);
+		if (req == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
+		utilService.validationRequete(req);
+		return null;
+	}
 }

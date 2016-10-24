@@ -23,30 +23,25 @@
 			<table align="center" cellspacing=1 cellpadding=10>
 				<thead>
 					<tr>
-						<th width="200px">Date</th>
+						<th width="200px">Numero</th>
+						<th>Types Requete</th>
 						<th>Messages</th>
+						<th>Numéro Compte</th>
+						<th>Statut</th>
+						<th>Validation Requete</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="notif in cptctrl.listeNotification">
-						<td><span ng-bind="notif.date"></span></td>
-						<td><span ng-bind="notif.message"></span></td>
-					</tr>
-					<tr>
-						<td>25/09/2016</td>
-						<td>blablalalfef</span></td>
-					</tr>
-					<tr>
-						<td>26/09/2016</td>
-						<td>rgerhertjhblablalalfef</span></td>
-					</tr>
-					<tr>
-						<td>26/09/2016</td>
-						<td>rgerhertjhblablalalfef</span></td>
-					</tr>
-					<tr>
-						<td>26/09/2016</td>
-						<td>rgerhertjhblablalalfef</span></td>
+					<tr ng-repeat="req in ConsCtrl.requetes">
+						<td><span ng-bind="req.numRequete"></span></td>
+						<td><span ng-bind="req.type"></span></td>
+						<td><span ng-bind="req.message"></span></td>
+						<td><span ng-bind="req.noCompte"></span></td>
+						<button ng-click="ConsCtrl.validationRequete(requete)"
+								class="myButton">Valider</button>
+								<span ng-if="req.valide">Requete Validée</span>
+						</td>
+						
 					</tr>
 				</tbody>
 			</table>

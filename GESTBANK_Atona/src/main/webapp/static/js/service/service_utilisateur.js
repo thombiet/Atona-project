@@ -8,6 +8,7 @@ function utilisateurService($http, $q) {
 	var CLIENT_URI = 'http://localhost:8080/SpringAngularStartProject/client/';
 	var CONNEXION_URI = 'http://localhost:8080/SpringAngularStartProject/connexion/';
 	var DEMANDE_URI = 'http://localhost:8080/SpringAngularStartProject/demande/';
+	var REQUETE_URI= 'http://localhost:8080/SpringAngularStartProject/requete/';
 
 	var factory = {
 		// -------------------------------------------Service_conseiller-----------------------------------------
@@ -31,7 +32,9 @@ function utilisateurService($http, $q) {
 		createDemande : createDemande,
 		affectationDemande : affectationDemande,
 		validationDemande : validationDemande,
-
+		//--------------------------------------Requetes---------------------------------------------------
+		findRequeteByConseiller:findRequeteByConseiller,
+		validationRequete:validationRequete,	
 	};
 	return factory;
 
@@ -301,7 +304,38 @@ function utilisateurService($http, $q) {
         );
         return deferred.promise;
     }
+    //--------------------------------Services Requetes-----------------------------------------------------
+    function findRequeteByConseiller(matricule) {
+        var deferred = $q.defer();
+        $http.get(REQUETE_URI+matricule)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('erreur utilisateurService.getRequeteByMle()');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
     
+    
+    
+    function validationRequete(requete) {
+        var deferred = $q.defer();
+        $http.put(REQUETE_URI+requete.numRequete, requete)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('erreur utilisateurService.validationRequete()');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
     
 }
 

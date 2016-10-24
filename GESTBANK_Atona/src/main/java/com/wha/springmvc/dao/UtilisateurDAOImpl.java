@@ -10,6 +10,7 @@ import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
+import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Utilisateur;
 
 @Repository("UtilisateurDao")
@@ -234,5 +235,25 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 		if (max == null)
 			max = 0;
 		return max;
+	}
+
+	@Override
+	public List<Requete> findRequeteByConseiller(Long matricule) {
+		List<Requete> requetes = getEntityManager()
+				.createQuery("SELECT c.listeDemandesClient FROM Conseiller c WHERE c.matricule=:matricule")
+				.setParameter("matricule", matricule).getResultList();
+		return requetes;
+	}
+
+	@Override
+	public Requete getRequeteByNum(int numRequete) {
+		Requete requete=(Requete) getEntityManager().createQuery("SELECT r FROM Requete r WHERE r.numRequete=:numRequete")
+				.setParameter("numRequete", numRequete).getSingleResult();
+		return requete;
+	}
+
+	@Override
+	public void validationRequete(Requete req) {
+		entityManager.persist(req);
 	}
 }

@@ -15,6 +15,8 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		getConseillerByMle(sessionStorage.idConnecte);
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
+		findRequeteByConseiller(sessionStorage.idConnecte);
+		validationRequete();
 		$scope.mainCtrl.nbMess = 0;
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
@@ -156,6 +158,26 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 				$route.reload();
 		}, function(reason) {
 			console.log("erreur : ConsCtrl.modifDecouvert()")
+		})
+	}
+	
+	function findRequeteByConseiller(matricule) {
+		uService.findRequeteByConseiller(matricule).then(function(value) {
+			self.requetes = value;
+		}, function(reason) {
+			console.error('Error while fetching Demandes: ' + reason);
+		});
+	}
+	
+	function validationRequete(requete){
+		console.log(requete);
+		uService.validationRequete(requete).then(
+			function(value) {
+			alert("la requete a été validée");
+			//$route.reload();
+		}, function(reason) {
+			console.log("erreur ConsCtrl.validationRequete() :");
+			console.log(reason);
 		})
 	}
 

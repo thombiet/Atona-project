@@ -5,6 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
+import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Utilisateur;
 
 public interface UtilisateurService {
@@ -70,6 +71,12 @@ public interface UtilisateurService {
 	// #region Autre
 	
 	public void envoieMail(String sujet, String corpsMessage, String destinataire, String cc);
+
+	public List<Requete> findRequeteByConseiller(Long matricule);
+
+	public Requete getRequeteByNum(int numRequete);
+
+	public void validationRequete(Requete req);
 	
 	// #endregion
 }
