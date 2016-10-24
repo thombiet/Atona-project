@@ -30,10 +30,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="notif in ClientCtrl.notifications| orderBy: 'date'">
-						<td>{{notif.date|date: 'dd MMM yyyy'}}</td>
-						<td><span ng-bind="notif.message"></span></td>
-						<td><span ng-if="notif.lu==true">Lu</span>
+					<tr id="lu" ng-click="lu()" ng-repeat="notif in ClientCtrl.notifications| orderBy: 'date'">
+						<td id="lu" class="notif">{{notif.date|date: 'dd MMM yyyy'}}</td>
+						<td id="lu" class="notif"><span ng-bind="notif.message"></span></td>
+						<td id="lu" class="notif"><span ng-if="notif.lu==true">Lu</span>
 							<span ng-if="notif.lu==false">Non lu</span>
 						</td>
 											
@@ -45,3 +45,4 @@
 
 	</fieldset>
 </div>
+

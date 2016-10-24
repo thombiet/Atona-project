@@ -19,6 +19,7 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 	self.envoiRequete=envoiRequete;
 	$scope.voirCompte = voirCompte;
 	$scope.virement = virement;
+	$scope.lu = lu;
 
 	function getClientById(Id) {
 
@@ -162,6 +163,12 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 	        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="static/css/style_RIB.css" /></head><body onload="window.print()">' + innerContents + '</html>');
 	        popupWinindow.document.close();
 	      }
+	 
+ function lu()
+	 {
+	 console.log('hey!');
+	 	document.getElementById('lu').style.fontWeight = "normal";
+	 }
 	
 }
 

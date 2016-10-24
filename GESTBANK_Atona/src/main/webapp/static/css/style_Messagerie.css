@@ -43,6 +43,30 @@
 
 }
 
+.notif {
+	
+	font-weight:bold;
+	
+}
+
+.notif:hover {
+	
+	cursor:pointer;
+}
+
+.notif:active {
+	
+	font-weight:normal;
+	background-color:red;
+	
+}
+
+.notif:after {
+	
+	font-weight:normal;
+	background-color:red;
+	
+}
 
 table {
     border-collapse: collapse;
