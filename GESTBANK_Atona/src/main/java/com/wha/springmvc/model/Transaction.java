@@ -3,33 +3,30 @@ package com.wha.springmvc.model;
 import java.util.Date;
 
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 @Entity
-@Table (name="transaction")
+@Table(name = "transaction")
 public class Transaction {
 	// #region Attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="noTransaction")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "noTransaction")
 	private Integer noTransaction;
-	@Column(name="montant")
+	@Column(name = "montant")
 	private Integer montant;
-	@Column(name="libelle")
+	@Column(name = "libelle")
 	private String libelle;
-	@Column (name="dateTransaction")
+	@Column(name = "dateTransaction")
 	@Temporal(TemporalType.DATE)
 	private Date date;
-	@Column (name="typeTransaction")
+	@Column(name = "typeTransaction")
 	private String typeTransaction;
 	// #endregion
 
@@ -37,15 +34,13 @@ public class Transaction {
 	public Transaction() {
 
 	}
-	
-	
+
 	public Transaction(Integer montant, String libelle, Date date, String typeTransaction) {
 		this.montant = montant;
 		this.libelle = libelle;
 		this.date = date;
 		this.typeTransaction = typeTransaction;
 	}
-
 
 	// #endregion
 
@@ -78,11 +73,10 @@ public class Transaction {
 		return noTransaction;
 	}
 
-
 	public void setNoTransaction(Integer noTransaction) {
 		this.noTransaction = noTransaction;
 	}
-	
+
 	// #endregion
 
 	// #region Utilitaire
@@ -91,11 +85,9 @@ public class Transaction {
 		return typeTransaction;
 	}
 
-
 	public void setTypeTransaction(String typeTransaction) {
 		this.typeTransaction = typeTransaction;
 	}
-
 
 	@Override
 	public String toString() {

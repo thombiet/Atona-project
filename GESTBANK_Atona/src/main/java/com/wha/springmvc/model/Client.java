@@ -1,9 +1,9 @@
 package com.wha.springmvc.model;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,8 +12,6 @@ import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,9 +28,9 @@ public class Client extends Utilisateur {
 	@Column(name = "identifiant")
 	private Long identifiant;
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Compte> listeComptes;
+	private Set<Compte> listeComptes;
 	@Transient
-	private List<File> piecesJustificatives;
+	private Set<File> piecesJustificatives;
 	@Column(name = "revenuMens")
 	private Integer revenuMensuel;
 
@@ -44,16 +42,16 @@ public class Client extends Utilisateur {
 	// #region Constructeurs
 	public Client() {
 		super();
-		this.listeComptes = new ArrayList<Compte>();
-		this.piecesJustificatives = new ArrayList<File>();
+		this.listeComptes = new HashSet<Compte>();
+		this.piecesJustificatives = new HashSet<File>();
 	}
 
 	public Client(Long identifiant, String nom, String prenom, String pseudo, String motdepasse, String email,
 			String adresse, Integer codePostal, String ville, Integer telephone, Date dateNaissance) {
 		super(nom, prenom, pseudo, motdepasse, email, adresse, codePostal, ville, telephone, dateNaissance);
 		this.identifiant = identifiant;
-		this.listeComptes = new ArrayList<Compte>();
-		this.piecesJustificatives = new ArrayList<File>();
+		this.listeComptes = new HashSet<Compte>();
+		this.piecesJustificatives = new HashSet<File>();
 	}
 
 	// #endregion
@@ -68,19 +66,19 @@ public class Client extends Utilisateur {
 		this.identifiant = identifiant;
 	}
 
-	public List<Compte> getListeComptes() {
+	public Set<Compte> getListeComptes() {
 		return listeComptes;
 	}
 
-	public void setListeComptes(List<Compte> listeComptes) {
+	public void setListeComptes(Set<Compte> listeComptes) {
 		this.listeComptes = listeComptes;
 	}
 
-	public List<File> getPiecesJustificatives() {
+	public Set<File> getPiecesJustificatives() {
 		return piecesJustificatives;
 	}
 
-	public void setPiecesJustificatives(List<File> piecesJustificatives) {
+	public void setPiecesJustificatives(Set<File> piecesJustificatives) {
 		this.piecesJustificatives = piecesJustificatives;
 	}
 

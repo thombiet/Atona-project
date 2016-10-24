@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,7 +16,7 @@ import javax.persistence.TemporalType;
 public class Notification {
 	// #region Attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numNotif")
 	private int numNotif;
 	@Column(name = "dateAffectation")
@@ -68,7 +66,7 @@ public class Notification {
 	public void setNumNotif(int numNotif) {
 		this.numNotif = numNotif;
 	}
-	
+
 	// #endregion
 
 	// #region Utilitaire

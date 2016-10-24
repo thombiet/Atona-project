@@ -3,18 +3,18 @@ package com.wha.springmvc.model;
 public class User {
 
 	private long id;
-	
+
 	private String username;
-	
+
 	private String address;
-	
+
 	private String email;
-	
-	public User(){
-		id=0;
+
+	public User() {
+		id = 0;
 	}
-	
-	public User(long id, String username, String address, String email){
+
+	public User(long id, String username, String address, String email) {
 		this.id = id;
 		this.username = username;
 		this.address = address;
@@ -77,10 +77,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", nom=" + username + ", adresse=" + address
-				+ ", email=" + email + "]";
+		return "User [id=" + id + ", nom=" + username + ", adresse=" + address + ", email=" + email + "]";
 	}
-	
 
-	
 }
