@@ -108,12 +108,36 @@ function ClientController(uService, cService,  $scope, $routeParams) {
     					self.transaction = value;
     					self.noCompte = value;
     					alert("Votre virement a bien ete effectue!");
-    					$scope.mainCtrl.redirection('/Client/GestionCompte/' + noCompte)
     				},
     				function(reason){
     					alert("Erreur pendant la transaction")
     				})
-		}
+		
+		
+		var transaction2 ={};
+		transaction2.montant = $scope.montant;
+		transaction2.libelle = $scope.libelle;
+		transaction2.date = $scope.date;
+		transaction2.typeTransaction = "credit";
+		
+		var noCompte2 = $scope.CompteCredit.noCompte;
+		console.log(transaction2) ;
+		console.log(noCompte2) ;
+    	cService.ajoutTransaction(transaction2, noCompte2)
+    	
+    		.then(
+    				function(value){
+    					self.transaction2 = value;
+    					self.noCompte2 = value;
+    					alert("Votre virement a bien ete effectue!");
+    					
+    				},
+    				function(reason){
+    					alert("Erreur pendant la transaction")
+    				})
+		
+	}
+		$scope.mainCtrl.redirection('/Client/GestionCompte/' + noCompte);
 	}
 
 		
