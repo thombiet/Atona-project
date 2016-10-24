@@ -21,7 +21,9 @@ import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Notification;
+import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Transaction;
+import com.wha.springmvc.model.TypeRequete;
 import com.wha.springmvc.model.User;
 import com.wha.springmvc.model.Utilisateur;
 import com.wha.springmvc.service.BanqueService;
@@ -446,8 +448,6 @@ public class HelloWorldRestController {
 	@RequestMapping(value = "/compte/{noCompte}/transaction/", method = RequestMethod.POST)
 	public ResponseEntity<Void> ajoutTransaction(@RequestBody Transaction transaction,
 			@PathVariable("noCompte") Long noCompte) {
-		System.out.println(transaction);
-		
 		if (banqueService.getCompteByNo(noCompte) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -461,4 +461,18 @@ public class HelloWorldRestController {
 
 	// #endregion
 
+	//----- envoie d'une requete a un un conseiller 
+		@RequestMapping(value="/compte/requete/{noCompte}&{requete}&{matricule}", method=RequestMethod.POST)
+		public ResponseEntity<Void> envoiRequete(@PathVariable("noCompte") Long noCompte, @RequestParam("matricule") long matricule, @RequestParam("requete") TypeRequete requete){
+			Requete req = new Requete();
+
+			
+			
+			req.setType(requete);
+			req.setCompte(banqueService.getCompteByNo(noCompte));
+			
+			
+			banqueService.envoiRequete(req, matricule);
+			return new ResponseEntity<Void>(HttpStatus.OK);
+		}
 }

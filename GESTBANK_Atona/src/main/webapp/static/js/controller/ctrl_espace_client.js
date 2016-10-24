@@ -15,7 +15,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 			getTransactions($routeParams.noCompte);
 		}
 	}
-
+	self.envoiRequete=envoiRequete;
 	$scope.voirCompte = voirCompte;
 	$scope.virement = virement;
 
@@ -110,6 +110,18 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		}
 	}
 
+		
+	function envoiRequete(requete){
+		console.log("coucou")
+		cService.envoiRequete(sessionStorage.noCompte,requete,$scope.client.conseiller.matricule).then(	
+				function(value){
+					self.requete=value;
+					console.log(value)
+				},
+		function(reason) {
+			console.log("ClientController : envoiRequete, erreur "+reason.status)
+		})
+	}
 
 	 $scope.printToCart = function(printSectionId) {
 	        var innerContents = document.getElementById(printSectionId).innerHTML;
