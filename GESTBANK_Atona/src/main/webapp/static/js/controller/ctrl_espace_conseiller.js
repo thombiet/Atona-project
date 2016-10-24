@@ -6,8 +6,8 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	var self = this;
 	self.validationDemande = validationDemande;
 	self.toggle = toggle;
-	self.modifDecouvert=modifCompte;
-	self.modifRemuneration=modifCompte;
+	self.modifDecouvert = modifCompte;
+	self.modifRemuneration = modifCompte;
 	$scope.modifClient = modifClient;
 	$scope.modifConseiller = updateConseiller;
 
@@ -28,15 +28,13 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			getTransactionsByCompte($routeParams.noCompte);
 		}
 		if ($routeParams.numDemande) {
-			
+
 		}
 	}
 
 	self.voirClient = function(id) {
 		$scope.mainCtrl.redirection('/Conseiller/Fiche_Client/' + id);
 	}
-
-	
 
 	function getConseillerByMle(matricule) {
 		uService.getConseillerByMle(matricule).then(function(value) {
@@ -58,7 +56,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	function getAllClientsByConseiller(Mle) {
 		uService.getAllClientsByConseiller(Mle).then(function(value) {
 			self.clients = value;
-			//console.log(value)
+			// console.log(value)
 		}, function(reason) {
 			console.error('Error while fetching Clients: ' + reason);
 		})
@@ -86,11 +84,10 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	function getCompteByNo(noCompte) {
 		cService.getCompteByNo(noCompte).then(function(value) {
 			self.compte = value;
-			uService.getClientByCompte(noCompte).then(
-				function(value) {
-					self.maxDecouvert=value.revenuMensuel*0.40;
+			uService.getClientByCompte(noCompte).then(function(value) {
+				self.maxDecouvert = value.revenuMensuel * 0.40;
 			}, function(reason) {
-				
+
 			})
 		}, function(reason) {
 			console.error('Error while fetching compte');
@@ -129,11 +126,10 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 
 		})
 	}
-	
-	function validationDemande(demande){
+
+	function validationDemande(demande) {
 		console.log(demande);
-		uService.validationDemande(demande).then(
-			function(value) {
+		uService.validationDemande(demande).then(function(value) {
 			alert("la demande a été validée");
 			$route.reload();
 		}, function(reason) {
@@ -141,31 +137,30 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			console.log(reason);
 		})
 	}
-	
-	function getTransactionsByCompte(noCompte){
-		cService.getTransactionsByCompte(noCompte).then(
-			function(value) {
+
+	function getTransactionsByCompte(noCompte) {
+		cService.getTransactionsByCompte(noCompte).then(function(value) {
 			self.transactions = value;
 			console.log(value);
 		}, function(reason) {
-			
+
 		})
 	}
-	
-	function toggle(){
+
+	function toggle() {
 		console.log("ConsCtrl.toggle()")
 		self.option = !self.option
 	}
-	
-	function modifCompte(){
+
+	function modifCompte() {
 		cService.updateCompte(self.compte, self.compte.noCompte).then(
-			function(value) {
-				$route.reload();
-		}, function(reason) {
-			console.log("erreur : ConsCtrl.modifDecouvert()")
-		})
+				function(value) {
+					$route.reload();
+				}, function(reason) {
+					console.log("erreur : ConsCtrl.modifDecouvert()")
+				})
 	}
-	
+
 	function updateConseiller() {
 		var Mle = $scope.conseiller.matricule;
 		uService.updateConseiller($scope.conseiller, Mle).then(function(value) {
@@ -174,9 +169,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			console.error('Error while updating Conseiller');
 		});
 	}
-	
-	
-	
+
 	function findRequeteByConseiller(matricule) {
 		uService.findRequeteByConseiller(matricule).then(function(value) {
 			self.requetes = value;
@@ -184,13 +177,23 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			console.error('Error while fetching Demandes: ' + reason);
 		});
 	}
-	
-	function validationRequete(requete){
+
+	function validationRequete(requete) {
 		console.log(requete);
-		uService.validationRequete(requete).then(
-			function(value) {
+		uService.validationRequete(requete).then(function(value) {
 			alert("la requete a été validée");
-			//$route.reload();
+			// $route.reload();
+		}, function(reason) {
+			console.log("erreur ConsCtrl.validationRequete() :");
+			console.log(reason);
+		})
+	}
+
+	function validationRequete(requete) {
+		console.log(requete);
+		uService.validationRequete(requete).then(function(value) {
+			alert("la requete a été validée");
+			// $route.reload();
 		}, function(reason) {
 			console.log("erreur ConsCtrl.validationRequete() :");
 			console.log(reason);
@@ -198,33 +201,18 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	}
 
 	$scope.printToCart = function(printSectionId) {
-	function findRequeteByConseiller(matricule) {
-		uService.findRequeteByConseiller(matricule).then(function(value) {
-			self.requetes = value;
-		}, function(reason) {
-			console.error('Error while fetching Demandes: ' + reason);
-		});
+		var innerContents = document.getElementById(printSectionId).innerHTML;
+		var popupWinindow = window
+				.open(
+						'',
+						'_blank',
+						'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
+		popupWinindow.document.open();
+		popupWinindow.document
+				.write('<html><head><link rel="stylesheet" type="text/css" href="static/css/style_ClientGestionCompte.css" /></head><body onload="window.print()">'
+						+ innerContents + '</html>');
+		popupWinindow.document.close();
 	}
-	
-	function validationRequete(requete){
-		console.log(requete);
-		uService.validationRequete(requete).then(
-			function(value) {
-			alert("la requete a été validée");
-			//$route.reload();
-		}, function(reason) {
-			console.log("erreur ConsCtrl.validationRequete() :");
-			console.log(reason);
-		})
-	}
-
-	$scope.printToCart = function(printSectionId) {
-	        var innerContents = document.getElementById(printSectionId).innerHTML;
-	        var popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
-	        popupWinindow.document.open();
-	        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="static/css/style_ClientGestionCompte.css" /></head><body onload="window.print()">' + innerContents + '</html>');
-	        popupWinindow.document.close();
-	      }
 
 }
 
