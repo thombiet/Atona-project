@@ -10,13 +10,10 @@
 			<div align="center">
 
 				<input type="search" class="input-sm" name="recherche"
-					placeholder="Entrer Nom Client" ng-model="nom">
+					placeholder="Entrer Nom Client / N° Compte" ng-model="nom">
 
 			</div>
-			<div align="center">
-				<input type="search" class="input-sm" name="recherche"
-					placeholder="Entrer N° Compte" ng-model="noCompte"> 
-			</div>
+			
 
 			<br> <br>
 			<div>
@@ -40,8 +37,6 @@
 							<td>
 								<button class="myButton" ng-click="ConsCtrl.voirClient(c.identifiant)">Edit</button>
 								
-								<button class="myButton" type="button" name="bouton1"
-									ng-click="deleteClient(c.identifiant)">X</button>
 							</td>
 							<td align="center"><a
 								href="#/Conseiller/GestionCompte/{{compte.noCompte}}"

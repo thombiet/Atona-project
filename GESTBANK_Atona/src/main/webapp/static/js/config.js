@@ -27,7 +27,7 @@ App.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'static/views/ClientGestionComptes.html',
 		controller : 'ClientController',
 		controllerAs : 'ClientCtrl'
-	}).when('/GestionCompte/RIB', {
+	}).when('/GestionCompte/RIB/:noCompte', {
 		templateUrl : 'static/views/RIB.html',
 		controller : 'ClientController',
 		controllerAs : 'ClientCtrl'
