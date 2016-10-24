@@ -86,3 +86,18 @@ td {
 #print{
 	float: right;
 }
+
+.solde {
+	
+	display: flex;
+	float:right;
+	margin-top:0;
+	padding-top:1%;
+	padding-right:5%;
+	font-size:1.2em;
+}
+
+.solde p2 {
+
+	color: red;
+}

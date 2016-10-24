@@ -108,7 +108,8 @@
 					</div>
 					<div class="entry">
 						<label id="tel">Téléphone</label> <input
-							type="tel"
+							type="text"
+							pattern="[0]{1}[0-9]{9}"
 							name="telephone"
 							ng-model="client.telephone"
 							class="input-sm"
