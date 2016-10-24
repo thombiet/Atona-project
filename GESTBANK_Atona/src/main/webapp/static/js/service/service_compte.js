@@ -153,7 +153,7 @@ function compteService($http, $q){
         );
         return deferred.promise;
     } 
-<<<<<<< HEAD
+
     
     function ajoutTransaction(transaction, noCompte)  {
     	var deferred = $q.defer();

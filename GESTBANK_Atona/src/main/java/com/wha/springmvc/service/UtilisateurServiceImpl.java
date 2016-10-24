@@ -310,14 +310,14 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		demande.setValide(true);
 		dao.updateDemande(demande);
 		// envoie du mail de confirmation
-		String corpsMessage = "<h1>Bienvenue chez GestBank"+client.getPrenom()+" "+client.getNom()+"</h1>"
+		String corpsMessage = "<h1>Bienvenue chez GestBank, "+client.getPrenom()+" "+client.getNom()+"</h1>"
 				+ "<p>Merci d'avoir choisi notre banque en ligne pour ouvrir un compte.</p>"
 				+ "<p>Vos parametres de connexion :</p>"
 				+ "<ul><li>Pseudo : "+client.getPseudo()+"</li>"
 						+ "<li>Mot de passe : "+client.getMotdepasse()+"</li></ul>"
 								+ "<p>Pour vous remercier de votre confiance, Gest-Bank, vous offre 50 dollard !</p>"
 								+ "<p>A bientot sur gest-bank.ky</p>";
-		//envoieMail("Bienvenue chez Gest-Bank", corpsMessage, client.getEmail(), "gestbank.atona@gmail.com" );
+		envoieMail("Bienvenue chez Gest-Bank", corpsMessage, client.getEmail(), "gestbank.atona@gmail.com" );
 
 	}
 
