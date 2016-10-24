@@ -20,47 +20,48 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 
 	@Override
 	public Compte getCompteByNo(Long noCompte) {
-		Compte compte=getByKey(noCompte);
+		Compte compte = getByKey(noCompte);
 		return compte;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Compte> getComptesByClient(Long idClient) {
-		//List<Compte> comptes=getByKey(idClient);
-		List<Compte> comptes=getEntityManager().createQuery("SELECT c.listeComptes FROM Client c WHERE identifiant= :idClient")
-				.setParameter("idClient", idClient)
-				.getResultList();
+		// List<Compte> comptes=getByKey(idClient);
+		List<Compte> comptes = getEntityManager()
+				.createQuery("SELECT c.listeComptes FROM Client c WHERE identifiant= :idClient")
+				.setParameter("idClient", idClient).getResultList();
 		return comptes;
 	}
 
 	@Override
 	public void ajoutCompte(Compte compte, Long idClient) {
 		persist(compte);
-		//List<Compte> comptes=(List<Compte>) getByKey(idClient);
+		// List<Compte> comptes=(List<Compte>) getByKey(idClient);
 		getComptesByClient(idClient).add(compte);
 	}
 
 	@Override
 	public void modificationCompte(Compte compte) {
-		Compte compteup=getByKey(compte.getNoCompte());
-		
-		update(compteup);	
+		Compte compteup = getByKey(compte.getNoCompte());
+
+		update(compteup);
 	}
 
 	@Override
 	public List<Transaction> getAllTransactionsByCompte(Long noCompte) {
-		//Compte compte=getByKey(noCompte);
-		//List<Transaction> lt=getCompteByNo(noCompte).getListeTransactions();
-		List<Transaction> lt=getEntityManager().createQuery("SELECT c.listeTransactions FROM Compte c where c.noCompte= :noCompte")
+		// Compte compte=getByKey(noCompte);
+		// List<Transaction> lt=getCompteByNo(noCompte).getListeTransactions();
+		List<Transaction> lt = getEntityManager()
+				.createQuery("SELECT c.listeTransactions FROM Compte c where c.noCompte= :noCompte")
 				.setParameter("noCompte", noCompte).getResultList();
 		return lt;
 	}
 
 	@Override
 	public List<Transaction> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth) {
-		//Compte compte=getByKey(noCompte);
-		List<Transaction> ltm=new ArrayList<>();
+		// Compte compte=getByKey(noCompte);
+		List<Transaction> ltm = new ArrayList<>();
 		for (Transaction t : getCompteByNo(noCompte).getListeTransactions()) {
 			if (t.getDate().getMonth() == thatMonth) {
 				ltm.add(t);
@@ -70,11 +71,18 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	}
 
 	@Override
+	public Transaction getTransaction(Integer noTransaction) {
+		Transaction transaction = getEntityManager()
+				.createQuery("SELECT t FROM Transaction t WHERE t.noTransaction LIKE :noTransaction", Transaction.class)
+				.setParameter("noTransaction", noTransaction).getSingleResult();
+		return transaction;
+	}
+
+	@Override
 	public boolean ajoutTransaction(Transaction transaction, Long noCompte) {
-		Compte compte=getByKey(noCompte);
-		List<Transaction> lt=compte.getListeTransactions();
+		Compte compte = getByKey(noCompte);
+		List<Transaction> lt = compte.getListeTransactions();
 		if (compte.ajoutTransaction(transaction)) {
-			lt.add(transaction);
 			return true;
 		}
 		return false;
@@ -91,20 +99,17 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 
 	@Override
 	public List<Compte> getAllComptes() {
-		List<Compte> comptes=getEntityManager().createQuery("SELECT com FROM Compte com").getResultList();
+		List<Compte> comptes = getEntityManager().createQuery("SELECT com FROM Compte com").getResultList();
 		return comptes;
 	}
 
 	@Override
 	public List<Notification> getAllNotificationsByCompte(Long noCompte) {
-		List<Notification> lt=getEntityManager()
+		List<Notification> lt = getEntityManager()
 				.createQuery("SELECT c.listeNotification FROM Compte c WHERE c.noCompte LIKE :noCompte")
-				.setParameter("noCompte", noCompte)
-				.getResultList();
+				.setParameter("noCompte", noCompte).getResultList();
 		return lt;
 	}
-
-	
 
 	@Override
 	public void envoiRequete(Requete requete,Long matricule){

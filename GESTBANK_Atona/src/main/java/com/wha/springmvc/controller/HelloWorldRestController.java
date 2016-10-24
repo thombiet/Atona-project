@@ -351,10 +351,8 @@ public class HelloWorldRestController {
 	// ----- creation d'une demande
 	@RequestMapping(value = "/demande/", method = RequestMethod.POST)
 	public ResponseEntity<Void> saveDemande(@RequestBody DemandeOuverture demande) {
-		/*
-		 * if (utilService.isDemandeExist(demande)){ return new
-		 * ResponseEntity<>(HttpStatus.CONFLICT); }
-		 */ utilService.saveDemande(demande);
+		System.out.println(demande.getCp());
+		utilService.saveDemande(demande);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
@@ -488,7 +486,7 @@ public class HelloWorldRestController {
 	
 	// ----- validation d'une requete
 	@RequestMapping(value = "/requete/{numRequete}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> valideRequete(@PathVariable("numRequete") int numRequete,
+	public ResponseEntity<Void> validationRequete(@PathVariable("numRequete") int numRequete,
 			@RequestBody Requete requete) {
 		Requete req = utilService.getRequeteByNum(numRequete);
 		if (req == null) {

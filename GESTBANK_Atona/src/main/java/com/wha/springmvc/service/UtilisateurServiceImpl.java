@@ -282,6 +282,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		client.setVille(cp.getVille());
 		client.setTelephone(cp.getTelephone());
 		client.setDateNaissance(cp.getDateNaissance());
+		client.setRevenuMensuel(cp.getRevenuMens());
 		Long max = dao.getMaxIdentifiant() + 1L;
 		client.setIdentifiant(max);
 		// creation compte
