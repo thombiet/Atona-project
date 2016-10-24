@@ -172,7 +172,7 @@ public class BanqueServiceImpl implements BanqueService {
 				notification.setLu(false);
 			}
 			System.out.println(notification);
-			//dao.getCompteByNo(noCompte).ajoutNotification(notification);
+			dao.getCompteByNo(noCompte).ajoutNotification(notification);
 			return true;
 		}
 		return false;

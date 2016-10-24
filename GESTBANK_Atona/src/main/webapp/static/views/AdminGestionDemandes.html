@@ -26,12 +26,22 @@
 					cellpadding=10>
 					<thead>
 						<tr>
-							<th ng-click="sortType = 'dateCreation'; sortReverse = !sortReverse">Date Demande</th>
-							<th ng-click="sortType = 'cp.nom'; sortReverse = !sortReverse">Nom</th>
+							<th ng-click="sortType = 'dateCreation'; sortReverse = !sortReverse">Date Demande
+							<img ng-show="sortType == 'dateCreation' && sortReverse" src="static/images/arrow_down.svg" alt="down" width="12px">
+							<img ng-show="sortType == 'dateCreation' && !sortReverse" src="static/images/arrow_up.svg" alt="down" width="12px"></th>
+							<th ng-click="sortType = 'cp.nom'; sortReverse = !sortReverse">Nom
+							<img ng-show="sortType == 'cp.nom' && sortReverse" src="static/images/arrow_down.svg" alt="down" width="12px">
+							<img ng-show="sortType == 'cp.nom' && !sortReverse" src="static/images/arrow_up.svg" alt="down" width="12px"></th>
 							<th>Email</th>
-							<th ng-click="sortType = 'dateAffectation'; sortReverse = !sortReverse">Date d'Affectation</th>
-							<th ng-click="sortType = 'conseiller.nom'; sortReverse = !sortReverse">Conseiller</th>
-							<th ng-click="sortType = 'valide'; sortReverse = !sortReverse">Statut </th>
+							<th ng-click="sortType = 'dateAffectation'; sortReverse = !sortReverse">Date d'Affectation
+							<img ng-show="sortType == 'dateAffectation' && sortReverse" src="static/images/arrow_down.svg" alt="down" width="12px">
+							<img ng-show="sortType == 'dateAffectation' && !sortReverse" src="static/images/arrow_up.svg" alt="down" width="12px"></th>
+							<th ng-click="sortType = 'conseiller.nom'; sortReverse = !sortReverse">Conseiller
+							<img ng-show="sortType == 'conseiller.nom' && sortReverse" src="static/images/arrow_down.svg" alt="down" width="12px">
+							<img ng-show="sortType == 'conseiller.nom' && !sortReverse" src="static/images/arrow_up.svg" alt="down" width="12px"></th>
+							<th ng-click="sortType = 'valide'; sortReverse = !sortReverse">Statut
+							<img ng-show="sortType == 'valide' && sortReverse" src="static/images/arrow_down.svg" alt="down" width="12px">
+							<img ng-show="sortType == 'valide' && !sortReverse" src="static/images/arrow_up.svg" alt="down" width="12px"></th>
 						</tr>
 					</thead>
 					<tbody>

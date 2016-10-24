@@ -83,6 +83,7 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	public boolean ajoutTransaction(Transaction transaction, Long noCompte) {
 		Compte compte = getByKey(noCompte);
 		if (compte.ajoutTransaction(transaction)) {
+			persist(compte);
 			return true;
 		}
 		return false;
