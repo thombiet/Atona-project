@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Repository;
 
@@ -81,7 +82,6 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	@Override
 	public boolean ajoutTransaction(Transaction transaction, Long noCompte) {
 		Compte compte = getByKey(noCompte);
-		List<Transaction> lt = compte.getListeTransactions();
 		if (compte.ajoutTransaction(transaction)) {
 			return true;
 		}
@@ -116,7 +116,7 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 		
 		Conseiller conseiller=(Conseiller)getEntityManager().createQuery("SELECT cons FROM Conseiller cons where cons.matricule=:matricule")
 				.setParameter("matricule", matricule).getSingleResult();
-		List<Requete> requeteConseiller=conseiller.getListeDemandesClient();
+		Set<Requete> requeteConseiller=conseiller.getListeDemandesClient();
 
 		requeteConseiller.add(requete);
 	}
