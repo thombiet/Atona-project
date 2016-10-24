@@ -9,6 +9,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	self.modifDecouvert=modifCompte;
 	self.modifRemuneration=modifCompte;
 	$scope.modifClient = modifClient;
+	$scope.modifConseiller = updateConseiller;
 
 	if (sessionStorage.role != "Conseiller") {
 		$scope.mainCtrl.deconnexion();
@@ -16,6 +17,8 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		getConseillerByMle(sessionStorage.idConnecte);
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
+		findRequeteByConseiller(sessionStorage.idConnecte);
+		validationRequete();
 		$scope.mainCtrl.nbMess = 0;
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
@@ -163,7 +166,36 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		})
 	}
 	
-	 $scope.printToCart = function(printSectionId) {
+	function updateConseiller() {
+		var Mle = $scope.conseiller.matricule;
+		uService.updateConseiller($scope.conseiller, Mle).then(function(value) {
+			$scope.mainCtrl.redirection('/Conseiller')
+		}, function(errResponse) {
+			console.error('Error while updating Conseiller');
+		});
+	}
+	
+	function findRequeteByConseiller(matricule) {
+		uService.findRequeteByConseiller(matricule).then(function(value) {
+			self.requetes = value;
+		}, function(reason) {
+			console.error('Error while fetching Demandes: ' + reason);
+		});
+	}
+	
+	function validationRequete(requete){
+		console.log(requete);
+		uService.validationRequete(requete).then(
+			function(value) {
+			alert("la requete a été validée");
+			//$route.reload();
+		}, function(reason) {
+			console.log("erreur ConsCtrl.validationRequete() :");
+			console.log(reason);
+		})
+	}
+
+	$scope.printToCart = function(printSectionId) {
 	        var innerContents = document.getElementById(printSectionId).innerHTML;
 	        var popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
 	        popupWinindow.document.open();
