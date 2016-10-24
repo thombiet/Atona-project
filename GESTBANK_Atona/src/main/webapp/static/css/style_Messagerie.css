@@ -56,15 +56,12 @@
 
 .notif:active {
 	
-	font-weight:normal;
-	background-color:red;
+	
 	
 }
 
 .notif:after {
 	
-	font-weight:normal;
-	background-color:red;
 	
 }
 

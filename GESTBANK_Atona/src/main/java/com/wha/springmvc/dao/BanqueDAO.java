@@ -13,8 +13,10 @@ public interface BanqueDAO {
 	void ajoutCompte(Compte compte,Long idClient);
 	void modificationCompte(Compte compte);
 	boolean isCompteExist(Compte compte);
+	
 	List<Transaction> getAllTransactionsByCompte(Long noCompte);
 	List<Transaction> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth);
+	Transaction getTransaction(Integer noTransaction);
 	boolean ajoutTransaction(Transaction transaction, Long noCompte);
 	List<Compte> getAllComptes();
 

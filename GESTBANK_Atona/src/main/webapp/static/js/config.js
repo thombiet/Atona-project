@@ -31,7 +31,7 @@ App.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'static/views/RIB.html',
 		controller : 'ClientController',
 		controllerAs : 'ClientCtrl'
-	}).when('/GestionCompte/Virement', {
+	}).when('/GestionCompte/Virement/:noCompte', {
 		templateUrl : 'static/views/ClientVirement.html',
 		controller : 'ClientController',
 		controllerAs : 'ClientCtrl'
@@ -105,6 +105,10 @@ App.config([ '$routeProvider', function($routeProvider) {
 		controllerAs : 'ConsCtrl'
 	}).when('/Conseiller/GestionDemandes', {
 		templateUrl : 'static/views/ConseillerGestionDemandes.html',
+		controller : 'ConseillerController',
+		controllerAs : 'ConsCtrl'
+	}).when('/Conseiller/GestionDemande/:numDemande', {
+		templateUrl : 'static/views/Fiche_Client.html',
 		controller : 'ConseillerController',
 		controllerAs : 'ConsCtrl'
 	}).otherwise({

@@ -69,6 +69,7 @@
 							ng-model="PublicCtrl.client.email"
 							name="email"
 							class="input-sm"
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 							placeholder="Entrez votre Email"
 							required />
 					</div>
@@ -129,7 +130,7 @@
 					<div class="entry2">
 						<label id="revenus">Revenus mensuels</label> <input
 							type="number"
-							ng-model="PublicCtrl.client.revenuMensuel"
+							ng-model="PublicCtrl.client.revenuMens"
 							name="revenus"
 							id="revenus"
 							class="input-sm4"

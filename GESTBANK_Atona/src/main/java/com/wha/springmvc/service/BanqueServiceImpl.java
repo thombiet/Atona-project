@@ -19,78 +19,63 @@ import com.wha.springmvc.model.Transaction;
 @Transactional
 public class BanqueServiceImpl implements BanqueService {
 
-	/*// #region Compte
-	private static List<Compte> comptes;
+	/*
+	 * // #region Compte private static List<Compte> comptes;
+	 * 
+	 * private static void getComptes() { if (comptes == null) {
+	 * DummyBDD.CreateBDD(); comptes = DummyBDD.getComptes(); } }
+	 */
 
-	private static void getComptes() {
-		if (comptes == null) {
-			DummyBDD.CreateBDD();
-			comptes = DummyBDD.getComptes();
-		}
-	}*/
-	
 	@Autowired
 	private BanqueDAO dao;
-	
+
 	@Override
 	public Compte getCompteByNo(Long noCompte) {
-		/*getComptes();
-		for (Compte compte : comptes) {
-			if (compte.getNoCompte() == noCompte)
-				return compte;
-		}
-		return null;*/
+		/*
+		 * getComptes(); for (Compte compte : comptes) { if
+		 * (compte.getNoCompte() == noCompte) return compte; } return null;
+		 */
 		return dao.getCompteByNo(noCompte);
 	}
 
 	@Override
 	public List<Compte> getComptesByClient(Long clientIdentifiant) {
-		/*getComptes();
-		Client c = null;
-		for (Client client : DummyBDD.getClients()) {
-			if (client.getIdentifiant() == clientIdentifiant) {
-				c = client;
-				break;
-			}
-		}
-		if (c != null)
-			return c.getListeComptes();
-		return new ArrayList<Compte>();*/
+		/*
+		 * getComptes(); Client c = null; for (Client client :
+		 * DummyBDD.getClients()) { if (client.getIdentifiant() ==
+		 * clientIdentifiant) { c = client; break; } } if (c != null) return
+		 * c.getListeComptes(); return new ArrayList<Compte>();
+		 */
 		return dao.getComptesByClient(clientIdentifiant);
 	}
 
 	@Override
 	public void ajoutCompte(Compte compte, Long clientIdentifiant) {
-		/*getComptes();
-		Client c = null;
-		for (Client client : DummyBDD.getClients()) {
-			if (client.getIdentifiant() == clientIdentifiant) {
-				c = client;
-				break;
-			}
-		}
-		if (c != null) {
-			Compte compteComplet = DummyBDD.ajoutCompte(compte);
-			comptes = DummyBDD.getComptes();
-			c.ajoutCompte(compteComplet);
-		}*/
+		/*
+		 * getComptes(); Client c = null; for (Client client :
+		 * DummyBDD.getClients()) { if (client.getIdentifiant() ==
+		 * clientIdentifiant) { c = client; break; } } if (c != null) { Compte
+		 * compteComplet = DummyBDD.ajoutCompte(compte); comptes =
+		 * DummyBDD.getComptes(); c.ajoutCompte(compteComplet); }
+		 */
 		dao.ajoutCompte(compte, clientIdentifiant);
 	}
 
 	@Override
 	public void modificationCompte(Compte compte) {
-		/*getComptes();
-		int index = comptes.indexOf(compte);
-		comptes.set(index, compte);
-		DummyBDD.setComptes(comptes);*/
-		Compte entity=dao.getCompteByNo(compte.getNoCompte());
-		if(entity!=null){
+		/*
+		 * getComptes(); int index = comptes.indexOf(compte); comptes.set(index,
+		 * compte); DummyBDD.setComptes(comptes);
+		 */
+		Compte entity = dao.getCompteByNo(compte.getNoCompte());
+		if (entity != null) {
 			entity.setSolde(compte.getSolde());
 			if (!entity.getDecouvert().equals(compte.getDecouvert())) {
 				entity.setDecouvert(compte.getDecouvert());
 				Notification notification = new Notification();
 				notification.setDate(new Date());
-				notification.setMessage("Le Decouvert du compte " + entity.getNoCompte() + " est passé à " +entity.getDecouvert());
+				notification.setMessage(
+						"Le Decouvert du compte " + entity.getNoCompte() + " est passé à " + entity.getDecouvert());
 				notification.setLu(false);
 				entity.ajoutNotification(notification);
 			}
@@ -98,7 +83,8 @@ public class BanqueServiceImpl implements BanqueService {
 				entity.setSeuilRemuneration(compte.getSeuilRemuneration());
 				Notification notification = new Notification();
 				notification.setDate(new Date());
-				notification.setMessage("Le seuil de remuneration du compte " + entity.getNoCompte() + " est passé à " +entity.getSeuilRemuneration());
+				notification.setMessage("Le seuil de remuneration du compte " + entity.getNoCompte() + " est passé à "
+						+ entity.getSeuilRemuneration());
 				notification.setLu(false);
 				entity.ajoutNotification(notification);
 			}
@@ -110,11 +96,10 @@ public class BanqueServiceImpl implements BanqueService {
 
 	@Override
 	public boolean isCompteExist(Compte compte) {
-		/*for (Compte c : comptes) {
-			if (c.equals(compte))
-				return true;
-		}
-		return false;*/
+		/*
+		 * for (Compte c : comptes) { if (c.equals(compte)) return true; }
+		 * return false;
+		 */
 		return dao.isCompteExist(compte);
 
 	}
@@ -123,62 +108,41 @@ public class BanqueServiceImpl implements BanqueService {
 
 	// #region Transaction
 
-	/*private static List<Transaction> transactions;
-
-	private static void getTransactions() {
-		if (transactions == null) {
-			DummyBDD.CreateBDD();
-			transactions = DummyBDD.getTransactions();
-		}
-	}*/
+	/*
+	 * private static List<Transaction> transactions;
+	 * 
+	 * private static void getTransactions() { if (transactions == null) {
+	 * DummyBDD.CreateBDD(); transactions = DummyBDD.getTransactions(); } }
+	 */
 
 	@Override
 	public List<Transaction> getAllTransactionsByCompte(Long noCompte) {
-		/*getComptes();
-		List<List<Transaction>> liste = new ArrayList<>();
-		Compte c = null;
-		for (Compte compte : comptes) {
-			if (compte.getNoCompte() == noCompte) {
-				c = compte;
-			}
-		}
-		if (c != null) {
-			List<Transaction> debits = new ArrayList<Transaction>();
-			List<Transaction> credits = new ArrayList<Transaction>();
-			for (Transaction t : c.getListeTransactions()) {
-				if (t instanceof Credit) {
-					credits.add(t);
-				} else {
-					debits.add(t);
-				}
-			}
-			liste.add(credits);
-			liste.add(debits);
-		}
-		return liste;*/
+		/*
+		 * getComptes(); List<List<Transaction>> liste = new ArrayList<>();
+		 * Compte c = null; for (Compte compte : comptes) { if
+		 * (compte.getNoCompte() == noCompte) { c = compte; } } if (c != null) {
+		 * List<Transaction> debits = new ArrayList<Transaction>();
+		 * List<Transaction> credits = new ArrayList<Transaction>(); for
+		 * (Transaction t : c.getListeTransactions()) { if (t instanceof Credit)
+		 * { credits.add(t); } else { debits.add(t); } } liste.add(credits);
+		 * liste.add(debits); } return liste;
+		 */
 		return dao.getAllTransactionsByCompte(noCompte);
 	}
 
 	@Override
 	public List<Transaction> getThatMonthTransactionsByCompte(Long noCompte, int thatMonth) {
-		/*getComptes();
-		List<List<Transaction>> liste = new ArrayList<>();
-		Compte c = getCompteByNo(noCompte);
-		List<Transaction> debits = new ArrayList<Transaction>();
-		List<Transaction> credits = new ArrayList<Transaction>();
-		for (Transaction t : c.getListeTransactions()) {
-			LocalDate ld = t.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-			if (ld.getMonthValue() == thatMonth) {
-				if (t instanceof Credit) {
-					credits.add(t);
-				} else {
-					debits.add(t);
-				}
-			}
-		}
-		liste.add(credits);
-		liste.add(debits);
-		return liste;*/
+		/*
+		 * getComptes(); List<List<Transaction>> liste = new ArrayList<>();
+		 * Compte c = getCompteByNo(noCompte); List<Transaction> debits = new
+		 * ArrayList<Transaction>(); List<Transaction> credits = new
+		 * ArrayList<Transaction>(); for (Transaction t :
+		 * c.getListeTransactions()) { LocalDate ld =
+		 * t.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+		 * if (ld.getMonthValue() == thatMonth) { if (t instanceof Credit) {
+		 * credits.add(t); } else { debits.add(t); } } } liste.add(credits);
+		 * liste.add(debits); return liste;
+		 */
 		return dao.getThatMonthTransactionsByCompte(noCompte, thatMonth);
 	}
 
@@ -194,13 +158,29 @@ public class BanqueServiceImpl implements BanqueService {
 
 	@Override
 	public boolean ajoutTransaction(Transaction transaction, Long noCompte) {
-		// TODO Auto-generated method stub
-		return dao.ajoutTransaction(transaction, noCompte);
+		if (dao.ajoutTransaction(transaction, noCompte)) {
+			Notification notification = new Notification();
+			if (transaction.getTypeTransaction().equals("debit")) {
+				notification.setDate(new Date());
+				notification.setMessage("Transaction n°" + transaction.getNoTransaction() + " : Un débit de $"
+						+ transaction.getMontant() + " a été effectué à partir du compte n°" + noCompte);
+				notification.setLu(false);
+			} else {
+				notification.setDate(new Date());
+				notification.setMessage("Transaction n°" + transaction.getNoTransaction() + " : Votre compte "
+						+ noCompte + " a été crédité de $" + transaction.getMontant());
+				notification.setLu(false);
+			}
+			System.out.println(notification);
+			//dao.getCompteByNo(noCompte).ajoutNotification(notification);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
 	public void envoiRequete(Requete requete, Long matricule) {
-		dao.envoiRequete(requete,matricule);	
+		dao.envoiRequete(requete, matricule);
 	}
 
 	// #endregion

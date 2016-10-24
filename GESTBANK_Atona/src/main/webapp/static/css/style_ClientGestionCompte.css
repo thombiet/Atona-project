@@ -82,10 +82,13 @@ th {
 
 
 .solde {
-
+	
 	display: flex;
-	float: right;
-	padding-right:10px;
+	float:right;
+	margin-top:0;
+	padding-top:1%;
+	padding-right:5%;
+	font-size:1.2em;
 }
 
 .solde p2 {
@@ -164,4 +167,11 @@ th {
 	padding-bottom: 15px;
 	justify-content:space-between;
 	margin-top:5%;
+}
+
+.impress {
+	
+	float:left;
+	padding-left:1%;
+	
 }
