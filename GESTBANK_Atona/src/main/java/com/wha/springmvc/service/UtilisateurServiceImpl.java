@@ -50,12 +50,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		return dao.findById(identifiant);
 	}
 
-	/*
-	 * @Override public Client findByCompte(Long noCompte) { getClients(); for
-	 * (Client client : clients) { for (Compte compte :
-	 * client.getListeComptes()) { if (compte.getNoCompte() == noCompte) {
-	 * return client; } } } return null; }
-	 */
+	
+	 @Override 
+	 public Client findByCompte(Long noCompte) { 
+		 return dao.findByCompte(noCompte);
+	 }
+	 
 	@Override
 	public void saveClient(Client client) {
 		/*
@@ -284,9 +284,8 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		Long max = dao.getMaxIdentifiant() + 1L;
 		client.setIdentifiant(max);
 		// creation compte
-		Compte cpt = new Compte();
 		max = dao.getMaxNoCompte() + 1L;
-		cpt.setNoCompte(max);
+		Compte cpt = new Compte(max, 0, 0);
 		// creation d'une transaction cadeau de bienvenu !
 		Transaction transaction = new Transaction(50, "Cadeau de bienvenue", new Date(), "credit");
 		// ajout de la transaction dans le compte

@@ -168,6 +168,16 @@ public class HelloWorldRestController {
 		}
 		return new ResponseEntity<Client>(client, HttpStatus.OK);
 	}
+	
+	// ---Recuperation du client qui possede le compte {noCompte}
+		@RequestMapping(value = "/client/compte{noCompte}", method = RequestMethod.GET)
+		public ResponseEntity<Client> findClientByCompte(@PathVariable("noCompte") Long noCompte) {
+			Client client = utilService.findByCompte(noCompte);
+			if (client == null) {
+				return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<Client>(client, HttpStatus.OK);
+		}
 
 	// ---Creation d'un client
 	@RequestMapping(value = "/client", method = RequestMethod.POST)

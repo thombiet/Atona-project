@@ -10,7 +10,7 @@ import com.wha.springmvc.model.Utilisateur;
 public interface UtilisateurDAO {
 	Client findById(Long identifiant);
 
-	//Client findByCompte(Long noCompte);
+	Client findByCompte(Long noCompte);
 
 	List<Client> findAllClients(Long mle);
 

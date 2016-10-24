@@ -7,14 +7,46 @@
 <div class="ma_page">
 	<div class="maPage2">
 		<div class="menu">
-			<!-- 		<legend><h2>Options</h2></legend><br/> -->
 			<div class="options">
-				<a
-					href="#/"
-					class="btn">reglage decouvert</a><br /> <a
-					href="#/"
-					class="btn">Impression de RIB</a><br /> <br />
+				<button
+					ng-click="ConsCtrl.toggle()"
+					class="btn">Option du compte</button>
 			</div>
+		</div>
+		<div
+			class="gestion"
+			ng-show="ConsCtrl.option">
+			<fieldset>
+				<legend>
+					<h2>Option additionnel</h2>
+				</legend>
+
+				<form ng-submit="ConsCtrl.modifDecouvert()">
+					<div class="entry">
+						<label id="decouvert">Montant Découvert</label><input
+							type="number"
+							name="decouvert"
+							class="input-sm"
+							ng-model="ConsCtrl.compte.decouvert"
+							max="{{ConsCtrl.maxDecouvert}}" /> <input
+							type="submit"
+							value="modifier"
+							class="myButton" />
+					</div>
+				</form>
+				<form ng-submit="ConsCtrl.modifRemuneration()">
+					<div class="entry">
+						<label id="remuneration">Montant Remuneration</label><input
+							type="number"
+							name="remuneration"
+							class="input-sm"
+							ng-model="ConsCtrl.compte.seuilRemuneration" /> <input
+							type="submit"
+							value="modifier"
+							class="myButton" />
+					</div>
+				</form>
+			</fieldset>
 		</div>
 		<div class="gestion">
 			<fieldset>

@@ -13,7 +13,7 @@ public interface UtilisateurService {
 
 	Client findById(Long identifiant);
 
-	//Client findByCompte(Long noCompte);
+	Client findByCompte(Long noCompte);
 
 	void saveClient(Client client);
 

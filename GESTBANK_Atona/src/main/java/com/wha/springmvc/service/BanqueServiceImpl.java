@@ -90,8 +90,8 @@ public class BanqueServiceImpl implements BanqueService {
 			entity.setMontantAgios(compte.getMontantAgios());
 			entity.setSeuilRemuneration(compte.getSeuilRemuneration());
 			entity.setRIB(compte.getRIB());
-			entity.setListeTransactions(compte.getListeTransactions());
-			entity.setListeNotification(compte.getListeNotification());
+//			entity.setListeTransactions(compte.getListeTransactions());
+//			entity.setListeNotification(compte.getListeNotification());
 		}
 	}
 
