@@ -15,6 +15,7 @@ function compteService($http, $q){
     //---------------------Transaction-----------------
     	getTransactionsByCompteAndMonth:getTransactionsByCompteAndMonth,
     	getTransactionsByCompte:getTransactionsByCompte,
+    	ajoutTransaction:ajoutTransaction,
     	 //---------------------Notification----------------
     	getAllNotifications:getAllNotifications,
     };
@@ -152,6 +153,20 @@ function compteService($http, $q){
         );
         return deferred.promise;
     } 
+    
+    function ajoutTransaction(transaction, noCompte)  {
+    	var deferred = $q.defer();
+    	$http.post(COMPTE_URI+noCompte+"/transaction/", transaction)
+    	.then(
+    			function (response){
+    				deferred.resolve(response.data);
+    			},
+    			function (errResponse){
+    				console.error('erreur pendant ajoutTransaction');
+    				deferred.reject(errResponse);
+    			})
+    			return deferred.promise;
+}
 
 }
 

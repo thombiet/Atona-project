@@ -446,6 +446,8 @@ public class HelloWorldRestController {
 	@RequestMapping(value = "/compte/{noCompte}/transaction/", method = RequestMethod.POST)
 	public ResponseEntity<Void> ajoutTransaction(@RequestBody Transaction transaction,
 			@PathVariable("noCompte") Long noCompte) {
+		System.out.println(transaction);
+		
 		if (banqueService.getCompteByNo(noCompte) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}

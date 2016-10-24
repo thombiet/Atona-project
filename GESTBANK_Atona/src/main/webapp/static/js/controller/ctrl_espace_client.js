@@ -17,6 +17,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 	}
 
 	$scope.voirCompte = voirCompte;
+	$scope.virement = virement;
 
 	function getClientById(Id) {
 		uService.getClientById(Id).then(
@@ -78,6 +79,35 @@ function ClientController(uService, cService, $scope, $routeParams) {
 					console.log("ClientController : getNotifications, erreur "
 							+ reason.status)
 				})
+	}
+
+	function virement() {
+		
+		
+		if($scope.CompteDebit.noCompte != $scope.CompteCredit.noCompte){
+						
+		var transaction ={};
+		transaction.montant = $scope.montant;
+		transaction.libelle = $scope.libelle;
+		transaction.date = $scope.date;
+		transaction.typeTransaction = "debit";
+		
+		var noCompte = $scope.CompteDebit.noCompte;
+		console.log(transaction) ;
+		console.log(noCompte) ;
+    	cService.ajoutTransaction(transaction, noCompte)
+    	
+    		.then(
+    				function(value){
+    					self.transaction = value;
+    					self.noCompte = value;
+    					alert("Votre virement a bien ete effectue!");
+    					$scope.mainCtrl.redirection('/Client/GestionCompte/' + noCompte)
+    				},
+    				function(reason){
+    					alert("Erreur pendant la transaction")
+    				})
+		}
 	}
 
 
