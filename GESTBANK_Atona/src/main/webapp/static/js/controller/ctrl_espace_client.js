@@ -1,8 +1,9 @@
 /**
  * Le controleur qui gère toutes les pages de l'espace Client
  */
-function ClientController(uService, cService, $scope, $routeParams) {
+function ClientController(uService, cService,  $scope, $routeParams) {
 
+	
 	if (sessionStorage.role != "Client") {
 		$scope.mainCtrl.deconnexion();
 	} else {
@@ -20,56 +21,60 @@ function ClientController(uService, cService, $scope, $routeParams) {
 	$scope.virement = virement;
 
 	function getClientById(Id) {
+
 		uService.getClientById(Id).then(
-				function(value) {
-					$scope.client = value;
-					$scope.mainCtrl.user = value;
-				},
-				function(reason) {
-					console.log("Error: ConseillerController.getClientById - "
-							+ reason.status)
-				})
+			function(value) {
+			$scope.client = value;
+			$scope.mainCtrl.user = value;
+		}, function(reason) {
+			console.log("Error: ConseillerController.getClientById - "+reason.status)
+		})
 	}
 
-	function voirCompte(noCompte) {
+	function voirCompte(noCompte){
 		sessionStorage.noCompte = noCompte;
-		$scope.mainCtrl.redirection('/Client/GestionCompte/' + noCompte)
+		$scope.mainCtrl.redirection('/Client/GestionCompte/'+noCompte)
 	}
-
-	function getCompteByClient(identifiant) {
-		cService.getCompteByClient(identifiant).then(function(d) {
-			self.comptes = d;
-		}, function(errResponse) {
-			console.error('Error while fetching comptes');
-		});
-	}
-
+	
+	function getCompteByClient(identifiant){
+    	cService.getCompteByClient(identifiant)
+            .then(
+            function(d) {
+                self.comptes = d;
+            },
+            function(errResponse){
+                console.error('Error while fetching comptes');
+            }
+        );
+    }
+	
 	function getCompteByNo(noCompte) {
-		cService.getCompteByNo(noCompte).then(function(d) {
-			self.compte = d;
-		}, function(errResponse) {
-			console.error('Error while fetching compte');
-		});
-	}
-
-	function getTransactions(noCompte) {
+    	cService.getCompteByNo(noCompte)
+    		.then(
+            function(d){
+            	self.compte= d;
+            },
+            function(errResponse){
+                console.error('Error while fetching compte');
+            }
+        );
+    }
+	
+	function getTransactions(noCompte){
 		var month = new Date().getMonth();
 		cService.getTransactionsByCompteAndMonth(noCompte, month).then(
-				function(value) {
-					value.forEach(function(item, key) {
-						if (item.typeTransaction == "debit")
-							item.montant = -item.montant;
-					})
-					self.transactions = value;
-
-				},
-				function(reason) {
-					console.log("ClientController : getTransactions, erreur "
-							+ reason.status)
+			function(value) {
+				value.forEach(function(item, key) {
+					if (item.typeTransaction=="debit")
+						item.montant=-item.montant;
 				})
+				self.transactions= value;
+				
+		}, function(reason) {
+				console.log("ClientController : getTransactions, erreur "+reason.status)
+		})
 	}
-
-
+	
 	function getAllNotifications(identifiant) {
 		cService.getAllNotifications(identifiant).then(
 				function(value) {
@@ -80,6 +85,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 							+ reason.status)
 				})
 	}
+
 
 	function virement() {
 		
@@ -111,6 +117,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 	}
 
 		
+
 	function envoiRequete(requete){
 		console.log("coucou")
 		cService.envoiRequete(sessionStorage.noCompte,requete,$scope.client.conseiller.matricule).then(	
@@ -130,7 +137,8 @@ function ClientController(uService, cService, $scope, $routeParams) {
 	        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="static/css/style_RIB.css" /></head><body onload="window.print()">' + innerContents + '</html>');
 	        popupWinindow.document.close();
 	      }
-
+	
 }
 
 App.controller("ClientController", ClientController);
+

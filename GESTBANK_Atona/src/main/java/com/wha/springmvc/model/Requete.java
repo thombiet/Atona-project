@@ -21,7 +21,6 @@ public class Requete {
 	/*@ManyToOne
 	@JoinColumn(name="id_client",referencedColumnName="identifiant")
 	private Client client;*/
-
 	
 	@Column (name="message")
 	private String message;

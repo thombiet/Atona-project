@@ -7,19 +7,19 @@
 	</legend>
 	<br />
 	<div id="message">
-	<div id="entete>"
+	<div id="entete">
 		
 		<label>Type de Requete</label>
-			
-			<select name="typeRequete" ng-model="selectTypeRequete" ng-options="t for t in ClientController.TypeRequete"
-						class="input-sm2" placeholder="Type de Requête" required>
-					</select>
-				
-			<input
-						type="submit"
-						class="myButton"
-						ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }"
-						value="Envoyer">
+			<select name="TypeRequete" ng-model="aaaa">
+				  <option value="CHEQUIER">CHEQUIER</option>
+				  <option value="MOTDEPASSE">MOTDEPASSE</option>
+				  <option value="DECOUVERT">DECOUVERT</option>
+				  <option value="REMUNERATION">REMUNERATION</option>
+				  <option value="CREATIONCOMPTE">CREATIONCOMPTE</option>
+				  <option value="AUTRE">AUTRE</option>
+			</select>		
+		
+			<input class="myButton" value="Envoyer" ng-click="ClientCtrl.envoiRequete(aaaa)">
 		</div>
 		<br /> <textarea type="text" rows="10" cols="60"
 			class ="input_sm" placeholder="Entrez votre message ici"></textarea>

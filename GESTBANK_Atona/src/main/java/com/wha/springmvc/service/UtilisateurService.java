@@ -66,4 +66,10 @@ public interface UtilisateurService {
 	public void validationDemande(DemandeOuverture demande);
 	
 	//#endregion
+	
+	// #region Autre
+	
+	public void envoieMail(String sujet, String corpsMessage, String destinataire, String cc);
+	
+	// #endregion
 }

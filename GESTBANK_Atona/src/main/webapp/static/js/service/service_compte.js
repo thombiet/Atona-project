@@ -3,7 +3,7 @@
 function compteService($http, $q){
 
     var COMPTE_URI = 'http://localhost:8080/SpringAngularStartProject/compte/';
-    var NOTIF_URI = 'http://localhost:8080/SpringAngularStartProject/notification/';
+   var NOTIF_URI = 'http://localhost:8080/SpringAngularStartProject/notification/';
 
     var factory = {
     //---------------------Compte----------------------
@@ -18,6 +18,9 @@ function compteService($http, $q){
     	ajoutTransaction:ajoutTransaction,
     	 //---------------------Notification----------------
     	getAllNotifications:getAllNotifications,
+     	
+    //---------------------Requete----------------------
+    	envoiRequete:envoiRequete,
     };
 
     return factory;
@@ -134,11 +137,8 @@ function compteService($http, $q){
         );
         return deferred.promise;
     }
-    
-    //---------------------NOTIFICATION----------------
-    
-    /* recupere toutes les notifications d'un client*/
-    function getAllNotifications(identifiant){
+
+       function getAllNotifications(identifiant){
     	var deferred = $q.defer();
     	console.log(identifiant);
         $http.get(NOTIF_URI, {params:{id:identifiant}})
@@ -153,6 +153,7 @@ function compteService($http, $q){
         );
         return deferred.promise;
     } 
+<<<<<<< HEAD
     
     function ajoutTransaction(transaction, noCompte)  {
     	var deferred = $q.defer();
@@ -168,6 +169,7 @@ function compteService($http, $q){
     			return deferred.promise;
 }
 function envoiRequete(noCompte, requete, matricule){
+
     	var deferred = $q.defer();
         $http.post(COMPTE_URI+"requete/"+noCompte+"&"+requete+"&"+matricule)
             .then(

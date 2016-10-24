@@ -11,6 +11,7 @@ import com.wha.springmvc.dao.BanqueDAO;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Notification;
+import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Transaction;
 
 @Service("banqueService")
@@ -182,6 +183,11 @@ public class BanqueServiceImpl implements BanqueService {
 	public boolean ajoutTransaction(Transaction transaction, Long noCompte) {
 		// TODO Auto-generated method stub
 		return dao.ajoutTransaction(transaction, noCompte);
+	}
+
+	@Override
+	public void envoiRequete(Requete requete, Long matricule) {
+		dao.envoiRequete(requete,matricule);	
 	}
 
 	// #endregion
