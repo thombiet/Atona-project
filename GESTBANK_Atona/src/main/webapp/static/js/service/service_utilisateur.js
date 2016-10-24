@@ -19,6 +19,7 @@ function utilisateurService($http, $q) {
 		// -------------------------------------------Service_client---------------------------------------------
 		getAllClientsByConseiller : getAllClientsByConseiller,
 		getClientById : getClientById,
+		getClientByCompte : getClientByCompte,
 		createClient : createClient,
 		updateClient : updateClient,
 		//deleteClient : deleteClient,
@@ -148,6 +149,22 @@ function utilisateurService($http, $q) {
             },
             function(errResponse){
                 console.error('erreur utilisateurService.getClientById()');
+                deferred.reject(errResponse);
+            }
+        );
+        return deferred.promise;
+    }
+    
+    /* recherche le client du compte */
+    function getClientByCompte(noCompte) {
+        var deferred = $q.defer();
+        $http.get(CLIENT_URI+"compte"+noCompte)
+            .then(
+            function (response) {
+                deferred.resolve(response.data);
+            },
+            function(errResponse){
+                console.error('erreur utilisateurService.getClientByCompte()');
                 deferred.reject(errResponse);
             }
         );

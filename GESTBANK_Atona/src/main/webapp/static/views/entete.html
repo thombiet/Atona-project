@@ -32,10 +32,10 @@
 		class="myButton">Mes Informations</button>
 	<button ng-if="role=='Client'" 
 		ng-click="mainCtrl.redirection('/ClientMessagerie')" 
-		class="myButton">Messagerie</button>
+		class="myButton">Messagerie <span class="nbMess">({{mainCtrl.nbMess}})</span></button>
 	<button ng-if="role=='Conseiller'" 
 		ng-click="mainCtrl.redirection('/ConseillerMessagerie')" 
-		class="myButton">Messagerie</button>
+		class="myButton">Messagerie <span class="nbMess">({{mainCtrl.nbMess}})</span></button>
 	<button 
 		ng-click="mainCtrl.deconnexion()" class="myButton">Déconnexion</button>
 

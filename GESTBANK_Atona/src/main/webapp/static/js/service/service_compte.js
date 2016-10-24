@@ -6,20 +6,20 @@ function compteService($http, $q){
    var NOTIF_URI = 'http://localhost:8080/SpringAngularStartProject/notification/';
 
     var factory = {
-    //---------------------Compte----------------------
+    // ---------------------Compte----------------------
     	getCompteByClient: getCompteByClient,
     	getCompteByNo: getCompteByNo,
     	createCompte: createCompte,
     	updateCompte:updateCompte,
     	deleteCompte:deleteCompte,
-    //---------------------Transaction-----------------
+    // ---------------------Transaction-----------------
     	getTransactionsByCompteAndMonth:getTransactionsByCompteAndMonth,
     	getTransactionsByCompte:getTransactionsByCompte,
     	ajoutTransaction:ajoutTransaction,
-    	 //---------------------Notification----------------
+    	 // ---------------------Notification----------------
     	getAllNotifications:getAllNotifications,
      	
-    //---------------------Requete----------------------
+    // ---------------------Requete----------------------
     	envoiRequete:envoiRequete,
     };
 
@@ -73,7 +73,7 @@ function compteService($http, $q){
         return deferred.promise;
     }
 
-    /* update un compte*/
+    /* update un compte */
     function updateCompte(compte, numero) {
         var deferred = $q.defer();
         $http.put(COMPTE_URI+numero, compte)
@@ -89,7 +89,7 @@ function compteService($http, $q){
         return deferred.promise;
     }
     
-    /* supprime un compte*/
+    /* supprime un compte */
     function deleteCompte(numero) {
         var deferred = $q.defer();
         $http.delete(COMPTE_URI+numero)
@@ -105,7 +105,7 @@ function compteService($http, $q){
         return deferred.promise;
     }
     
-    //--------------------------------------Transaction--------------
+    // --------------------------------------Transaction--------------
     /* recupere les transaction d'un compte pour un mois donné */
     function getTransactionsByCompteAndMonth(noCompte, month){
     	var deferred = $q.defer();
@@ -122,7 +122,7 @@ function compteService($http, $q){
         return deferred.promise;
     }
     
-    /* recupere toutes les transaction d'un compte*/
+    /* recupere toutes les transaction d'un compte */
     function getTransactionsByCompte(NoCompte){
     	var deferred = $q.defer();
         $http.get(COMPTE_URI+NoCompte+"/transaction/")
@@ -167,8 +167,9 @@ function compteService($http, $q){
     				deferred.reject(errResponse);
     			})
     			return deferred.promise;
-}
-function envoiRequete(noCompte, requete, matricule){
+    }
+    
+    function envoiRequete(noCompte, requete, matricule){
 
     	var deferred = $q.defer();
         $http.post(COMPTE_URI+"requete/"+noCompte+"&"+requete+"&"+matricule)

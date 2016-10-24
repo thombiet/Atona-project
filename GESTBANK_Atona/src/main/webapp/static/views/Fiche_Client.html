@@ -98,7 +98,7 @@
 					</div>
 					<div class="entry">
 						<label id="date">Date de Naissance </label> <input
-							type="Date"
+							type="text"
 							name="date"
 							ng-model="client.dateNaissance"
 							class="input-sm2"
@@ -117,21 +117,18 @@
 					</div>
 
 				</div>
-				<br> <br>
-
-				<h4>Informations Supplémentaires</h4>
-
 				<div class="inner-wrap">
-					<div class="entry2">
+					<div class="entry">
 						<label id="revenus">Revenus mensuels</label> <input
 							type="number"
 							ng-model="client.revenuMensuel"
 							name="revenus"
 							id="revenus"
-							class="input-sm4">
+							class="input-sm"
+							required>
 					</div>
 					<br>
-					<div class="entry2">
+					<div class="entry">
 						<label id="files">Documents justificatifs</label> <input
 							type="file"
 							id="mesFichiers"

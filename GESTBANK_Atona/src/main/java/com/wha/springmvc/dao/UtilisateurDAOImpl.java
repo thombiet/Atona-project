@@ -23,6 +23,16 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 				.setParameter("identifiant", identifiant).getSingleResult();
 		return client;
 	}
+	
+	public Client findByCompte(Long noCompte){
+		Client client = getEntityManager()
+				.createQuery("SELECT c FROM Client c WHERE "
+						+ " (SELECT cpt FROM Compte cpt WHERE cpt.noCompte LIKE :noCompte) "
+						+ "MEMBER OF c.listeComptes", Client.class)
+				.setParameter("noCompte", noCompte)
+				.getSingleResult();
+		return client;
+	}
 
 	public List<Client> findAllClients() {
 		List<Client> clients = getEntityManager().createQuery("SELECT c FROM Client c", Client.class).getResultList();

@@ -5,6 +5,9 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 
 	var self = this;
 	self.validationDemande = validationDemande;
+	self.toggle = toggle;
+	self.modifDecouvert=modifCompte;
+	self.modifRemuneration=modifCompte;
 
 	if (sessionStorage.role != "Conseiller") {
 		$scope.mainCtrl.deconnexion();
@@ -12,6 +15,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		getConseillerByMle(sessionStorage.idConnecte);
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
+		$scope.mainCtrl.nbMess = 0;
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
 		}
@@ -75,6 +79,12 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	function getCompteByNo(noCompte) {
 		cService.getCompteByNo(noCompte).then(function(value) {
 			self.compte = value;
+			uService.getClientByCompte(noCompte).then(
+				function(value) {
+					self.maxDecouvert=value.revenuMensuel*0.40;
+			}, function(reason) {
+				
+			})
 		}, function(reason) {
 			console.error('Error while fetching compte');
 		});
@@ -132,6 +142,20 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			console.log(value);
 		}, function(reason) {
 			
+		})
+	}
+	
+	function toggle(){
+		console.log("ConsCtrl.toggle()")
+		self.option = !self.option
+	}
+	
+	function modifCompte(){
+		cService.updateCompte(self.compte, self.compte.noCompte).then(
+			function(value) {
+				$route.reload();
+		}, function(reason) {
+			console.log("erreur : ConsCtrl.modifDecouvert()")
 		})
 	}
 
