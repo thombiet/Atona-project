@@ -28,7 +28,7 @@
 	<legend><h2>Détails du compte n°{{ClientCtrl.compte.noCompte}}</h2>
 		</legend>
 		<br />
-		<div class="option1">
+		<div class="option1"  id="printSectionId">
 			<table align="center" cellspacing=1 cellpadding=10>
 				<thead>
 					<tr>
@@ -47,8 +47,13 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="solde"><p>Solde : <p2>{{ClientCtrl.compte.solde}}</p2></p></div>
 		</div>
-		<br> <div class="solde"><p>Solde : <p2>{{ClientCtrl.compte.solde}}</p2></p></div><br>
+		<br>
+					<div class="impress">
+				<button class="btn" id="print" ng-click="printToCart('printSectionId')" >Imprimer Historique </button>
+			</div>
+		
 	</fieldset>
 	</div>
 </div>

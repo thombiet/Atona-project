@@ -140,6 +140,7 @@ function ClientController(uService, cService,  $scope, $routeParams) {
     				})
 		
 	}
+		
 		$scope.mainCtrl.redirection('/Client/GestionCompte/' + noCompte);
 	}
 
@@ -169,7 +170,7 @@ function ClientController(uService, cService,  $scope, $routeParams) {
  function lu()
 	 {
 	 console.log('hey!');
-	 	document.getElementById('lu').style.fontWeight = "normal";
+	 	document.getElementById('lu').style.fontWeight = "1200";
 	 }
 	
 }

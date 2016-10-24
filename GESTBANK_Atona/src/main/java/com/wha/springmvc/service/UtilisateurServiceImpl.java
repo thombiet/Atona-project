@@ -83,6 +83,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			entity.setVille(client.getVille());
 			entity.setTelephone(client.getTelephone());
 			entity.setDateNaissance(client.getDateNaissance());
+			entity.setRevenuMensuel(client.getRevenuMensuel());
 		}
 		dao.saveClient(entity);
 	}
@@ -281,6 +282,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		client.setVille(cp.getVille());
 		client.setTelephone(cp.getTelephone());
 		client.setDateNaissance(cp.getDateNaissance());
+		client.setRevenuMensuel(cp.getRevenuMens());
 		Long max = dao.getMaxIdentifiant() + 1L;
 		client.setIdentifiant(max);
 		// creation compte
