@@ -144,7 +144,8 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 
 	function envoiRequete(requete){
 		console.log("coucou")
-		cService.envoiRequete(sessionStorage.noCompte,requete,$scope.client.conseiller.matricule).then(	
+		var noCompte = sessionStorage.noCompte;
+		cService.envoiRequete(noCompte, requete,$scope.client.conseiller.matricule).then(	
 				function(value){
 					self.requete=value;
 					console.log(value)

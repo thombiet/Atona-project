@@ -18,6 +18,12 @@
 	
 }
 
+.tableCurs:hover {
+	
+	cursor:pointer;
+		font-weight: bold;
+	transform: none;
+}
 
 .boutons_accueil {
 	

@@ -35,11 +35,11 @@
 							<th>Email</th>
 							<th>Date d'Affectation</th>
 							<th>Conseiller</th>
-							<th>Statut</th>
+							<th>Statut </th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="d in AdminCtrl.demandes | orderBy: 'dateCreation'">
+						<tr ng-repeat="d in AdminCtrl.demandes|filter :nom | orderBy: 'dateCreation'">
 							<td><span>{{d.dateCreation | date}}</span></td>
 							<td><span>{{d.cp.nom}} {{d.cp.prenom}}</span></td>
 							<td><span ng-bind="d.cp.email"></span></td>

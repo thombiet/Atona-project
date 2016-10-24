@@ -28,6 +28,14 @@
 
 }
 
+.tableCurs:hover {
+	
+	cursor:pointer;
+		font-weight: bold;
+	transform: none;
+}
+
+
 table {
     border-collapse: collapse;
     width: 100%;

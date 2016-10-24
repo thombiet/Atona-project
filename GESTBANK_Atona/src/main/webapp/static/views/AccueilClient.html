@@ -26,13 +26,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="compte in ClientCtrl.comptes" ng-click="voirCompte(compte.noCompte)">
-						<td>Compte chèque <span ng-if="compte.decouvert">
+					<tr ng-repeat="compte in ClientCtrl.comptes" ng-click="voirCompte(compte.noCompte)" >
+						<td class="tableCurs">Compte chèque <span ng-if="compte.decouvert">
 							avec decouvert <span ng-if="compte.seuilRemuneration"> et </span>
 							</span>
 							<span ng-if="compte.seuilRemuneration">avec remuneration</span></td>
-						<td><span ng-bind="compte.noCompte"></span></td>
-						<td><span ng-bind="compte.solde"></span>€</td>
+						<td class="tableCurs"><span ng-bind="compte.noCompte"></span></td>
+						<td class="tableCurs"><span ng-bind="compte.solde"></span>€</td>
 					</tr>
 				</tbody>
 			</table>

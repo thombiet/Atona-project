@@ -15,9 +15,7 @@
 			</div>
 			<div align="center">
 				<input type="search" class="input-sm" name="recherche"
-					placeholder="Entrer N° Compte" ng-model="noCompte"> <input
-					type="button" class="myButton" value="OK" name="findcompte"
-					ng-click="ConsCtrl.fetchCompteByNum(noCompte)">
+					placeholder="Entrer N° Compte" ng-model="noCompte"> 
 			</div>
 
 			<br> <br>
@@ -34,7 +32,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr ng-repeat="c in ConsCtrl.clients|filter :nom">
+						<tr ng-repeat="c in ConsCtrl.clients|filter :nom |filter :noCompte">
 							<td><span ng-bind="c.identifiant"></span></td>
 							<td><span ng-bind="c.prenom"></span></td>
 							<td><span ng-bind="c.nom"></span></td>
@@ -47,7 +45,7 @@
 							</td>
 							<td align="center"><a
 								href="#/Conseiller/GestionCompte/{{compte.noCompte}}"
-								ng-repeat="compte in c.listeComptes"> {{compte.noCompte}} <br /></a>
+								ng-repeat="compte in c.listeComptes" class="tableCurs"> {{compte.noCompte}} <br /></a>
 							</td>
 						</tr>
 					</tbody>
