@@ -143,6 +143,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 				+ $routeParams.noCompte);
 
 	}
+		
 
 	function modifClient() {
 		console.log($scope.client);
