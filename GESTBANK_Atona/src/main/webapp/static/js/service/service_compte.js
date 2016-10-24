@@ -169,10 +169,9 @@ function compteService($http, $q){
     			return deferred.promise;
     }
     
-    function envoiRequete(noCompte, requete, matricule){
-
+    function envoiRequete(noCompte, matricule,requete){
     	var deferred = $q.defer();
-        $http.post(COMPTE_URI+"requete/"+noCompte+"&"+requete+"&"+matricule)
+        $http.post(COMPTE_URI+noCompte+"/"+matricule, requete)
             .then(
             function (response) {
                 deferred.resolve(response.data);

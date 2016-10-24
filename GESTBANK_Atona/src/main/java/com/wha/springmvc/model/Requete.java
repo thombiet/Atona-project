@@ -2,6 +2,8 @@ package com.wha.springmvc.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -13,8 +15,11 @@ public class Requete {
 	// #region Attributs
 	
 	@Id
+	@Column (name="numRequete")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int numRequete;
 	@Column (name="type")
-	private TypeRequete type;
+	private String type;
 	@ManyToOne
 	@JoinColumn(name="no_compte",referencedColumnName="noCompte")
 	private Compte compte;
@@ -33,11 +38,21 @@ public class Requete {
 	// #endregion
 
 	// #region Accesseurs
-	public TypeRequete getType() {
+	
+	
+	public String getType() {
 		return type;
 	}
 
-	public void setType(TypeRequete type) {
+	public int getNumRequete() {
+		return numRequete;
+	}
+
+	public void setNumRequete(int numRequete) {
+		this.numRequete = numRequete;
+	}
+
+	public void setType(String type) {
 		this.type = type;
 	}
 

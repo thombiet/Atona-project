@@ -112,11 +112,12 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	}
 
 	@Override
-	public void envoiRequete(Requete requete, Long matricule) {
+	public void envoiRequete(Requete requete,Long matricule){
+		
+		Conseiller conseiller=(Conseiller)getEntityManager().createQuery("SELECT cons FROM Conseiller cons where cons.matricule=:matricule")
+				.setParameter("matricule", matricule).getSingleResult();
+		List<Requete> requeteConseiller=conseiller.getListeDemandesClient();
 
-		Conseiller conseiller = (Conseiller) getEntityManager()
-				.createQuery("SELECT cons FROM Conseiller cons where cons.matricule=:matricule").getSingleResult();
-		List<Requete> requeteConseiller = conseiller.getListeDemandesClient();
 		requeteConseiller.add(requete);
 	}
 

@@ -5,6 +5,7 @@ import java.util.List;
 import com.wha.springmvc.model.Client;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
+import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Utilisateur;
 
 public interface UtilisateurDAO {
@@ -69,6 +70,12 @@ public interface UtilisateurDAO {
 	Long getMaxNoCompte();
 
 	Integer getMaxNoTransact();
+
+	List<Requete> findRequeteByConseiller(Long matricule);
+
+	Requete getRequeteByNum(int numRequete);
+
+	void validationRequete(Requete req);
 
 	//#endregion
 }

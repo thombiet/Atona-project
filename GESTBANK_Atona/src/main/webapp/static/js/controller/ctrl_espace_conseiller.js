@@ -175,6 +175,29 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		});
 	}
 	
+	
+	
+	function findRequeteByConseiller(matricule) {
+		uService.findRequeteByConseiller(matricule).then(function(value) {
+			self.requetes = value;
+		}, function(reason) {
+			console.error('Error while fetching Demandes: ' + reason);
+		});
+	}
+	
+	function validationRequete(requete){
+		console.log(requete);
+		uService.validationRequete(requete).then(
+			function(value) {
+			alert("la requete a été validée");
+			//$route.reload();
+		}, function(reason) {
+			console.log("erreur ConsCtrl.validationRequete() :");
+			console.log(reason);
+		})
+	}
+
+	$scope.printToCart = function(printSectionId) {
 	function findRequeteByConseiller(matricule) {
 		uService.findRequeteByConseiller(matricule).then(function(value) {
 			self.requetes = value;

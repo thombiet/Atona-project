@@ -23,6 +23,7 @@ import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Notification;
+import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Transaction;
 import com.wha.springmvc.model.Utilisateur;
 
@@ -370,5 +371,29 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			}
 		}
 
+	}
+
+
+	@Override
+	public List<Requete> findRequeteByConseiller(Long matricule) {
+		return dao.findRequeteByConseiller(matricule);
+	}
+
+
+	@Override
+	public Requete getRequeteByNum(int numRequete) {
+		return dao.getRequeteByNum(numRequete);
+	}
+
+
+	@Override
+	public void validationRequete(Requete req) {
+		Compte compte=req.getCompte();
+		Notification notification = new Notification();
+		notification.setDate(new Date());
+		notification.setMessage("Vous avez reçu cadeau de bienvenue !");
+		notification.setLu(false);
+		compte.ajoutNotification(notification);	
+		dao.validationRequete(req);
 	}
 }
