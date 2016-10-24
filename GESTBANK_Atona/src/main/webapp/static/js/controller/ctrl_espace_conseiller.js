@@ -10,6 +10,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	self.modifRemuneration = modifCompte;
 	$scope.modifClient = modifClient;
 	$scope.modifConseiller = updateConseiller;
+	$scope.voirDetailDemande = voirDetailDemande;
 
 	if (sessionStorage.role != "Conseiller") {
 		$scope.mainCtrl.deconnexion();
@@ -18,7 +19,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
 		findRequeteByConseiller(sessionStorage.idConnecte);
-		validationRequete();
+		//validationRequete();
 		$scope.mainCtrl.nbMess = 0;
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
@@ -28,7 +29,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			getTransactionsByCompte($routeParams.noCompte);
 		}
 		if ($routeParams.numDemande) {
-
+			getDemandeByNum($routeParams.numDemande)
 		}
 	}
 
@@ -126,6 +127,10 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 
 		})
 	}
+	
+	function voirDetailDemande(numDemande){
+		$scope.mainCtrl.redirection('/Conseiller/GestionDemande/'+numDemande);
+	}
 
 	function validationDemande(demande) {
 		console.log(demande);
@@ -135,6 +140,15 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		}, function(reason) {
 			console.log("erreur ConsCtrl.validationDemande() :");
 			console.log(reason);
+		})
+	}
+	
+	function getDemandeByNum(numDemande){
+		uService.getDemandeByNum(numDemande).then(
+			function(value) {
+			$scope.client = value.cp;
+		}, function(reason) {
+			
 		})
 	}
 

@@ -29,6 +29,7 @@ function utilisateurService($http, $q) {
 		// -------------------------------------------Service_demandeOuverture-----------------------------------
 		getAllDemandes : getAllDemandes,
 		getDemandesByMle : getDemandesByMle,
+		getDemandeByNum : getDemandeByNum,
 		createDemande : createDemande,
 		affectationDemande : affectationDemande,
 		validationDemande : validationDemande,
@@ -244,7 +245,7 @@ function utilisateurService($http, $q) {
     /* recherche de demandes ouverture compte par conseiller */
     function getDemandesByMle(matricule) {
         var deferred = $q.defer();
-        $http.get(DEMANDE_URI+matricule)
+        $http.get(DEMANDE_URI+"Conseiller"+matricule)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -255,6 +256,21 @@ function utilisateurService($http, $q) {
             }
         );
         return deferred.promise;
+    }
+    
+    function getDemandeByNum(numDemande){
+    	 var deferred = $q.defer();
+         $http.get(DEMANDE_URI+numDemande)
+             .then(
+             function (response) {
+                 deferred.resolve(response.data);
+             },
+             function(errResponse){
+                 console.error('erreur utilisateurService.getDemandeByNum()');
+                 deferred.reject(errResponse);
+             }
+         );
+         return deferred.promise;
     }
     
     /* Ajout d'une nouvelle demande */

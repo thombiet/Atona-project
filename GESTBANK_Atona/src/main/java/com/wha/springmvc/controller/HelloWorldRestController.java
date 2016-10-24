@@ -301,6 +301,16 @@ public class HelloWorldRestController {
 
 	// #region Demande
 
+	// -- recuperation de la demande de n° numDemande
+		@RequestMapping(value = "/demande/{numDemande}", method = RequestMethod.GET)
+		public ResponseEntity<DemandeOuverture> getDemandeByNum(@PathVariable int numDemande) {
+			DemandeOuverture demande = utilService.getDemandeByNum(numDemande);
+			if (demande==null) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<DemandeOuverture>(demande, HttpStatus.OK);
+		}
+	
 	// -- recuperation de toutes les demandes
 	@RequestMapping(value = "/demande/", method = RequestMethod.GET)
 	public ResponseEntity<List<DemandeOuverture>> listAllDemandes() {
@@ -312,7 +322,7 @@ public class HelloWorldRestController {
 	}
 
 	// ---- recuperation de toutes les demandes affectees à un conseiller
-	@RequestMapping(value = "/demande/{matricule}", method = RequestMethod.GET)
+	@RequestMapping(value = "/demande/Conseiller{matricule}", method = RequestMethod.GET)
 	public ResponseEntity<List<DemandeOuverture>> listDemandesByConseiller(@PathVariable Long matricule) {
 		if (utilService.findByMle(matricule) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
