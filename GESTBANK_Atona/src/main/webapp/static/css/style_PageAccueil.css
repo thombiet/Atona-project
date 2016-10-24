@@ -166,4 +166,6 @@ legend h2{
   cursor:pointer;
 }
 
-
+.nbMess{
+	color : orange;
+}

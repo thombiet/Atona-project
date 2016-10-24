@@ -11,6 +11,8 @@ function MainController($location, $scope, $route) {
 	
 	self.user;
 	
+	self.nbMess;
+	
 
 	 if (!$scope.role && !sessionStorage.role ){
 	 self.deconnexion();

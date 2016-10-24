@@ -1,6 +1,7 @@
 package com.wha.springmvc.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,13 +86,25 @@ public class BanqueServiceImpl implements BanqueService {
 		Compte entity=dao.getCompteByNo(compte.getNoCompte());
 		if(entity!=null){
 			entity.setSolde(compte.getSolde());
-			entity.setDecouvert(compte.getDecouvert());
-			entity.setMontantRemuneration(compte.getMontantRemuneration());
+			if (!entity.getDecouvert().equals(compte.getDecouvert())) {
+				entity.setDecouvert(compte.getDecouvert());
+				Notification notification = new Notification();
+				notification.setDate(new Date());
+				notification.setMessage("Le Decouvert du compte " + entity.getNoCompte() + " est passé à " +entity.getDecouvert());
+				notification.setLu(false);
+				entity.ajoutNotification(notification);
+			}
+			if (!entity.getSeuilRemuneration().equals(compte.getSeuilRemuneration())) {
+				entity.setSeuilRemuneration(compte.getSeuilRemuneration());
+				Notification notification = new Notification();
+				notification.setDate(new Date());
+				notification.setMessage("Le seuil de remuneration du compte " + entity.getNoCompte() + " est passé à " +entity.getSeuilRemuneration());
+				notification.setLu(false);
+				entity.ajoutNotification(notification);
+			}
 			entity.setMontantAgios(compte.getMontantAgios());
 			entity.setSeuilRemuneration(compte.getSeuilRemuneration());
 			entity.setRIB(compte.getRIB());
-//			entity.setListeTransactions(compte.getListeTransactions());
-//			entity.setListeNotification(compte.getListeNotification());
 		}
 	}
 

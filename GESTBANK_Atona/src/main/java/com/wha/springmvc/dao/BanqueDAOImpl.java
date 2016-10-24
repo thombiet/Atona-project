@@ -44,6 +44,7 @@ public class BanqueDAOImpl extends AbstractDAO<Long, Compte> implements BanqueDA
 	@Override
 	public void modificationCompte(Compte compte) {
 		Compte compteup=getByKey(compte.getNoCompte());
+		
 		update(compteup);	
 	}
 

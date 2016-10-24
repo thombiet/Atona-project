@@ -79,6 +79,8 @@ function ClientController(uService, cService,  $scope, $routeParams) {
 		cService.getAllNotifications(identifiant).then(
 				function(value) {
 					self.notifications = value;
+					$scope.mainCtrl.nbMess = value.length;
+					console.log(value.length)
 				},
 				function(reason) {
 					console.log("ClientController : getNotifications, erreur "

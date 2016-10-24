@@ -6,7 +6,8 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	var self = this;
 	self.validationDemande = validationDemande;
 	self.toggle = toggle;
-	self.modifDecouvert=modifDecouvert;
+	self.modifDecouvert=modifCompte;
+	self.modifRemuneration=modifCompte;
 
 	if (sessionStorage.role != "Conseiller") {
 		$scope.mainCtrl.deconnexion();
@@ -14,6 +15,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		getConseillerByMle(sessionStorage.idConnecte);
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
+		$scope.mainCtrl.nbMess = 0;
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
 		}
@@ -148,14 +150,12 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		self.option = !self.option
 	}
 	
-	function modifDecouvert(){
+	function modifCompte(){
 		cService.updateCompte(self.compte, self.compte.noCompte).then(
 			function(value) {
-				
+				$route.reload();
 		}, function(reason) {
 			console.log("erreur : ConsCtrl.modifDecouvert()")
-		}, function(value) {
-			
 		})
 	}
 
