@@ -27,7 +27,7 @@
 					<tr ng-repeat="daff in ConsCtrl.demandes | orderBy: 'dateCreation'">
 						<td><span>{{daff.dateCreation|date}}</span></td>
 						<td><span>{{daff.cp.nom}} {{daff.cp.prenom}}</span>
-							<button class="myButton">Voir</button></td>
+							<button ng-click="" class="myButton">Voir</button></td>
 						<td><span ng-if="!daff.valide">En cours</span> <span
 							ng-if="daff.valide">Ouvert</span></td>
 						<td><button

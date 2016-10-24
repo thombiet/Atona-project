@@ -83,6 +83,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 			entity.setVille(client.getVille());
 			entity.setTelephone(client.getTelephone());
 			entity.setDateNaissance(client.getDateNaissance());
+			entity.setRevenuMensuel(client.getRevenuMensuel());
 		}
 		dao.saveClient(entity);
 	}

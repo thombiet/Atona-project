@@ -8,6 +8,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	self.toggle = toggle;
 	self.modifDecouvert=modifCompte;
 	self.modifRemuneration=modifCompte;
+	$scope.modifClient = modifClient;
 
 	if (sessionStorage.role != "Conseiller") {
 		$scope.mainCtrl.deconnexion();
@@ -23,13 +24,16 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			getCompteByNo($routeParams.noCompte);
 			getTransactionsByCompte($routeParams.noCompte);
 		}
+		if ($routeParams.numDemande) {
+			
+		}
 	}
 
 	self.voirClient = function(id) {
 		$scope.mainCtrl.redirection('/Conseiller/Fiche_Client/' + id);
 	}
 
-	$scope.modifClient = modifClient;
+	
 
 	function getConseillerByMle(matricule) {
 		uService.getConseillerByMle(matricule).then(function(value) {
