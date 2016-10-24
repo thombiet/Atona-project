@@ -165,7 +165,6 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		})
 	}
 	
-<<<<<<< HEAD
 	function findRequeteByConseiller(matricule) {
 		uService.findRequeteByConseiller(matricule).then(function(value) {
 			self.requetes = value;
@@ -187,9 +186,6 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	}
 
 	$scope.printToCart = function(printSectionId) {
-=======
-	 $scope.printToCart = function(printSectionId) {
->>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 	        var innerContents = document.getElementById(printSectionId).innerHTML;
 	        var popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
 	        popupWinindow.document.open();

@@ -155,9 +155,6 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		})
 	}
 
-<<<<<<< HEAD
-		
-
 	function envoiRequete(){
 		var noCompte=sessionStorage.noCompte;
 		var requete={};
@@ -171,16 +168,6 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		cService.envoiRequete(sessionStorage.noCompte,$scope.client.conseiller.matricule,requete).then(	
 				function(value){
 					alert("Requete envoyee");
-=======
-	function envoiRequete(requete) {
-		console.log("coucou")
-		var noCompte = sessionStorage.noCompte;
-		cService.envoiRequete(noCompte, requete,
-				$scope.client.conseiller.matricule).then(
-				function(value) {
-					self.requete = value;
-					console.log(value)
->>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 				},
 				function(reason) {
 					console.log("ClientController : envoiRequete, erreur "
