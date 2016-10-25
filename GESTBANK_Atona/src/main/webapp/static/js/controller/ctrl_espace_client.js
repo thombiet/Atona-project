@@ -194,8 +194,8 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		popupWinindow.document.close();
 	}
 
-	function lu() {
-		document.getElementById('lu').style.color = "grey";
+	function lu(numNotif) {
+		document.getElementById('lu'+numNotif).style.color = "grey";
 	}
 	
 	
