@@ -31,7 +31,7 @@ public abstract class Utilisateur implements Serializable {
 	@Column(name = "prenom")
 	private String prenom;
 	@Id
-	@Column(name = "pseudo")
+	@Column(name = "pseudo", length=75)
 	private String pseudo;
 	@Column(name = "mdp")
 	private String motdepasse;
