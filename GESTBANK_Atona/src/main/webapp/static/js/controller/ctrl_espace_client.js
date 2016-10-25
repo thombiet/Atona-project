@@ -172,6 +172,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		cService.envoiRequete(noCompte,$scope.client.conseiller.matricule,requete).then(	
 			function(value){
 				alert("Requete envoyee");
+				$scope.mainCtrl.redirection('/ClientMessagerie');
 			},
 			function(reason) {
 				console.log("ClientController : envoiRequete, erreur "
@@ -194,8 +195,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 	}
 
 	function lu() {
-		console.log('hey!');
-		document.getElementById('lu').style.fontWeight = "normal";
+		document.getElementById('lu').style.color = "grey";
 	}
 	
 	
