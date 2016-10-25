@@ -16,6 +16,7 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		}
 	}
 	self.envoiRequete = envoiRequete;
+	self.nouvelleRequete = nouvelleRequete;
 	$scope.modifClient = modifClient;
 	$scope.voirCompte = voirCompte;
 	$scope.virement = virement;
@@ -154,12 +155,18 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		})
 	}
 
+	function nouvelleRequete(){
+		sessionStorage.noCompte=$routeParams.noCompte;
+		$scope.mainCtrl.redirection('/ClientNvRequete');
+	}
+	
 	function envoiRequete(){
+		
 		var noCompte=sessionStorage.noCompte;
 		var requete={};
 			requete.type=$scope.type;
 			requete.message=$scope.message;
-			requete.noCompte= $scope.noCompte;
+			requete.noCompte= noCompte;
 				
 		console.log(requete);
 		cService.envoiRequete(noCompte,$scope.client.conseiller.matricule,requete).then(	
@@ -190,6 +197,8 @@ function ClientController(uService, cService, $scope, $routeParams) {
 		console.log('hey!');
 		document.getElementById('lu').style.fontWeight = "normal";
 	}
+	
+	
 
 }
 

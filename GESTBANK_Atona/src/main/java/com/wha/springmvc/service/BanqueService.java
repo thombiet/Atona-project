@@ -34,7 +34,7 @@ public interface BanqueService {
 	
 	boolean ajoutTransaction(Transaction transaction, Long noCompte);
 
-	void envoiRequete(Requete requete, Long matricule);
+	void envoiRequete(Requete requete, Long matricule,Long noCompte);
 	
 		
 	// #endregion

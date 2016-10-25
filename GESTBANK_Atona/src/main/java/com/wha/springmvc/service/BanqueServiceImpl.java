@@ -179,8 +179,8 @@ public class BanqueServiceImpl implements BanqueService {
 	}
 
 	@Override
-	public void envoiRequete(Requete requete, Long matricule) {
-		dao.envoiRequete(requete, matricule);
+	public void envoiRequete(Requete requete, Long matricule, Long noCompte) {
+		dao.envoiRequete(requete, matricule, noCompte);
 	}
 
 	// #endregion

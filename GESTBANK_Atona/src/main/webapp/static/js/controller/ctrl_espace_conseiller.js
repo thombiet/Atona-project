@@ -21,7 +21,6 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
 		findRequeteByConseiller(sessionStorage.idConnecte);
-		$scope.mainCtrl.nbMess = 0;
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
 		}
@@ -190,6 +189,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		.then(
 			function(value) {
 				self.requetes = value;
+				$scope.mainCtrl.nbMess = value.length;
 				console.log(value);
 			}, 
 			function(reason) {

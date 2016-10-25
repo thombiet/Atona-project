@@ -21,7 +21,7 @@ public interface BanqueDAO {
 	List<Compte> getAllComptes();
 
 	public List<Notification> getAllNotificationsByCompte(Long noCompte);
-	void envoiRequete(Requete requete, Long matricule);
+	void envoiRequete(Requete requete, Long matricule,Long noCompte);
 
 
 }
