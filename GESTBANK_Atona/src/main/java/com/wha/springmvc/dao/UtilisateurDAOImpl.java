@@ -254,7 +254,4 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 		return requete;
 	}
 
-/*	@Override
-	public void validationRequete(Long noCompte) {
-	}*/
 }

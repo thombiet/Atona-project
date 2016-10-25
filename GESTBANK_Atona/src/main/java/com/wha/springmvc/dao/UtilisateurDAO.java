@@ -3,6 +3,7 @@ package com.wha.springmvc.dao;
 import java.util.List;
 
 import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
 import com.wha.springmvc.model.Requete;

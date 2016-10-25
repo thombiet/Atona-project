@@ -31,7 +31,7 @@
 					<div class="entry">
 						<label id="text">Nom</label> &nbsp; <input
 							type="text"
-							ng-model="PublicCtrl.client.nom"
+							ng-model="client.nom"
 							name="nom"
 							class="input-sm"
 							placeholder="Entrez votre nom"
@@ -45,7 +45,7 @@
 					<div class="entry">
 						<label id="text">Prénom</label> <input
 							type="text"
-							ng-model="PublicCtrl.client.prenom"
+							ng-model="client.prenom"
 							name="prenom"
 							class="input-sm"
 							placeholder="Entrez votre prénom"
@@ -55,7 +55,7 @@
 					<div class="entry">
 						<label id="text">Pseudo</label> <input
 							type="text"
-							ng-model="PublicCtrl.client.pseudo"
+							ng-model="client.pseudo"
 							name="pseudo"
 							class="input-sm"
 							placeholder="Choisissez un pseudo"
@@ -67,7 +67,7 @@
 						<label id="email">Email</label> <input
 							type="email"
 							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
-							ng-model="PublicCtrl.client.email"
+							ng-model="client.email"
 							name="email"
 							class="input-sm"
 							placeholder="Entrez votre Email"
@@ -76,7 +76,7 @@
 					<div class="entry">
 						<label id="text">Adresse</label> <input
 							type="text"
-							ng-model="PublicCtrl.client.adresse"
+							ng-model="client.adresse"
 							name="adresse"
 							class="input-sm"
 							placeholder="Entrez votre Adresse"
@@ -89,14 +89,14 @@
 							<input
 								type="number"
 								name="codePostal"
-								ng-model="PublicCtrl.client.codePostal"
+								ng-model="client.codePostal"
 								id="codeP"
 								class="input-sm2"
 								placeholder="XXXXX"
 								required> <label id="ville">Ville</label> <input
 								type="text"
 								name="ville"
-								ng-model="PublicCtrl.client.ville"
+								ng-model="client.ville"
 								class="input-sm3"
 								placeholder="Votre Ville"
 								required>
@@ -107,7 +107,7 @@
 						<label id="date">Date de Naissance </label> <input
 							type="Date"
 							name="date"
-							ng-model="PublicCtrl.client.dateNaissance"
+							ng-model="client.dateNaissance"
 							class="input-sm2"
 							id="dateNaissance"
 							placeholder="Date de Naissance"
@@ -118,7 +118,7 @@
 							type="tel"
 							pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
 							name="telephone"
-							ng-model="PublicCtrl.client.telephone"
+							ng-model="client.telephone"
 							class="input-sm"
 							placeholder="ex : 0299000000"
 							required>
@@ -129,7 +129,7 @@
 					<div class="entry2">
 						<label id="revenus">Revenus mensuels</label> <input
 							type="number"
-							ng-model="PublicCtrl.client.revenuMens"
+							ng-model="client.revenuMens"
 							name="revenus"
 							id="revenus"
 							class="input-sm4"
