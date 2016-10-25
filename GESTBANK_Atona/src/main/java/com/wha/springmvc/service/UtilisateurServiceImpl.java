@@ -393,8 +393,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		notification.setDate(new Date());
 		notification.setMessage("Votre requete a été validé !");
 		notification.setLu(false);
-		compte.ajoutNotification(notification);	
+		compte.ajoutNotification(notification);
+		
 	}
-
-
 }
