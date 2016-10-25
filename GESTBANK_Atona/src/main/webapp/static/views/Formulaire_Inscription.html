@@ -66,10 +66,10 @@
 					<div class="entry">
 						<label id="email">Email</label> <input
 							type="email"
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 							ng-model="PublicCtrl.client.email"
 							name="email"
 							class="input-sm"
-							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 							placeholder="Entrez votre Email"
 							required />
 					</div>
@@ -82,20 +82,18 @@
 							placeholder="Entrez votre Adresse"
 							required>
 					</div>
-					
-						<div class="entry">
-							<label id="numeric">Code postal</label> 
-							<div class="codeVille"><input
+
+					<div class="entry">
+						<label id="numeric">Code postal</label>
+						<div class="codeVille">
+							<input
 								type="number"
 								name="codePostal"
 								ng-model="PublicCtrl.client.codePostal"
 								id="codeP"
 								class="input-sm2"
 								placeholder="XXXXX"
-								required>
-
-						
-							<label id="ville">Ville</label> <input
+								required> <label id="ville">Ville</label> <input
 								type="text"
 								name="ville"
 								ng-model="PublicCtrl.client.ville"
@@ -118,6 +116,7 @@
 					<div class="entry">
 						<label id="tel">Téléphone</label> <input
 							type="tel"
+							pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
 							name="telephone"
 							ng-model="PublicCtrl.client.telephone"
 							class="input-sm"
@@ -138,13 +137,13 @@
 					</div>
 					<br>
 					<div class="entry2">
-					<label id="files">Documents justificatifs</label> <input
+						<label id="files">Documents justificatifs</label> <input
 							type="file"
 							id="mesFichiers"
-							multiple="multiple"> 
-							<button ng-click="add()">+Ajouter</button>
-								<!-- UPLOAD FILE SECTION-->
-			<!-- 	<div class="form-container">
+							multiple="multiple">
+						<button ng-click="add()">+Ajouter</button>
+						<!-- UPLOAD FILE SECTION-->
+						<!-- 	<div class="form-container">
 					 <form:form action="/SpringAngularStartProject/singleUpload" method="POST" modelAttribute="fileModel" enctype="multipart/form-data" class="form-horizontal">
          
           
@@ -164,8 +163,8 @@
             
         </form:form>
 				</div> -->
-				<!-- END UPLOAD DILE SECTION  -->
-							
+						<!-- END UPLOAD DILE SECTION  -->
+
 					</div>
 				</div>
 				<br>

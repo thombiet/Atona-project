@@ -4,41 +4,36 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
-@Table (name="demandeOuverture")
+@Table(name = "demandeOuverture")
 public class DemandeOuverture {
 	// #region Attributs
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="numDemande")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "numDemande")
 	private int numDemande;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL)
 	private ClientPotentiel cp;
-	@Column (name="Status")
+	@Column(name = "Status")
 	private boolean valide;
-	
+
 	@ManyToOne
 	private Conseiller conseiller;
-	
-	@Column (name="dateCreation")
+
+	@Column(name = "dateCreation")
 	@Temporal(TemporalType.DATE)
 	private Date dateCreation;
-	@Column (name="dateAffectation")
+	@Column(name = "dateAffectation")
 	@Temporal(TemporalType.DATE)
 	private Date dateAffectation;
 	// #endregion
@@ -47,17 +42,16 @@ public class DemandeOuverture {
 	public DemandeOuverture() {
 		this.dateCreation = new Date();
 	}
-	
+
 	public DemandeOuverture(ClientPotentiel cp, boolean valide, Conseiller conseiller, Date dateCreation,
 			Date dateAffectation) {
 		super();
 		this.cp = cp;
 		this.valide = valide;
-		//this.conseiller = conseiller;
+		// this.conseiller = conseiller;
 		this.dateCreation = dateCreation;
 		this.dateAffectation = dateAffectation;
 	}
-
 
 	// #endregion
 
@@ -110,7 +104,7 @@ public class DemandeOuverture {
 		this.numDemande = numDemande;
 	}
 	// #endregion
-	
+
 	// #region Utilitaire
 
 	@Override
@@ -118,8 +112,6 @@ public class DemandeOuverture {
 		return "DemandeOuverture [numDemande=" + numDemande + ", cp=" + cp + ", valide=" + valide + ", dateCreation="
 				+ dateCreation + ", dateAffectation=" + dateAffectation + "]";
 	}
-	
-	
-	
+
 	// #endregion
 }

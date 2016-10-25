@@ -1,8 +1,8 @@
 package com.wha.springmvc.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,13 +13,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
-
 
 @Entity
 @Table(name = "conseiller")
@@ -27,37 +25,37 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @DiscriminatorValue("Conseiller")
 public class Conseiller extends Utilisateur {
 	// #region Attributs
-	
+
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "mle")
 	private Long matricule;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "conseiller")
 	@JsonProperty(access = Access.WRITE_ONLY)
-	private List<DemandeOuverture> listeDemandesOuverture;
-	
+	private Set<DemandeOuverture> listeDemandesOuverture;
+
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Requete> listeDemandesClient;
-	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="conseiller")
-	@JsonProperty(access=Access.WRITE_ONLY)
-	private List<Client> listeClients;
+	private Set<Requete> listeDemandesClient;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "conseiller")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private Set<Client> listeClients;
 	// #endregion
 
 	// #region Constructeurs
 	public Conseiller() {
-		listeClients = new ArrayList<Client>();
-		listeDemandesClient = new ArrayList<Requete>();
-		listeDemandesOuverture = new ArrayList<DemandeOuverture>();
+		listeClients = new HashSet<Client>();
+		listeDemandesClient = new HashSet<Requete>();
+		listeDemandesOuverture = new HashSet<DemandeOuverture>();
 	}
 
 	public Conseiller(Long matricule, String nom, String prenom, String pseudo, String motdepasse, String email,
 			String adresse, Integer codePostal, String ville, Integer telephone, Date dateNaissance) {
 		super(nom, prenom, pseudo, motdepasse, email, adresse, codePostal, ville, telephone, dateNaissance);
 		this.matricule = matricule;
-		listeClients = new ArrayList<Client>();
-		listeDemandesClient = new ArrayList<Requete>();
-		listeDemandesOuverture = new ArrayList<DemandeOuverture>();
+		listeClients = new HashSet<Client>();
+		listeDemandesClient = new HashSet<Requete>();
+		listeDemandesOuverture = new HashSet<DemandeOuverture>();
 	}
 
 	// #endregion
@@ -71,27 +69,27 @@ public class Conseiller extends Utilisateur {
 		this.matricule = matricule;
 	}
 
-	public List<DemandeOuverture> getListeDemandesOuverture() {
+	public Set<DemandeOuverture> getListeDemandesOuverture() {
 		return listeDemandesOuverture;
 	}
 
-	public void setListeDemandesOuverture(List<DemandeOuverture> listeDemandesOuverture) {
+	public void setListeDemandesOuverture(Set<DemandeOuverture> listeDemandesOuverture) {
 		this.listeDemandesOuverture = listeDemandesOuverture;
 	}
 
-	public List<Requete> getListeDemandesClient() {
+	public Set<Requete> getListeDemandesClient() {
 		return listeDemandesClient;
 	}
 
-	public void setListeDemandesClient(List<Requete> listeDemandesClient) {
+	public void setListeDemandesClient(Set<Requete> listeDemandesClient) {
 		this.listeDemandesClient = listeDemandesClient;
 	}
 
-	public List<Client> getListeClients() {
+	public Set<Client> getListeClients() {
 		return listeClients;
 	}
 
-	public void setListeClients(List<Client> listeClients) {
+	public void setListeClients(Set<Client> listeClients) {
 		this.listeClients = listeClients;
 	}
 
@@ -108,7 +106,7 @@ public class Conseiller extends Utilisateur {
 	}
 
 	public void ajoutClient(Client client) {
-		List<Client> l = this.getListeClients();
+		Set<Client> l = this.getListeClients();
 		l.add(client);
 		this.setListeClients(l);
 	}

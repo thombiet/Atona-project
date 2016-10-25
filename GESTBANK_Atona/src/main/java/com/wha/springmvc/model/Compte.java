@@ -1,7 +1,7 @@
 package com.wha.springmvc.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,37 +10,37 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
+
 @Entity
-@Table (name="compte")
+@Table(name = "compte")
 public class Compte {
 	// #region Attributs
 	@Id
-	@Column (name="noCompte")
+	@Column(name = "noCompte")
 	private Long noCompte;
-	@Column (name="RIB")
+	@Column(name = "RIB")
 	private String RIB;
-	@Column (name="solde")
+	@Column(name = "solde")
 	private Integer solde;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Transaction> listeTransactions;
-	@Column (name="decouvert")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Transaction> listeTransactions;
+	@Column(name = "decouvert")
 	private Integer decouvert;
-	@Column (name="montantAgios")
+	@Column(name = "montantAgios")
 	private Integer montantAgios;
-	@Column (name="seuilRemuneration")
+	@Column(name = "seuilRemuneration")
 	private Integer seuilRemuneration;
-	@Column (name="montanRemuneration")
+	@Column(name = "montanRemuneration")
 	private Integer montantRemuneration;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Notification> listeNotification;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Notification> listeNotification;
 	// #endregion
 
 	// #region Constructeurs
 	public Compte() {
 		this.solde = 0;
-		this.listeTransactions = new ArrayList<Transaction>();
-		this.listeNotification = new ArrayList<Notification>();
+		this.listeTransactions = new HashSet<Transaction>();
+		this.listeNotification = new HashSet<Notification>();
 	}
 
 	public Compte(Long noCompte, Integer decouvert, Integer seuilRemuneration) {
@@ -78,11 +78,11 @@ public class Compte {
 		this.solde = solde;
 	}
 
-	public List<Transaction> getListeTransactions() {
+	public Set<Transaction> getListeTransactions() {
 		return listeTransactions;
 	}
 
-	public void setListeTransactions(List<Transaction> listeTransactions) {
+	public void setListeTransactions(Set<Transaction> listeTransactions) {
 		this.listeTransactions = listeTransactions;
 	}
 
@@ -96,7 +96,7 @@ public class Compte {
 		} else {
 			this.setSolde(this.getSolde() + transaction.getMontant());
 		}
-		List<Transaction> liste = this.getListeTransactions();
+		Set<Transaction> liste = this.getListeTransactions();
 		liste.add(transaction);
 		this.setListeTransactions(liste);
 		return true;
@@ -134,16 +134,16 @@ public class Compte {
 		this.montantRemuneration = montantRemuneration;
 	}
 
-	public List<Notification> getListeNotification() {
+	public Set<Notification> getListeNotification() {
 		return listeNotification;
 	}
 
-	public void setListeNotification(List<Notification> listeNotification) {
+	public void setListeNotification(Set<Notification> listeNotification) {
 		this.listeNotification = listeNotification;
 	}
 
 	public void ajoutNotification(Notification notification) {
-		List<Notification> ls = this.getListeNotification();
+		Set<Notification> ls = this.getListeNotification();
 		ls.add(notification);
 		this.setListeNotification(ls);
 	}

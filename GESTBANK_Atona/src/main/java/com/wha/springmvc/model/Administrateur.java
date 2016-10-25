@@ -1,6 +1,7 @@
 package com.wha.springmvc.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
@@ -12,48 +13,49 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="administrateur")
+@Table(name = "administrateur")
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorValue("Administrateur")
 public class Administrateur extends Utilisateur {
 
 	// #region Attribut
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Conseiller> listeConseillers;
-	@OneToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<DemandeOuverture> listeDemandes;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Conseiller> listeConseillers;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<DemandeOuverture> listeDemandes;
 	// #endregion
 
 	// #region Constructeurs
 	public Administrateur() {
-
+		this.listeConseillers = new HashSet<Conseiller>();
+		this.listeDemandes = new HashSet<DemandeOuverture>();
 	}
 	// #endregion
 
 	// #region Accesseurs
-	public List<Conseiller> getListeConseillers() {
+	public Set<Conseiller> getListeConseillers() {
 		return listeConseillers;
 	}
 
-	public void setListeConseillers(List<Conseiller> listeConseillers) {
+	public void setListeConseillers(Set<Conseiller> listeConseillers) {
 		this.listeConseillers = listeConseillers;
 	}
 
-	public List<DemandeOuverture> getListeDemandes() {
+	public Set<DemandeOuverture> getListeDemandes() {
 		return listeDemandes;
 	}
 
-	public void setListeDemandes(List<DemandeOuverture> listeDemandes) {
+	public void setListeDemandes(Set<DemandeOuverture> listeDemandes) {
 		this.listeDemandes = listeDemandes;
 	}
 	// #endregion
-	
+
 	// #region Utilitaire
 
 	@Override
 	public String toString() {
 		return "Administrateur []";
 	}
-	
+
 	// #endregion
 }

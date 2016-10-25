@@ -58,6 +58,7 @@
 					<div class="entry">
 						<label id="email">Email</label> <input
 							type="email"
+							pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 							ng-model="client.email"
 							name="email"
 							class="input-sm"
@@ -73,20 +74,18 @@
 							placeholder="Entrez votre Adresse"
 							required>
 					</div>
-					
-						<div class="entry">
-							<label id="numeric">Code postal</label> 
-							<div class="codeVille"><input
+
+					<div class="entry">
+						<label id="numeric">Code postal</label>
+						<div class="codeVille">
+							<input
 								type="number"
 								name="codePostal"
 								ng-model="client.codePostal"
 								id="codeP"
 								class="input-sm2"
 								placeholder="XXXXX"
-								required>
-
-						
-							<label id="ville">Ville</label> <input
+								required> <label id="ville">Ville</label> <input
 								type="text"
 								name="ville"
 								ng-model="client.ville"
@@ -109,7 +108,7 @@
 					<div class="entry">
 						<label id="tel">Téléphone</label> <input
 							type="text"
-							pattern="[0]{1}[0-9]{9}"
+							pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$"
 							name="telephone"
 							ng-model="client.telephone"
 							class="input-sm"

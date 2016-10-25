@@ -1,9 +1,9 @@
 package com.wha.springmvc.model;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,43 +12,44 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
 @Entity
-@Table (name="clientPotentiel")
+@Table(name = "clientPotentiel")
 public class ClientPotentiel {
 	// #region Attributs
 	@Id
-	@Column (name="pseudo")
+	@Column(name = "pseudo")
 	private String pseudo;
-	@Column (name="nom")
+	@Column(name = "nom")
 	private String nom;
-	@Column (name="prenom")
+	@Column(name = "prenom")
 	private String prenom;
-	@Column (name="email")
+	@Column(name = "email")
 	private String email;
-	@Column (name="adresse")
+	@Column(name = "adresse")
 	private String adresse;
-	@Column (name="codePostal")
+	@Column(name = "codePostal")
 	private Integer codePostal;
-	@Column (name="ville")
+	@Column(name = "ville")
 	private String ville;
-	@Column (name="telephone")
+	@Column(name = "telephone")
 	private Integer telephone;
-	@Column (name="revenuMens")
+	@Column(name = "revenuMens")
 	private Integer revenuMens;
-	@Column (name="dateNaissance")
+	@Column(name = "dateNaissance")
 	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
 	@Transient
-	private List<File> piecesJutificatives;
+	private Set<File> piecesJutificatives;
 	// #endregion
 
 	// #region Constructeurs
 	public ClientPotentiel() {
-		this.piecesJutificatives = new ArrayList<File>();
+		this.piecesJutificatives = new HashSet<File>();
 	}
 
-	public ClientPotentiel(String nom, String prenom, String pseudo, String email, String adresse,
-			Integer codePostal, String ville, Integer telephone, Integer revenuMens, Date dateNaissance) {
+	public ClientPotentiel(String nom, String prenom, String pseudo, String email, String adresse, Integer codePostal,
+			String ville, Integer telephone, Integer revenuMens, Date dateNaissance) {
 		this();
 		this.nom = nom;
 		this.prenom = prenom;
@@ -61,15 +62,13 @@ public class ClientPotentiel {
 		this.revenuMens = revenuMens;
 		this.dateNaissance = dateNaissance;
 	}
-	
-	// #endregion
 
+	// #endregion
 
 	// #region Accesseurs
 	public String getNom() {
 		return nom;
 	}
-
 
 	public void setNom(String nom) {
 		this.nom = nom;
@@ -146,24 +145,24 @@ public class ClientPotentiel {
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
-	
-	public List<File> getPiecesJutificatives() {
+
+	public Set<File> getPiecesJutificatives() {
 		return piecesJutificatives;
 	}
 
-	public void setPiecesJutificatives(List<File> piecesJutificatives) {
+	public void setPiecesJutificatives(Set<File> piecesJutificatives) {
 		this.piecesJutificatives = piecesJutificatives;
 	}
 	// #endregion
 
 	// #region Utilitaire
-	
+
 	@Override
 	public String toString() {
 		return "ClientPotentiel [pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email
 				+ ", adresse=" + adresse + ", codePostal=" + codePostal + ", ville=" + ville + ", telephone="
 				+ telephone + ", revenuMens=" + revenuMens + ", dateNaissance=" + dateNaissance + "]";
 	}
-	
+
 	// #endregion
 }

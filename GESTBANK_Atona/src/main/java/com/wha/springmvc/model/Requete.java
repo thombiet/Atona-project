@@ -10,24 +10,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="requete")
+@Table(name = "requete")
 public class Requete {
 	// #region Attributs
-	
+
 	@Id
-	@Column (name="numRequete")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "numRequete")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int numRequete;
-	@Column (name="type")
+	@Column(name = "type")
 	private String type;
 	@ManyToOne
-	@JoinColumn(name="no_compte",referencedColumnName="noCompte")
+	@JoinColumn(name = "no_compte", referencedColumnName = "noCompte")
 	private Compte compte;
-	/*@ManyToOne
-	@JoinColumn(name="id_client",referencedColumnName="identifiant")
-	private Client client;*/
-	
-	@Column (name="message")
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="id_client",referencedColumnName="identifiant") private
+	 * Client client;
+	 */
+
+	@Column(name = "message")
 	private String message;
 	// #endregion
 
@@ -38,8 +41,7 @@ public class Requete {
 	// #endregion
 
 	// #region Accesseurs
-	
-	
+
 	public String getType() {
 		return type;
 	}
@@ -64,13 +66,11 @@ public class Requete {
 		this.compte = compte;
 	}
 
-	/*public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}*/
+	/*
+	 * public Client getClient() { return client; }
+	 * 
+	 * public void setClient(Client client) { this.client = client; }
+	 */
 
 	public String getMessage() {
 		return message;
@@ -82,11 +82,11 @@ public class Requete {
 	// #endregion
 
 	// #region Utilitaire
-	
-		@Override
-		public String toString() {
-			return "Requete [type=" + type + ", compte=" + compte + ", message=" + message + "]";
-		}
-		
-		// #endregion
+
+	@Override
+	public String toString() {
+		return "Requete [type=" + type + ", compte=" + compte + ", message=" + message + "]";
+	}
+
+	// #endregion
 }

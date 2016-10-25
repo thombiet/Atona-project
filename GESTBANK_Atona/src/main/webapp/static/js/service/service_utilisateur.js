@@ -274,6 +274,21 @@ function utilisateurService($http, $q) {
          return deferred.promise;
     }
     
+    function getDemandeByNum(numDemande){
+    	 var deferred = $q.defer();
+         $http.get(DEMANDE_URI+numDemande)
+             .then(
+             function (response) {
+                 deferred.resolve(response.data);
+             },
+             function(errResponse){
+                 console.error('erreur utilisateurService.getDemandeByNum()');
+                 deferred.reject(errResponse);
+             }
+         );
+         return deferred.promise;
+    }
+    
     /* Ajout d'une nouvelle demande */
     function createDemande(demande) {
         var deferred = $q.defer();

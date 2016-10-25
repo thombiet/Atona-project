@@ -11,9 +11,13 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	$scope.modifClient = modifClient;
 	$scope.modifConseiller = updateConseiller;
 	$scope.voirDetailDemande = voirDetailDemande;
+<<<<<<< HEAD
 	self.getRequeteByNum=getRequeteByNum;
 	self.validationRequete=validationRequete;
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 	if (sessionStorage.role != "Conseiller") {
 		$scope.mainCtrl.deconnexion();
 	} else {
@@ -21,6 +25,10 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		getAllClientsByConseiller(sessionStorage.idConnecte)
 		getDemandesByMle(sessionStorage.idConnecte);
 		findRequeteByConseiller(sessionStorage.idConnecte);
+<<<<<<< HEAD
+=======
+		//validationRequete();
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 		$scope.mainCtrl.nbMess = 0;
 		if ($routeParams.identifiant) {
 			getClientById($routeParams.identifiant);
@@ -174,6 +182,18 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 				}, function(reason) {
 					console.log("erreur : ConsCtrl.modifDecouvert()")
 				})
+<<<<<<< HEAD
+	}
+
+	function updateConseiller() {
+		var Mle = $scope.conseiller.matricule;
+		uService.updateConseiller($scope.conseiller, Mle).then(function(value) {
+			$scope.mainCtrl.redirection('/Conseiller')
+		}, function(errResponse) {
+			console.error('Error while updating Conseiller');
+		});
+=======
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 	}
 
 	function updateConseiller() {
@@ -184,7 +204,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			console.error('Error while updating Conseiller');
 		});
 	}
-	
+
 	function findRequeteByConseiller(matricule) {
 		uService.findRequeteByConseiller(matricule)
 		.then(
@@ -206,12 +226,30 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 			console.error('Error while fetching Requete: ' + reason);
 		});
 	}
+<<<<<<< HEAD
 	
 	function validationRequete(requete){
 		uService.validationRequete(requete.numRequete)
 		.then(function(value) {
+=======
+
+	function validationRequete(requete) {
+		console.log(requete);
+		uService.validationRequete(requete).then(function(value) {
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 			alert("la requete a été validée");
-			//$route.reload();
+			// $route.reload();
+		}, function(reason) {
+			console.log("erreur ConsCtrl.validationRequete() :");
+			console.log(reason);
+		})
+	}
+
+	function validationRequete(requete) {
+		console.log(requete);
+		uService.validationRequete(requete).then(function(value) {
+			alert("la requete a été validée");
+			// $route.reload();
 		}, function(reason) {
 			console.log("erreur ConsCtrl.validationRequete() :");
 			console.log(reason);
@@ -219,12 +257,15 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 	}
 
 	$scope.printToCart = function(printSectionId) {
+<<<<<<< HEAD
 	        var innerContents = document.getElementById(printSectionId).innerHTML;
 	        var popupWinindow = window.open('', '_blank', 'width=600,height=700,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no');
 	        popupWinindow.document.open();
 	        popupWinindow.document.write('<html><head><link rel="stylesheet" type="text/css" href="static/css/style_ClientGestionCompte.css" /></head><body onload="window.print()">' + innerContents + '</html>');
 	        popupWinindow.document.close();
 	}
+=======
+>>>>>>> branch 'master' of https://github.com/thombiet/Atona-project
 		var innerContents = document.getElementById(printSectionId).innerHTML;
 		var popupWinindow = window
 				.open(
