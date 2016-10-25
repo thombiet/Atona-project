@@ -22,7 +22,6 @@ function AdministrateurController($scope, $routeParams, uService) {
 		$scope.mainCtrl.deconnexion();
 	} else {
 		getAllConseillers();
-		
 		getAllDemandes();
 		if ($routeParams.matricule) {
 			getConseillerByMle($routeParams.matricule);

@@ -12,8 +12,8 @@ function utilisateurService($http, $q) {
 
 	var factory = {
 		// -------------------------------------------Service_conseiller-----------------------------------------
-		getAllConseillers : getAllConseillers,
-		getConseillerByMle : getConseillerByMle,
+		getAllConseillers : getAllConseillers,  //conseillers  GET
+		getConseillerByMle : getConseillerByMle,//conseiller/{mle} GET
 		createConseiller : createConseiller,
 		updateConseiller : updateConseiller,
 		deleteConseiller : deleteConseiller,
