@@ -5,7 +5,11 @@ function PublicController($http, $scope, uService) {
 
 	var self = this;
 	self.client = new ClientPotentiel();
-	
+
+	if (!sessionStorage.role || sessionStorage.role != "Guest") {
+		$scope.mainCtrl.deconnexion();
+	}
+
 	$scope.devises = [ "AUD", "BGN", "BRL", "CAD", "CHF", "CNY", "CZK", "DKK",
 			"EUR", "GBP", "HKD", "HRK", "HUF", "IDR", "ILS", "INR", "JPY",
 			"KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PLN", "RON", "RUB",
@@ -21,8 +25,7 @@ function PublicController($http, $scope, uService) {
 					base : $scope.base,
 					symbols : $scope.symbols
 				}
-			}).then(
-			function(response) {
+			}).then(function(response) {
 				$scope.rate = response.data.rates[$scope.symbols];
 				$scope.change = $scope.montant * $scope.rate;
 			}, function(error) {
@@ -56,14 +59,15 @@ function PublicController($http, $scope, uService) {
 				sessionStorage.idConnecte = id;
 				$scope.redirection('/Conseiller');
 			} else {// c'est l'admistrateur
-				
+
 				sessionStorage.role = "Administrateur";
 				$scope.redirection('/Admin');
 			}
 		}, function(reason) {
-			console.log("error : "+reason)
+			console.log("error : " + reason)
 		})
 	}
+
 	
 	self.creationDemande = function (){
 		var demande={
@@ -73,16 +77,16 @@ function PublicController($http, $scope, uService) {
 			dateCreation: new Date(),
 			dateAffectation : null,
 		}
-		uService.createDemande(demande).then(
-			function(value) {
-				alert("Votre demande a été enregistrée !")
-				$scope.redirection('/');
+		uService.createDemande(demande).then(function(value) {
+			alert("Votre demande a été enregistrée !")
+			$scope.redirection('/');
 		}, function(reason) {
 			console.log(reason);
 		})
 	}
-	
-	function ClientPotentiel(identifiant, adresse, codePostal, dateNaissance, email, nom, prenom, revenuMens, telephone, ville){
+
+	function ClientPotentiel(identifiant, adresse, codePostal, dateNaissance,
+			email, nom, prenom, revenuMens, telephone, ville) {
 		this.identifiant = identifiant;
 		this.adresse = adresse;
 		this.codePostal = codePostal;
@@ -95,18 +99,16 @@ function PublicController($http, $scope, uService) {
 		this.ville = ville;
 	}
 
-	$scope.add = function(){
-		  var f = document.getElementById('file').files[0],
-		      r = new FileReader();
-		  r.onloadend = function(e){
-		    var data = e.target.result;
-		    //send your binary data via $http or $resource or do anything else with it
-		 }
-		  r.readAsBinaryString(f);
+	$scope.add = function() {
+		var f = document.getElementById('file').files[0], r = new FileReader();
+		r.onloadend = function(e) {
+			var data = e.target.result;
+			// send your binary data via $http or $resource or do anything else
+			// with it
+		}
+		r.readAsBinaryString(f);
 	}
-	
-}
 
-	
+}
 
 App.controller("PublicController", PublicController);

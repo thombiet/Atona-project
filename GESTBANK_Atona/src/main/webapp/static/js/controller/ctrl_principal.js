@@ -9,18 +9,9 @@ function MainController($location, $scope, $route) {
 	
 	self.CurrentDate = new Date();
 	
+	//variable pour l'entete
 	self.user;
-	
 	self.nbMess;
-	
-
-	 if (!$scope.role && !sessionStorage.role ){
-	 self.deconnexion();
-	 }
-	 else if ($location.path()=='/')
-	 {
-	 self.deconnexion();
-	}
 	
 	$scope.$watch(function() {
 		return sessionStorage.role;
