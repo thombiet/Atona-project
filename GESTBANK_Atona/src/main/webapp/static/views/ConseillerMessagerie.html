@@ -36,8 +36,9 @@
 						<td><span ng-bind="req.type"></span></td>
 						<td><span ng-bind="req.message"></span></td>
 						<td><span ng-bind="req.compte.noCompte"></span></td>
-						<td><button ng-click="ConsCtrl.validationRequete(req)"
+						<td><button ng-if="!req.accepte" ng-click="ConsCtrl.validationRequete(req)"
 								class="myButton">Valider</button>
+								<span ng-if="req.accepte">Requete acceptée</span>
 						</td>
 					</tr>
 				</tbody>

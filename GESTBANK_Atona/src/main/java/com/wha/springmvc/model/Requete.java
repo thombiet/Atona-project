@@ -20,6 +20,8 @@ public class Requete {
 	private int numRequete;
 	@Column(name = "type")
 	private String type;
+	@Column(name = "accepte")
+	private boolean accepte;
 	@ManyToOne
 	@JoinColumn(name = "no_compte", referencedColumnName = "noCompte")
 	private Compte compte;
@@ -36,7 +38,7 @@ public class Requete {
 
 	// #region Constructeurs
 	public Requete() {
-
+		this.accepte=false;
 	}
 	// #endregion
 
@@ -56,6 +58,14 @@ public class Requete {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public boolean isAccepte() {
+		return accepte;
+	}
+
+	public void setAccepte(boolean accepte) {
+		this.accepte = accepte;
 	}
 
 	public Compte getCompte() {

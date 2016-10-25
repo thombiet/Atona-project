@@ -396,6 +396,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		notification.setMessage("Votre requete ("+ req.getType() +") a été validée !");
 		notification.setLu(false);
 		compte.ajoutNotification(notification);
+		req.setAccepte(true);
 		
 	}
 }

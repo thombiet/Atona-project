@@ -211,7 +211,7 @@ function ConseillerController(uService, cService, $scope, $routeParams, $route) 
 		uService.validationRequete(requete.numRequete)
 		.then(function(value) {
 			alert("la requete a été validée");
-			// $route.reload();
+			$route.reload();
 		}, function(reason) {
 			console.log("erreur ConsCtrl.validationRequete() :");
 			console.log(reason);
