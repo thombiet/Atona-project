@@ -108,7 +108,7 @@ App.config([ '$routeProvider', function($routeProvider) {
 		controller : 'ConseillerController',
 		controllerAs : 'ConsCtrl'
 	}).when('/Conseiller/GestionDemande/:numDemande', {
-		templateUrl : 'static/views/Fiche_Client.html',
+		templateUrl : 'static/views/Formulaire_Inscription.html',
 		controller : 'ConseillerController',
 		controllerAs : 'ConsCtrl'
 	}).otherwise({

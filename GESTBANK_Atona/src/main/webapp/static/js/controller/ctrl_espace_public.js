@@ -68,7 +68,7 @@ function PublicController($http, $scope, uService) {
 	self.creationDemande = function (){
 		var demande={
 			numDemande: null,
-			cp:self.client,
+			cp:$scope.client,
 			valide: false,
 			dateCreation: new Date(),
 			dateAffectation : null,
