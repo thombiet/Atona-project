@@ -78,7 +78,7 @@ public interface UtilisateurService {
 
 	public Requete getRequeteByNum(int numRequete);
 
-	public void validationRequete(Compte compte);
+	public void validationRequete(int numRequete);
 	
 	// #endregion
 }

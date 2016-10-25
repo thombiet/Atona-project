@@ -503,10 +503,8 @@ public class HelloWorldRestController {
 	// ----- validation d'une requete
 	@RequestMapping(value = "conseiller/requete/{numRequete}", method = RequestMethod.POST)
 	public ResponseEntity<Void> validationRequete(@PathVariable("numRequete") int numRequete) {
-		Requete req=utilService.getRequeteByNum(numRequete);
 		
-		Compte compte=req.getCompte();
-		utilService.validationRequete(compte);
+		utilService.validationRequete(numRequete);
 		return null;
 	}
 }

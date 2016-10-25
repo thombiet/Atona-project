@@ -388,10 +388,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 
 	@Override
-	public void validationRequete(Compte compte) {
+	public void validationRequete(int numRequete) {
+		Requete req = getRequeteByNum(numRequete);
+		Compte compte = req.getCompte();
 		Notification notification = new Notification();
 		notification.setDate(new Date());
-		notification.setMessage("Votre requete a été validé !");
+		notification.setMessage("Votre requete ("+ req.getType() +") a été validée !");
 		notification.setLu(false);
 		compte.ajoutNotification(notification);
 		
