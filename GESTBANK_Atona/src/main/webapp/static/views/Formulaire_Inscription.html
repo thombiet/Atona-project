@@ -13,9 +13,13 @@
 	href="static/css/app.css">
 
 <div id="bloc_page">
-	<h1>Formulaire d'Inscription</h1>
-	<h4>Tous les champs sont obligatoires</h4>
-	<br />
+	<div ng-if="role=='Guest'">
+		<h1>Formulaire d'Inscription</h1>
+		<h4>Tous les champs sont obligatoires</h4>
+	</div>
+	<div ng-if="role=='Conseiller'">
+		<h1>Detail de la demande d'ouverture</h1>
+	</div>
 	<form
 		ng-submit="PublicCtrl.creationDemande()"
 		name="myForm">
@@ -106,6 +110,15 @@
 					<div class="entry">
 						<label id="date">Date de Naissance </label> <input
 							type="Date"
+							ng-if="role=='Guest'"
+							name="date"
+							ng-model="client.dateNaissance"
+							class="input-sm2"
+							id="dateNaissance"
+							placeholder="Date de Naissance"
+							required> <input
+							type="text"
+							ng-if="role=='Conseiller'"
 							name="date"
 							ng-model="client.dateNaissance"
 							class="input-sm2"
@@ -173,13 +186,13 @@
 						type="submit"
 						class="myButton"
 						ng-disabled="myForm.$invalid"
+						ng-if="role=='Guest'"
 						ng-class="{ 'btn-warning' : myForm.$invalid , 'btn-success' : myForm.$valid }"
 						value="Envoyer Demande">
 					<button
-						type="reset"
+						ng-click="mainCtrl.redirection('/Conseiller/GestionDemandes')"
 						class="myButton"
-						role="button"
-						aria-disabled="false">Annuler</button>
+						aria-disabled="false">retour</button>
 				</div>
 			</fieldset>
 
