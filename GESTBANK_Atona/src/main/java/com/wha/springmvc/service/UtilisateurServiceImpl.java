@@ -3,6 +3,7 @@ package com.wha.springmvc.service;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.mail.Address;
 import javax.mail.Message;
@@ -303,7 +304,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		cpt.ajoutNotification(notification);
 		// ajout du client dans le conseiller (bidirectionnel)
 		Conseiller conseiller = dao.findByMle(demande.getConseiller().getMatricule());
-		List<Client> ls = conseiller.getListeClients();
+		Set<Client> ls = conseiller.getListeClients();
 		ls.add(client);
 		conseiller.setListeClients(ls);
 		client.setConseiller(conseiller);
@@ -387,13 +388,13 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 
 	@Override
-	public void validationRequete(Requete req) {
-		Compte compte=req.getCompte();
+	public void validationRequete(Compte compte) {
 		Notification notification = new Notification();
 		notification.setDate(new Date());
-		notification.setMessage("Vous avez reçu cadeau de bienvenue !");
+		notification.setMessage("Votre requete a été validé !");
 		notification.setLu(false);
 		compte.ajoutNotification(notification);	
-		dao.validationRequete(req);
 	}
+
+
 }

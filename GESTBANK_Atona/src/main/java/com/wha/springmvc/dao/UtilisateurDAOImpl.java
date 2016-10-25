@@ -1,6 +1,8 @@
 package com.wha.springmvc.dao;
 
 import java.util.List;
+import java.util.Set;
+
 import javax.persistence.NoResultException;
 import org.springframework.stereotype.Repository;
 
@@ -173,7 +175,7 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 	@Override
 	public void affectationOuverture(DemandeOuverture demandeOuverture, Long matricule) {
 		Conseiller curentConseiller = findByMle(matricule);
-		List<DemandeOuverture> ls = curentConseiller.getListeDemandesOuverture();
+		Set<DemandeOuverture> ls = curentConseiller.getListeDemandesOuverture();
 		ls.add(demandeOuverture);
 		demandeOuverture.setConseiller(curentConseiller);
 		update(curentConseiller);
@@ -252,8 +254,7 @@ public class UtilisateurDAOImpl extends AbstractDAO<Long, Utilisateur> implement
 		return requete;
 	}
 
-	@Override
-	public void validationRequete(Requete req) {
-		entityManager.persist(req);
-	}
+/*	@Override
+	public void validationRequete(Long noCompte) {
+	}*/
 }

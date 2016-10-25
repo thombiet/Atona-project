@@ -301,6 +301,16 @@ public class HelloWorldRestController {
 
 	// #region Demande
 
+	// -- recuperation de la demande de n° numDemande
+		@RequestMapping(value = "/demande/{numDemande}", method = RequestMethod.GET)
+		public ResponseEntity<DemandeOuverture> getDemandeByNum(@PathVariable int numDemande) {
+			DemandeOuverture demande = utilService.getDemandeByNum(numDemande);
+			if (demande==null) {
+				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<DemandeOuverture>(demande, HttpStatus.OK);
+		}
+	
 	// -- recuperation de toutes les demandes
 	@RequestMapping(value = "/demande/", method = RequestMethod.GET)
 	public ResponseEntity<List<DemandeOuverture>> listAllDemandes() {
@@ -312,7 +322,7 @@ public class HelloWorldRestController {
 	}
 
 	// ---- recuperation de toutes les demandes affectees à un conseiller
-	@RequestMapping(value = "/demande/{matricule}", method = RequestMethod.GET)
+	@RequestMapping(value = "/demande/Conseiller{matricule}", method = RequestMethod.GET)
 	public ResponseEntity<List<DemandeOuverture>> listDemandesByConseiller(@PathVariable Long matricule) {
 		if (utilService.findByMle(matricule) == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -335,7 +345,7 @@ public class HelloWorldRestController {
 		utilService.affectionOuverture(demande, matricule);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
-
+		
 	// ----- validation d'une demande
 	@RequestMapping(value = "/demande/{numDemande}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> valideDemande(@PathVariable("numDemande") int numDemande,
@@ -478,21 +488,25 @@ public class HelloWorldRestController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/requete/{matricule}", method = RequestMethod.GET)
-	public ResponseEntity<List<Requete>> listRequetesByConseiller(@PathVariable Long matricule) {
+	@RequestMapping(value = "/conseiller/{matricule}/requete", method = RequestMethod.GET)
+	public ResponseEntity<List<Requete>> findRequeteByConseiller(@PathVariable Long matricule) {
 		List<Requete> liste = utilService.findRequeteByConseiller(matricule);		
 		return new ResponseEntity<List<Requete>>(liste, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/conseiller/{matricule}/requete/{numRequete}", method = RequestMethod.GET)
+	public ResponseEntity<Requete> getRequeteByNum(@PathVariable int numRequete) {
+		Requete requete = utilService.getRequeteByNum(numRequete);		
+		return new ResponseEntity<Requete>(requete, HttpStatus.OK);
+	}
+	
 	// ----- validation d'une requete
-	@RequestMapping(value = "/requete/{numRequete}", method = RequestMethod.PUT)
-	public ResponseEntity<Void> validationRequete(@PathVariable("numRequete") int numRequete,
-			@RequestBody Requete requete) {
-		Requete req = utilService.getRequeteByNum(numRequete);
-		if (req == null) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		utilService.validationRequete(req);
+	@RequestMapping(value = "conseiller/requete/{numRequete}", method = RequestMethod.POST)
+	public ResponseEntity<Void> validationRequete(@PathVariable("numRequete") int numRequete) {
+		Requete req=utilService.getRequeteByNum(numRequete);
+		
+		Compte compte=req.getCompte();
+		utilService.validationRequete(compte);
 		return null;
 	}
 }

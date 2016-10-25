@@ -29,11 +29,13 @@ function utilisateurService($http, $q) {
 		// -------------------------------------------Service_demandeOuverture-----------------------------------
 		getAllDemandes : getAllDemandes,
 		getDemandesByMle : getDemandesByMle,
+		getDemandeByNum : getDemandeByNum,
 		createDemande : createDemande,
 		affectationDemande : affectationDemande,
 		validationDemande : validationDemande,
 		//--------------------------------------Requetes---------------------------------------------------
 		findRequeteByConseiller:findRequeteByConseiller,
+		getRequeteByNum:getRequeteByNum,
 		validationRequete:validationRequete,	
 	};
 	return factory;
@@ -244,7 +246,7 @@ function utilisateurService($http, $q) {
     /* recherche de demandes ouverture compte par conseiller */
     function getDemandesByMle(matricule) {
         var deferred = $q.defer();
-        $http.get(DEMANDE_URI+matricule)
+        $http.get(DEMANDE_URI+"Conseiller"+matricule)
             .then(
             function (response) {
                 deferred.resolve(response.data);
@@ -255,6 +257,21 @@ function utilisateurService($http, $q) {
             }
         );
         return deferred.promise;
+    }
+    
+    function getDemandeByNum(numDemande){
+    	 var deferred = $q.defer();
+         $http.get(DEMANDE_URI+numDemande)
+             .then(
+             function (response) {
+                 deferred.resolve(response.data);
+             },
+             function(errResponse){
+                 console.error('erreur utilisateurService.getDemandeByNum()');
+                 deferred.reject(errResponse);
+             }
+         );
+         return deferred.promise;
     }
     
     /* Ajout d'une nouvelle demande */
@@ -307,24 +324,37 @@ function utilisateurService($http, $q) {
     //--------------------------------Services Requetes-----------------------------------------------------
     function findRequeteByConseiller(matricule) {
         var deferred = $q.defer();
-        $http.get(REQUETE_URI+matricule)
+        $http.get(CONSEILLER_URI+matricule+"/requete")
             .then(
             function (response) {
                 deferred.resolve(response.data);
             },
             function(errResponse){
-                console.error('erreur utilisateurService.getRequeteByMle()');
+                console.error('erreur utilisateurService.findRequeteByConseiller()');
                 deferred.reject(errResponse);
             }
         );
         return deferred.promise;
     }
     
+   function getRequeteByNum(numRequete){
+    	 var deferred = $q.defer();
+         $http.get(CONSEILLER_URI+matricule+"/requete/"+numRequete)
+             .then(
+             function (response) {
+                 deferred.resolve(response.data);
+             },
+             function(errResponse){
+                 console.error('erreur utilisateurService.getRequeteByNum()');
+                 deferred.reject(errResponse);
+             }
+         );
+         return deferred.promise;
+    }
     
-    
-    function validationRequete(requete) {
+    function validationRequete(numRequete) {
         var deferred = $q.defer();
-        $http.put(REQUETE_URI+requete.numRequete, requete)
+        $http.post(CONSEILLER_URI+"/requete/"+numRequete)
             .then(
             function (response) {
                 deferred.resolve(response.data);

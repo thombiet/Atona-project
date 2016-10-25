@@ -86,7 +86,6 @@ function ClientController(uService, cService, $scope, $routeParams) {
 	}
 
 	function virement() {
-
 		if ($scope.CompteDebit.noCompte != $scope.CompteCredit.noCompte) {
 
 			var transaction = {};
@@ -158,21 +157,19 @@ function ClientController(uService, cService, $scope, $routeParams) {
 	function envoiRequete(){
 		var noCompte=sessionStorage.noCompte;
 		var requete={};
-				requete.type=$scope.type;
-				requete.message=$scope.message;
-				requete.noCompte= noCompte;
+			requete.type=$scope.type;
+			requete.message=$scope.message;
+			requete.noCompte= $scope.noCompte;
 				
-		console.log(noCompte);
-		console.log("Le matricule du conseiller "+$scope.client.conseiller.matricule);
 		console.log(requete);
-		cService.envoiRequete(sessionStorage.noCompte,$scope.client.conseiller.matricule,requete).then(	
-				function(value){
-					alert("Requete envoyee");
-				},
-				function(reason) {
-					console.log("ClientController : envoiRequete, erreur "
-							+ reason.status)
-				})
+		cService.envoiRequete(noCompte,$scope.client.conseiller.matricule,requete).then(	
+			function(value){
+				alert("Requete envoyee");
+			},
+			function(reason) {
+				console.log("ClientController : envoiRequete, erreur "
+						+ reason.status)
+			})
 	}
 
 	$scope.printToCart = function(printSectionId) {

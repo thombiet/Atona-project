@@ -3,8 +3,10 @@ package com.wha.springmvc.service;
 import java.util.List;
 
 import com.wha.springmvc.model.Client;
+import com.wha.springmvc.model.Compte;
 import com.wha.springmvc.model.Conseiller;
 import com.wha.springmvc.model.DemandeOuverture;
+import com.wha.springmvc.model.Notification;
 import com.wha.springmvc.model.Requete;
 import com.wha.springmvc.model.Utilisateur;
 
@@ -76,7 +78,7 @@ public interface UtilisateurService {
 
 	public Requete getRequeteByNum(int numRequete);
 
-	public void validationRequete(Requete req);
+	public void validationRequete(Compte compte);
 	
 	// #endregion
 }

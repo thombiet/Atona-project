@@ -75,7 +75,7 @@ public interface UtilisateurDAO {
 
 	Requete getRequeteByNum(int numRequete);
 
-	void validationRequete(Requete req);
+	//void validationRequete(Compte compte);
 
 	//#endregion
 }
